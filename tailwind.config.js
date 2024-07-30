@@ -137,13 +137,6 @@ module.exports = {
 		"./template-parts/**/*.{html,js,cjs,php}",
 	],
 	safelist: [
-		"lg:top-10",
-		"lg:top-2",
-		"lg:top-3/4",
-		"lg:top-4/5",
-		"lg:-left-10",
-		"lg:-right-10",
-		"lg:-right-16",
 	],
 	theme: {
 		extend: {
