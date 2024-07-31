@@ -1,0 +1,26 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "makerblocks/interactivity",
+  "version": "0.1.0",
+  "title": "Interactivity Block",
+  "category": "makerblocks-templates",
+  "icon": "slides",
+  "attributes": {
+    "skyColor": {
+      "type": "string"
+    },
+    "grassColor": {
+      "type": "string"
+    }
+  },
+  "example": {},
+  "supports": {
+    "interactivity": true
+  },
+  "textdomain": "makerblocks",
+  "editorScript": "file:./index.js",
+  "style": "file:../../assets/css/styles.css",
+  "render": "file:./render.php",
+  "viewScriptModule": "file:./view.js"
+}

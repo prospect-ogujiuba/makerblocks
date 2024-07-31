@@ -1,0 +1,25 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "makerblocks/maker",
+  "version": "0.1.0",
+  "title": "Maker",
+  "category": "makerblocks-templates",
+  "icon": "archive",
+  "description": "A Maker block",
+  "attributes": {
+    "anAttribute": {
+      "type": "string"
+    }
+  },
+  "example": {},
+  "supports": {
+    "html": true,
+    "interactivity": true
+  },
+  "textdomain": "makerblocks",
+  "editorScript": "file:./index.js",
+  "style": "file:../../assets/css/styles.css",
+  "render": "file:./render.php",
+  "viewScript": "file:./view.js"
+}
