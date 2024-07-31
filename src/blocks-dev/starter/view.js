@@ -1,15 +1,15 @@
-class Dynamica {
+class Starter {
 	constructor() {
 		this.init();
 	}
 
 	init() {
-		console.log("Dynamica Initialized");
+		console.log("Starter Initialized");
 	}
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-	new Dynamica();
+	new Starter();
 });
 
-export default Dynamica;
+export default Starter;
