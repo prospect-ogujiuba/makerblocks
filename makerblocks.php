@@ -18,99 +18,22 @@ if (!defined('ABSPATH')) {
   exit; // Exit if accessed directly.
 }
 
-// Global variables
-$plugin_directory = plugin_dir_url(__FILE__);
-$script_version = filemtime($plugin_directory . 'assets/js/index.js');
-$style_version = filemtime($plugin_directory . 'assets/css/styles.css');
+// Variables
+define('MAKERBLOCKS_PLUGIN_DIR', plugin_dir_path(__FILE__));
+define('MAKERBLOCKS_PLUGIN_URL', plugin_dir_url(__FILE__));
 
-// Registers the block using the metadata loaded from the `block.json` file.
-function makerblocks_blocks_init()
-{
-  $blocks = [
-    '_maker',
-    '_dynamica',
-    '_statica',
-    '_interactivity',
-    '_wordpress-components',
-    'starter'
-  ];
+$includes = [
+  // 'unregister_core_wp_blocks',
+  'carbon_fields',
+  'post_types',
+  'variables',
+  'blocks',
+  'block_categories',
+  'helpers',
+  'enqueue_assets',
+  'wp_localize',
+];
 
-  foreach ($blocks as $block) {
-    register_block_type(__DIR__ . '/blocks/' . $block);
-  }
+foreach ($includes as $include) {
+  require_once MAKERBLOCKS_PLUGIN_DIR . 'inc/' . $include . '.php';
 }
-
-add_action('init', 'makerblocks_blocks_init');
-
-// Enqueue styles and scripts for front end
-function makerblocks_enqueue_assets()
-{
-  global $plugin_directory, $script_version, $style_version;
-
-  wp_register_script('makerblocks-scripts', $plugin_directory . 'assets/js/index.js', ['wp-element'], $script_version, true);
-  wp_enqueue_script('makerblocks-scripts');
-
-  wp_register_style('makerblocks-styles', $plugin_directory . 'assets/css/styles.css', [], $style_version, 'all');
-  wp_enqueue_style('makerblocks-styles');
-
-  wp_register_style('makerblocks-wp-components', $plugin_directory . 'assets/css/wp-components.css', [], $style_version, 'all');
-  wp_enqueue_style('makerblocks-wp-components');
-
-  wp_register_style('bootstrap-icons', $plugin_directory . 'assets/css/bootstrap-icons.css', [], '1.11.1', 'all');
-  wp_enqueue_style('bootstrap-icons');
-
-  wp_register_style('font-awesome', $plugin_directory . 'assets/css/font-awesome.css', [], '6.4.2', 'all');
-  wp_enqueue_style('font-awesome');
-}
-add_action('wp_enqueue_scripts', 'makerblocks_enqueue_assets');
-
-function makerblocks_enqueue_editor_assets()
-{
-  global $plugin_directory, $script_version, $style_version;
-
-  wp_register_script('makerblocks-scripts', $plugin_directory . 'assets/js/index.js', ['wp-element'], $script_version, true);
-  wp_enqueue_script('makerblocks-scripts');
-
-  wp_register_style('makerblocks-styles', $plugin_directory . 'assets/css/styles.css', [], $style_version, 'all');
-  wp_enqueue_style('makerblocks-styles');
-
-  wp_register_style('bootstrap-icons', $plugin_directory . 'assets/css/bootstrap-icons.css', [], '1.11.1', 'all');
-  wp_enqueue_style('bootstrap-icons');
-
-  wp_register_style('font-awesome', $plugin_directory . 'assets/css/font-awesome.css', [], '6.4.2', 'all');
-  wp_enqueue_style('font-awesome');
-}
-
-add_action('enqueue_block_editor_assets', 'makerblocks_enqueue_editor_assets');
-
-function makerblocks_enqueue_admin_assets()
-{
-  global $plugin_directory, $script_version, $style_version;
-
-  wp_register_script('makerblocks-admin-scripts', $plugin_directory . 'assets/js/index-wp-admin.js', [], $script_version, true);
-  wp_enqueue_script('makerblocks-admin-scripts');
-
-  wp_register_style('makerblocks-admin-styles', $plugin_directory . 'assets/css/styles-wp-admin.css', [], $style_version, 'all');
-  wp_enqueue_style('makerblocks-admin-styles');
-}
-
-add_action('admin_enqueue_scripts', 'makerblocks_enqueue_admin_assets');
-
-// Maker Blocks Category
-function my_custom_block_category($categories, $post)
-{
-  return array_merge(
-    [
-      [
-        'slug'  => 'makerblocks-templates',
-        'title' => __('Maker Blocks Templates', 'makerblocks'),
-      ],
-      [
-        'slug'  => 'makerblocks',
-        'title' => __('Maker Blocks', 'makerblocks'),
-      ],
-    ],
-    $categories
-  );
-}
-add_filter('block_categories_all', 'my_custom_block_category', 10, 2);
