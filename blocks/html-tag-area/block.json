@@ -1,0 +1,106 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "makerblocks/html-tag-area",
+  "version": "0.1.0",
+  "title": "<area>",
+  "category": "makerblocks-html-tags",
+  "icon": "tag",
+  "description": "The <area> HTML element defines the active areas of an image, which are links. A drawing with active regions attached to it is called collectively an image map.",
+  "attributes": {},
+  "supports": {
+    "__experimentalOnEnter": true,
+    "__experimentalOnMerge": true,
+    "__experimentalSettings": true,
+    "anchor": true,
+    "align": true,
+    "alignWide": true,
+    "ariaLabel": true,
+    "background": {
+      "backgroundImage": true,
+      "backgroundSize": true,
+      "__experimentalDefaultControls": {
+        "backgroundImage": true
+      }
+    },
+    "className": true,
+    "color": {
+      "background": true,
+      "button": true,
+      "enableContrastChecker": true,
+      "gradients": true,
+      "heading": true,
+      "link": true,
+      "text": true,
+      "__experimentalDefaultControls": {
+        "background": true,
+        "text": true
+      }
+    },
+    "customClassName": true,
+    "dimensions": {
+      "aspectRatio": true,
+      "minHeight": true
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true,
+      "__experimentalDefaultControls": {
+        "color": true,
+        "radius": true,
+        "style": true,
+        "width": true
+      }
+    },
+    "filter": {
+      "duotone": true
+    },
+    "html": true,
+    "inserter": true,
+    "interactivity": {
+      "clientNavigation": false,
+      "interactive": false
+    },
+    "layout": false,
+    "lock": true,
+    "multiple": true,
+    "position": {
+      "sticky": true
+    },
+    "renaming": true,
+    "reusable": true,
+    "shadow": true,
+    "spacing": {
+      "margin": true,
+      "padding": true,
+      "blockGap": true,
+      "__experimentalDefaultControls": {
+        "padding": true,
+        "blockGap": true
+      }
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "textAlign": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalTextDecoration": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalDefaultControls": {
+        "fontSize": true
+      }
+    },
+    "splitting": true
+  },
+  "example": {},
+  "textdomain": "makerblocks",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "viewScript": "file:./view.js"
+}

@@ -23,12 +23,10 @@ define('MAKERBLOCKS_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('MAKERBLOCKS_PLUGIN_URL', plugin_dir_url(__FILE__));
 
 $includes = [
-  // 'unregister_core_wp_blocks',
   'carbon_fields',
   'post_types',
   'variables',
   'blocks',
-  'block_categories',
   'helpers',
   'enqueue_assets',
   'wp_localize',

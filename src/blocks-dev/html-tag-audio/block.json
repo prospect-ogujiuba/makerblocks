@@ -1,0 +1,116 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "makerblocks/html-tag-audio",
+	"version": "0.1.0",
+	"title": "<audio>",
+	"category": "makerblocks-html-tags",
+	"icon": "tag",
+	"description": "The <audio> HTML element adds, plays, and controls audio recording settings on a web page.",
+	"attributes": {
+		"autoplay": {
+			"type": "boolean",
+			"default": false
+		},
+		"controls": {
+			"type": "boolean",
+			"default": true
+		},
+		"loop": {
+			"type": "boolean",
+			"default": false
+		},
+		"muted": {
+			"type": "boolean",
+			"default": false
+		},
+		"preload": {
+			"type": "string",
+			"default": "auto"
+		},
+		"src": {
+			"type": "string",
+			"default": ""
+		},
+		"text": {
+			"type": "string",
+			"default": "Sorry your browser does not support the audio tag."
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"align": true,
+		"alignWide": true,
+		"ariaLabel": true,
+		"background": {
+			"backgroundImage": true,
+			"backgroundSize": true
+		},
+		"className": true,
+		"color": {
+			"background": true,
+			"button": true,
+			"enableContrastChecker": true,
+			"gradients": true,
+			"heading": true,
+			"link": true,
+			"text": true
+		},
+		"customClassName": true,
+		"dimensions": {
+			"aspectRatio": true,
+			"minHeight": true
+		},
+		"__experimentalBorder": {
+			"color": true,
+			"radius": true,
+			"style": true,
+			"width": true,
+			"__experimentalDefaultControls": {
+				"color": true,
+				"radius": true,
+				"style": true,
+				"width": true
+			}
+		},
+		"filter": { "duotone": true },
+		"html": true,
+		"inserter": true,
+		"interactivity": {
+			"clientNavigation": false,
+			"interactive": false
+		},
+		"layout": false,
+		"lock": true,
+		"multiple": true,
+		"position": {
+			"sticky": true
+		},
+		"renaming": true,
+		"reusable": true,
+		"shadow": true,
+		"spacing": {
+			"margin": true,
+			"padding": true,
+			"blockGap": true
+		},
+		"typography": {
+			"fontSize": true,
+			"lineHeight": true,
+			"textAlign": true
+		},
+		"splitting": true
+	},
+	"example": {
+		"attributes": {
+			"controls": true,
+			"src": "audio/chime.mp3",
+			"text": "Sorry your browser does not support the audio tag."
+		}
+	},
+	"textdomain": "makerblocks",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}

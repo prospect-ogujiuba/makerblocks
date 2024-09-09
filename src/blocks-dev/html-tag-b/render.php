@@ -1,0 +1,1 @@
+<b><?php echo $attributes['text'] ?></b>

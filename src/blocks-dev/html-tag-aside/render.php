@@ -1,0 +1,1 @@
+<aside <?php echo get_block_wrapper_attributes() ?>><?php echo $attributes['text']; ?><?php echo $content ?></aside>

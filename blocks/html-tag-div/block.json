@@ -1,0 +1,93 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "makerblocks/html-tag-div",
+  "version": "0.1.0",
+  "title": "<div>",
+  "category": "makerblocks-html-tags",
+  "icon": "tag",
+  "description": "The <div> HTML element is a universal block element and is designed to group document elements in order to change the appearance of content through styles. To do this, add the class or id attribute with the name of the class or identifier. As with other block elements, the contents of the <div> always begin with a new line, and line breaks are also added after it.",
+  "attributes": {
+    "text": {
+      "type": "string"
+    }
+  },
+  "supports": {
+    "anchor": true,
+    "align": true,
+    "alignWide": true,
+    "ariaLabel": true,
+    "background": {
+      "backgroundImage": true,
+      "backgroundSize": true
+    },
+    "className": true,
+    "color": {
+      "background": true,
+      "button": true,
+      "enableContrastChecker": true,
+      "gradients": true,
+      "heading": true,
+      "link": true,
+      "text": true
+    },
+    "customClassName": true,
+    "dimensions": {
+      "aspectRatio": true,
+      "minHeight": true
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true,
+      "__experimentalDefaultControls": {
+        "color": true,
+        "radius": true,
+        "style": true,
+        "width": true
+      }
+    },
+    "filter": {
+      "duotone": true
+    },
+    "html": true,
+    "inserter": true,
+    "interactivity": {
+      "clientNavigation": false,
+      "interactive": false
+    },
+    "layout": false,
+    "lock": true,
+    "multiple": true,
+    "position": {
+      "sticky": true
+    },
+    "renaming": true,
+    "reusable": true,
+    "shadow": true,
+    "spacing": {
+      "margin": true,
+      "padding": true,
+      "blockGap": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "textAlign": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalTextDecoration": true,
+      "__experimentalLetterSpacing": true
+    },
+    "splitting": true
+  },
+  "example": {},
+  "textdomain": "makerblocks",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "viewScript": "file:./view.js"
+}

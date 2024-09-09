@@ -1,3 +1,5 @@
+const safelistClasses = require("./inc/safelist-classes/index.js");
+
 const theme_starter_colors = {
 	gray: {
 		50: "#f9fafb",
@@ -136,8 +138,7 @@ module.exports = {
 		"./src/**/*.{html,js,cjs,php}",
 		"./template-parts/**/*.{html,js,cjs,php}",
 	],
-	safelist: [
-	],
+	safelist: safelistClasses,
 	theme: {
 		extend: {
 			colors: theme_starter_colors, //<-- Use the theme_starter_colors for colors
