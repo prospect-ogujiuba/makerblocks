@@ -15,6 +15,7 @@ function makerblocks_get_custom_blocks()
         '_statica',
         '_interactivity',
         '_wordpress-components',
+        'atsflow-app',
         // HTML ELEMENTS
         'html-tag',
         'html-tag-a',

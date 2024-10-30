@@ -10,10 +10,11 @@ class ComponentRenderer {
 	renderComponents() {
 		try {
 			// Render Components Here
+			this.renderComponent("#atsflow-app", ATSFlow);
 		} catch (error) {
 			console.error(
 				"An error occurred while rendering the React components:",
-				error,
+				error
 			);
 		}
 	}
@@ -31,7 +32,7 @@ class ComponentRenderer {
 				}
 			}
 			return {};
-		},
+		}
 	) {
 		const elements = document.querySelectorAll(selector);
 		if (elements.length > 0) {
@@ -42,7 +43,7 @@ class ComponentRenderer {
 					`Rendering ${Component.name} component in element ${
 						index + 1
 					} with props:`,
-					props,
+					props
 				);
 				ReactDOM.createRoot(element).render(<Component {...props} />);
 			});

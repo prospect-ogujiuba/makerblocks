@@ -20,20 +20,34 @@ __webpack_require__.r(__webpack_exports__);
 class ComponentRenderer {
   constructor() {
     document.addEventListener("DOMContentLoaded", () => {
-      try {
-        // You can initialize or call renderComponents here if needed
-      } catch (error) {
-        console.error("An error occurred while rendering the React components:", error);
-      }
+      this.renderComponents();
     });
   }
-  renderComponents(selector, Component, getProps = () => ({})) {
+  renderComponents() {
+    try {
+      // Render Components Here
+      this.renderComponent("#atsflow-app", ATSFlow);
+    } catch (error) {
+      console.error("An error occurred while rendering the React components:", error);
+    }
+  }
+  renderComponent(selector, Component, getProps = element => {
+    const propsString = element.getAttribute("data-props");
+    if (propsString) {
+      try {
+        return JSON.parse(propsString);
+      } catch (error) {
+        console.error("Error parsing props:", error);
+      }
+    }
+    return {};
+  }) {
     const elements = document.querySelectorAll(selector);
     if (elements.length > 0) {
       console.log(`Found ${elements.length} ${selector} elements.`);
       elements.forEach((element, index) => {
         const props = getProps(element, index);
-        console.log(`Rendering ${Component.name} component in element ${index + 1}.`);
+        console.log(`Rendering ${Component.name} component in element ${index + 1} with props:`, props);
         react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot(element).render((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(Component, {
           ...props
         }));
@@ -660,7 +674,43 @@ class WordPressLocalize {
     this.init();
   }
   init() {
-    console.log("WordPress Data Localized");
+    console.log("Localized");
+    this.logData();
+  }
+  logData() {
+    // Using arrow function to retain the correct `this` context
+    document.addEventListener("DOMContentLoaded", () => {
+      if (typeof siteData !== "undefined") {
+        console.log(siteData);
+
+        // Example usage:
+        console.log("Site Name:", siteData.siteName);
+        console.log("Site Description:", siteData.siteDescription);
+        console.log("Site URL:", siteData.siteUrl);
+        console.log("Admin Email:", siteData.adminEmail);
+        console.log("Active Theme Name:", siteData.themeName);
+        console.log("Theme Version:", siteData.themeVersion);
+        console.log("Theme URL:", siteData.themeUrl);
+        console.log("Theme Author:", siteData.themeAuthor);
+        console.log("Current User ID:", siteData.currentUserId);
+        console.log("Current User Name:", siteData.currentUserName);
+        console.log("Current User Email:", siteData.currentUserEmail);
+        console.log("Current User Roles:", siteData.currentUserRoles);
+        console.log("Home URL:", siteData.homeUrl);
+        console.log("Site URL:", siteData.siteUrl);
+        console.log("Admin URL:", siteData.adminUrl);
+        console.log("AJAX URL:", siteData.ajaxUrl);
+        console.log("REST API URL:", siteData.restUrl);
+        console.log("Nonce:", siteData.nonce);
+        if (siteData.postId) {
+          console.log("Post ID:", siteData.postId);
+          console.log("Post Title:", siteData.postTitle);
+          console.log("Post URL:", siteData.postUrl);
+        }
+      } else {
+        console.error("siteData is not defined.");
+      }
+    });
   }
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (WordPressLocalize);
