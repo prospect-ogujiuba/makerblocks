@@ -1,6 +1,6 @@
 import ReactDOM from "react-dom/client";
 // Components
-import ATSFlow from "./apps/ATSFlow";
+import MakerStarter from "./apps/makerstarter/MakerStarter";
 
 class ComponentRenderer {
 	constructor() {
@@ -14,7 +14,7 @@ class ComponentRenderer {
 		try {
 			// Render all components by calling this.renderComponent
 
-			this.renderComponent("#atsflow-app", ATSFlow);
+			this.renderComponent("#makerstarter", MakerStarter);
 			
 		} catch (error) {
 			// Catch and log any rendering errors

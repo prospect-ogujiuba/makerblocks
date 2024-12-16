@@ -10,126 +10,11 @@ function makerblocks_get_custom_blocks()
 {
     return [
         // TEMPLATES
-        '_maker',
         '_dynamica',
         '_statica',
         '_interactivity',
         '_wordpress-components',
-        'atsflow-app',
-        // HTML ELEMENTS
-        'html-tag',
-        'html-tag-a',
-        'html-tag-abbr',
-        'html-tag-address',
-        'html-tag-area',
-        'html-tag-article',
-        'html-tag-aside',
-        'html-tag-audio',
-        'html-tag-b',
-        'html-tag-base',
-        // 'html-tag-bdi',
-        // 'html-tag-bdo',
-        // 'html-tag-blockquote',
-        // 'html-tag-body',
-        // 'html-tag-br',
-        // 'html-tag-button',
-        // 'html-tag-canvas',
-        // 'html-tag-caption',
-        // 'html-tag-cite',
-        // 'html-tag-code',
-        // 'html-tag-col',
-        // 'html-tag-colgroup',
-        // 'html-tag-comment',
-        // 'html-tag-data',
-        // 'html-tag-datalist',
-        // 'html-tag-dd',
-        // 'html-tag-del',
-        // 'html-tag-details',
-        // 'html-tag-dfn',
-        // 'html-tag-dialog',
-        'html-tag-div',
-        // 'html-tag-dl',
-        // 'html-tag-doctype',
-        // 'html-tag-dt',
-        // 'html-tag-em',
-        // 'html-tag-embed',
-        // 'html-tag-fieldset',
-        // 'html-tag-figcaption',
-        // 'html-tag-figure',
-        // 'html-tag-footer',
-        // 'html-tag-form',
-        // 'html-tag-h1',
-        // 'html-tag-h2',
-        // 'html-tag-h3',
-        // 'html-tag-h4',
-        // 'html-tag-h5',
-        // 'html-tag-h6',
-        // 'html-tag-head',
-        // 'html-tag-header',
-        // 'html-tag-hr',
-        // 'html-tag-html',
-        // 'html-tag-i',
-        // 'html-tag-iframe',
-        // 'html-tag-img',
-        // 'html-tag-input',
-        // 'html-tag-ins',
-        // 'html-tag-kbd',
-        // 'html-tag-label',
-        // 'html-tag-legend',
-        // 'html-tag-li',
-        // 'html-tag-link',
-        // 'html-tag-main',
-        // 'html-tag-map',
-        // 'html-tag-mark',
-        // 'html-tag-menu',
-        // 'html-tag-meta',
-        // 'html-tag-meter',
-        // 'html-tag-nav',
-        // 'html-tag-noscript',
-        // 'html-tag-object',
-        // 'html-tag-ol',
-        // 'html-tag-optgroup',
-        // 'html-tag-option',
-        // 'html-tag-output',
-        // 'html-tag-p',
-        // 'html-tag-picture',
-        // 'html-tag-pre',
-        // 'html-tag-progress',
-        // 'html-tag-q',
-        // 'html-tag-rp',
-        // 'html-tag-rt',
-        // 'html-tag-ruby',
-        // 'html-tag-s',
-        // 'html-tag-samp',
-        // 'html-tag-script',
-        'html-tag-section',
-        // 'html-tag-select',
-        // 'html-tag-slot',
-        // 'html-tag-small',
-        // 'html-tag-source',
-        // 'html-tag-span',
-        // 'html-tag-strong',
-        // 'html-tag-style',
-        // 'html-tag-sub',
-        // 'html-tag-summary',
-        // 'html-tag-sup',
-        // 'html-tag-table',
-        // 'html-tag-tbody',
-        // 'html-tag-td',
-        // 'html-tag-template',
-        // 'html-tag-textarea',
-        // 'html-tag-tfoot',
-        // 'html-tag-th',
-        // 'html-tag-thead',
-        // 'html-tag-time',
-        // 'html-tag-title',
-        // 'html-tag-tr',
-        // 'html-tag-track',
-        // 'html-tag-u',
-        // 'html-tag-ul',
-        // 'html-tag-var',
-        // 'html-tag-video',
-        // 'html-tag-wbr',
+        'makerstarter',
     ];
 
 }
@@ -137,8 +22,8 @@ function makerblocks_get_custom_blocks()
 function makerblocks_get_wp_core_blocks()
 {
     return [
-        // 'core/paragraph',
-        // 'core/heading',
+        'core/paragraph',
+        'core/heading',
         // 'core/list',
         // 'core/list-item',
         // 'core/quote',
@@ -253,7 +138,7 @@ function makerblocks_blocks_init()
 add_action('init', 'makerblocks_blocks_init');
 
 // Custom Block Categories
-function my_custom_block_category($categories, $post)
+function makerblocks_custom_block_category($categories, $post)
 {
     return array_merge(
         [
@@ -269,27 +154,24 @@ function my_custom_block_category($categories, $post)
                 'slug'  => 'makerblocks',
                 'title' => __('Maker Blocks', 'makerblocks'),
             ],
-            [
-                'slug'  => 'makerblocks-html-tags',
-                'title' => __('Maker Blocks HTML Tags', 'makerblocks'),
-            ],
         ],
         $categories
     );
 }
-add_filter('block_categories_all', 'my_custom_block_category', 10, 2);
+add_filter('block_categories_all', 'makerblocks_custom_block_category', 10, 2);
 
 
 function makerblocks_allowed_block_types($allowed_block_types, $block_editor_context)
 {
-
-    $core_blocks = makerblocks_get_wp_core_blocks();
-
+    $core_blocks = makerblocks_get_custom_blocks();
+    
+    // Prefix each custom block with 'makerblocks/'
     $custom_blocks = array_map(function ($block) {
         return 'makerblocks/' . $block;
     }, makerblocks_get_custom_blocks());
 
-    return array_merge($core_blocks, $custom_blocks);
+    return array_merge($custom_blocks, $core_blocks);
 }
 
-add_filter('allowed_block_types_all', 'makerblocks_allowed_block_types', 10, 2);
+
+// add_filter('allowed_block_types_all', 'makerblocks_allowed_block_types', 10, 2);

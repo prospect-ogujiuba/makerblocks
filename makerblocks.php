@@ -2,8 +2,8 @@
 
 /**
  * Plugin Name:       Maker Blocks
- * Description:       Custom Gutenberg Blocks For "Maker" Themes
- * Requires at least: 6.1
+ * Description:       Custom Gutenberg Blocks for MakerStarter
+ * Requires at least: 6.5
  * Requires PHP:      7.0
  * Version:           0.1.0
  * Author:            Prospect Ogujiuba
@@ -21,16 +21,18 @@ if (!defined('ABSPATH')) {
 // Variables
 define('MAKERBLOCKS_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('MAKERBLOCKS_PLUGIN_URL', plugin_dir_url(__FILE__));
+define('MAKERSTARTER_THEME_DIR', get_template_directory());
+define('MAKERSTARTER_THEME_URL', get_template_directory_uri());
 
 $includes = [
-  'carbon_fields',
+  // 'carbon_fields',
   'post_types',
   'variables',
   'blocks',
   'helpers',
   'enqueue_assets',
   'wp_localize',
-  'react_rewrite'
+  // 'react_rewrite'
 ];
 
 foreach ($includes as $include) {
