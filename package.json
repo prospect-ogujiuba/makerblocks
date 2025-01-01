@@ -1,0 +1,44 @@
+{
+	"name": "makerblocks",
+	"version": "0.1.0",
+	"description": "Custom Gutenberg blocks for WordPress Full Site Editing (FSE)",
+	"author": "Prospect Ogujiuba",
+	"license": "GPL-2.0-or-later",
+	"main": "build/index.js",
+	"scripts": {
+		"preview": "npm-run-all --parallel sync d",
+		"sync": "browser-sync start --proxy \"prospectogujiuba.test\" --files \"makerblocks\" --no-notify --no-inject-changes",
+		"tailwind-watch": "npx tailwindcss -i ./src/styles/vendors/tailwind/_source.scss -o ./src/styles/vendors/tailwind/_tailwind.scss --watch",
+		"tailwind-build": "npx tailwindcss -i ./src/styles/vendors/tailwind/_source.scss -o ./src/styles/vendors/tailwind/_tailwind.scss",
+		"sass-dev": "npx sass --watch --no-source-map ./src/styles/styles.scss:./assets/css/styles.css",
+		"sass-prod": "npx sass --style=compressed --no-source-map ./src/styles/styles.scss:./assets/css/styles.css",
+		"wp-build": "wp-scripts build --webpack-src-dir=src/scripts --output-path=assets/js",
+		"wp-start": "wp-scripts start --webpack-src-dir=src/scripts --output-path=assets/js",
+		"wp-build-blocks": "wp-scripts build --experimental-modules --webpack-src-dir=src/blocks-dev --output-path=blocks",
+		"wp-start-blocks": "wp-scripts start --experimental-modules --webpack-src-dir=src/blocks-dev --output-path=blocks",
+		"format": "wp-scripts format",
+		"lint:css": "wp-scripts lint-style",
+		"lint:js": "wp-scripts lint-js",
+		"packages-update": "wp-scripts packages-update",
+		"plugin-zip": "wp-scripts plugin-zip",
+		"dev": "npm-run-all --parallel tailwind-watch sass-dev wp-start wp-start-blocks",
+		"prod": "npm-run-all --sequential tailwind-build sass-prod wp-build wp-build-blocks"
+	},
+	"devDependencies": {
+		"@tailwindcss/aspect-ratio": "^0.4.2",
+		"@tailwindcss/container-queries": "^0.1.1",
+		"@tailwindcss/forms": "^0.5.7",
+		"@tailwindcss/typography": "^0.5.13",
+		"@wordpress/scripts": "^27.9.0",
+		"browser-sync": "^3.0.2",
+		"npm-run-all": "^4.1.5",
+		"sass": "^1.77.2",
+		"tailwindcss": "^3.4.4"
+	},
+	"dependencies": {
+		"react-router-dom": "^7.0.2",
+		"@wordpress/components": "^28.3.0",
+		"@headlessui/react": "^2.0.4",
+		"@heroicons/react": "^2.1.3"
+	}
+}
