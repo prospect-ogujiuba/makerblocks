@@ -58,7 +58,7 @@ const ResourcesPage = () => {
           <input
             type="text"
             placeholder="Search resources..."
-            className="w-full pl-16 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500"
+            className="w-full pl-4 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
