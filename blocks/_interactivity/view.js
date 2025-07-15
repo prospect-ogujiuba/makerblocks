@@ -51,6 +51,8 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__wordpress_interactivity_8e89b257__;
 /******/ 
 /************************************************************************/
 var __webpack_exports__ = {};
+// This entry needs to be wrapped in an IIFE because it needs to be isolated against other modules in the chunk.
+(() => {
 /*!***********************************************!*\
   !*** ./src/blocks-dev/_interactivity/view.js ***!
   \***********************************************/
@@ -73,5 +75,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   }
 });
+})();
+
 
 //# sourceMappingURL=view.js.map

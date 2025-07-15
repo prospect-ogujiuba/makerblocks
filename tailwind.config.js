@@ -1,4 +1,4 @@
-const safelistClasses = require("./inc/safelist-classes/index.js");
+// const safelistClasses = require("./inc/safelist-classes/index.js");
 
 const theme_starter_colors = {
 	gray: {
@@ -130,20 +130,20 @@ const theme_starter_colors = {
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-	corePlugins: {
-		preflight: true,
-	},
 	content: [
 		"./*.{html,js,cjs,php}",
 		"./src/**/*.{html,js,cjs,php}",
 		"./template-parts/**/*.{html,js,cjs,php}",
+		// "./inc/safelist-classes/**/*.js", // Add this if you're generating inline `@source` from JS modules
 	],
-	safelist: safelistClasses,
 	theme: {
 		extend: {
-			colors: theme_starter_colors, //<-- Use the theme_starter_colors for colors
-			// fontFamily: theme_starter_fonts, //<-- Use the theme_starter_fonts for fonts,
+			colors: theme_starter_colors,
+			// fontFamily: theme_starter_fonts,
 		},
+	},
+	corePlugins: {
+		preflight: true,
 	},
 	plugins: [
 		require("@tailwindcss/typography"),

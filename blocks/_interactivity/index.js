@@ -2,6 +2,16 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/blocks-dev/_interactivity/block.json":
+/*!**************************************************!*\
+  !*** ./src/blocks-dev/_interactivity/block.json ***!
+  \**************************************************/
+/***/ ((module) => {
+
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"makerblocks/interactivity","version":"0.1.0","title":"Interactivity Block","category":"makerblocks-templates","icon":"slides","attributes":{"skyColor":{"type":"string"},"grassColor":{"type":"string"}},"example":{},"supports":{"interactivity":true},"textdomain":"makerblocks","editorScript":"file:./index.js","style":"file:../../assets/css/styles.css","render":"file:./render.php","viewScriptModule":"file:./view.js"}');
+
+/***/ }),
+
 /***/ "./src/blocks-dev/_interactivity/edit.js":
 /*!***********************************************!*\
   !*** ./src/blocks-dev/_interactivity/edit.js ***!
@@ -12,13 +22,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Edit)
 /* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
-
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__);
 
 
 
@@ -30,6 +39,7 @@ __webpack_require__.r(__webpack_exports__);
  *
  * @return {Element} Element to render.
  */
+
 function Edit(props) {
   function updateSkyColor(e) {
     props.setAttributes({
@@ -41,36 +51,29 @@ function Edit(props) {
       grassColor: e.target.value
     });
   }
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)()
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "my-unique-plugin-wrapper-class"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "bg-blue-200 border-2 border-blue-300 rounded-md p-5"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
-    className: "mr-3 p-2 rounded-lg",
-    type: "text",
-    value: props.attributes.skyColor,
-    onChange: updateSkyColor,
-    placeholder: "sky color..."
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
-    className: "p-2 rounded-lg",
-    type: "text",
-    value: props.attributes.grassColor,
-    onChange: updateGrassColor,
-    placeholder: "grass color..."
-  }))));
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)(),
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      className: "my-unique-plugin-wrapper-class",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        className: "bg-blue-200 border-2 border-blue-300 rounded-md p-5",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+          className: "mr-3 p-2 rounded-lg",
+          type: "text",
+          value: props.attributes.skyColor,
+          onChange: updateSkyColor,
+          placeholder: "sky color..."
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+          className: "p-2 rounded-lg",
+          type: "text",
+          value: props.attributes.grassColor,
+          onChange: updateGrassColor,
+          placeholder: "grass color..."
+        })]
+      })
+    })
+  });
 }
-
-/***/ }),
-
-/***/ "react":
-/*!************************!*\
-  !*** external "React" ***!
-  \************************/
-/***/ ((module) => {
-
-module.exports = window["React"];
 
 /***/ }),
 
@@ -104,13 +107,13 @@ module.exports = window["wp"]["i18n"];
 
 /***/ }),
 
-/***/ "./src/blocks-dev/_interactivity/block.json":
-/*!**************************************************!*\
-  !*** ./src/blocks-dev/_interactivity/block.json ***!
-  \**************************************************/
+/***/ "react/jsx-runtime":
+/*!**********************************!*\
+  !*** external "ReactJSXRuntime" ***!
+  \**********************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"makerblocks/interactivity","version":"0.1.0","title":"Interactivity Block","category":"makerblocks-templates","icon":"slides","attributes":{"skyColor":{"type":"string"},"grassColor":{"type":"string"}},"example":{},"supports":{"interactivity":true},"textdomain":"makerblocks","editorScript":"file:./index.js","style":"file:../../assets/css/styles.css","render":"file:./render.php","viewScriptModule":"file:./view.js"}');
+module.exports = window["ReactJSXRuntime"];
 
 /***/ })
 
@@ -183,6 +186,8 @@ module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/tru
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
+// This entry needs to be wrapped in an IIFE because it needs to be isolated against other modules in the chunk.
+(() => {
 /*!************************************************!*\
   !*** ./src/blocks-dev/_interactivity/index.js ***!
   \************************************************/
@@ -224,6 +229,8 @@ __webpack_require__.r(__webpack_exports__);
    */
   edit: _edit__WEBPACK_IMPORTED_MODULE_1__["default"]
 });
+})();
+
 /******/ })()
 ;
 //# sourceMappingURL=index.js.map

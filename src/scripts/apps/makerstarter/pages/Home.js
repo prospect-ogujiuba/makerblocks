@@ -1,7 +1,7 @@
 import React from 'react';
 import { Menu } from '@headlessui/react';
-import { 
-  HomeIcon, 
+import {
+  HomeIcon,
   ChevronDownIcon,
   ArrowRightIcon,
   UserGroupIcon,
@@ -22,7 +22,7 @@ const HomePage = () => {
                 <span className="ml-2 text-xl font-bold text-gray-900">Home</span>
               </div>
             </div>
-            
+
           </div>
         </div>
       </nav>
@@ -64,14 +64,14 @@ const HomePage = () => {
               <h3 className="mt-4 text-lg font-medium text-gray-900">Feature One</h3>
               <p className="mt-2 text-gray-500">Description of your first amazing feature.</p>
             </div>
-            
+
             {/* Feature 2 */}
             <div className="p-6 bg-white rounded-lg shadow">
               <SparklesIcon className="h-8 w-8 text-green-600" />
               <h3 className="mt-4 text-lg font-medium text-gray-900">Feature Two</h3>
               <p className="mt-2 text-gray-500">Description of your second amazing feature.</p>
             </div>
-            
+
             {/* Feature 3 */}
             <div className="p-6 bg-white rounded-lg shadow">
               <ChartBarIcon className="h-8 w-8 text-green-600" />
