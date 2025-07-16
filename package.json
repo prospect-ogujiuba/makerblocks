@@ -8,8 +8,8 @@
 	"scripts": {
 		"preview": "npm-run-all --parallel sync d",
 		"sync": "browser-sync start --proxy \"prospectogujiuba.test\" --files \"makerblocks\" --no-notify --no-inject-changes",
-		"tailwind-watch": "npx tailwindcss -i ./src/styles/vendors/tailwind/_source.scss -o ./src/styles/vendors/tailwind/_tailwind.scss --watch",
-		"tailwind-build": "npx tailwindcss -i ./src/styles/vendors/tailwind/_source.scss -o ./src/styles/vendors/tailwind/_tailwind.scss",
+		"tailwind-watch": "npx tailwindcss/cli -i ./src/styles/vendors/tailwind/_source.scss -o ./src/styles/vendors/tailwind/_tailwind.scss --watch",
+		"tailwind-build": "npx tailwindcss/cli -i ./src/styles/vendors/tailwind/_source.scss -o ./src/styles/vendors/tailwind/_tailwind.scss",
 		"sass-dev": "npx sass --watch --no-source-map ./src/styles/styles.scss:./assets/css/styles.css",
 		"sass-prod": "npx sass --style=compressed --no-source-map ./src/styles/styles.scss:./assets/css/styles.css",
 		"wp-build": "wp-scripts build --webpack-src-dir=src/scripts --output-path=assets/js",
