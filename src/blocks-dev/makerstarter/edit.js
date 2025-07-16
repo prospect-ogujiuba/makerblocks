@@ -15,7 +15,7 @@ export default function Edit() {
 		<>
 			<section {...useBlockProps()}>
 				<div className="max-w-7xl mx-auto p-4">
-					ATS Flow Dashboard
+					Makerblocks Dashboard
 				</div>
 			</section>
 		</>

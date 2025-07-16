@@ -32,7 +32,6 @@ $includes = [
   'helpers',
   'enqueue_assets',
   'wp_localize',
-  // 'react_rewrite'
 ];
 
 foreach ($includes as $include) {

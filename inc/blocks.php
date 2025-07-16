@@ -10,10 +10,6 @@ function makerblocks_get_custom_blocks()
 {
     return [
         // TEMPLATES
-        '_dynamica',
-        '_statica',
-        '_interactivity',
-        '_wordpress-components',
         'makerstarter',
     ];
 

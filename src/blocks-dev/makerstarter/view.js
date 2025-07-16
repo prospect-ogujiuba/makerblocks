@@ -1,15 +1,15 @@
-class ATSFlow {
+class MakerStarterApp {
 	constructor() {
 		this.init();
 	}
 
 	init() {
-		console.log("ATSFlow Initialized");
+		console.log("MakerStarterApp Initialized");
 	}
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-	new ATSFlow();
+	new MakerStarterApp();
 });
 
-export default ATSFlow;
+export default MakerStarterApp;
