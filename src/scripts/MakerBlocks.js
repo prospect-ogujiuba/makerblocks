@@ -4,7 +4,7 @@ class MakerBlocks {
   }
 
   init() {
-    console.log("Maker Blocks Main Script initialized");
+    console.log("MakerBlocks Main Script initialized");
   }
 }
 
