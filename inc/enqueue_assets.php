@@ -18,9 +18,6 @@ function makerblocks_enqueue_assets()
     wp_register_style('makerblocks-styles', $plugin_directory . 'assets/css/styles.css', [], $style_version, 'all');
     wp_enqueue_style('makerblocks-styles');
 
-    wp_register_style('makerblocks-wp-components', $plugin_directory . 'assets/css/wp-components.css', [], $style_version, 'all');
-    wp_enqueue_style('makerblocks-wp-components');
-
     wp_register_style('bootstrap-icons', $plugin_directory . 'assets/css/bootstrap-icons.css', [], '1.11.1', 'all');
     wp_enqueue_style('bootstrap-icons');
 }
