@@ -1,0 +1,19 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "makerblocks/main",
+	"version": "0.1.0",
+	"title": "Main Content",
+	"category": "makerblocks",
+	"icon": "insert",
+	"description": "This is the main content block",
+	"example": {},
+	"supports": {
+		"html": false
+	},
+	"textdomain": "header",
+	"editorScript": "file:./index.js",
+	"style": "file:../../assets/css/styles.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

@@ -5,5 +5,5 @@
  */
 ?>
 <section <?php echo get_block_wrapper_attributes(); ?>>
-	<div>Header</div>
+	<div>Main</div>
 </section>
