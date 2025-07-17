@@ -1,6 +1,6 @@
 :where(.wp-site-blocks)>* {
-  margin-block-start: 0;
-  margin-block-end: 0;
+  margin-block-start: 0 !important;
+  margin-block-end: 0 !important;
 }
 
 a:where(:not(.wp-element-button)) {
