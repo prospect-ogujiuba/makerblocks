@@ -5,7 +5,7 @@ import {
 	Navigate,
 } from "react-router-dom";
 
-import DashboardLayout from "../makerstarter/layouts/DashboardLayout";
+import DashboardLayout from "./layouts/DashboardLayout";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Services from "./pages/Services";

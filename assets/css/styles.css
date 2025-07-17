@@ -3278,6 +3278,9 @@ a:where(:not(.wp-element-button)) {
   .block {
     display: block;
   }
+  .block\! {
+    display: block !important;
+  }
   .contents {
     display: contents;
   }

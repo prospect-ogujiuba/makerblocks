@@ -1,5 +1,4 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import ReactDOM from "react-dom/client";
 // Components
 import MakerStarter from "./apps/makerstarter/MakerStarter";
 
@@ -14,7 +13,9 @@ class ComponentRenderer {
 	renderComponents() {
 		try {
 			// Render all components by calling this.renderComponent
+
 			this.renderComponent("#makerstarter", MakerStarter);
+
 		} catch (error) {
 			// Catch and log any rendering errors
 			console.error(
@@ -58,10 +59,7 @@ class ComponentRenderer {
 						} with props:`,
 						props,
 					);
-
-					// Use legacy ReactDOM.render for WordPress compatibility
-					ReactDOM.render(<Component {...props} />, element);
-
+					ReactDOM.createRoot(element).render(<Component {...props} />);
 					// Mark the element as rendered
 					element.setAttribute("data-rendered", "true");
 				} else {

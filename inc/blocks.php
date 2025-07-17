@@ -10,16 +10,16 @@ function makerblocks_get_custom_blocks()
 {
     return [
         // TEMPLATES
+        'header',
         'makerstarter',
     ];
-
 }
 
 function makerblocks_get_wp_core_blocks()
 {
     return [
-        'core/paragraph',
-        'core/heading',
+        // 'core/paragraph',
+        // 'core/heading',
         // 'core/list',
         // 'core/list-item',
         // 'core/quote',
@@ -43,7 +43,7 @@ function makerblocks_get_wp_core_blocks()
         // 'core/code',
         // 'core/column',
         // 'core/columns',
-        // 'core/comment-author-avatar', // deprecated
+        // // 'core/comment-author-avatar', // deprecated
         // 'core/comment-author-name',
         // 'core/comment-content',
         // 'core/comment-date',
@@ -85,7 +85,7 @@ function makerblocks_get_wp_core_blocks()
         // 'core/author',
         // 'core/author-biography',
         // 'core/author-name',
-        // 'core/comment', // deprecated
+        // // 'core/comment', // deprecated
         // 'core/comments-count',
         // 'core/comments-form',
         // 'core/comments-link',
@@ -115,16 +115,14 @@ function makerblocks_get_wp_core_blocks()
         // 'core/tag-cloud',
         // 'core/template-part',
         // 'core/term-description',
-        // 'core/text-columns', // deprecated
+        // // 'core/text-columns', // deprecated
         // 'core/table-of-contents',
         // 'core/verse',
     ];
 }
 
-
 function makerblocks_blocks_init()
 {
-
     $blocks = makerblocks_get_custom_blocks();
     foreach ($blocks as $block) {
         register_block_type(MAKERBLOCKS_PLUGIN_DIR . '/blocks/' . $block);
@@ -156,18 +154,18 @@ function makerblocks_custom_block_category($categories, $post)
 }
 add_filter('block_categories_all', 'makerblocks_custom_block_category', 10, 2);
 
-
 function makerblocks_allowed_block_types($allowed_block_types, $block_editor_context)
 {
-    $core_blocks = makerblocks_get_custom_blocks();
-    
+    // Get core WordPress blocks that we want to allow
+    $core_blocks = makerblocks_get_wp_core_blocks();
+
     // Prefix each custom block with 'makerblocks/'
     $custom_blocks = array_map(function ($block) {
         return 'makerblocks/' . $block;
     }, makerblocks_get_custom_blocks());
 
+    // Merge custom blocks with allowed core blocks
     return array_merge($custom_blocks, $core_blocks);
 }
 
-
-// add_filter('allowed_block_types_all', 'makerblocks_allowed_block_types', 10, 2);
+add_filter('allowed_block_types_all', 'makerblocks_allowed_block_types', 10, 2);

@@ -12515,6 +12515,39 @@ function $f4e2df6bd15f8569$export$98658e8c59125e6a() {
 
 /***/ }),
 
+/***/ "./node_modules/react-dom/client.js":
+/*!******************************************!*\
+  !*** ./node_modules/react-dom/client.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+
+var m = __webpack_require__(/*! react-dom */ "react-dom");
+if (false) // removed by dead control flow
+{} else {
+  var i = m.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+  exports.createRoot = function(c, o) {
+    i.usingClientEntryPoint = true;
+    try {
+      return m.createRoot(c, o);
+    } finally {
+      i.usingClientEntryPoint = false;
+    }
+  };
+  exports.hydrateRoot = function(c, h, o) {
+    i.usingClientEntryPoint = true;
+    try {
+      return m.hydrateRoot(c, h, o);
+    } finally {
+      i.usingClientEntryPoint = false;
+    }
+  };
+}
+
+
+/***/ }),
+
 /***/ "./node_modules/react-router/dist/development/chunk-EF7DTUVF.mjs":
 /*!***********************************************************************!*\
   !*** ./node_modules/react-router/dist/development/chunk-EF7DTUVF.mjs ***!
@@ -23316,14 +23349,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "react-dom");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _apps_makerstarter_MakerStarter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./apps/makerstarter/MakerStarter */ "./src/scripts/apps/makerstarter/MakerStarter.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__);
-
+/* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-dom/client */ "./node_modules/react-dom/client.js");
+/* harmony import */ var _apps_makerstarter_MakerStarter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./apps/makerstarter/MakerStarter */ "./src/scripts/apps/makerstarter/MakerStarter.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__);
 
 // Components
 
@@ -23338,7 +23367,8 @@ class ComponentRenderer {
   renderComponents() {
     try {
       // Render all components by calling this.renderComponent
-      this.renderComponent("#makerstarter", _apps_makerstarter_MakerStarter__WEBPACK_IMPORTED_MODULE_2__["default"]);
+
+      this.renderComponent("#makerstarter", _apps_makerstarter_MakerStarter__WEBPACK_IMPORTED_MODULE_1__["default"]);
     } catch (error) {
       // Catch and log any rendering errors
       console.error("An error occurred while rendering the React components:", error);
@@ -23370,12 +23400,9 @@ class ComponentRenderer {
         if (!element.hasAttribute("data-rendered")) {
           const props = getProps(element, index);
           console.log(`Rendering ${Component.name} component in element ${index + 1} with props:`, props);
-
-          // Use legacy ReactDOM.render for WordPress compatibility
-          react_dom__WEBPACK_IMPORTED_MODULE_1___default().render(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Component, {
+          react_dom_client__WEBPACK_IMPORTED_MODULE_0__.createRoot(element).render(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Component, {
             ...props
-          }), element);
-
+          }));
           // Mark the element as rendered
           element.setAttribute("data-rendered", "true");
         } else {
@@ -23483,7 +23510,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ Makerstarter)
 /* harmony export */ });
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/development/chunk-EF7DTUVF.mjs");
-/* harmony import */ var _makerstarter_layouts_DashboardLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../makerstarter/layouts/DashboardLayout */ "./src/scripts/apps/makerstarter/layouts/DashboardLayout.js");
+/* harmony import */ var _layouts_DashboardLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./layouts/DashboardLayout */ "./src/scripts/apps/makerstarter/layouts/DashboardLayout.js");
 /* harmony import */ var _pages_Home__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./pages/Home */ "./src/scripts/apps/makerstarter/pages/Home.js");
 /* harmony import */ var _pages_About__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./pages/About */ "./src/scripts/apps/makerstarter/pages/About.js");
 /* harmony import */ var _pages_Services__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pages/Services */ "./src/scripts/apps/makerstarter/pages/Services.js");
@@ -23516,7 +23543,7 @@ function Makerstarter() {
           replace: true
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_makerstarter_layouts_DashboardLayout__WEBPACK_IMPORTED_MODULE_0__["default"], {}),
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_layouts_DashboardLayout__WEBPACK_IMPORTED_MODULE_0__["default"], {}),
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
           path: "/home",
           element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_pages_Home__WEBPACK_IMPORTED_MODULE_1__["default"], {})
