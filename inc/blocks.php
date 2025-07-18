@@ -12,7 +12,8 @@ function makerblocks_get_custom_blocks()
         // TEMPLATES
         'header',
         'main',
-        'footer'
+        'footer',
+        'makerstarter'
 
     ];
 }
@@ -170,4 +171,4 @@ function makerblocks_allowed_block_types($allowed_block_types, $block_editor_con
     return array_merge($custom_blocks, $core_blocks);
 }
 
-add_filter('allowed_block_types_all', 'makerblocks_allowed_block_types', 10, 2);
+// add_filter('allowed_block_types_all', 'makerblocks_allowed_block_types', 10, 2);

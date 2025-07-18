@@ -32408,6 +32408,11 @@ a:where(:not(.wp-element-button)) {
     }
   }
   @media (width >= 40rem) {
+    .sm\:flex {
+      display: flex;
+    }
+  }
+  @media (width >= 40rem) {
     .sm\:max-w-sm {
       max-width: var(--container-sm);
     }
@@ -32421,6 +32426,18 @@ a:where(:not(.wp-element-button)) {
   @media (width >= 40rem) {
     .sm\:transform-gpu {
       transform: translateZ(0) var(--tw-rotate-x, ) var(--tw-rotate-y, ) var(--tw-rotate-z, ) var(--tw-skew-x, ) var(--tw-skew-y, );
+    }
+  }
+  @media (width >= 40rem) {
+    :where(.sm\:space-y-0 > :not(:last-child)) {
+      --tw-space-y-reverse: 0;
+      margin-block-start: calc(var(--spacing) * 0 * var(--tw-space-y-reverse));
+      margin-block-end: calc(var(--spacing) * 0 * (1 - var(--tw-space-y-reverse)));
+    }
+  }
+  @media (width >= 40rem) {
+    .sm\:px-6 {
+      padding-inline: calc(var(--spacing) * 6);
     }
   }
   @media (width >= 40rem) {
@@ -32465,6 +32482,13 @@ a:where(:not(.wp-element-button)) {
     .sm\:blur-3xl {
       --tw-blur: blur(var(--blur-3xl));
       filter: var(--tw-blur, ) var(--tw-brightness, ) var(--tw-contrast, ) var(--tw-grayscale, ) var(--tw-hue-rotate, ) var(--tw-invert, ) var(--tw-saturate, ) var(--tw-sepia, ) var(--tw-drop-shadow, );
+    }
+  }
+  @media (width >= 48rem) {
+    :where(.md\:space-x-2 > :not(:last-child)) {
+      --tw-space-x-reverse: 0;
+      margin-inline-start: calc(var(--spacing) * 2 * var(--tw-space-x-reverse));
+      margin-inline-end: calc(var(--spacing) * 2 * (1 - var(--tw-space-x-reverse)));
     }
   }
   @media (width >= 48rem) {
@@ -32520,6 +32544,12 @@ a:where(:not(.wp-element-button)) {
   @media (width >= 64rem) {
     .lg\:px-8 {
       padding-inline: calc(var(--spacing) * 8);
+    }
+  }
+  @media (width >= 64rem) {
+    .lg\:text-3xl {
+      font-size: var(--text-3xl);
+      line-height: var(--tw-leading, var(--text-3xl--line-height));
     }
   }
 }
