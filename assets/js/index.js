@@ -22,64 +22,6 @@ class MakerBlocks {
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MakerBlocks);
 
-/***/ }),
-
-/***/ "./src/scripts/WordPressLocalize.js":
-/*!******************************************!*\
-  !*** ./src/scripts/WordPressLocalize.js ***!
-  \******************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-class WordPressLocalize {
-  constructor() {
-    this.init();
-  }
-  init() {
-    console.log("Localized");
-    this.logData();
-  }
-  logData() {
-    // Using arrow function to retain the correct `this` context
-    document.addEventListener("DOMContentLoaded", () => {
-      if (typeof siteData !== "undefined") {
-        console.log(siteData);
-
-        // Example usage:
-        console.log("Site Name:", siteData.siteName);
-        console.log("Site Description:", siteData.siteDescription);
-        console.log("Site URL:", siteData.siteUrl);
-        console.log("Admin Email:", siteData.adminEmail);
-        console.log("Active Theme Name:", siteData.themeName);
-        console.log("Theme Version:", siteData.themeVersion);
-        console.log("Theme URL:", siteData.themeUrl);
-        console.log("Theme Author:", siteData.themeAuthor);
-        console.log("Current User ID:", siteData.currentUserId);
-        console.log("Current User Name:", siteData.currentUserName);
-        console.log("Current User Email:", siteData.currentUserEmail);
-        console.log("Current User Roles:", siteData.currentUserRoles);
-        console.log("Home URL:", siteData.homeUrl);
-        console.log("Site URL:", siteData.siteUrl);
-        console.log("Admin URL:", siteData.adminUrl);
-        console.log("AJAX URL:", siteData.ajaxUrl);
-        console.log("REST API URL:", siteData.restUrl);
-        console.log("Nonce:", siteData.nonce);
-        if (siteData.postId) {
-          console.log("Post ID:", siteData.postId);
-          console.log("Post Title:", siteData.postTitle);
-          console.log("Post URL:", siteData.postUrl);
-        }
-      } else {
-        console.error("siteData is not defined.");
-      }
-    });
-  }
-}
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (WordPressLocalize);
-
 /***/ })
 
 /******/ 	});
@@ -146,10 +88,7 @@ var __webpack_exports__ = {};
   \******************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _MakerBlocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MakerBlocks */ "./src/scripts/MakerBlocks.js");
-/* harmony import */ var _WordPressLocalize__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./WordPressLocalize */ "./src/scripts/WordPressLocalize.js");
 
-
-new _WordPressLocalize__WEBPACK_IMPORTED_MODULE_1__["default"]();
 new _MakerBlocks__WEBPACK_IMPORTED_MODULE_0__["default"]();
 })();
 

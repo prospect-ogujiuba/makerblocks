@@ -13,6 +13,7 @@ function makerblocks_get_custom_blocks()
         'header',
         'main',
         'footer'
+
     ];
 }
 
