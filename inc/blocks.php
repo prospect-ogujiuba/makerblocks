@@ -11,9 +11,10 @@ function makerblocks_get_custom_blocks()
     return [
         // TEMPLATES
         'header',
-        'main',
+        // 'main',
+        'page-header',
         'footer',
-        'makerstarter'
+        // 'makerstarter'
 
     ];
 }

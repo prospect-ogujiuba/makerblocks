@@ -2240,6 +2240,12 @@ a:where(:not(.wp-element-button)) {
       max-width: 96rem;
     }
   }
+  .-m-1 {
+    margin: calc(var(--spacing) * -1);
+  }
+  .-m-1\.5 {
+    margin: calc(var(--spacing) * -1.5);
+  }
   .-m-2 {
     margin: calc(var(--spacing) * -2);
   }
@@ -2354,6 +2360,9 @@ a:where(:not(.wp-element-button)) {
   .-mx-2 {
     margin-inline: calc(var(--spacing) * -2);
   }
+  .-mx-3 {
+    margin-inline: calc(var(--spacing) * -3);
+  }
   .mx-0 {
     margin-inline: calc(var(--spacing) * 0);
   }
@@ -2458,6 +2467,9 @@ a:where(:not(.wp-element-button)) {
   }
   .mx-auto {
     margin-inline: auto;
+  }
+  .-my-6 {
+    margin-block: calc(var(--spacing) * -6);
   }
   .my-0 {
     margin-block: calc(var(--spacing) * 0);
@@ -8916,6 +8928,14 @@ a:where(:not(.wp-element-button)) {
   :where(.divide-gray-500 > :not(:last-child)) {
     border-color: var(--color-gray-500);
   }
+  :where(.divide-gray-500\/10 > :not(:last-child)) {
+    border-color: color-mix(in srgb, oklch(55.1% 0.027 264.364deg) 10%, transparent);
+  }
+  @supports (color: color-mix(in lab, red, red)) {
+    :where(.divide-gray-500\/10 > :not(:last-child)) {
+      border-color: color-mix(in oklab, var(--color-gray-500) 10%, transparent);
+    }
+  }
   :where(.divide-gray-600 > :not(:last-child)) {
     border-color: var(--color-gray-600);
   }
@@ -8927,6 +8947,14 @@ a:where(:not(.wp-element-button)) {
   }
   :where(.divide-gray-900 > :not(:last-child)) {
     border-color: var(--color-gray-900);
+  }
+  :where(.divide-gray-900\/5 > :not(:last-child)) {
+    border-color: color-mix(in srgb, oklch(21% 0.034 264.665deg) 5%, transparent);
+  }
+  @supports (color: color-mix(in lab, red, red)) {
+    :where(.divide-gray-900\/5 > :not(:last-child)) {
+      border-color: color-mix(in oklab, var(--color-gray-900) 5%, transparent);
+    }
   }
   :where(.divide-gray-950 > :not(:last-child)) {
     border-color: var(--color-gray-950);
@@ -10447,6 +10475,22 @@ a:where(:not(.wp-element-button)) {
   }
   .border-gray-900 {
     border-color: var(--color-gray-900);
+  }
+  .border-gray-900\/5 {
+    border-color: color-mix(in srgb, oklch(21% 0.034 264.665deg) 5%, transparent);
+  }
+  @supports (color: color-mix(in lab, red, red)) {
+    .border-gray-900\/5 {
+      border-color: color-mix(in oklab, var(--color-gray-900) 5%, transparent);
+    }
+  }
+  .border-gray-900\/10 {
+    border-color: color-mix(in srgb, oklch(21% 0.034 264.665deg) 10%, transparent);
+  }
+  @supports (color: color-mix(in lab, red, red)) {
+    .border-gray-900\/10 {
+      border-color: color-mix(in oklab, var(--color-gray-900) 10%, transparent);
+    }
   }
   .border-gray-950 {
     border-color: var(--color-gray-950);
@@ -23865,13 +23909,29 @@ a:where(:not(.wp-element-button)) {
     font-size: var(--text-base);
     line-height: var(--tw-leading, var(--text-base--line-height));
   }
+  .text-base\/7 {
+    font-size: var(--text-base);
+    line-height: calc(var(--spacing) * 7);
+  }
   .text-lg {
     font-size: var(--text-lg);
     line-height: var(--tw-leading, var(--text-lg--line-height));
   }
+  .text-lg\/8 {
+    font-size: var(--text-lg);
+    line-height: calc(var(--spacing) * 8);
+  }
   .text-sm {
     font-size: var(--text-sm);
     line-height: var(--tw-leading, var(--text-sm--line-height));
+  }
+  .text-sm\/6 {
+    font-size: var(--text-sm);
+    line-height: calc(var(--spacing) * 6);
+  }
+  .text-sm\/7 {
+    font-size: var(--text-sm);
+    line-height: calc(var(--spacing) * 7);
   }
   .text-xl {
     font-size: var(--text-xl);
@@ -29518,6 +29578,14 @@ a:where(:not(.wp-element-button)) {
   .ring-gray-900 {
     --tw-ring-color: var(--color-gray-900);
   }
+  .ring-gray-900\/5 {
+    --tw-ring-color: color-mix(in srgb, oklch(21% 0.034 264.665) 5%, transparent);
+  }
+  @supports (color: color-mix(in lab, red, red)) {
+    .ring-gray-900\/5 {
+      --tw-ring-color: color-mix(in oklab, var(--color-gray-900) 5%, transparent);
+    }
+  }
   .ring-gray-950 {
     --tw-ring-color: var(--color-gray-950);
   }
@@ -32289,9 +32357,22 @@ a:where(:not(.wp-element-button)) {
     --tw-ring-inset: inset;
   }
   @media (hover: hover) {
+    .group-hover\:bg-white:is(:where(.group):hover *) {
+      background-color: var(--color-white);
+    }
+  }
+  @media (hover: hover) {
     .group-hover\:text-blue-600:is(:where(.group):hover *) {
       color: var(--color-blue-600);
     }
+  }
+  @media (hover: hover) {
+    .group-hover\:text-indigo-600:is(:where(.group):hover *) {
+      color: var(--color-indigo-600);
+    }
+  }
+  .group-data-\[open\]\:rotate-180:is(:where(.group)[data-open] *) {
+    rotate: 180deg;
   }
   @media (hover: hover) {
     .hover\:bg-blue-50:hover {
@@ -32301,6 +32382,11 @@ a:where(:not(.wp-element-button)) {
   @media (hover: hover) {
     .hover\:bg-blue-300:hover {
       background-color: var(--color-blue-300);
+    }
+  }
+  @media (hover: hover) {
+    .hover\:bg-blue-500:hover {
+      background-color: var(--color-blue-500);
     }
   }
   @media (hover: hover) {
@@ -32316,6 +32402,11 @@ a:where(:not(.wp-element-button)) {
   @media (hover: hover) {
     .hover\:bg-gray-100:hover {
       background-color: var(--color-gray-100);
+    }
+  }
+  @media (hover: hover) {
+    .hover\:bg-indigo-500:hover {
+      background-color: var(--color-indigo-500);
     }
   }
   @media (hover: hover) {
@@ -32341,6 +32432,16 @@ a:where(:not(.wp-element-button)) {
   @media (hover: hover) {
     .hover\:text-gray-500:hover {
       color: var(--color-gray-500);
+    }
+  }
+  @media (hover: hover) {
+    .hover\:text-gray-700:hover {
+      color: var(--color-gray-700);
+    }
+  }
+  @media (hover: hover) {
+    .hover\:text-gray-800:hover {
+      color: var(--color-gray-800);
     }
   }
   @media (hover: hover) {
@@ -32383,12 +32484,49 @@ a:where(:not(.wp-element-button)) {
     --tw-outline-style: none;
     outline-style: none;
   }
+  .focus-visible\:outline:focus-visible {
+    outline-style: var(--tw-outline-style);
+    outline-width: 1px;
+  }
+  .focus-visible\:outline-2:focus-visible {
+    outline-style: var(--tw-outline-style);
+    outline-width: 2px;
+  }
+  .focus-visible\:outline-offset-2:focus-visible {
+    outline-offset: 2px;
+  }
+  .focus-visible\:outline-blue-600:focus-visible {
+    outline-color: var(--color-blue-600);
+  }
+  .focus-visible\:outline-indigo-600:focus-visible {
+    outline-color: var(--color-indigo-600);
+  }
   .data-\[closed\]\:-translate-x-full[data-closed] {
     --tw-translate-x: -100%;
     translate: var(--tw-translate-x) var(--tw-translate-y);
   }
+  .data-\[closed\]\:-translate-y-1[data-closed] {
+    --tw-translate-y: calc(var(--spacing) * -1);
+    translate: var(--tw-translate-x) var(--tw-translate-y);
+  }
   .data-\[closed\]\:opacity-0[data-closed] {
     opacity: 0%;
+  }
+  .data-\[enter\]\:duration-200[data-enter] {
+    --tw-duration: 200ms;
+    transition-duration: 200ms;
+  }
+  .data-\[enter\]\:ease-out[data-enter] {
+    --tw-ease: var(--ease-out);
+    transition-timing-function: var(--ease-out);
+  }
+  .data-\[leave\]\:duration-150[data-leave] {
+    --tw-duration: 150ms;
+    transition-duration: 150ms;
+  }
+  .data-\[leave\]\:ease-in[data-leave] {
+    --tw-ease: var(--ease-in);
+    transition-timing-function: var(--ease-in);
   }
   @media (width >= 40rem) {
     .sm\:mx-auto {
@@ -32416,6 +32554,11 @@ a:where(:not(.wp-element-button)) {
     }
   }
   @media (width >= 40rem) {
+    .sm\:max-w-sm {
+      max-width: var(--container-sm);
+    }
+  }
+  @media (width >= 40rem) {
     .sm\:max-w-xl {
       max-width: var(--container-xl);
     }
@@ -32423,6 +32566,11 @@ a:where(:not(.wp-element-button)) {
   @media (width >= 40rem) {
     .sm\:grid-cols-2 {
       grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (width >= 40rem) {
+    .sm\:flex-row {
+      flex-direction: row;
     }
   }
   @media (width >= 40rem) {
@@ -32446,8 +32594,18 @@ a:where(:not(.wp-element-button)) {
     }
   }
   @media (width >= 40rem) {
+    .sm\:py-16 {
+      padding-block: calc(var(--spacing) * 16);
+    }
+  }
+  @media (width >= 40rem) {
     .sm\:py-24 {
       padding-block: calc(var(--spacing) * 24);
+    }
+  }
+  @media (width >= 40rem) {
+    .sm\:py-32 {
+      padding-block: calc(var(--spacing) * 32);
     }
   }
   @media (width >= 40rem) {
@@ -32468,9 +32626,59 @@ a:where(:not(.wp-element-button)) {
     }
   }
   @media (width >= 40rem) {
+    .sm\:text-6xl {
+      font-size: var(--text-6xl);
+      line-height: var(--tw-leading, var(--text-6xl--line-height));
+    }
+  }
+  @media (width >= 40rem) {
+    .sm\:text-7xl {
+      font-size: var(--text-7xl);
+      line-height: var(--tw-leading, var(--text-7xl--line-height));
+    }
+  }
+  @media (width >= 40rem) {
     .sm\:text-lg {
       font-size: var(--text-lg);
       line-height: var(--tw-leading, var(--text-lg--line-height));
+    }
+  }
+  @media (width >= 40rem) {
+    .sm\:text-xl {
+      font-size: var(--text-xl);
+      line-height: var(--tw-leading, var(--text-xl--line-height));
+    }
+  }
+  @media (width >= 40rem) {
+    .sm\:text-xl\/8 {
+      font-size: var(--text-xl);
+      line-height: calc(var(--spacing) * 8);
+    }
+  }
+  @media (width >= 40rem) {
+    .sm\:ring-1 {
+      --tw-ring-shadow: var(--tw-ring-inset,) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color, currentcolor);
+      box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+    }
+  }
+  @media (width >= 40rem) {
+    .sm\:ring-gray-900\/10 {
+      --tw-ring-color: color-mix(in srgb, oklch(21% 0.034 264.665) 10%, transparent);
+    }
+    @supports (color: color-mix(in lab, red, red)) {
+      .sm\:ring-gray-900\/10 {
+        --tw-ring-color: color-mix(in oklab, var(--color-gray-900) 10%, transparent);
+      }
+    }
+  }
+  @media (width >= 48rem) {
+    .md\:order-1 {
+      order: 1;
+    }
+  }
+  @media (width >= 48rem) {
+    .md\:order-2 {
+      order: 2;
     }
   }
   @media (width >= 48rem) {
@@ -32479,8 +32687,18 @@ a:where(:not(.wp-element-button)) {
     }
   }
   @media (width >= 48rem) {
+    .md\:mt-0 {
+      margin-top: calc(var(--spacing) * 0);
+    }
+  }
+  @media (width >= 48rem) {
     .md\:mt-5 {
       margin-top: calc(var(--spacing) * 5);
+    }
+  }
+  @media (width >= 48rem) {
+    .md\:flex {
+      display: flex;
     }
   }
   @media (width >= 48rem) {
@@ -32501,6 +32719,21 @@ a:where(:not(.wp-element-button)) {
   @media (width >= 48rem) {
     .md\:grid-cols-4 {
       grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+  @media (width >= 48rem) {
+    .md\:items-center {
+      align-items: center;
+    }
+  }
+  @media (width >= 48rem) {
+    .md\:justify-between {
+      justify-content: space-between;
+    }
+  }
+  @media (width >= 48rem) {
+    .md\:gap-8 {
+      gap: calc(var(--spacing) * 8);
     }
   }
   @media (width >= 48rem) {
@@ -32562,6 +32795,11 @@ a:where(:not(.wp-element-button)) {
     }
   }
   @media (width >= 64rem) {
+    .lg\:mx-0 {
+      margin-inline: calc(var(--spacing) * 0);
+    }
+  }
+  @media (width >= 64rem) {
     .lg\:mt-0 {
       margin-top: calc(var(--spacing) * 0);
     }
@@ -32597,6 +32835,11 @@ a:where(:not(.wp-element-button)) {
     }
   }
   @media (width >= 64rem) {
+    .lg\:flex-1 {
+      flex: 1;
+    }
+  }
+  @media (width >= 64rem) {
     .lg\:grid-cols-2 {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -32617,8 +32860,18 @@ a:where(:not(.wp-element-button)) {
     }
   }
   @media (width >= 64rem) {
+    .lg\:justify-end {
+      justify-content: flex-end;
+    }
+  }
+  @media (width >= 64rem) {
     .lg\:gap-8 {
       gap: calc(var(--spacing) * 8);
+    }
+  }
+  @media (width >= 64rem) {
+    .lg\:gap-x-12 {
+      column-gap: calc(var(--spacing) * 12);
     }
   }
   @media (width >= 64rem) {
@@ -32632,6 +32885,11 @@ a:where(:not(.wp-element-button)) {
     }
   }
   @media (width >= 64rem) {
+    .lg\:py-32 {
+      padding-block: calc(var(--spacing) * 32);
+    }
+  }
+  @media (width >= 64rem) {
     .lg\:pb-28 {
       padding-bottom: calc(var(--spacing) * 28);
     }
@@ -32642,8 +32900,38 @@ a:where(:not(.wp-element-button)) {
     }
   }
   @media (width >= 80rem) {
+    .xl\:col-span-2 {
+      grid-column: span 2/span 2;
+    }
+  }
+  @media (width >= 80rem) {
+    .xl\:mt-0 {
+      margin-top: calc(var(--spacing) * 0);
+    }
+  }
+  @media (width >= 80rem) {
     .xl\:mt-28 {
       margin-top: calc(var(--spacing) * 28);
+    }
+  }
+  @media (width >= 80rem) {
+    .xl\:grid {
+      display: grid;
+    }
+  }
+  @media (width >= 80rem) {
+    .xl\:grid-cols-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  @media (width >= 80rem) {
+    .xl\:gap-8 {
+      gap: calc(var(--spacing) * 8);
+    }
+  }
+  @media (width >= 80rem) {
+    .xl\:gap-x-8 {
+      column-gap: calc(var(--spacing) * 8);
     }
   }
   @media (width >= 80rem) {
