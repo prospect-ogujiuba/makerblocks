@@ -11652,27 +11652,27 @@ const products = [{
 }, {
   name: "Camera System",
   description: "Professional security camera system installation and management to keep your business secure and monitored 24/7.",
-  ref: "#",
+  href: "#",
   icon: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_3__["default"]
 }, {
   name: "Card Access Control",
   description: "Secure card access systems for controlled entry to your facilities, ensuring only authorized personnel have access.",
-  ref: "#",
+  href: "#",
   icon: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_4__["default"]
 }, {
   name: "Network Cabling",
   description: "Professional network infrastructure installation and maintenance to ensure reliable, high-speed connectivity throughout your business.",
-  ref: "#",
+  href: "#",
   icon: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_5__["default"]
 }, {
   name: "Managed Services",
   description: "Comprehensive IT management and support services to keep your technology running smoothly and your business productive.",
-  ref: "#",
+  href: "#",
   icon: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_6__["default"]
 }, {
   name: "IT Consulting",
   description: "Expert IT consulting and custom solutions tailored to your business needs, from planning to implementation and beyond.",
-  ref: "#",
+  href: "#",
   icon: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_7__["default"]
 }];
 const callsToAction = [{
@@ -11734,7 +11734,7 @@ function Header({
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_headlessui_react__WEBPACK_IMPORTED_MODULE_11__.Popover, {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_headlessui_react__WEBPACK_IMPORTED_MODULE_11__.PopoverButton, {
             className: "flex items-center gap-x-1 text-sm/6 font-semibold text-gray-900",
-            children: ["Product", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_heroicons_react_20_solid__WEBPACK_IMPORTED_MODULE_12__["default"], {
+            children: ["Services", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_heroicons_react_20_solid__WEBPACK_IMPORTED_MODULE_12__["default"], {
               "aria-hidden": "true",
               className: "size-5 flex-none text-gray-400"
             })]
@@ -11745,16 +11745,16 @@ function Header({
               "aria-hidden": "true",
               className: "absolute inset-0 top-1/2 bg-white shadow-lg ring-1 ring-gray-900/5"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-              className: "relative bg-white",
+              className: "relative bg-blue-100",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
                 className: "mx-auto grid max-w-7xl grid-cols-6 gap-x-4 px-6 py-10 lg:px-8 xl:gap-x-8",
                 children: products.map(item => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
                   className: "group relative rounded-lg p-6 text-sm/6 hover:bg-gray-50",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-                    className: "flex size-11 items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white",
+                    className: "flex size-11 items-center justify-center rounded-lg bg-gray-50 group-hover:bg-blue-500",
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(item.icon, {
                       "aria-hidden": "true",
-                      className: "size-6 text-gray-600 group-hover:text-blue-600"
+                      className: "size-6 text-gray-600 group-hover:text-white"
                     })
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("a", {
                     href: item.href,
@@ -11786,11 +11786,15 @@ function Header({
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
           href: "#",
           className: "text-sm/6 font-semibold text-gray-900",
-          children: "Features"
+          children: "Contact"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
           href: "#",
           className: "text-sm/6 font-semibold text-gray-900",
-          children: "Marketplace"
+          children: "Support"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
+          href: "#",
+          className: "text-sm/6 font-semibold text-gray-900",
+          children: "Resources"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
           href: "#",
           className: "text-sm/6 font-semibold text-gray-900",

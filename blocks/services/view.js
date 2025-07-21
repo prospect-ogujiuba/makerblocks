@@ -297,27 +297,27 @@ __webpack_require__.r(__webpack_exports__);
 
 const services = [{
   name: "VoIP Phone System",
-  description: "Complete VoIP phone system solutions including hosting, installation, and ongoing support for seamless business communications.",
+  description: "Complete VoIP phone system solutions for seamless business communications.",
   icon: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_1__["default"]
 }, {
   name: "Camera System",
-  description: "Professional security camera system installation and management to keep your business secure and monitored 24/7.",
+  description: "Professional security camera system to secure and monitored your business 24/7.",
   icon: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_2__["default"]
 }, {
   name: "Card Access Control",
-  description: "Secure card access systems for controlled entry to your facilities, ensuring only authorized personnel have access.",
+  description: "Secure card access systems for controlled entry of authorized personnel.",
   icon: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_3__["default"]
 }, {
   name: "Network Cabling",
-  description: "Professional network infrastructure installation and maintenance to ensure reliable, high-speed connectivity throughout your business.",
+  description: "Professional network infrastructure installation for high-speed connectivity.",
   icon: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_4__["default"]
 }, {
   name: "Managed Services",
-  description: "Comprehensive IT management and support services to keep your technology running smoothly and your business productive.",
+  description: "IT management and support services to keep your technology running smoothly.",
   icon: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_5__["default"]
 }, {
   name: "IT Consulting",
-  description: "Expert IT consulting and custom solutions tailored to your business needs, from planning to implementation and beyond.",
+  description: "Expert IT consulting and custom solutions tailored to your business needs.",
   icon: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_6__["default"]
 }];
 function Services() {
@@ -331,7 +331,7 @@ function Services() {
           className: "col-span-2 text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl",
           children: "Complete IT Solutions for Your Business"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("dl", {
-          className: "col-span-3 grid grid-cols-1 gap-x-8 gap-y-16 sm:grid-cols-2",
+          className: "col-span-3 grid grid-cols-2 gap-x-8 gap-y-16",
           children: services.map(service => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("dt", {
               className: "text-base/7 font-semibold text-gray-900",

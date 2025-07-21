@@ -8971,14 +8971,6 @@ a:where(:not(.wp-element-button)) {
       border-color: color-mix(in oklab, var(--color-gray-500) 10%, transparent);
     }
   }
-  :where(.divide-gray-500\/25 > :not(:last-child)) {
-    border-color: color-mix(in srgb, oklch(55.1% 0.027 264.364deg) 25%, transparent);
-  }
-  @supports (color: color-mix(in lab, red, red)) {
-    :where(.divide-gray-500\/25 > :not(:last-child)) {
-      border-color: color-mix(in oklab, var(--color-gray-500) 25%, transparent);
-    }
-  }
   :where(.divide-gray-600 > :not(:last-child)) {
     border-color: var(--color-gray-600);
   }
@@ -32416,6 +32408,16 @@ a:where(:not(.wp-element-button)) {
     --tw-ring-inset: inset;
   }
   @media (hover: hover) {
+    .group-hover\:bg-blue-50:is(:where(.group):hover *) {
+      background-color: var(--color-blue-50);
+    }
+  }
+  @media (hover: hover) {
+    .group-hover\:bg-blue-500:is(:where(.group):hover *) {
+      background-color: var(--color-blue-500);
+    }
+  }
+  @media (hover: hover) {
     .group-hover\:bg-white:is(:where(.group):hover *) {
       background-color: var(--color-white);
     }
@@ -32423,6 +32425,11 @@ a:where(:not(.wp-element-button)) {
   @media (hover: hover) {
     .group-hover\:text-blue-600:is(:where(.group):hover *) {
       color: var(--color-blue-600);
+    }
+  }
+  @media (hover: hover) {
+    .group-hover\:text-white:is(:where(.group):hover *) {
+      color: var(--color-white);
     }
   }
   .group-data-\[open\]\:rotate-180:is(:where(.group)[data-open] *) {
@@ -32461,21 +32468,6 @@ a:where(:not(.wp-element-button)) {
   @media (hover: hover) {
     .hover\:bg-gray-100:hover {
       background-color: var(--color-gray-100);
-    }
-  }
-  @media (hover: hover) {
-    .hover\:bg-indigo-400:hover {
-      background-color: var(--color-indigo-400);
-    }
-  }
-  @media (hover: hover) {
-    .hover\:bg-white\/5:hover {
-      background-color: color-mix(in srgb, #fff 5%, transparent);
-    }
-    @supports (color: color-mix(in lab, red, red)) {
-      .hover\:bg-white\/5:hover {
-        background-color: color-mix(in oklab, var(--color-white) 5%, transparent);
-      }
     }
   }
   @media (hover: hover) {
@@ -32580,9 +32572,6 @@ a:where(:not(.wp-element-button)) {
   .focus-visible\:outline-blue-600:focus-visible {
     outline-color: var(--color-blue-600);
   }
-  .focus-visible\:outline-indigo-500:focus-visible {
-    outline-color: var(--color-indigo-500);
-  }
   .data-\[closed\]\:-translate-x-full[data-closed] {
     --tw-translate-x: -100%;
     translate: var(--tw-translate-x) var(--tw-translate-y);
@@ -32681,11 +32670,6 @@ a:where(:not(.wp-element-button)) {
     }
   }
   @media (width >= 40rem) {
-    .sm\:flex-row {
-      flex-direction: row;
-    }
-  }
-  @media (width >= 40rem) {
     .sm\:justify-center {
       justify-content: center;
     }
@@ -32708,11 +32692,6 @@ a:where(:not(.wp-element-button)) {
   @media (width >= 40rem) {
     .sm\:px-12 {
       padding-inline: calc(var(--spacing) * 12);
-    }
-  }
-  @media (width >= 40rem) {
-    .sm\:py-8 {
-      padding-block: calc(var(--spacing) * 8);
     }
   }
   @media (width >= 40rem) {
@@ -32786,16 +32765,6 @@ a:where(:not(.wp-element-button)) {
     .sm\:ring-1 {
       --tw-ring-shadow: var(--tw-ring-inset,) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color, currentcolor);
       box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
-    }
-  }
-  @media (width >= 40rem) {
-    .sm\:ring-gray-100\/10 {
-      --tw-ring-color: color-mix(in srgb, oklch(96.7% 0.003 264.542) 10%, transparent);
-    }
-    @supports (color: color-mix(in lab, red, red)) {
-      .sm\:ring-gray-100\/10 {
-        --tw-ring-color: color-mix(in oklab, var(--color-gray-100) 10%, transparent);
-      }
     }
   }
   @media (width >= 40rem) {
@@ -33034,16 +33003,6 @@ a:where(:not(.wp-element-button)) {
   @media (width >= 64rem) {
     .lg\:py-24 {
       padding-block: calc(var(--spacing) * 24);
-    }
-  }
-  @media (width >= 64rem) {
-    .lg\:py-32 {
-      padding-block: calc(var(--spacing) * 32);
-    }
-  }
-  @media (width >= 64rem) {
-    .lg\:py-56 {
-      padding-block: calc(var(--spacing) * 56);
     }
   }
   @media (width >= 64rem) {

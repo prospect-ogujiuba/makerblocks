@@ -11,37 +11,37 @@ const services = [
 	{
 		name: "VoIP Phone System",
 		description:
-			"Complete VoIP phone system solutions including hosting, installation, and ongoing support for seamless business communications.",
+			"Complete VoIP phone system solutions for seamless business communications.",
 		icon: PhoneIcon,
 	},
 	{
 		name: "Camera System",
 		description:
-			"Professional security camera system installation and management to keep your business secure and monitored 24/7.",
+			"Professional security camera system to secure and monitored your business 24/7.",
 		icon: VideoCameraIcon,
 	},
 	{
 		name: "Card Access Control",
 		description:
-			"Secure card access systems for controlled entry to your facilities, ensuring only authorized personnel have access.",
+			"Secure card access systems for controlled entry of authorized personnel.",
 		icon: KeyIcon,
 	},
 	{
 		name: "Network Cabling",
 		description:
-			"Professional network infrastructure installation and maintenance to ensure reliable, high-speed connectivity throughout your business.",
+			"Professional network infrastructure installation for high-speed connectivity.",
 		icon: WifiIcon,
 	},
 	{
 		name: "Managed Services",
 		description:
-			"Comprehensive IT management and support services to keep your technology running smoothly and your business productive.",
+			"IT management and support services to keep your technology running smoothly.",
 		icon: CogIcon,
 	},
 	{
 		name: "IT Consulting",
 		description:
-			"Expert IT consulting and custom solutions tailored to your business needs, from planning to implementation and beyond.",
+			"Expert IT consulting and custom solutions tailored to your business needs.",
 		icon: ComputerDesktopIcon,
 	},
 ];
@@ -54,7 +54,7 @@ export default function Services() {
 					<h2 className="col-span-2 text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
 						Complete IT Solutions for Your Business
 					</h2>
-					<dl className="col-span-3 grid grid-cols-1 gap-x-8 gap-y-16 sm:grid-cols-2">
+					<dl className="col-span-3 grid grid-cols-2 gap-x-8 gap-y-16">
 						{services.map((service) => (
 							<div key={service.name}>
 								<dt className="text-base/7 font-semibold text-gray-900">

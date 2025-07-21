@@ -40,35 +40,35 @@ const products = [
 		name: "Camera System",
 		description:
 			"Professional security camera system installation and management to keep your business secure and monitored 24/7.",
-		ref: "#",
+		href: "#",
 		icon: VideoCameraIcon,
 	},
 	{
 		name: "Card Access Control",
 		description:
 			"Secure card access systems for controlled entry to your facilities, ensuring only authorized personnel have access.",
-		ref: "#",
+		href: "#",
 		icon: KeyIcon,
 	},
 	{
 		name: "Network Cabling",
 		description:
 			"Professional network infrastructure installation and maintenance to ensure reliable, high-speed connectivity throughout your business.",
-		ref: "#",
+		href: "#",
 		icon: WifiIcon,
 	},
 	{
 		name: "Managed Services",
 		description:
 			"Comprehensive IT management and support services to keep your technology running smoothly and your business productive.",
-		ref: "#",
+		href: "#",
 		icon: CogIcon,
 	},
 	{
 		name: "IT Consulting",
 		description:
 			"Expert IT consulting and custom solutions tailored to your business needs, from planning to implementation and beyond.",
-		ref: "#",
+		href: "#",
 		icon: ComputerDesktopIcon,
 	},
 ];
@@ -112,7 +112,7 @@ export default function Header({ site = {}, navigation = [], nonce = "" }) {
 				<PopoverGroup className="hidden lg:flex lg:gap-x-12">
 					<Popover>
 						<PopoverButton className="flex items-center gap-x-1 text-sm/6 font-semibold text-gray-900">
-							Product
+							Services
 							<ChevronDownIcon
 								aria-hidden="true"
 								className="size-5 flex-none text-gray-400"
@@ -128,17 +128,17 @@ export default function Header({ site = {}, navigation = [], nonce = "" }) {
 								aria-hidden="true"
 								className="absolute inset-0 top-1/2 bg-white shadow-lg ring-1 ring-gray-900/5"
 							/>
-							<div className="relative bg-white">
+							<div className="relative bg-blue-100">
 								<div className="mx-auto grid max-w-7xl grid-cols-6 gap-x-4 px-6 py-10 lg:px-8 xl:gap-x-8">
 									{products.map((item) => (
 										<div
 											key={item.name}
 											className="group relative rounded-lg p-6 text-sm/6 hover:bg-gray-50"
 										>
-											<div className="flex size-11 items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+											<div className="flex size-11 items-center justify-center rounded-lg bg-gray-50 group-hover:bg-blue-500">
 												<item.icon
 													aria-hidden="true"
-													className="size-6 text-gray-600 group-hover:text-blue-600"
+													className="size-6 text-gray-600 group-hover:text-white"
 												/>
 											</div>
 											<a
@@ -176,10 +176,13 @@ export default function Header({ site = {}, navigation = [], nonce = "" }) {
 					</Popover>
 
 					<a href="#" className="text-sm/6 font-semibold text-gray-900">
-						Features
+						Contact
 					</a>
 					<a href="#" className="text-sm/6 font-semibold text-gray-900">
-						Marketplace
+						Support
+					</a>
+					<a href="#" className="text-sm/6 font-semibold text-gray-900">
+						Resources
 					</a>
 					<a href="#" className="text-sm/6 font-semibold text-gray-900">
 						Company
