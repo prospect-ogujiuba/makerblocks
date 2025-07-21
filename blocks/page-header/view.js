@@ -125,37 +125,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _heroicons_react_20_solid__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @heroicons/react/20/solid */ "./node_modules/@heroicons/react/20/solid/esm/ChevronRightIcon.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
-// page-header/PageHeader.jsx - Updated to use WordPress/TypeRocket data
-
 
 
 function PageHeader({
   header = {},
   breadcrumbs = {},
-  context = {},
   nonce = ""
 }) {
   // Use WordPress data with fallbacks
   const headerData = {
-    subtitle: header.subtitle || "Get the help you need",
-    title: header.title || "Support center",
-    description: header.description || "Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat.",
-    background_color: header.background_color || "bg-white",
-    text_color: header.text_color || "text-gray-900",
-    subtitle_color: header.subtitle_color || "text-blue-600"
+    subtitle: header.subtitle || "B2B CNC",
+    title: header.title || "Support center"
   };
 
-  // Determine layout variations based on context
-  const isHomePage = context.is_front_page;
-  const isArchive = context.is_archive;
-  const isSearch = context.is_search;
-  const is404 = context.is_404;
-
   // Dynamic styling classes
-  const containerClasses = `${headerData.background_color} py-8 sm:py-16`;
-  const titleClasses = `mt-2 text-4xl font-semibold tracking-tight ${headerData.text_color} sm:text-6xl`;
-  const subtitleClasses = `text-base/7 font-semibold ${headerData.subtitle_color}`;
-  const descriptionClasses = `mt-8 text-pretty text-md text-gray-500 sm:text-xl`;
+  const containerClasses = "";
+  const titleClasses = "";
+  const subtitleClasses = "";
 
   // Breadcrumb component
   const BreadcrumbNav = () => {
@@ -188,75 +174,18 @@ function PageHeader({
       })
     });
   };
-
-  // Search result specific content
-  const SearchResultsInfo = () => {
-    if (!isSearch) return null;
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-      className: "mt-6 p-4 bg-blue-50 rounded-lg",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
-        className: "text-sm text-blue-800",
-        children: "Tip: Try using different keywords or check your spelling for better results."
-      })
-    });
-  };
-
-  // 404 specific content
-  const NotFoundActions = () => {
-    if (!is404) return null;
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-      className: "mt-8 flex flex-col sm:flex-row gap-4",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", {
-        href: "/",
-        className: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500",
-        children: "Go Home"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", {
-        href: "/contact",
-        className: "inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500",
-        children: "Contact Support"
-      })]
-    });
-  };
-
-  // Archive page info
-  const ArchiveInfo = () => {
-    if (!isArchive) return null;
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-      className: "mt-6 flex items-center text-sm text-gray-500",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-        children: "Showing all posts in this category"
-      })
-    });
-  };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-    className: containerClasses,
+    className: "bg-blue-100 py-8",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
       className: "mx-auto max-w-7xl px-6 lg:px-8",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
         className: "mx-auto max-w-2xl lg:mx-0",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(BreadcrumbNav, {}), headerData.subtitle && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
-          className: subtitleClasses,
+          className: "text-base/7 font-semibold text-blue-600",
           children: headerData.subtitle
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
-          className: titleClasses,
+          className: "mt-2 text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl",
           children: headerData.title
-        }), headerData.description && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
-          className: descriptionClasses,
-          children: headerData.description
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(SearchResultsInfo, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(NotFoundActions, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(ArchiveInfo, {}), isHomePage && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-          className: "mt-10 flex items-center gap-x-6",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", {
-            href: "#features",
-            className: "rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600",
-            children: "Get started"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
-            href: "#learn-more",
-            className: "text-sm font-semibold text-gray-900",
-            children: ["Learn more ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-              "aria-hidden": "true",
-              children: "\u2192"
-            })]
-          })]
         })]
       })
     })

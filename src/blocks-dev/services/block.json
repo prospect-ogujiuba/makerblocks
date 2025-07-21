@@ -1,0 +1,19 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "b2bcnc/services",
+	"version": "0.1.0",
+	"title": "Site Services",
+	"category": "makerblocks",
+	"icon": "insert",
+	"description": "This contains a block that displays the services offered by the site.",
+	"example": {},
+	"supports": {
+		"html": false
+	},
+	"textdomain": "b2bcnc",
+	"editorScript": "file:./index.js",
+	"style": "file:../../assets/css/styles.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

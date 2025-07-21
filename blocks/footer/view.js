@@ -195,13 +195,12 @@ function Footer({
   site = {},
   navigation = {},
   social = [],
-  cta = {},
-  nonce = ''
+  nonce = ""
 }) {
   // Use WordPress data with fallbacks
-  const siteName = site.name || 'Your Company';
-  const siteUrl = site.url || '#';
-  const logoUrl = site.logo_url || 'https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600';
+  const siteName = site.name || "Your Company";
+  const siteUrl = site.url || "#";
+  const logoUrl = site.logo_url || `${site.url}/wp-content/plugins/makerblocks/assets/images/logos/logo-ph-black.png`;
   const currentYear = site.current_year || new Date().getFullYear();
 
   // Merge navigation data with defaults
@@ -217,47 +216,36 @@ function Footer({
     ...item,
     icon: iconMap[item.icon] || FacebookIcon
   }));
-
-  // CTA section data with defaults
-  const ctaSection = {
-    enabled: cta.enabled !== false,
-    // Default to true unless explicitly disabled
-    subtitle: cta.subtitle || 'Get started',
-    title: cta.title || 'Boost your productivity. Start using our app today.',
-    description: cta.description || 'Incididunt sint fugiat pariatur cupidatat consectetur sit cillum anim id veniam aliqua proident excepteur commodo do ea.',
-    button_text: cta.button_text || 'Get started',
-    button_url: cta.button_url || '#'
-  };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-      className: "mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:px-8 lg:py-32",
-      children: [ctaSection.enabled && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "mx-auto max-w-7xl px-6 py-16",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
         className: "mx-auto max-w-2xl text-center",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("hgroup", {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h2", {
             className: "text-base/7 font-semibold text-blue-600",
-            children: ctaSection.subtitle
+            children: "Get Started"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
             className: "mt-2 text-balance text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl",
-            children: ctaSection.title
+            children: "Request a service today."
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
           className: "mx-auto mt-6 max-w-xl text-pretty text-lg/8 text-gray-600",
-          children: ctaSection.description
+          children: "Boost productivity with expert Computer, Networking, and Communication services."
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
           className: "mt-8 flex justify-center",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", {
-            href: ctaSection.button_url,
+            href: "#",
             className: "rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600",
-            children: ctaSection.button_text
+            children: "Get Started"
           })
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-        className: `${ctaSection.enabled ? 'mt-24' : ''} border-t border-gray-900/10 pt-12 xl:grid xl:grid-cols-3 xl:gap-8`,
+        className: "mt-12 border-t border-gray-900/10 pt-12 xl:grid xl:grid-cols-3 xl:gap-8",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", {
           alt: siteName,
           src: logoUrl,
-          className: "h-9"
+          className: "h-16"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
           className: "mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
@@ -273,8 +261,8 @@ function Footer({
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", {
                     href: item.href,
                     className: "text-sm/6 text-gray-600 hover:text-gray-900",
-                    target: item.new_window ? '_blank' : undefined,
-                    rel: item.new_window ? 'noopener noreferrer' : undefined,
+                    target: item.new_window ? "_blank" : undefined,
+                    rel: item.new_window ? "noopener noreferrer" : undefined,
                     children: item.name
                   })
                 }, item.name || index))
@@ -291,8 +279,8 @@ function Footer({
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", {
                     href: item.href,
                     className: "text-sm/6 text-gray-600 hover:text-gray-900",
-                    target: item.new_window ? '_blank' : undefined,
-                    rel: item.new_window ? 'noopener noreferrer' : undefined,
+                    target: item.new_window ? "_blank" : undefined,
+                    rel: item.new_window ? "noopener noreferrer" : undefined,
                     children: item.name
                   })
                 }, item.name || index))
@@ -311,8 +299,8 @@ function Footer({
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", {
                     href: item.href,
                     className: "text-sm/6 text-gray-600 hover:text-gray-900",
-                    target: item.new_window ? '_blank' : undefined,
-                    rel: item.new_window ? 'noopener noreferrer' : undefined,
+                    target: item.new_window ? "_blank" : undefined,
+                    rel: item.new_window ? "noopener noreferrer" : undefined,
                     children: item.name
                   })
                 }, item.name || index))
@@ -329,8 +317,8 @@ function Footer({
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", {
                     href: item.href,
                     className: "text-sm/6 text-gray-600 hover:text-gray-900",
-                    target: item.new_window ? '_blank' : undefined,
-                    rel: item.new_window ? 'noopener noreferrer' : undefined,
+                    target: item.new_window ? "_blank" : undefined,
+                    rel: item.new_window ? "noopener noreferrer" : undefined,
                     children: item.name
                   })
                 }, item.name || index))
@@ -356,7 +344,8 @@ function Footer({
               className: "size-6"
             })]
           }, item.name || index))
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
+          href: siteUrl,
           className: "mt-8 text-sm/6 text-gray-600 md:order-1 md:mt-0",
           children: ["\xA9 ", currentYear, " ", siteName, ", Inc. All rights reserved."]
         })]

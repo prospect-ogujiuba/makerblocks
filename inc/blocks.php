@@ -11,8 +11,9 @@ function makerblocks_get_custom_blocks()
     return [
         // TEMPLATES
         'header',
-        // 'main',
         'page-header',
+        'hero',
+        'services',
         'footer',
         // 'makerstarter'
 

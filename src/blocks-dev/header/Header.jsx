@@ -14,11 +14,12 @@ import {
 } from "@headlessui/react";
 import {
 	Bars3Icon,
-	ChartPieIcon,
-	CursorArrowRaysIcon,
-	FingerPrintIcon,
-	SquaresPlusIcon,
 	XMarkIcon,
+	VideoCameraIcon,
+	KeyIcon,
+	WifiIcon,
+	CogIcon,
+	ComputerDesktopIcon,
 } from "@heroicons/react/24/outline";
 import {
 	ChevronDownIcon,
@@ -29,28 +30,46 @@ import {
 
 const products = [
 	{
-		name: "Analytics",
-		description: "Get a better understanding where your traffic is coming from",
+		name: "VoIP Phone System",
+		description:
+			"Complete VoIP phone system solutions including hosting, installation, and ongoing support for seamless business communications.",
 		href: "#",
-		icon: ChartPieIcon,
+		icon: PhoneIcon,
 	},
 	{
-		name: "Engagement",
-		description: "Speak directly to your customers with our engagement tool",
-		href: "#",
-		icon: CursorArrowRaysIcon,
+		name: "Camera System",
+		description:
+			"Professional security camera system installation and management to keep your business secure and monitored 24/7.",
+		ref: "#",
+		icon: VideoCameraIcon,
 	},
 	{
-		name: "Security",
-		description: "Your customers’ data will be safe and secure",
-		href: "#",
-		icon: FingerPrintIcon,
+		name: "Card Access Control",
+		description:
+			"Secure card access systems for controlled entry to your facilities, ensuring only authorized personnel have access.",
+		ref: "#",
+		icon: KeyIcon,
 	},
 	{
-		name: "Integrations",
-		description: "Your customers’ data will be safe and secure",
-		href: "#",
-		icon: SquaresPlusIcon,
+		name: "Network Cabling",
+		description:
+			"Professional network infrastructure installation and maintenance to ensure reliable, high-speed connectivity throughout your business.",
+		ref: "#",
+		icon: WifiIcon,
+	},
+	{
+		name: "Managed Services",
+		description:
+			"Comprehensive IT management and support services to keep your technology running smoothly and your business productive.",
+		ref: "#",
+		icon: CogIcon,
+	},
+	{
+		name: "IT Consulting",
+		description:
+			"Expert IT consulting and custom solutions tailored to your business needs, from planning to implementation and beyond.",
+		ref: "#",
+		icon: ComputerDesktopIcon,
 	},
 ];
 const callsToAction = [
@@ -66,7 +85,7 @@ export default function Header({ site = {}, navigation = [], nonce = "" }) {
 	const siteUrl = site.url || "#";
 	const logoUrl =
 		site.logo_url ||
-		"https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600";
+		`${site.url}/wp-content/plugins/makerblocks/assets/images/logos/logo-ph-black.png`;
 
 	return (
 		<>
@@ -77,11 +96,7 @@ export default function Header({ site = {}, navigation = [], nonce = "" }) {
 				<div className="flex lg:flex-1">
 					<a href={siteUrl} className="-m-1.5 p-1.5">
 						<span className="sr-only">{siteName}</span>
-						<img
-							alt=""
-							src={logoUrl}
-							className="h-8 w-auto"
-						/>
+						<img alt="" src={logoUrl} className="h-12 w-auto" />
 					</a>
 				</div>
 				<div className="flex lg:hidden">
@@ -106,7 +121,7 @@ export default function Header({ site = {}, navigation = [], nonce = "" }) {
 
 						<PopoverPanel
 							transition
-							className="absolute inset-x-0 top-16 bg-white transition data-[closed]:-translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in"
+							className="absolute inset-x-0 top-full bg-white transition data-[closed]:-translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in"
 						>
 							{/* Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow */}
 							<div
@@ -114,7 +129,7 @@ export default function Header({ site = {}, navigation = [], nonce = "" }) {
 								className="absolute inset-0 top-1/2 bg-white shadow-lg ring-1 ring-gray-900/5"
 							/>
 							<div className="relative bg-white">
-								<div className="mx-auto grid max-w-7xl grid-cols-4 gap-x-4 px-6 py-10 lg:px-8 xl:gap-x-8">
+								<div className="mx-auto grid max-w-7xl grid-cols-6 gap-x-4 px-6 py-10 lg:px-8 xl:gap-x-8">
 									{products.map((item) => (
 										<div
 											key={item.name}
@@ -133,7 +148,7 @@ export default function Header({ site = {}, navigation = [], nonce = "" }) {
 												{item.name}
 												<span className="absolute inset-0" />
 											</a>
-											<p className="mt-1 text-gray-600">{item.description}</p>
+											{/* <p className="mt-1 text-gray-600">{item.description}</p> */}
 										</div>
 									))}
 								</div>
@@ -171,8 +186,11 @@ export default function Header({ site = {}, navigation = [], nonce = "" }) {
 					</a>
 				</PopoverGroup>
 				<div className="hidden lg:flex lg:flex-1 lg:justify-end">
-					<a href="#" className="text-sm/6 font-semibold text-gray-900">
-						Log in <span aria-hidden="true">&rarr;</span>
+					<a
+						href="#"
+						className="rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
+					>
+						Log In <span aria-hidden="true">&rarr;</span>
 					</a>
 				</div>
 			</nav>
@@ -186,11 +204,7 @@ export default function Header({ site = {}, navigation = [], nonce = "" }) {
 					<div className="flex items-center justify-between">
 						<a href="#" className="-m-1.5 p-1.5">
 							<span className="sr-only">Your Company</span>
-							<img
-								alt=""
-								src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
-								className="h-8 w-auto"
-							/>
+							<img alt="" src={logoUrl} className="h-8 w-auto" />
 						</a>
 						<button
 							type="button"

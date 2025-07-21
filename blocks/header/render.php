@@ -8,10 +8,13 @@ $site_data = [
     'description' => get_bloginfo('description'),
 ];
 
+$upload_dir = wp_upload_dir();
+
+
 // Get logo from theme customizer or TypeRocket options
 $logo_url = get_theme_mod('custom_logo')
     ? wp_get_attachment_image_url(get_theme_mod('custom_logo'), 'full')
-    : MAKERBLOCKS_PLUGIN_URL . 'assets/images/logos/logo-ph-black.png';
+    : $upload_dir['baseurl'] . '/b2bcnc-logo.png';
 
 $site_data['logo_url'] = $logo_url;
 
