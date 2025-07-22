@@ -14,6 +14,10 @@ function makerblocks_get_custom_blocks()
         'page-header',
         'hero',
         'services',
+        'industries',
+        'testimonials',
+        'faqs',
+        'portfolio',
         'footer',
         // 'makerstarter'
 
