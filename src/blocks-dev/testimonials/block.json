@@ -3,13 +3,19 @@
 	"apiVersion": 3,
 	"name": "b2bcnc/testimonials",
 	"version": "0.1.0",
-	"title": " Testimonials",
+	"title": "B2bCNC Testimonials",
 	"category": "makerblocks",
-	"icon": "insert",
-	"description": "This contains the testimonials section",
+	"icon": "star-filled",
+	"description": "Display client testimonials showcasing B2bCNC's IT services including VOIP, cameras, access control, and network cabling",
+	"keywords": ["testimonials", "reviews", "clients", "b2bcnc", "it services"],
 	"example": {},
 	"supports": {
-		"html": false
+		"html": false,
+		"anchor": true,
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
 	},
 	"textdomain": "b2bcnc",
 	"editorScript": "file:./index.js",

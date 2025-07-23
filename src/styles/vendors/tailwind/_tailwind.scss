@@ -3189,6 +3189,9 @@
   .aspect-\[3\/2\] {
     aspect-ratio: 3/2;
   }
+  .aspect-\[16\/9\] {
+    aspect-ratio: 16/9;
+  }
   .aspect-\[1155\/678\] {
     aspect-ratio: 1155/678;
   }
@@ -24500,6 +24503,10 @@
     font-size: var(--text-lg);
     line-height: var(--tw-leading, var(--text-lg--line-height));
   }
+  .text-lg\/6 {
+    font-size: var(--text-lg);
+    line-height: calc(var(--spacing) * 6);
+  }
   .text-lg\/8 {
     font-size: var(--text-lg);
     line-height: calc(var(--spacing) * 8);
@@ -29528,6 +29535,12 @@
   .ring-blue-700 {
     --tw-ring-color: var(--color-blue-700);
   }
+  .ring-blue-700\/10 {
+    --tw-ring-color: color-mix(in srgb, oklch(48.8% 0.243 264.376) 10%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      --tw-ring-color: color-mix(in oklab, var(--color-blue-700) 10%, transparent);
+    }
+  }
   .ring-blue-800 {
     --tw-ring-color: var(--color-blue-800);
   }
@@ -29673,6 +29686,12 @@
     --tw-ring-color: color-mix(in srgb, oklch(21% 0.034 264.665) 5%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
       --tw-ring-color: color-mix(in oklab, var(--color-gray-900) 5%, transparent);
+    }
+  }
+  .ring-gray-900\/10 {
+    --tw-ring-color: color-mix(in srgb, oklch(21% 0.034 264.665) 10%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      --tw-ring-color: color-mix(in oklab, var(--color-gray-900) 10%, transparent);
     }
   }
   .ring-gray-950 {
@@ -32476,6 +32495,13 @@
       }
     }
   }
+  .group-hover\:text-gray-600 {
+    &:is(:where(.group):hover *) {
+      @media (hover: hover) {
+        color: var(--color-gray-600);
+      }
+    }
+  }
   .group-hover\:text-white {
     &:is(:where(.group):hover *) {
       @media (hover: hover) {
@@ -32803,6 +32829,11 @@
       display: flex;
     }
   }
+  .sm\:aspect-\[2\/1\] {
+    @media (width >= 40rem) {
+      aspect-ratio: 2/1;
+    }
+  }
   .sm\:w-\[72\.1875rem\] {
     @media (width >= 40rem) {
       width: 72.1875rem;
@@ -32886,6 +32917,11 @@
   .sm\:py-48 {
     @media (width >= 40rem) {
       padding-block: calc(var(--spacing) * 48);
+    }
+  }
+  .sm\:pt-16 {
+    @media (width >= 40rem) {
+      padding-top: calc(var(--spacing) * 16);
     }
   }
   .sm\:pt-32 {
@@ -33115,6 +33151,11 @@
   .lg\:hidden {
     @media (width >= 64rem) {
       display: none;
+    }
+  }
+  .lg\:aspect-\[3\/2\] {
+    @media (width >= 64rem) {
+      aspect-ratio: 3/2;
     }
   }
   .lg\:w-72 {

@@ -35,7 +35,7 @@ export default function Hero() {
 						</div>
 						<div className="text-center">
 							<h1 className="text-balance text-5xl font-semibold tracking-tight text-white sm:text-7xl">
-								IT Solutions for moden enterprises
+								IT Solutions for modern enterprises
 							</h1>
 							<p className="mt-8 text-pretty text-lg font-medium text-gray-400 sm:text-xl/8">
 								Computer, Networking, and Communication Services — powering

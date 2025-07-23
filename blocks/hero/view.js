@@ -92,7 +92,7 @@ function Hero() {
             className: "text-center",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
               className: "text-balance text-5xl font-semibold tracking-tight text-white sm:text-7xl",
-              children: "IT Solutions for moden enterprises"
+              children: "IT Solutions for modern enterprises"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
               className: "mt-8 text-pretty text-lg font-medium text-gray-400 sm:text-xl/8",
               children: "Computer, Networking, and Communication Services \u2014 powering productivity beyond the workstation."

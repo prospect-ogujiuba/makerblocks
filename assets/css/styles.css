@@ -3347,6 +3347,9 @@ a:where(:not(.wp-element-button)) {
   .aspect-\[3\/2\] {
     aspect-ratio: 3/2;
   }
+  .aspect-\[16\/9\] {
+    aspect-ratio: 16/9;
+  }
   .aspect-\[1155\/678\] {
     aspect-ratio: 1155/678;
   }
@@ -23994,6 +23997,10 @@ a:where(:not(.wp-element-button)) {
     font-size: var(--text-lg);
     line-height: var(--tw-leading, var(--text-lg--line-height));
   }
+  .text-lg\/6 {
+    font-size: var(--text-lg);
+    line-height: calc(var(--spacing) * 6);
+  }
   .text-lg\/8 {
     font-size: var(--text-lg);
     line-height: calc(var(--spacing) * 8);
@@ -29514,6 +29521,14 @@ a:where(:not(.wp-element-button)) {
   .ring-blue-700 {
     --tw-ring-color: var(--color-blue-700);
   }
+  .ring-blue-700\/10 {
+    --tw-ring-color: color-mix(in srgb, oklch(48.8% 0.243 264.376) 10%, transparent);
+  }
+  @supports (color: color-mix(in lab, red, red)) {
+    .ring-blue-700\/10 {
+      --tw-ring-color: color-mix(in oklab, var(--color-blue-700) 10%, transparent);
+    }
+  }
   .ring-blue-800 {
     --tw-ring-color: var(--color-blue-800);
   }
@@ -29661,6 +29676,14 @@ a:where(:not(.wp-element-button)) {
   @supports (color: color-mix(in lab, red, red)) {
     .ring-gray-900\/5 {
       --tw-ring-color: color-mix(in oklab, var(--color-gray-900) 5%, transparent);
+    }
+  }
+  .ring-gray-900\/10 {
+    --tw-ring-color: color-mix(in srgb, oklch(21% 0.034 264.665) 10%, transparent);
+  }
+  @supports (color: color-mix(in lab, red, red)) {
+    .ring-gray-900\/10 {
+      --tw-ring-color: color-mix(in oklab, var(--color-gray-900) 10%, transparent);
     }
   }
   .ring-gray-950 {
@@ -32463,6 +32486,11 @@ a:where(:not(.wp-element-button)) {
     }
   }
   @media (hover: hover) {
+    .group-hover\:text-gray-600:is(:where(.group):hover *) {
+      color: var(--color-gray-600);
+    }
+  }
+  @media (hover: hover) {
     .group-hover\:text-white:is(:where(.group):hover *) {
       color: var(--color-white);
     }
@@ -32712,6 +32740,11 @@ a:where(:not(.wp-element-button)) {
     }
   }
   @media (width >= 40rem) {
+    .sm\:aspect-\[2\/1\] {
+      aspect-ratio: 2/1;
+    }
+  }
+  @media (width >= 40rem) {
     .sm\:w-\[72\.1875rem\] {
       width: 72.1875rem;
     }
@@ -32794,6 +32827,11 @@ a:where(:not(.wp-element-button)) {
   @media (width >= 40rem) {
     .sm\:py-48 {
       padding-block: calc(var(--spacing) * 48);
+    }
+  }
+  @media (width >= 40rem) {
+    .sm\:pt-16 {
+      padding-top: calc(var(--spacing) * 16);
     }
   }
   @media (width >= 40rem) {
@@ -33025,6 +33063,11 @@ a:where(:not(.wp-element-button)) {
   @media (width >= 64rem) {
     .lg\:hidden {
       display: none;
+    }
+  }
+  @media (width >= 64rem) {
+    .lg\:aspect-\[3\/2\] {
+      aspect-ratio: 3/2;
     }
   }
   @media (width >= 64rem) {
