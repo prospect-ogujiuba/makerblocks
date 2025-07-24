@@ -297,27 +297,27 @@ __webpack_require__.r(__webpack_exports__);
 
 const services = [{
   name: "VoIP Phone System",
-  description: "Complete VoIP phone system solutions for seamless business communications.",
+  description: "Complete VoIP phone system solutions.",
   icon: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_1__["default"]
 }, {
   name: "Camera System",
-  description: "Professional security camera system to secure and monitored your business 24/7.",
+  description: "Professional security camera systems",
   icon: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_2__["default"]
 }, {
-  name: "Card Access Control",
-  description: "Secure card access systems for controlled entry of authorized personnel.",
+  name: "Access Control",
+  description: "Secure and controlled personnel authorization.",
   icon: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_3__["default"]
 }, {
   name: "Network Cabling",
-  description: "Professional network infrastructure installation for high-speed connectivity.",
+  description: "Professional network infrastructure installation.",
   icon: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_4__["default"]
 }, {
   name: "Managed Services",
-  description: "IT management and support services to keep your technology running smoothly.",
+  description: "IT management and support services.",
   icon: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_5__["default"]
 }, {
   name: "IT Consulting",
-  description: "Expert IT consulting and custom solutions tailored to your business needs.",
+  description: "Expert IT consulting and custom solutions.",
   icon: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_6__["default"]
 }];
 function Services() {
@@ -326,13 +326,20 @@ function Services() {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
       className: "mx-auto max-w-7xl px-6 lg:px-8",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-        className: "mx-auto grid max-w-2xl grid-cols-1 gap-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-5",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h2", {
-          className: "col-span-2 text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl",
-          children: "Complete IT Solutions for Your Business"
+        className: "mx-auto relative grid max-w-2xl grid-cols-1 gap-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-5",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+          className: "col-span-2 ",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("h2", {
+            className: "sticky top-4 text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
+              className: "text-blue-500 italic font-bold",
+              children: "Complete"
+            }), " ", "IT solutions for your business."]
+          })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("dl", {
-          className: "col-span-3 grid grid-cols-2 gap-x-8 gap-y-16",
+          className: "col-span-3 grid md:grid-cols-2 gap-x-4 gap-y-8",
           children: services.map(service => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+            className: "hover:bg-blue-50 transition:color duration-300 rounded-sm shadow-blue-100 shadow-sm p-4",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("dt", {
               className: "text-base/7 font-semibold text-gray-900",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
@@ -341,10 +348,23 @@ function Services() {
                   "aria-hidden": "true",
                   className: "size-6 text-white"
                 })
-              }), service.name]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", {
+                href: "",
+                className: "text-blue-800 underline",
+                children: service.name
+              })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("dd", {
-              className: "mt-1 text-base/7 text-gray-600",
+              className: "my-1 text-base/7 text-gray-600",
               children: service.description
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
+              href: "#",
+              className: "text-sm/6 font-semibold text-stone-500",
+              children: ["Learn more", " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
+                "aria-hidden": "true",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("i", {
+                  className: "font-bold text-blue-600 bi bi-arrow-right"
+                })
+              })]
             })]
           }, service.name))
         })]

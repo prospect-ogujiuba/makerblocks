@@ -17,6 +17,7 @@ function makerblocks_get_custom_blocks()
         'industries',
         'testimonials',
         'faqs',
+        'cta',
         'portfolio',
         'footer',
         // 'makerstarter'

@@ -22,42 +22,17 @@ const portfolioItems = [
     imageUrl: 'https://images.unsplash.com/photo-1586953208448-b95a79798f07?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80',
     projectUrl: '#',
     technologies: ['RFID Cards', 'Biometric Scanners', 'Access Management'],
-  },
-  {
-    title: 'Data Center Network Infrastructure',
-    category: 'Network Cabling',
-    description: 'Complete structured cabling solution for new data center including fiber optic backbone and Cat6A workstation connections.',
-    imageUrl: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80',
-    projectUrl: '#',
-    technologies: ['Fiber Optic', 'Cat6A Cabling', 'Patch Panels'],
-  },
-  {
-    title: '24/7 IT Infrastructure Management',
-    category: 'Managed Services',
-    description: 'Comprehensive managed IT services for healthcare organization including monitoring, maintenance, and help desk support.',
-    imageUrl: 'https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80',
-    projectUrl: '#',
-    technologies: ['Remote Monitoring', 'Help Desk', 'Backup Solutions'],
-  },
-  {
-    title: 'Cloud Migration Strategy',
-    category: 'IT Consulting',
-    description: 'Strategic IT consulting and cloud migration planning for financial services firm transitioning to hybrid infrastructure.',
-    imageUrl: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80',
-    projectUrl: '#',
-    technologies: ['Cloud Strategy', 'Migration Planning', 'Security Assessment'],
-  },
+  }
 ]
 
 export default function Portfolio() {
   return (
-    <div className="bg-white py-24 sm:py-32">
+    <div className="bg-blue-50 py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl lg:mx-0">
+        <div className="mx-auto max-w-3xl lg:mx-0">
           <h2 className="text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">Our Portfolio</h2>
           <p className="mt-6 text-lg/8 text-gray-600">
-            See how we've helped businesses enhance their communications, security, and IT infrastructure with our 
-            comprehensive technology solutions and expert consulting services.
+            See how we've helped businesses enhance their communications, security, and IT infrastructure.
           </p>
         </div>
         <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">

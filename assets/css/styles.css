@@ -3344,9 +3344,6 @@ a:where(:not(.wp-element-button)) {
   .table-row-group {
     display: table-row-group;
   }
-  .aspect-\[3\/2\] {
-    aspect-ratio: 3/2;
-  }
   .aspect-\[16\/9\] {
     aspect-ratio: 16/9;
   }
@@ -17060,6 +17057,65 @@ a:where(:not(.wp-element-button)) {
   .bg-black {
     background-color: var(--color-black);
   }
+  .bg-black\/1 {
+    background-color: color-mix(in srgb, #000 1%, transparent);
+  }
+  @supports (color: color-mix(in lab, red, red)) {
+    .bg-black\/1 {
+      background-color: color-mix(in oklab, var(--color-black) 1%, transparent);
+    }
+  }
+  .bg-black\/10 {
+    background-color: color-mix(in srgb, #000 10%, transparent);
+  }
+  @supports (color: color-mix(in lab, red, red)) {
+    .bg-black\/10 {
+      background-color: color-mix(in oklab, var(--color-black) 10%, transparent);
+    }
+  }
+  .bg-black\/20 {
+    background-color: color-mix(in srgb, #000 20%, transparent);
+  }
+  @supports (color: color-mix(in lab, red, red)) {
+    .bg-black\/20 {
+      background-color: color-mix(in oklab, var(--color-black) 20%, transparent);
+    }
+  }
+  .bg-black\/50 {
+    background-color: color-mix(in srgb, #000 50%, transparent);
+  }
+  @supports (color: color-mix(in lab, red, red)) {
+    .bg-black\/50 {
+      background-color: color-mix(in oklab, var(--color-black) 50%, transparent);
+    }
+  }
+  .bg-black\/70 {
+    background-color: color-mix(in srgb, #000 70%, transparent);
+  }
+  @supports (color: color-mix(in lab, red, red)) {
+    .bg-black\/70 {
+      background-color: color-mix(in oklab, var(--color-black) 70%, transparent);
+    }
+  }
+  .bg-black\/80 {
+    background-color: color-mix(in srgb, #000 80%, transparent);
+  }
+  @supports (color: color-mix(in lab, red, red)) {
+    .bg-black\/80 {
+      background-color: color-mix(in oklab, var(--color-black) 80%, transparent);
+    }
+  }
+  .bg-black\/100 {
+    background-color: var(--color-black);
+  }
+  .bg-black\/500 {
+    background-color: color-mix(in srgb, #000 500%, transparent);
+  }
+  @supports (color: color-mix(in lab, red, red)) {
+    .bg-black\/500 {
+      background-color: color-mix(in oklab, var(--color-black) 500%, transparent);
+    }
+  }
   .bg-blue-50 {
     background-color: var(--color-blue-50);
   }
@@ -17815,6 +17871,10 @@ a:where(:not(.wp-element-button)) {
   }
   .bg-none {
     background-image: none;
+  }
+  .from-\[\#60a5fa\] {
+    --tw-gradient-from: #60a5fa;
+    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
   }
   .from-\[\#ff80b5\] {
     --tw-gradient-from: #ff80b5;
@@ -20165,6 +20225,14 @@ a:where(:not(.wp-element-button)) {
   }
   .via-100\% {
     --tw-gradient-via-position: 100%;
+  }
+  .to-\[\#1d4ed8\] {
+    --tw-gradient-to: #1d4ed8;
+    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+  }
+  .to-\[\#3b82f6\] {
+    --tw-gradient-to: #3b82f6;
+    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
   }
   .to-\[\#9089fc\] {
     --tw-gradient-to: #9089fc;
@@ -31019,9 +31087,6 @@ a:where(:not(.wp-element-button)) {
     outline-style: var(--tw-outline-style);
     outline-width: 8px;
   }
-  .-outline-offset-1 {
-    outline-offset: -1px;
-  }
   .outline-offset-0 {
     outline-offset: 0px;
   }
@@ -31072,14 +31137,6 @@ a:where(:not(.wp-element-button)) {
   }
   .outline-black {
     outline-color: var(--color-black);
-  }
-  .outline-black\/5 {
-    outline-color: color-mix(in srgb, #000 5%, transparent);
-  }
-  @supports (color: color-mix(in lab, red, red)) {
-    .outline-black\/5 {
-      outline-color: color-mix(in oklab, var(--color-black) 5%, transparent);
-    }
   }
   .outline-blue-50 {
     outline-color: var(--color-blue-50);
@@ -31968,8 +32025,16 @@ a:where(:not(.wp-element-button)) {
     --tw-saturate: saturate(0%);
     filter: var(--tw-blur, ) var(--tw-brightness, ) var(--tw-contrast, ) var(--tw-grayscale, ) var(--tw-hue-rotate, ) var(--tw-invert, ) var(--tw-saturate, ) var(--tw-sepia, ) var(--tw-drop-shadow, );
   }
+  .saturate-10 {
+    --tw-saturate: saturate(10%);
+    filter: var(--tw-blur, ) var(--tw-brightness, ) var(--tw-contrast, ) var(--tw-grayscale, ) var(--tw-hue-rotate, ) var(--tw-invert, ) var(--tw-saturate, ) var(--tw-sepia, ) var(--tw-drop-shadow, );
+  }
   .saturate-50 {
     --tw-saturate: saturate(50%);
+    filter: var(--tw-blur, ) var(--tw-brightness, ) var(--tw-contrast, ) var(--tw-grayscale, ) var(--tw-hue-rotate, ) var(--tw-invert, ) var(--tw-saturate, ) var(--tw-sepia, ) var(--tw-drop-shadow, );
+  }
+  .saturate-60 {
+    --tw-saturate: saturate(60%);
     filter: var(--tw-blur, ) var(--tw-brightness, ) var(--tw-contrast, ) var(--tw-grayscale, ) var(--tw-hue-rotate, ) var(--tw-invert, ) var(--tw-saturate, ) var(--tw-sepia, ) var(--tw-drop-shadow, );
   }
   .saturate-100 {
@@ -31982,6 +32047,10 @@ a:where(:not(.wp-element-button)) {
   }
   .saturate-200 {
     --tw-saturate: saturate(200%);
+    filter: var(--tw-blur, ) var(--tw-brightness, ) var(--tw-contrast, ) var(--tw-grayscale, ) var(--tw-hue-rotate, ) var(--tw-invert, ) var(--tw-saturate, ) var(--tw-sepia, ) var(--tw-drop-shadow, );
+  }
+  .saturate-600 {
+    --tw-saturate: saturate(600%);
     filter: var(--tw-blur, ) var(--tw-brightness, ) var(--tw-contrast, ) var(--tw-grayscale, ) var(--tw-hue-rotate, ) var(--tw-invert, ) var(--tw-saturate, ) var(--tw-sepia, ) var(--tw-drop-shadow, );
   }
   .sepia {
@@ -32476,6 +32545,22 @@ a:where(:not(.wp-element-button)) {
     --tw-ring-inset: inset;
   }
   @media (hover: hover) {
+    .group-hover\:border:is(:where(.group):hover *) {
+      border-style: var(--tw-border-style);
+      border-width: 1px;
+    }
+  }
+  @media (hover: hover) {
+    .group-hover\:border-blue-600:is(:where(.group):hover *) {
+      border-color: var(--color-blue-600);
+    }
+  }
+  @media (hover: hover) {
+    .group-hover\:bg-blue-200:is(:where(.group):hover *) {
+      background-color: var(--color-blue-200);
+    }
+  }
+  @media (hover: hover) {
     .group-hover\:bg-blue-500:is(:where(.group):hover *) {
       background-color: var(--color-blue-500);
     }
@@ -32513,6 +32598,11 @@ a:where(:not(.wp-element-button)) {
   @media (hover: hover) {
     .hover\:bg-blue-50:hover {
       background-color: var(--color-blue-50);
+    }
+  }
+  @media (hover: hover) {
+    .hover\:bg-blue-200:hover {
+      background-color: var(--color-blue-200);
     }
   }
   @media (hover: hover) {
@@ -32599,6 +32689,12 @@ a:where(:not(.wp-element-button)) {
   @media (hover: hover) {
     .hover\:shadow-md:hover {
       --tw-shadow: 0 4px 6px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 2px 4px -2px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
+      box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+    }
+  }
+  @media (hover: hover) {
+    .hover\:shadow-sm:hover {
+      --tw-shadow: 0 1px 3px 0 var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 1px 2px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
       box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
     }
   }
@@ -33018,6 +33114,11 @@ a:where(:not(.wp-element-button)) {
   @media (width >= 64rem) {
     .lg\:z-50 {
       z-index: 50;
+    }
+  }
+  @media (width >= 64rem) {
+    .lg\:col-span-2 {
+      grid-column: span 2/span 2;
     }
   }
   @media (width >= 64rem) {

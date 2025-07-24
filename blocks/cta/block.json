@@ -1,12 +1,12 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
-  "name": "b2bcnc/faqs",
+  "name": "b2bcnc/cta",
   "version": "0.1.0",
-  "title": " Faqs",
+  "title": "Site CTA",
   "category": "makerblocks",
   "icon": "insert",
-  "description": "This contains the faqs section",
+  "description": "This contains the CTA section",
   "example": {},
   "supports": {
     "html": false

@@ -11696,7 +11696,7 @@ function Header({
   const [mobileMenuOpen, setMobileMenuOpen] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const siteName = site.name || "Your Company";
   const siteUrl = site.url || "#";
-  const logoUrl = site.logo_url || `${site.url}/wp-content/plugins/makerblocks/assets/images/logos/logo-ph-black.png`;
+  const logoUrl = site.logo_url;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("nav", {
       "aria-label": "Global",

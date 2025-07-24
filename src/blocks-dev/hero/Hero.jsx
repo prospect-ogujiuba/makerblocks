@@ -1,15 +1,15 @@
 "use client";
 
-export default function Hero() {
+export default function Hero({ site = {} }) {
+	const heroBgUrl = site.hero_url;
 	return (
 		<div className="bg-gray-900">
 			<div className="relative isolate overflow-hidden pt-14">
-				<img
-					alt=""
-					src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2830&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply"
-					className="absolute inset-0 -z-10 size-full object-cover"
-				/>
-
+				<div className="absolute inset-0 -z-10">
+					<img alt="" src={heroBgUrl} className="size-full object-cover" />
+					<div className="absolute inset-0 bg-black/70" />
+				</div>
+				{""}
 				<div
 					aria-hidden="true"
 					className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
@@ -25,8 +25,8 @@ export default function Hero() {
 				<div className="mx-auto max-w-7xl px-6 lg:px-8">
 					<div className="mx-auto max-w-2xl py-16 sm:py-48 lg:py-24">
 						<div className="hidden sm:mb-8 sm:flex sm:justify-center">
-							<div className="relative rounded-full px-3 py-1 text-sm/6 text-gray-400 ring-1 ring-white/10 hover:ring-white/20">
-								Announcement Go Here.{" "}
+							<div className="relative rounded-full px-3 py-1 text-sm/6 text-blue-400 bg-white ring-1 ring-blue/10 hover:ring-white/20">
+								Announcements Go Here.{" "}
 								<a href="#" className="font-semibold text-blue-400">
 									<span aria-hidden="true" className="absolute inset-0" />
 									Read more <span aria-hidden="true">&rarr;</span>
@@ -37,7 +37,7 @@ export default function Hero() {
 							<h1 className="text-balance text-5xl font-semibold tracking-tight text-white sm:text-7xl">
 								IT Solutions for modern enterprises
 							</h1>
-							<p className="mt-8 text-pretty text-lg font-medium text-gray-400 sm:text-xl/8">
+							<p className="mt-8 text-pretty text-lg font-medium text-gray-200 sm:text-xl/8">
 								Computer, Networking, and Communication Services — powering
 								productivity beyond the workstation.
 							</p>
@@ -46,7 +46,7 @@ export default function Hero() {
 									href="#"
 									className="rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
 								>
-									Get started
+									Request Service
 								</a>
 								<a href="#" className="text-sm/6 font-semibold text-white">
 									Learn more <span aria-hidden="true">→</span>

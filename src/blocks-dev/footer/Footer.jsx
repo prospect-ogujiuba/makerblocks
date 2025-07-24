@@ -138,154 +138,129 @@ export default function Footer({
 
 	return (
 		<>
-			<div className="mx-auto max-w-7xl px-6 py-16">
-				<div className="mx-auto max-w-2xl text-center">
-					<hgroup>
-						<h2 className="text-base/7 font-semibold text-blue-600">
-							Get Started
-						</h2>
-						<p className="mt-2 text-balance text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
-							Request a service today.
-						</p>
-					</hgroup>
-					<p className="mx-auto mt-6 max-w-xl text-pretty text-lg/8 text-gray-600">
-						Boost productivity with expert Computer, Networking, and
-						Communication services.
-					</p>
-					<div className="mt-8 flex justify-center">
+			<div className="bg-gray-900 text-white">
+				<div className="mx-auto max-w-7xl px-6 py-16">
+					
+					{/* Footer Navigation */}
+					<div className="mt-12 border-t border-gray-900/10 pt-12 xl:grid xl:grid-cols-3 xl:gap-8">
+						<img alt={siteName} src={logoUrl} className="h-16" />
+						<div className="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
+							<div className="md:grid md:grid-cols-2 md:gap-8">
+								{/* Solutions */}
+								<div>
+									<h3 className="text-sm/6 font-semibold ">
+										Solutions
+									</h3>
+									<ul role="list" className="mt-6 space-y-4">
+										{nav.solutions.map((item, index) => (
+											<li key={item.name || index}>
+												<a
+													href={item.href}
+													className="text-sm/6  hover:"
+													target={item.new_window ? "_blank" : undefined}
+													rel={
+														item.new_window ? "noopener noreferrer" : undefined
+													}
+												>
+													{item.name}
+												</a>
+											</li>
+										))}
+									</ul>
+								</div>
+								{/* Support */}
+								<div className="mt-10 md:mt-0">
+									<h3 className="text-sm/6 font-semibold ">
+										Support
+									</h3>
+									<ul role="list" className="mt-6 space-y-4">
+										{nav.support.map((item, index) => (
+											<li key={item.name || index}>
+												<a
+													href={item.href}
+													className="text-sm/6  hover:"
+													target={item.new_window ? "_blank" : undefined}
+													rel={
+														item.new_window ? "noopener noreferrer" : undefined
+													}
+												>
+													{item.name}
+												</a>
+											</li>
+										))}
+									</ul>
+								</div>
+							</div>
+							<div className="md:grid md:grid-cols-2 md:gap-8">
+								{/* Company */}
+								<div>
+									<h3 className="text-sm/6 font-semibold ">
+										Company
+									</h3>
+									<ul role="list" className="mt-6 space-y-4">
+										{nav.company.map((item, index) => (
+											<li key={item.name || index}>
+												<a
+													href={item.href}
+													className="text-sm/6  hover:"
+													target={item.new_window ? "_blank" : undefined}
+													rel={
+														item.new_window ? "noopener noreferrer" : undefined
+													}
+												>
+													{item.name}
+												</a>
+											</li>
+										))}
+									</ul>
+								</div>
+								{/* Legal */}
+								<div className="mt-10 md:mt-0">
+									<h3 className="text-sm/6 font-semibold ">Legal</h3>
+									<ul role="list" className="mt-6 space-y-4">
+										{nav.legal.map((item, index) => (
+											<li key={item.name || index}>
+												<a
+													href={item.href}
+													className="text-sm/6  hover:"
+													target={item.new_window ? "_blank" : undefined}
+													rel={
+														item.new_window ? "noopener noreferrer" : undefined
+													}
+												>
+													{item.name}
+												</a>
+											</li>
+										))}
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					{/* Bottom Section */}
+					<div className="mt-12 border-t border-gray-900/10 pt-8 md:flex md:items-center md:justify-between">
+						<div className="flex gap-x-6 md:order-2">
+							{socialLinks.map((item, index) => (
+								<a
+									key={item.name || index}
+									href={item.href}
+									className=" hover:"
+									target="_blank"
+									rel="noopener noreferrer"
+									aria-label={`Follow us on ${item.name}`}
+								>
+									<span className="sr-only">{item.name}</span>
+									<item.icon aria-hidden="true" className="size-6" />
+								</a>
+							))}
+						</div>
 						<a
-							href="#"
-							className="rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+							href={siteUrl}
+							className="mt-8 text-sm/6  md:order-1 md:mt-0"
 						>
-							Get Started
+							&copy; {currentYear} {siteName}, Inc. All rights reserved.
 						</a>
 					</div>
-				</div>
-
-				{/* Footer Navigation */}
-				<div className="mt-12 border-t border-gray-900/10 pt-12 xl:grid xl:grid-cols-3 xl:gap-8">
-					<img alt={siteName} src={logoUrl} className="h-16" />
-
-					<div className="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
-						<div className="md:grid md:grid-cols-2 md:gap-8">
-							{/* Solutions */}
-							<div>
-								<h3 className="text-sm/6 font-semibold text-gray-950">
-									Solutions
-								</h3>
-								<ul role="list" className="mt-6 space-y-4">
-									{nav.solutions.map((item, index) => (
-										<li key={item.name || index}>
-											<a
-												href={item.href}
-												className="text-sm/6 text-gray-600 hover:text-gray-900"
-												target={item.new_window ? "_blank" : undefined}
-												rel={
-													item.new_window ? "noopener noreferrer" : undefined
-												}
-											>
-												{item.name}
-											</a>
-										</li>
-									))}
-								</ul>
-							</div>
-
-							{/* Support */}
-							<div className="mt-10 md:mt-0">
-								<h3 className="text-sm/6 font-semibold text-gray-950">
-									Support
-								</h3>
-								<ul role="list" className="mt-6 space-y-4">
-									{nav.support.map((item, index) => (
-										<li key={item.name || index}>
-											<a
-												href={item.href}
-												className="text-sm/6 text-gray-600 hover:text-gray-900"
-												target={item.new_window ? "_blank" : undefined}
-												rel={
-													item.new_window ? "noopener noreferrer" : undefined
-												}
-											>
-												{item.name}
-											</a>
-										</li>
-									))}
-								</ul>
-							</div>
-						</div>
-
-						<div className="md:grid md:grid-cols-2 md:gap-8">
-							{/* Company */}
-							<div>
-								<h3 className="text-sm/6 font-semibold text-gray-950">
-									Company
-								</h3>
-								<ul role="list" className="mt-6 space-y-4">
-									{nav.company.map((item, index) => (
-										<li key={item.name || index}>
-											<a
-												href={item.href}
-												className="text-sm/6 text-gray-600 hover:text-gray-900"
-												target={item.new_window ? "_blank" : undefined}
-												rel={
-													item.new_window ? "noopener noreferrer" : undefined
-												}
-											>
-												{item.name}
-											</a>
-										</li>
-									))}
-								</ul>
-							</div>
-
-							{/* Legal */}
-							<div className="mt-10 md:mt-0">
-								<h3 className="text-sm/6 font-semibold text-gray-950">Legal</h3>
-								<ul role="list" className="mt-6 space-y-4">
-									{nav.legal.map((item, index) => (
-										<li key={item.name || index}>
-											<a
-												href={item.href}
-												className="text-sm/6 text-gray-600 hover:text-gray-900"
-												target={item.new_window ? "_blank" : undefined}
-												rel={
-													item.new_window ? "noopener noreferrer" : undefined
-												}
-											>
-												{item.name}
-											</a>
-										</li>
-									))}
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				{/* Bottom Section */}
-				<div className="mt-12 border-t border-gray-900/10 pt-8 md:flex md:items-center md:justify-between">
-					<div className="flex gap-x-6 md:order-2">
-						{socialLinks.map((item, index) => (
-							<a
-								key={item.name || index}
-								href={item.href}
-								className="text-gray-600 hover:text-gray-800"
-								target="_blank"
-								rel="noopener noreferrer"
-								aria-label={`Follow us on ${item.name}`}
-							>
-								<span className="sr-only">{item.name}</span>
-								<item.icon aria-hidden="true" className="size-6" />
-							</a>
-						))}
-					</div>
-					<a
-						href={siteUrl}
-						className="mt-8 text-sm/6 text-gray-600 md:order-1 md:mt-0"
-					>
-						&copy; {currentYear} {siteName}, Inc. All rights reserved.
-					</a>
 				</div>
 			</div>
 		</>

@@ -83,9 +83,7 @@ export default function Header({ site = {}, navigation = [], nonce = "" }) {
 
 	const siteName = site.name || "Your Company";
 	const siteUrl = site.url || "#";
-	const logoUrl =
-		site.logo_url ||
-		`${site.url}/wp-content/plugins/makerblocks/assets/images/logos/logo-ph-black.png`;
+	const logoUrl = site.logo_url;
 
 	return (
 		<>

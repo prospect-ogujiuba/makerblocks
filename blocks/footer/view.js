@@ -217,139 +217,121 @@ function Footer({
     icon: iconMap[item.icon] || FacebookIcon
   }));
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-      className: "mx-auto max-w-7xl px-6 py-16",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-        className: "mx-auto max-w-2xl text-center",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("hgroup", {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h2", {
-            className: "text-base/7 font-semibold text-blue-600",
-            children: "Get Started"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
-            className: "mt-2 text-balance text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl",
-            children: "Request a service today."
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
-          className: "mx-auto mt-6 max-w-xl text-pretty text-lg/8 text-gray-600",
-          children: "Boost productivity with expert Computer, Networking, and Communication services."
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-          className: "mt-8 flex justify-center",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", {
-            href: "#",
-            className: "rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600",
-            children: "Get Started"
-          })
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-        className: "mt-12 border-t border-gray-900/10 pt-12 xl:grid xl:grid-cols-3 xl:gap-8",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", {
-          alt: siteName,
-          src: logoUrl,
-          className: "h-16"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-          className: "mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-            className: "md:grid md:grid-cols-2 md:gap-8",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h3", {
-                className: "text-sm/6 font-semibold text-gray-950",
-                children: "Solutions"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("ul", {
-                role: "list",
-                className: "mt-6 space-y-4",
-                children: nav.solutions.map((item, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("li", {
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", {
-                    href: item.href,
-                    className: "text-sm/6 text-gray-600 hover:text-gray-900",
-                    target: item.new_window ? "_blank" : undefined,
-                    rel: item.new_window ? "noopener noreferrer" : undefined,
-                    children: item.name
-                  })
-                }, item.name || index))
-              })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-              className: "mt-10 md:mt-0",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h3", {
-                className: "text-sm/6 font-semibold text-gray-950",
-                children: "Support"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("ul", {
-                role: "list",
-                className: "mt-6 space-y-4",
-                children: nav.support.map((item, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("li", {
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", {
-                    href: item.href,
-                    className: "text-sm/6 text-gray-600 hover:text-gray-900",
-                    target: item.new_window ? "_blank" : undefined,
-                    rel: item.new_window ? "noopener noreferrer" : undefined,
-                    children: item.name
-                  })
-                }, item.name || index))
-              })]
-            })]
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+      className: "bg-gray-900 text-white",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+        className: "mx-auto max-w-7xl px-6 py-16",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+          className: "mt-12 border-t border-gray-900/10 pt-12 xl:grid xl:grid-cols-3 xl:gap-8",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", {
+            alt: siteName,
+            src: logoUrl,
+            className: "h-16"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-            className: "md:grid md:grid-cols-2 md:gap-8",
+            className: "mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h3", {
-                className: "text-sm/6 font-semibold text-gray-950",
-                children: "Company"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("ul", {
-                role: "list",
-                className: "mt-6 space-y-4",
-                children: nav.company.map((item, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("li", {
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", {
-                    href: item.href,
-                    className: "text-sm/6 text-gray-600 hover:text-gray-900",
-                    target: item.new_window ? "_blank" : undefined,
-                    rel: item.new_window ? "noopener noreferrer" : undefined,
-                    children: item.name
-                  })
-                }, item.name || index))
+              className: "md:grid md:grid-cols-2 md:gap-8",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h3", {
+                  className: "text-sm/6 font-semibold ",
+                  children: "Solutions"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("ul", {
+                  role: "list",
+                  className: "mt-6 space-y-4",
+                  children: nav.solutions.map((item, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("li", {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", {
+                      href: item.href,
+                      className: "text-sm/6  hover:",
+                      target: item.new_window ? "_blank" : undefined,
+                      rel: item.new_window ? "noopener noreferrer" : undefined,
+                      children: item.name
+                    })
+                  }, item.name || index))
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                className: "mt-10 md:mt-0",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h3", {
+                  className: "text-sm/6 font-semibold ",
+                  children: "Support"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("ul", {
+                  role: "list",
+                  className: "mt-6 space-y-4",
+                  children: nav.support.map((item, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("li", {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", {
+                      href: item.href,
+                      className: "text-sm/6  hover:",
+                      target: item.new_window ? "_blank" : undefined,
+                      rel: item.new_window ? "noopener noreferrer" : undefined,
+                      children: item.name
+                    })
+                  }, item.name || index))
+                })]
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-              className: "mt-10 md:mt-0",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h3", {
-                className: "text-sm/6 font-semibold text-gray-950",
-                children: "Legal"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("ul", {
-                role: "list",
-                className: "mt-6 space-y-4",
-                children: nav.legal.map((item, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("li", {
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", {
-                    href: item.href,
-                    className: "text-sm/6 text-gray-600 hover:text-gray-900",
-                    target: item.new_window ? "_blank" : undefined,
-                    rel: item.new_window ? "noopener noreferrer" : undefined,
-                    children: item.name
-                  })
-                }, item.name || index))
+              className: "md:grid md:grid-cols-2 md:gap-8",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h3", {
+                  className: "text-sm/6 font-semibold ",
+                  children: "Company"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("ul", {
+                  role: "list",
+                  className: "mt-6 space-y-4",
+                  children: nav.company.map((item, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("li", {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", {
+                      href: item.href,
+                      className: "text-sm/6  hover:",
+                      target: item.new_window ? "_blank" : undefined,
+                      rel: item.new_window ? "noopener noreferrer" : undefined,
+                      children: item.name
+                    })
+                  }, item.name || index))
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                className: "mt-10 md:mt-0",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h3", {
+                  className: "text-sm/6 font-semibold ",
+                  children: "Legal"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("ul", {
+                  role: "list",
+                  className: "mt-6 space-y-4",
+                  children: nav.legal.map((item, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("li", {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", {
+                      href: item.href,
+                      className: "text-sm/6  hover:",
+                      target: item.new_window ? "_blank" : undefined,
+                      rel: item.new_window ? "noopener noreferrer" : undefined,
+                      children: item.name
+                    })
+                  }, item.name || index))
+                })]
               })]
             })]
           })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+          className: "mt-12 border-t border-gray-900/10 pt-8 md:flex md:items-center md:justify-between",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+            className: "flex gap-x-6 md:order-2",
+            children: socialLinks.map((item, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
+              href: item.href,
+              className: " hover:",
+              target: "_blank",
+              rel: "noopener noreferrer",
+              "aria-label": `Follow us on ${item.name}`,
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
+                className: "sr-only",
+                children: item.name
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(item.icon, {
+                "aria-hidden": "true",
+                className: "size-6"
+              })]
+            }, item.name || index))
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
+            href: siteUrl,
+            className: "mt-8 text-sm/6  md:order-1 md:mt-0",
+            children: ["\xA9 ", currentYear, " ", siteName, ", Inc. All rights reserved."]
+          })]
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-        className: "mt-12 border-t border-gray-900/10 pt-8 md:flex md:items-center md:justify-between",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-          className: "flex gap-x-6 md:order-2",
-          children: socialLinks.map((item, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
-            href: item.href,
-            className: "text-gray-600 hover:text-gray-800",
-            target: "_blank",
-            rel: "noopener noreferrer",
-            "aria-label": `Follow us on ${item.name}`,
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-              className: "sr-only",
-              children: item.name
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(item.icon, {
-              "aria-hidden": "true",
-              className: "size-6"
-            })]
-          }, item.name || index))
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
-          href: siteUrl,
-          className: "mt-8 text-sm/6 text-gray-600 md:order-1 md:mt-0",
-          children: ["\xA9 ", currentYear, " ", siteName, ", Inc. All rights reserved."]
-        })]
-      })]
+      })
     })
   });
 }

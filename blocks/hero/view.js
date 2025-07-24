@@ -50,16 +50,24 @@ __webpack_require__.r(__webpack_exports__);
 "use client";
 
 
-function Hero() {
+function Hero({
+  site = {}
+}) {
+  const heroBgUrl = site.hero_url;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
     className: "bg-gray-900",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
       className: "relative isolate overflow-hidden pt-14",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", {
-        alt: "",
-        src: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2830&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply",
-        className: "absolute inset-0 -z-10 size-full object-cover"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+        className: "absolute inset-0 -z-10",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", {
+          alt: "",
+          src: heroBgUrl,
+          className: "size-full object-cover"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+          className: "absolute inset-0 bg-black/70"
+        })]
+      }), "", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
         "aria-hidden": "true",
         className: "absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
@@ -75,8 +83,8 @@ function Hero() {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
             className: "hidden sm:mb-8 sm:flex sm:justify-center",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-              className: "relative rounded-full px-3 py-1 text-sm/6 text-gray-400 ring-1 ring-white/10 hover:ring-white/20",
-              children: ["Announcement Go Here.", " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
+              className: "relative rounded-full px-3 py-1 text-sm/6 text-blue-400 bg-white ring-1 ring-blue/10 hover:ring-white/20",
+              children: ["Announcements Go Here.", " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
                 href: "#",
                 className: "font-semibold text-blue-400",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
@@ -94,14 +102,14 @@ function Hero() {
               className: "text-balance text-5xl font-semibold tracking-tight text-white sm:text-7xl",
               children: "IT Solutions for modern enterprises"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
-              className: "mt-8 text-pretty text-lg font-medium text-gray-400 sm:text-xl/8",
+              className: "mt-8 text-pretty text-lg font-medium text-gray-200 sm:text-xl/8",
               children: "Computer, Networking, and Communication Services \u2014 powering productivity beyond the workstation."
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
               className: "mt-10 flex items-center justify-center gap-x-6",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", {
                 href: "#",
                 className: "rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500",
-                children: "Get started"
+                children: "Request Service"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
                 href: "#",
                 className: "text-sm/6 font-semibold text-white",
