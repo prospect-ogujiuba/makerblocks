@@ -19,7 +19,5 @@
 	},
 	"textdomain": "b2bcnc",
 	"editorScript": "file:./index.js",
-	"style": "file:../../assets/css/styles.css",
-	"render": "file:./render.php",
-	"viewScript": "file:./view.js"
+	"render": "file:./render.php"
 }

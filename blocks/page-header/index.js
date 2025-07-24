@@ -8,7 +8,7 @@
   \***********************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"b2bcnc/page-header","version":"0.1.0","title":"Page Header","category":"makerblocks","icon":"insert","description":"This contains the main header that can be use for various pages.","example":{},"supports":{"html":false},"textdomain":"b2bcnc","editorScript":"file:./index.js","style":"file:../../assets/css/styles.css","render":"file:./render.php","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"b2bcnc/page-header","version":"0.1.0","title":"Page Header","category":"makerblocks","icon":"insert","description":"This contains the main header that can be use for various pages.","example":{},"supports":{"html":false},"textdomain":"b2bcnc","editorScript":"file:./index.js","render":"file:./render.php"}');
 
 /***/ }),
 

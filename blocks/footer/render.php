@@ -15,7 +15,7 @@ $upload_dir = wp_upload_dir();
 // Get logo from theme customizer or TypeRocket options
 $logo_url = get_theme_mod('custom_logo')
     ? wp_get_attachment_image_url(get_theme_mod('custom_logo'), 'full')
-    : $upload_dir['baseurl'] . '/b2bcnc-logo.png';
+    : $upload_dir['baseurl'] . '/b2bcnc-logo-white.png';
 
 $site_data['logo_url'] = $logo_url;
 

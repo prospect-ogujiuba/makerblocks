@@ -11684,7 +11684,7 @@ const callsToAction = [{
   href: "#",
   icon: _heroicons_react_20_solid__WEBPACK_IMPORTED_MODULE_2__["default"]
 }, {
-  name: "View all products",
+  name: "View all services",
   href: "#",
   icon: _heroicons_react_20_solid__WEBPACK_IMPORTED_MODULE_9__["default"]
 }];

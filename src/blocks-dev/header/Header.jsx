@@ -75,7 +75,7 @@ const products = [
 const callsToAction = [
 	{ name: "Watch demo", href: "#", icon: PlayCircleIcon },
 	{ name: "Contact sales", href: "#", icon: PhoneIcon },
-	{ name: "View all products", href: "#", icon: RectangleGroupIcon },
+	{ name: "View all services", href: "#", icon: RectangleGroupIcon },
 ];
 
 export default function Header({ site = {}, navigation = [], nonce = "" }) {
@@ -89,10 +89,10 @@ export default function Header({ site = {}, navigation = [], nonce = "" }) {
 		<>
 			<nav
 				aria-label="Global"
-				className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
+				className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 lg:py-4"
 			>
 				<div className="flex lg:flex-1">
-					<a href={siteUrl} className="-m-1.5 p-1.5">
+					<a href={siteUrl}>
 						<span className="sr-only">{siteName}</span>
 						<img alt="" src={logoUrl} className="h-12 w-auto" />
 					</a>
