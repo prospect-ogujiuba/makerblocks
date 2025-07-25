@@ -12,106 +12,116 @@ import PageHeader from "../blocks-dev/page-header/PageHeader";
 import Portfolio from "../blocks-dev/portfolio/Portfolio";
 import Services from "../blocks-dev/services/Services";
 import Testimonials from "../blocks-dev/testimonials/Testimonials";
+import QuoteCreator from "../blocks-dev/quote-creator/QuoteCreator";
 
 class MakerBlocks {
-    constructor() {
-        // Component registry - maps element IDs to their React components
-        this.componentRegistry = [
-            { id: "b2bcnc-cta", component: CTA, name: "CTA" },
-            { id: "b2bcnc-faqs", component: Faqs, name: "Faqs" },
-            { id: "b2bcnc-footer", component: Footer, name: "Footer" },
-            { id: "b2bcnc-header", component: Header, name: "Header" },
-            { id: "b2bcnc-hero", component: Hero, name: "Hero" },
-            { id: "b2bcnc-industries", component: Industries, name: "Industries" },
-            { id: "b2bcnc-page-header", component: PageHeader, name: "PageHeader" },
-            { id: "b2bcnc-portfolio", component: Portfolio, name: "Portfolio" },
-            { id: "b2bcnc-services", component: Services, name: "Services" },
-            { id: "b2bcnc-testimonials", component: Testimonials, name: "Testimonials" },
-        ];
+	constructor() {
+		// Component registry - maps element IDs to their React components
+		this.componentRegistry = [
+			{ id: "b2bcnc-cta", component: CTA, name: "CTA" },
+			{ id: "b2bcnc-faqs", component: Faqs, name: "Faqs" },
+			{ id: "b2bcnc-footer", component: Footer, name: "Footer" },
+			{ id: "b2bcnc-header", component: Header, name: "Header" },
+			{ id: "b2bcnc-hero", component: Hero, name: "Hero" },
+			{ id: "b2bcnc-industries", component: Industries, name: "Industries" },
+			{ id: "b2bcnc-page-header", component: PageHeader, name: "PageHeader" },
+			{ id: "b2bcnc-portfolio", component: Portfolio, name: "Portfolio" },
+			{ id: "b2bcnc-services", component: Services, name: "Services" },
+			{
+				id: "b2bcnc-testimonials",
+				component: Testimonials,
+				name: "Testimonials",
+			},
+			{
+				id: "b2bcnc-quote-creator",
+				component: QuoteCreator,
+				name: "QuoteCreator",
+			},
+		];
 
-        this.init();
-    }
+		this.init();
+	}
 
-    /**
-     * Parse component props from data attribute
-     * @param {HTMLElement} element - The DOM element
-     * @param {string} componentName - Name of component for error logging
-     * @returns {Object} - Parsed props object
-     */
-    parseComponentProps(element, componentName) {
-        const propsData = element.getAttribute("data-component-props");
-        let props = {};
+	/**
+	 * Parse component props from data attribute
+	 * @param {HTMLElement} element - The DOM element
+	 * @param {string} componentName - Name of component for error logging
+	 * @returns {Object} - Parsed props object
+	 */
+	parseComponentProps(element, componentName) {
+		const propsData = element.getAttribute("data-component-props");
+		let props = {};
 
-        if (propsData) {
-            try {
-                props = JSON.parse(propsData);
-            } catch (e) {
-                console.warn(`Failed to parse ${componentName} component props:`, e);
-            }
-        }
+		if (propsData) {
+			try {
+				props = JSON.parse(propsData);
+			} catch (e) {
+				console.warn(`Failed to parse ${componentName} component props:`, e);
+			}
+		}
 
-        return props;
-    }
+		return props;
+	}
 
-    /**
-     * Mount a single React component
-     * @param {Object} config - Component configuration
-     * @param {HTMLElement} element - Target DOM element
-     */
-    mountComponent(config, element) {
-        const { component: Component, name } = config;
-        const props = this.parseComponentProps(element, name);
+	/**
+	 * Mount a single React component
+	 * @param {Object} config - Component configuration
+	 * @param {HTMLElement} element - Target DOM element
+	 */
+	mountComponent(config, element) {
+		const { component: Component, name } = config;
+		const props = this.parseComponentProps(element, name);
 
-        try {
-            const root = createRoot(element);
-            root.render(<Component {...props} />);
-            console.log(`✅ Mounted ${name} component`);
-        } catch (error) {
-            console.error(`❌ Failed to mount ${name} component:`, error);
-        }
-    }
+		try {
+			const root = createRoot(element);
+			root.render(<Component {...props} />);
+			console.log(`✅ Mounted ${name} component`);
+		} catch (error) {
+			console.error(`❌ Failed to mount ${name} component:`, error);
+		}
+	}
 
-    /**
-     * Initialize all components present on the page
-     */
-    initializeComponents() {
-        this.componentRegistry.forEach((config) => {
-            const element = document.getElementById(config.id);
+	/**
+	 * Initialize all components present on the page
+	 */
+	initializeComponents() {
+		this.componentRegistry.forEach((config) => {
+			const element = document.getElementById(config.id);
 
-            if (element) {
-                this.mountComponent(config, element);
-            }
-        });
-    }
+			if (element) {
+				this.mountComponent(config, element);
+			}
+		});
+	}
 
-    /**
-     * Initialize the MakerBlocks system
-     */
-    init() {
-        if (document.readyState === 'loading') {
-            document.addEventListener("DOMContentLoaded", () => {
-                this.initializeComponents();
-            });
-        } else {
-            // DOM is already ready
-            this.initializeComponents();
-        }
-    }
+	/**
+	 * Initialize the MakerBlocks system
+	 */
+	init() {
+		if (document.readyState === "loading") {
+			document.addEventListener("DOMContentLoaded", () => {
+				this.initializeComponents();
+			});
+		} else {
+			// DOM is already ready
+			this.initializeComponents();
+		}
+	}
 
-    /**
-     * Manually mount a specific component (for dynamic usage)
-     * @param {string} componentId - The element ID to mount
-     */
-    mountById(componentId) {
-        const config = this.componentRegistry.find(c => c.id === componentId);
-        const element = document.getElementById(componentId);
-        
-        if (config && element) {
-            this.mountComponent(config, element);
-        } else {
-            console.warn(`Component or element not found for ID: ${componentId}`);
-        }
-    }
+	/**
+	 * Manually mount a specific component (for dynamic usage)
+	 * @param {string} componentId - The element ID to mount
+	 */
+	mountById(componentId) {
+		const config = this.componentRegistry.find((c) => c.id === componentId);
+		const element = document.getElementById(componentId);
+
+		if (config && element) {
+			this.mountComponent(config, element);
+		} else {
+			console.warn(`Component or element not found for ID: ${componentId}`);
+		}
+	}
 }
 
 export default MakerBlocks;

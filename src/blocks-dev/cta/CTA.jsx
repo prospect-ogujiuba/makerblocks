@@ -1,28 +1,13 @@
 import { ChevronDownIcon } from "@heroicons/react/16/solid";
+import QuoteCreator from "../quote-creator/QuoteCreator";
+
+// Replace the existing button div with:
 
 export default function CTA() {
 	return (
-		<div className="grid lg:grid-cols-3 mx-auto max-w-7xl px-4 gap-4 gap-y-4 items-start py-8 lg:py-12">
-			<div className="mx-auto bg-blue-100 shadow lg:mb-0 max-w-2xl text-center px-6 py-8">
-				<hgroup>
-					<p className="mt-2 text-balance text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
-						Request a service today.
-					</p>
-				</hgroup>
-				<p className="mx-auto mt-6 max-w-xl text-pretty text-lg/8 text-gray-600">
-					Boost productivity with expert Computer, Networking, and Communication
-					services.
-				</p>
-				<div className="mt-8 flex justify-center">
-					<a
-						href="#"
-						className="rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-					>
-						Get Started
-					</a>
-				</div>
-			</div>
-			<div className="col-span-2 bg-stone-100 shadow py-8 px-4">
+		<div className="grid lg:grid-cols-3 mx-auto max-w-7xl px-4 gap-4 items-start py-8 lg:py-12">
+			<QuoteCreator />
+			<div className="lg:col-span-2 bg-stone-100 shadow py-8 px-4">
 				<div
 					aria-hidden="true"
 					className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"

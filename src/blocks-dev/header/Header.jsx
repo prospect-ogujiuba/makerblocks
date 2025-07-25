@@ -173,7 +173,10 @@ export default function Header({ site = {}, navigation = [], nonce = "" }) {
 						</PopoverPanel>
 					</Popover>
 
-					<a href="#" className="text-sm/6 font-semibold text-gray-900">
+					<a
+						href="#b2bcnc-cta"
+						className="text-sm/6 font-semibold text-gray-900"
+					>
 						Contact
 					</a>
 					<a href="#" className="text-sm/6 font-semibold text-gray-900">

@@ -35,11 +35,11 @@ export default function Hero({ site = {} }) {
 						</div>
 						<div className="text-center">
 							<h1 className="text-balance text-5xl font-semibold tracking-tight text-white sm:text-7xl">
-								IT Solutions for modern enterprises
+								Smarter solutions for modern enterprises
 							</h1>
 							<p className="mt-8 text-pretty text-lg font-medium text-gray-200 sm:text-xl/8">
 								Computer, Networking, and Communication Services — powering
-								productivity beyond the workstation.
+								your business productivity beyond the workstation.
 							</p>
 							<div className="mt-10 flex items-center justify-center gap-x-6">
 								<a
