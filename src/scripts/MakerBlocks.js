@@ -13,6 +13,7 @@ import Portfolio from "../blocks-dev/portfolio/Portfolio";
 import Services from "../blocks-dev/services/Services";
 import Testimonials from "../blocks-dev/testimonials/Testimonials";
 import QuoteCreator from "../blocks-dev/quote-creator/QuoteCreator";
+import Error404 from "../blocks-dev/error-404/Error404";
 
 class MakerBlocks {
 	constructor() {
@@ -27,6 +28,7 @@ class MakerBlocks {
 			{ id: "b2bcnc-page-header", component: PageHeader, name: "PageHeader" },
 			{ id: "b2bcnc-portfolio", component: Portfolio, name: "Portfolio" },
 			{ id: "b2bcnc-services", component: Services, name: "Services" },
+			{ id: "b2bcnc-error-404", component: Error404, name: "Error404" },
 			{
 				id: "b2bcnc-testimonials",
 				component: Testimonials,
@@ -49,7 +51,7 @@ class MakerBlocks {
 	 * @returns {Object} - Parsed props object
 	 */
 	parseComponentProps(element, componentName) {
-		const propsData = element.getAttribute("data-component-props");
+		const propsData = element.getAttribute("component-data");
 		let props = {};
 
 		if (propsData) {

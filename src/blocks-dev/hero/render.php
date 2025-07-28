@@ -1,5 +1,4 @@
 <?php
-// hero/render.php
 
 // Get site data
 $site_data = [
@@ -10,22 +9,18 @@ $site_data = [
 
 $upload_dir = wp_upload_dir();
 
-
 // Get hero from theme customizer or TypeRocket options
 $hero_url = $upload_dir['baseurl'] . '/modern_enterprise_2.jpg';
 
 $site_data['hero_url'] = $hero_url;
 
-// Prepare all data for React
+
 $component_data = [
 	'site' => $site_data,
-	'nonce' => wp_create_nonce('hero_actions'),
 ];
 
-echo sprintf(
-	'<section %s data-component-props="%s"></section>',
-	get_block_wrapper_attributes([
-		'id' => 'b2bcnc-hero',
-	]),
-	esc_attr(json_encode($component_data))
-);
+?>
+
+<section <?php echo get_block_wrapper_attributes([
+				'id' => 'b2bcnc-hero',
+			]) . '" component-data="' . esc_attr(json_encode($component_data)); ?>"></section>

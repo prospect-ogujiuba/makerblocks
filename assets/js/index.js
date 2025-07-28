@@ -9643,6 +9643,50 @@ const ForwardRef = /*#__PURE__*/ react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(C
 
 /***/ }),
 
+/***/ "./node_modules/@heroicons/react/24/outline/esm/CameraIcon.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/@heroicons/react/24/outline/esm/CameraIcon.js ***!
+  \********************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+
+function CameraIcon({
+  title,
+  titleId,
+  ...props
+}, svgRef) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", Object.assign({
+    xmlns: "http://www.w3.org/2000/svg",
+    fill: "none",
+    viewBox: "0 0 24 24",
+    strokeWidth: 1.5,
+    stroke: "currentColor",
+    "aria-hidden": "true",
+    "data-slot": "icon",
+    ref: svgRef,
+    "aria-labelledby": titleId
+  }, props), title ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("title", {
+    id: titleId
+  }, title) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    d: "M6.827 6.175A2.31 2.31 0 0 1 5.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 0 0-1.134-.175 2.31 2.31 0 0 1-1.64-1.055l-.822-1.316a2.192 2.192 0 0 0-1.736-1.039 48.774 48.774 0 0 0-5.232 0 2.192 2.192 0 0 0-1.736 1.039l-.821 1.316Z"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    d: "M16.5 12.75a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0ZM18.75 10.5h.008v.008h-.008V10.5Z"
+  }));
+}
+const ForwardRef = /*#__PURE__*/ react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(CameraIcon);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ForwardRef);
+
+/***/ }),
+
 /***/ "./node_modules/@heroicons/react/24/outline/esm/CogIcon.js":
 /*!*****************************************************************!*\
   !*** ./node_modules/@heroicons/react/24/outline/esm/CogIcon.js ***!
@@ -12538,6 +12582,288 @@ function CTA() {
 
 /***/ }),
 
+/***/ "./src/blocks-dev/error-404/Error404.jsx":
+/*!***********************************************!*\
+  !*** ./src/blocks-dev/error-404/Error404.jsx ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Error404)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _heroicons_react_20_solid__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @heroicons/react/20/solid */ "./node_modules/@heroicons/react/20/solid/esm/ChevronRightIcon.js");
+/* harmony import */ var _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @heroicons/react/24/outline */ "./node_modules/@heroicons/react/24/outline/esm/PhoneIcon.js");
+/* harmony import */ var _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @heroicons/react/24/outline */ "./node_modules/@heroicons/react/24/outline/esm/CameraIcon.js");
+/* harmony import */ var _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @heroicons/react/24/outline */ "./node_modules/@heroicons/react/24/outline/esm/KeyIcon.js");
+/* harmony import */ var _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @heroicons/react/24/outline */ "./node_modules/@heroicons/react/24/outline/esm/WifiIcon.js");
+/* harmony import */ var _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @heroicons/react/24/outline */ "./node_modules/@heroicons/react/24/outline/esm/CogIcon.js");
+/* harmony import */ var _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @heroicons/react/24/outline */ "./node_modules/@heroicons/react/24/outline/esm/ComputerDesktopIcon.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+
+// Icon mapping for services
+
+const iconMap = {
+  phone: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_2__["default"],
+  camera: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_3__["default"],
+  key: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_4__["default"],
+  wifi: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_5__["default"],
+  gear: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_6__["default"],
+  laptop: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_7__["default"]
+};
+
+// Fallback links if services fail to load
+const fallbackLinks = [{
+  name: 'VoIP Phone Systems',
+  href: '/services/voip',
+  description: 'Professional business phone solutions.',
+  icon: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_2__["default"]
+}, {
+  name: 'Security Cameras',
+  href: '/services/security',
+  description: 'Complete surveillance and monitoring systems.',
+  icon: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_3__["default"]
+}, {
+  name: 'Access Control',
+  href: '/services/access',
+  description: 'Secure building and area access management.',
+  icon: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_4__["default"]
+}, {
+  name: 'IT Consulting',
+  href: '/services/consulting',
+  description: 'Expert technology guidance and solutions.',
+  icon: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_7__["default"]
+}];
+const social = [{
+  name: 'X',
+  href: '#',
+  icon: props => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("svg", {
+    fill: "currentColor",
+    viewBox: "0 0 24 24",
+    ...props,
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("path", {
+      d: "M13.6823 10.6218L20.2391 3H18.6854L12.9921 9.61788L8.44486 3H3.2002L10.0765 13.0074L3.2002 21H4.75404L10.7663 14.0113L15.5685 21H20.8131L13.6819 10.6218H13.6823ZM11.5541 13.0956L10.8574 12.0991L5.31391 4.16971H7.70053L12.1742 10.5689L12.8709 11.5655L18.6861 19.8835H16.2995L11.5541 13.096V13.0956Z"
+    })
+  })
+}, {
+  name: 'GitHub',
+  href: '#',
+  icon: props => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("svg", {
+    fill: "currentColor",
+    viewBox: "0 0 24 24",
+    ...props,
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("path", {
+      fillRule: "evenodd",
+      d: "M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z",
+      clipRule: "evenodd"
+    })
+  })
+}, {
+  name: 'Instagram',
+  href: '#',
+  icon: props => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("svg", {
+    fill: "currentColor",
+    viewBox: "0 0 24 24",
+    ...props,
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("path", {
+      fillRule: "evenodd",
+      d: "M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z",
+      clipRule: "evenodd"
+    })
+  })
+}];
+function Error404() {
+  const [services, setServices] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
+  const [loading, setLoading] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
+  const [error, setError] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
+
+  // Fetch services from API
+  const fetchServices = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+
+      // Get CSRF token from DOM
+      const csrfToken = document.getElementById('_tr_nonce_form')?.value;
+      const response = await fetch('https://b2bcnc.test/tr-api/rest/service', {
+        method: 'GET',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'X-Requested-With': 'XMLHttpRequest',
+          ...(csrfToken && {
+            'X-CSRF-TOKEN': csrfToken
+          })
+        }
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      }
+      const data = await response.json();
+
+      // Transform API data to links format
+      const serviceLinks = data.filter(service => service.active === "1").slice(0, 4) // Show only first 4 services
+      .map(service => ({
+        name: service.name,
+        href: `/services/${service.code}`,
+        description: service.description,
+        icon: iconMap[service.icon] || _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_7__["default"]
+      }));
+      setServices(serviceLinks);
+    } catch (err) {
+      console.error('Failed to fetch services:', err);
+      setError(err.message);
+      // Use fallback links on error
+      setServices(fallbackLinks);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Fetch services when component mounts
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    fetchServices();
+  }, []);
+
+  // Use fallback links if no services loaded
+  const displayLinks = services.length > 0 ? services : fallbackLinks;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+    className: "bg-white",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("main", {
+      className: "mx-auto w-full max-w-7xl px-6 pt-10 pb-16 sm:pb-24 lg:px-8",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+        alt: "B2B CNC",
+        src: "https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600",
+        className: "mx-auto h-10 w-auto sm:h-12"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+        className: "mx-auto mt-20 max-w-2xl text-center sm:mt-24",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+          className: "text-base/8 font-semibold text-indigo-600",
+          children: "404"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h1", {
+          className: "mt-4 text-5xl font-semibold tracking-tight text-balance text-gray-900 sm:text-6xl",
+          children: "This page does not exist"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+          className: "mt-6 text-lg font-medium text-pretty text-gray-500 sm:text-xl/8",
+          children: "Sorry, we couldn't find the page you're looking for. But here are some of our popular services you might be interested in."
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+        className: "mx-auto mt-16 flow-root max-w-lg sm:mt-20",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h2", {
+          className: "sr-only",
+          children: "Popular services"
+        }), loading && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+          className: "text-center py-8",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+            className: "animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600 mx-auto"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+            className: "mt-2 text-sm text-gray-500",
+            children: "Loading services..."
+          })]
+        }), error && !loading && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+          className: "bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+            className: "text-yellow-800 text-sm",
+            children: "Unable to load latest services. Showing popular options below."
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("ul", {
+          role: "list",
+          className: "-mt-6 divide-y divide-gray-900/5 border-b border-gray-900/5",
+          children: displayLinks.map((link, linkIdx) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("li", {
+            className: "relative flex gap-x-6 py-6",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+              className: "flex size-10 flex-none items-center justify-center rounded-lg shadow-xs outline-1 outline-gray-900/10 bg-indigo-50",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(link.icon, {
+                "aria-hidden": "true",
+                className: "size-6 text-indigo-600"
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+              className: "flex-auto",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h3", {
+                className: "text-sm/6 font-semibold text-gray-900",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("a", {
+                  href: link.href,
+                  className: "hover:text-indigo-600 transition-colors",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+                    "aria-hidden": "true",
+                    className: "absolute inset-0"
+                  }), link.name]
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+                className: "mt-2 text-sm/6 text-gray-600",
+                children: link.description
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+              className: "flex-none self-center",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_heroicons_react_20_solid__WEBPACK_IMPORTED_MODULE_8__["default"], {
+                "aria-hidden": "true",
+                className: "size-5 text-gray-400"
+              })
+            })]
+          }, linkIdx))
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+          className: "mt-10 flex justify-center space-x-6",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("a", {
+            href: "/",
+            className: "text-sm/6 font-semibold text-indigo-600 hover:text-indigo-700 transition-colors",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+              "aria-hidden": "true",
+              children: "\u2190"
+            }), " Back to home"]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("a", {
+            href: "/services",
+            className: "text-sm/6 font-semibold text-indigo-600 hover:text-indigo-700 transition-colors",
+            children: ["View all services ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+              "aria-hidden": "true",
+              children: "\u2192"
+            })]
+          })]
+        }), error && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+          className: "mt-6 text-center",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+            onClick: fetchServices,
+            className: "text-sm text-gray-500 hover:text-gray-700 transition-colors",
+            children: "Try loading services again"
+          })
+        })]
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("footer", {
+      className: "border-t border-gray-100 py-6 sm:py-10",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+        className: "mx-auto flex max-w-7xl flex-col items-center justify-center gap-8 px-6 sm:flex-row lg:px-8",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+          className: "text-sm/7 text-gray-400",
+          children: "\xA9 B2B CNC, Inc. All rights reserved."
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+          className: "hidden sm:block sm:h-7 sm:w-px sm:flex-none sm:bg-gray-200"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+          className: "flex gap-x-4",
+          children: social.map((item, itemIdx) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("a", {
+            href: item.href,
+            className: "text-gray-400 hover:text-gray-500 transition-colors",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+              className: "sr-only",
+              children: item.name
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(item.icon, {
+              "aria-hidden": "true",
+              className: "size-6"
+            })]
+          }, itemIdx))
+        })]
+      })
+    })]
+  });
+}
+
+/***/ }),
+
 /***/ "./src/blocks-dev/faqs/Faqs.jsx":
 /*!**************************************!*\
   !*** ./src/blocks-dev/faqs/Faqs.jsx ***!
@@ -12962,48 +13288,27 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const products = [{
-  name: "VoIP Phone System",
-  description: "Complete VoIP phone system solutions including hosting, installation, and ongoing support for seamless business communications.",
-  href: "#",
-  icon: _heroicons_react_20_solid__WEBPACK_IMPORTED_MODULE_2__["default"]
-}, {
-  name: "Camera System",
-  description: "Professional security camera system installation and management to keep your business secure and monitored 24/7.",
-  href: "#",
-  icon: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_3__["default"]
-}, {
-  name: "Card Access Control",
-  description: "Secure card access systems for controlled entry to your facilities, ensuring only authorized personnel have access.",
-  href: "#",
-  icon: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_4__["default"]
-}, {
-  name: "Network Cabling",
-  description: "Professional network infrastructure installation and maintenance to ensure reliable, high-speed connectivity throughout your business.",
-  href: "#",
-  icon: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_5__["default"]
-}, {
-  name: "Managed Services",
-  description: "Comprehensive IT management and support services to keep your technology running smoothly and your business productive.",
-  href: "#",
-  icon: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_6__["default"]
-}, {
-  name: "IT Consulting",
-  description: "Expert IT consulting and custom solutions tailored to your business needs, from planning to implementation and beyond.",
-  href: "#",
-  icon: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_7__["default"]
-}];
+// Icon mapping based on the API's icon field
+
+const iconMap = {
+  phone: _heroicons_react_20_solid__WEBPACK_IMPORTED_MODULE_2__["default"],
+  camera: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_3__["default"],
+  key: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_4__["default"],
+  wifi: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_5__["default"],
+  gear: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_6__["default"],
+  desktop: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_7__["default"]
+};
 const callsToAction = [{
   name: "Watch demo",
   href: "#",
   icon: _heroicons_react_20_solid__WEBPACK_IMPORTED_MODULE_8__["default"]
 }, {
   name: "Contact sales",
-  href: "#",
+  href: "/#b2bcnc-cta",
   icon: _heroicons_react_20_solid__WEBPACK_IMPORTED_MODULE_2__["default"]
 }, {
   name: "View all services",
-  href: "#",
+  href: "services",
   icon: _heroicons_react_20_solid__WEBPACK_IMPORTED_MODULE_9__["default"]
 }];
 function Header({
@@ -13012,9 +13317,60 @@ function Header({
   nonce = ""
 }) {
   const [mobileMenuOpen, setMobileMenuOpen] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const [products, setProducts] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
+  const [loading, setLoading] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
+  const [error, setError] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
   const siteName = site.name || "Your Company";
   const siteUrl = site.url || "#";
   const logoUrl = site.logo_url;
+
+  // Fetch services from API
+  const fetchServices = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+
+      // Get CSRF token from DOM or use passed nonce
+      const csrfToken = nonce || document.getElementById("_tr_nonce_form")?.value;
+      const response = await fetch("https://b2bcnc.test/tr-api/rest/service", {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          "X-Requested-With": "XMLHttpRequest",
+          ...(csrfToken && {
+            "X-CSRF-TOKEN": csrfToken
+          })
+        }
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      }
+      const data = await response.json();
+
+      // Transform API data to match header format
+      const transformedProducts = data.filter(service => service.active === "1").map(service => ({
+        name: service.name,
+        description: service.description,
+        href: `#service-${service.code}`,
+        icon: iconMap[service.icon] || _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_7__["default"],
+        originalIcon: service.icon // Add this line
+      }));
+      setProducts(transformedProducts);
+    } catch (err) {
+      console.error("Failed to fetch services:", err);
+      setError(err.message);
+      setProducts([]); // Clear products on error
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Load services on component mount
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    fetchServices();
+  }, [nonce]);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("nav", {
       "aria-label": "Global",
@@ -13063,7 +13419,19 @@ function Header({
               className: "absolute inset-0 top-1/2 bg-white shadow-lg ring-1 ring-gray-900/5"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
               className: "relative bg-blue-100",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+              children: [loading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                className: "mx-auto max-w-7xl px-6 py-10 lg:px-8",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                  className: "text-center text-gray-500",
+                  children: "Loading services..."
+                })
+              }) : products.length === 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                className: "mx-auto max-w-7xl px-6 py-10 lg:px-8",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                  className: "text-center text-gray-500",
+                  children: error ? "Unable to load services" : "No services available"
+                })
+              }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
                 className: "mx-auto grid max-w-7xl grid-cols-6 gap-x-4 px-6 py-10 lg:px-8 xl:gap-x-8",
                 children: products.map(item => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
                   className: "group relative rounded-lg p-6 text-sm/6 hover:bg-gray-50",
@@ -13101,19 +13469,19 @@ function Header({
             })]
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
-          href: "#b2bcnc-cta",
+          href: "/#b2bcnc-cta",
           className: "text-sm/6 font-semibold text-gray-900",
           children: "Contact"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
-          href: "#",
+          href: "support",
           className: "text-sm/6 font-semibold text-gray-900",
           children: "Support"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
-          href: "#",
+          href: "resources",
           className: "text-sm/6 font-semibold text-gray-900",
           children: "Resources"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
-          href: "#",
+          href: "company",
           className: "text-sm/6 font-semibold text-gray-900",
           children: "Company"
         })]
@@ -13172,13 +13540,19 @@ function Header({
                 className: "-mx-3",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_headlessui_react__WEBPACK_IMPORTED_MODULE_15__.DisclosureButton, {
                   className: "group flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50",
-                  children: ["Product", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_heroicons_react_20_solid__WEBPACK_IMPORTED_MODULE_12__["default"], {
+                  children: ["Services", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_heroicons_react_20_solid__WEBPACK_IMPORTED_MODULE_12__["default"], {
                     "aria-hidden": "true",
                     className: "size-5 flex-none group-data-[open]:rotate-180"
                   })]
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_headlessui_react__WEBPACK_IMPORTED_MODULE_15__.DisclosurePanel, {
                   className: "mt-2 space-y-2",
-                  children: [...products, ...callsToAction].map(item => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_headlessui_react__WEBPACK_IMPORTED_MODULE_15__.DisclosureButton, {
+                  children: loading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                    className: "block rounded-lg py-2 pl-6 pr-3 text-sm/7 text-gray-500",
+                    children: "Loading services..."
+                  }) : products.length === 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                    className: "block rounded-lg py-2 pl-6 pr-3 text-sm/7 text-gray-500",
+                    children: error ? "Unable to load services" : "No services available"
+                  }) : [...products, ...callsToAction].map(item => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_headlessui_react__WEBPACK_IMPORTED_MODULE_15__.DisclosureButton, {
                     as: "a",
                     href: item.href,
                     className: "block rounded-lg py-2 pl-6 pr-3 text-sm/7 font-semibold text-gray-900 hover:bg-gray-50",
@@ -13188,11 +13562,15 @@ function Header({
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
                 href: "#",
                 className: "-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50",
-                children: "Features"
+                children: "Contact"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
                 href: "#",
                 className: "-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50",
-                children: "Marketplace"
+                children: "Support"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
+                href: "#",
+                className: "-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50",
+                children: "Resources"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
                 href: "#",
                 className: "-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50",
@@ -13594,14 +13972,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _headlessui_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @headlessui/react */ "./node_modules/@headlessui/react/dist/components/dialog/dialog.js");
-/* harmony import */ var _headlessui_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @headlessui/react */ "./node_modules/@headlessui/react/dist/components/listbox/listbox.js");
-/* harmony import */ var _headlessui_react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @headlessui/react */ "./node_modules/@headlessui/react/dist/components/label/label.js");
-/* harmony import */ var _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @heroicons/react/24/outline */ "./node_modules/@heroicons/react/24/outline/esm/XMarkIcon.js");
-/* harmony import */ var _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @heroicons/react/24/outline */ "./node_modules/@heroicons/react/24/outline/esm/PlusIcon.js");
-/* harmony import */ var _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @heroicons/react/24/outline */ "./node_modules/@heroicons/react/24/outline/esm/CalculatorIcon.js");
-/* harmony import */ var _heroicons_react_16_solid__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @heroicons/react/16/solid */ "./node_modules/@heroicons/react/16/solid/esm/ChevronUpDownIcon.js");
-/* harmony import */ var _heroicons_react_20_solid__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @heroicons/react/20/solid */ "./node_modules/@heroicons/react/20/solid/esm/CheckIcon.js");
+/* harmony import */ var _headlessui_react__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @headlessui/react */ "./node_modules/@headlessui/react/dist/components/dialog/dialog.js");
+/* harmony import */ var _headlessui_react__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @headlessui/react */ "./node_modules/@headlessui/react/dist/components/listbox/listbox.js");
+/* harmony import */ var _headlessui_react__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @headlessui/react */ "./node_modules/@headlessui/react/dist/components/label/label.js");
+/* harmony import */ var _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @heroicons/react/24/outline */ "./node_modules/@heroicons/react/24/outline/esm/PhoneIcon.js");
+/* harmony import */ var _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @heroicons/react/24/outline */ "./node_modules/@heroicons/react/24/outline/esm/CameraIcon.js");
+/* harmony import */ var _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @heroicons/react/24/outline */ "./node_modules/@heroicons/react/24/outline/esm/KeyIcon.js");
+/* harmony import */ var _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @heroicons/react/24/outline */ "./node_modules/@heroicons/react/24/outline/esm/WifiIcon.js");
+/* harmony import */ var _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @heroicons/react/24/outline */ "./node_modules/@heroicons/react/24/outline/esm/CogIcon.js");
+/* harmony import */ var _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @heroicons/react/24/outline */ "./node_modules/@heroicons/react/24/outline/esm/ComputerDesktopIcon.js");
+/* harmony import */ var _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @heroicons/react/24/outline */ "./node_modules/@heroicons/react/24/outline/esm/XMarkIcon.js");
+/* harmony import */ var _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @heroicons/react/24/outline */ "./node_modules/@heroicons/react/24/outline/esm/PlusIcon.js");
+/* harmony import */ var _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @heroicons/react/24/outline */ "./node_modules/@heroicons/react/24/outline/esm/CalculatorIcon.js");
+/* harmony import */ var _heroicons_react_16_solid__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @heroicons/react/16/solid */ "./node_modules/@heroicons/react/16/solid/esm/ChevronUpDownIcon.js");
+/* harmony import */ var _heroicons_react_20_solid__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @heroicons/react/20/solid */ "./node_modules/@heroicons/react/20/solid/esm/CheckIcon.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__);
 
@@ -13610,213 +13994,263 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-// Service configurations
+// Icon mapping for services
 
-const serviceConfigs = {
-  voip: {
-    name: "VoIP Phone System",
-    icon: "📞",
-    basePrice: 150,
+const iconMap = {
+  phone: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_2__["default"],
+  camera: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_3__["default"],
+  key: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_4__["default"],
+  wifi: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_5__["default"],
+  gear: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_6__["default"],
+  laptop: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_7__["default"]
+};
+
+// Dynamic service configurations based on service codes
+const getServiceConfiguration = (serviceCode, basePrice) => {
+  const configurations = {
+    voip_phone_system: {
+      fields: [{
+        name: "users",
+        label: "Number of Users",
+        type: "number",
+        min: 1,
+        max: 500,
+        multiplier: 25,
+        required: true
+      }, {
+        name: "features",
+        label: "Feature Package",
+        type: "select",
+        options: [{
+          value: "basic",
+          label: "Basic (Calling, Voicemail)",
+          price: 0
+        }, {
+          value: "standard",
+          label: "Standard (+ Call Forwarding, Conference)",
+          price: 50
+        }, {
+          value: "premium",
+          label: "Premium (+ Analytics, CRM Integration)",
+          price: 150
+        }],
+        required: true
+      }, {
+        name: "installation",
+        label: "Installation Type",
+        type: "radio",
+        options: [{
+          value: "remote",
+          label: "Remote Setup",
+          price: 0
+        }, {
+          value: "onsite",
+          label: "On-site Installation",
+          price: 200
+        }],
+        required: true
+      }]
+    },
+    camera_system: {
+      fields: [{
+        name: "cameras",
+        label: "Number of Cameras",
+        type: "number",
+        min: 1,
+        max: 50,
+        multiplier: 150,
+        required: true
+      }, {
+        name: "quality",
+        label: "Camera Quality",
+        type: "select",
+        options: [{
+          value: "1080p",
+          label: "1080p HD",
+          price: 0
+        }, {
+          value: "4k",
+          label: "4K Ultra HD",
+          price: 100
+        }],
+        required: true
+      }, {
+        name: "storage",
+        label: "Storage Solution",
+        type: "select",
+        options: [{
+          value: "local",
+          label: "Local NVR (30 days)",
+          price: 200
+        }, {
+          value: "cloud",
+          label: "Cloud Storage (90 days)",
+          price: 50
+        }],
+        required: true
+      }]
+    },
+    access_control: {
+      fields: [{
+        name: "doors",
+        label: "Number of Doors",
+        type: "number",
+        min: 1,
+        max: 20,
+        multiplier: 200,
+        required: true
+      }, {
+        name: "cardType",
+        label: "Access Card Type",
+        type: "select",
+        options: [{
+          value: "proximity",
+          label: "Proximity Cards",
+          price: 0
+        }, {
+          value: "smart",
+          label: "Smart Cards",
+          price: 50
+        }],
+        required: true
+      }, {
+        name: "users",
+        label: "Number of Users",
+        type: "number",
+        min: 1,
+        max: 500,
+        multiplier: 5,
+        required: true
+      }]
+    },
+    network_cabling: {
+      fields: [{
+        name: "sqft",
+        label: "Square Footage",
+        type: "number",
+        min: 100,
+        max: 50000,
+        multiplier: 2,
+        required: true
+      }, {
+        name: "cableType",
+        label: "Cable Type",
+        type: "select",
+        options: [{
+          value: "cat6",
+          label: "Cat6 Standard",
+          price: 0
+        }, {
+          value: "cat6a",
+          label: "Cat6a Enhanced",
+          price: 0.5
+        }, {
+          value: "fiber",
+          label: "Fiber Optic",
+          price: 2
+        }],
+        required: true
+      }, {
+        name: "drops",
+        label: "Number of Network Drops",
+        type: "number",
+        min: 1,
+        max: 100,
+        multiplier: 50,
+        required: true
+      }]
+    },
+    managed_services: {
+      fields: [{
+        name: "devices",
+        label: "Number of Devices",
+        type: "number",
+        min: 1,
+        max: 200,
+        multiplier: 15,
+        required: true
+      }, {
+        name: "serviceLevel",
+        label: "Service Level",
+        type: "select",
+        options: [{
+          value: "basic",
+          label: "Basic Monitoring",
+          price: 0
+        }, {
+          value: "standard",
+          label: "Standard Support (Business Hours)",
+          price: 25
+        }, {
+          value: "premium",
+          label: "Premium 24/7 Support",
+          price: 75
+        }],
+        required: true
+      }]
+    },
+    it_consulting: {
+      fields: [{
+        name: "hours",
+        label: "Estimated Hours",
+        type: "number",
+        min: 1,
+        max: 200,
+        multiplier: 1,
+        required: true
+      }, {
+        name: "consultingType",
+        label: "Consulting Type",
+        type: "select",
+        options: [{
+          value: "assessment",
+          label: "IT Assessment",
+          price: 0
+        }, {
+          value: "strategy",
+          label: "Strategic Planning",
+          price: 25
+        }, {
+          value: "implementation",
+          label: "Implementation Support",
+          price: 50
+        }],
+        required: true
+      }]
+    }
+  };
+
+  // Return configuration with dynamic base price
+  const config = configurations[serviceCode];
+  if (config) {
+    return {
+      ...config,
+      basePrice: parseFloat(basePrice) || 0
+    };
+  }
+
+  // Default configuration for unknown service types
+  return {
+    basePrice: parseFloat(basePrice) || 0,
     fields: [{
-      name: "users",
-      label: "Number of Users",
-      type: "number",
-      min: 1,
-      max: 500,
-      multiplier: 25,
-      required: true
-    }, {
-      name: "features",
-      label: "Feature Package",
-      type: "select",
-      options: [{
-        value: "basic",
-        label: "Basic (Calling, Voicemail)",
-        price: 0
-      }, {
-        value: "standard",
-        label: "Standard (+ Call Forwarding, Conference)",
-        price: 50
-      }, {
-        value: "premium",
-        label: "Premium (+ Analytics, CRM Integration)",
-        price: 150
-      }],
-      required: true
-    }, {
-      name: "installation",
-      label: "Installation Type",
-      type: "radio",
-      options: [{
-        value: "remote",
-        label: "Remote Setup",
-        price: 0
-      }, {
-        value: "onsite",
-        label: "On-site Installation",
-        price: 200
-      }],
-      required: true
-    }]
-  },
-  cameras: {
-    name: "Security Camera System",
-    icon: "📹",
-    basePrice: 300,
-    fields: [{
-      name: "cameras",
-      label: "Number of Cameras",
-      type: "number",
-      min: 1,
-      max: 50,
-      multiplier: 150,
-      required: true
-    }, {
-      name: "quality",
-      label: "Camera Quality",
-      type: "select",
-      options: [{
-        value: "1080p",
-        label: "1080p HD",
-        price: 0
-      }, {
-        value: "4k",
-        label: "4K Ultra HD",
-        price: 100
-      }],
-      required: true
-    }, {
-      name: "storage",
-      label: "Storage Solution",
-      type: "select",
-      options: [{
-        value: "local",
-        label: "Local NVR (30 days)",
-        price: 200
-      }, {
-        value: "cloud",
-        label: "Cloud Storage (90 days)",
-        price: 50
-      }],
-      required: true
-    }]
-  },
-  access: {
-    name: "Card Access Control",
-    icon: "🔐",
-    basePrice: 500,
-    fields: [{
-      name: "doors",
-      label: "Number of Doors",
-      type: "number",
-      min: 1,
-      max: 20,
-      multiplier: 200,
-      required: true
-    }, {
-      name: "cardType",
-      label: "Access Card Type",
-      type: "select",
-      options: [{
-        value: "proximity",
-        label: "Proximity Cards",
-        price: 0
-      }, {
-        value: "smart",
-        label: "Smart Cards",
-        price: 50
-      }],
-      required: true
-    }, {
-      name: "users",
-      label: "Number of Users",
-      type: "number",
-      min: 1,
-      max: 500,
-      multiplier: 5,
-      required: true
-    }]
-  },
-  cabling: {
-    name: "Network Cabling",
-    icon: "🔌",
-    basePrice: 200,
-    fields: [{
-      name: "sqft",
-      label: "Square Footage",
-      type: "number",
-      min: 100,
-      max: 50000,
-      multiplier: 2,
-      required: true
-    }, {
-      name: "cableType",
-      label: "Cable Type",
-      type: "select",
-      options: [{
-        value: "cat6",
-        label: "Cat6 Standard",
-        price: 0
-      }, {
-        value: "cat6a",
-        label: "Cat6a Enhanced",
-        price: 0.5
-      }, {
-        value: "fiber",
-        label: "Fiber Optic",
-        price: 2
-      }],
-      required: true
-    }, {
-      name: "drops",
-      label: "Number of Network Drops",
+      name: "quantity",
+      label: "Quantity",
       type: "number",
       min: 1,
       max: 100,
-      multiplier: 50,
+      multiplier: 1,
       required: true
     }]
-  },
-  managed: {
-    name: "Managed IT Services",
-    icon: "🛠️",
-    basePrice: 100,
-    fields: [{
-      name: "devices",
-      label: "Number of Devices",
-      type: "number",
-      min: 1,
-      max: 200,
-      multiplier: 15,
-      required: true
-    }, {
-      name: "serviceLevel",
-      label: "Service Level",
-      type: "select",
-      options: [{
-        value: "basic",
-        label: "Basic Monitoring",
-        price: 0
-      }, {
-        value: "standard",
-        label: "Standard Support (Business Hours)",
-        price: 25
-      }, {
-        value: "premium",
-        label: "Premium 24/7 Support",
-        price: 75
-      }],
-      required: true
-    }]
-  }
+  };
 };
 function QuoteModal({
   open,
-  setOpen
+  setOpen,
+  services
 }) {
   const [lineItems, setLineItems] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
   const [currentService, setCurrentService] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
-    service: "",
+    serviceId: "",
     config: {}
   });
   const [showAddForm, setShowAddForm] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
@@ -13833,17 +14267,18 @@ function QuoteModal({
   const total = subtotal + tax;
 
   // Generate line item description and calculate total
-  const generateLineItem = (service, config) => {
-    if (!serviceConfigs[service]) return null;
-    const serviceConfig = serviceConfigs[service];
+  const generateLineItem = (serviceId, config) => {
+    const service = services.find(s => s.id === serviceId);
+    if (!service) return null;
+    const serviceConfig = getServiceConfiguration(service.code, service.basePrice);
     let price = serviceConfig.basePrice;
     let quantity = 1;
-    let description = serviceConfig.name;
+    let description = service.name;
     let details = [];
     serviceConfig.fields.forEach(field => {
       const value = config[field.name];
       if (field.type === "number" && field.multiplier && value) {
-        if (field.name === "users" || field.name === "cameras" || field.name === "doors" || field.name === "devices") {
+        if (field.name === "users" || field.name === "cameras" || field.name === "doors" || field.name === "devices" || field.name === "hours") {
           quantity = value;
           price += field.multiplier;
         } else {
@@ -13873,16 +14308,16 @@ function QuoteModal({
       quantity,
       unitPrice: price,
       total: quantity * price,
-      service,
+      serviceId,
       config
     };
   };
   const addLineItem = () => {
-    const lineItem = generateLineItem(currentService.service, currentService.config);
+    const lineItem = generateLineItem(currentService.serviceId, currentService.config);
     if (lineItem) {
       setLineItems(prev => [...prev, lineItem]);
       setCurrentService({
-        service: "",
+        serviceId: "",
         config: {}
       });
       setShowAddForm(false);
@@ -13981,19 +14416,21 @@ function QuoteModal({
         return null;
     }
   };
+  const selectedService = services.find(s => s.id === currentService.serviceId);
+  const selectedServiceConfig = selectedService ? getServiceConfiguration(selectedService.code, selectedService.basePrice) : null;
   if (step === "quote") {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_headlessui_react__WEBPACK_IMPORTED_MODULE_2__.Dialog, {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_headlessui_react__WEBPACK_IMPORTED_MODULE_8__.Dialog, {
       open: open,
       onClose: setOpen,
       className: "relative z-50 col-span-2",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_headlessui_react__WEBPACK_IMPORTED_MODULE_2__.DialogBackdrop, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_headlessui_react__WEBPACK_IMPORTED_MODULE_8__.DialogBackdrop, {
         transition: true,
         className: "fixed inset-0 bg-gray-500/75 transition-opacity data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
         className: "fixed inset-0 p-4 z-10 w-screen overflow-y-auto",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
           className: "flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_headlessui_react__WEBPACK_IMPORTED_MODULE_2__.DialogPanel, {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_headlessui_react__WEBPACK_IMPORTED_MODULE_8__.DialogPanel, {
             transition: true,
             className: "relative transform w-full overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all data-[closed]:translate-y-4 data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in sm:my-8 sm:w-full data-[closed]:sm:translate-y-0 data-[closed]:sm:scale-95",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
@@ -14007,14 +14444,14 @@ function QuoteModal({
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
                     className: "sr-only",
                     children: "Close"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_3__["default"], {
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_9__["default"], {
                     "aria-hidden": "true",
                     className: "size-6"
                   })]
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
                 className: "flex justify-between items-center mb-6 border-b pb-4",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_headlessui_react__WEBPACK_IMPORTED_MODULE_2__.DialogTitle, {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_headlessui_react__WEBPACK_IMPORTED_MODULE_8__.DialogTitle, {
                   as: "h2",
                   className: "text-2xl font-bold text-gray-900",
                   children: "Service Quote"
@@ -14151,18 +14588,18 @@ function QuoteModal({
       })]
     });
   }
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_headlessui_react__WEBPACK_IMPORTED_MODULE_2__.Dialog, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_headlessui_react__WEBPACK_IMPORTED_MODULE_8__.Dialog, {
     open: open,
     onClose: setOpen,
     className: "relative z-50 col-span-2",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_headlessui_react__WEBPACK_IMPORTED_MODULE_2__.DialogBackdrop, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_headlessui_react__WEBPACK_IMPORTED_MODULE_8__.DialogBackdrop, {
       transition: true,
       className: "fixed inset-0 bg-gray-500/75 transition-opacity data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
       className: "fixed inset-0 p-4 z-10 w-screen overflow-y-auto",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
         className: "flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_headlessui_react__WEBPACK_IMPORTED_MODULE_2__.DialogPanel, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_headlessui_react__WEBPACK_IMPORTED_MODULE_8__.DialogPanel, {
           transition: true,
           className: "relative transform w-full overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all data-[closed]:translate-y-4 data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in sm:my-8 data-[closed]:sm:translate-y-0 data-[closed]:sm:scale-95",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
@@ -14176,14 +14613,14 @@ function QuoteModal({
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
                   className: "sr-only",
                   children: "Close"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_3__["default"], {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_9__["default"], {
                   "aria-hidden": "true",
                   className: "size-6"
                 })]
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
               className: "mb-6",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_headlessui_react__WEBPACK_IMPORTED_MODULE_2__.DialogTitle, {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_headlessui_react__WEBPACK_IMPORTED_MODULE_8__.DialogTitle, {
                 as: "h2",
                 className: "text-2xl font-bold text-gray-900",
                 children: "Build Your Quote"
@@ -14256,7 +14693,7 @@ function QuoteModal({
                 }), !showAddForm ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("button", {
                   onClick: () => setShowAddForm(true),
                   className: "w-full flex items-center justify-center px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_4__["default"], {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_10__["default"], {
                     className: "w-5 h-5 mr-2"
                   }), "Add Service"]
                 }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
@@ -14269,7 +14706,7 @@ function QuoteModal({
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
                       onClick: () => setShowAddForm(false),
                       className: "text-gray-400 hover:text-gray-600",
-                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_3__["default"], {
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_9__["default"], {
                         className: "w-5 h-5"
                       })
                     })]
@@ -14279,54 +14716,59 @@ function QuoteModal({
                       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
                         className: "block text-sm font-medium text-gray-700 mb-1",
                         children: "Service Type *"
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_headlessui_react__WEBPACK_IMPORTED_MODULE_5__.Listbox, {
-                        value: currentService.service,
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_headlessui_react__WEBPACK_IMPORTED_MODULE_11__.Listbox, {
+                        value: currentService.serviceId,
                         onChange: value => setCurrentService({
-                          service: value,
+                          serviceId: value,
                           config: {}
                         }),
-                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_headlessui_react__WEBPACK_IMPORTED_MODULE_6__.Label, {
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_headlessui_react__WEBPACK_IMPORTED_MODULE_12__.Label, {
                           className: "block text-sm/6 font-medium text-gray-900",
                           children: "Select a Service"
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
                           className: "relative mt-2",
-                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_headlessui_react__WEBPACK_IMPORTED_MODULE_5__.ListboxButton, {
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_headlessui_react__WEBPACK_IMPORTED_MODULE_11__.ListboxButton, {
                             className: "grid w-full cursor-default grid-cols-1 rounded-md bg-white py-1.5 pr-2 pl-3 text-left text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-blue-600 sm:text-sm/6",
                             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
                               className: "col-start-1 row-start-1 truncate pr-6",
-                              children: currentService.service ? serviceConfigs[currentService.service]?.name : "Select a service"
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_heroicons_react_16_solid__WEBPACK_IMPORTED_MODULE_7__["default"], {
+                              children: selectedService ? selectedService.name : "Select a service"
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_heroicons_react_16_solid__WEBPACK_IMPORTED_MODULE_13__["default"], {
                               "aria-hidden": "true",
                               className: "col-start-1 row-start-1 size-5 self-center justify-self-end text-gray-500 sm:size-4"
                             })]
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_headlessui_react__WEBPACK_IMPORTED_MODULE_5__.ListboxOptions, {
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_headlessui_react__WEBPACK_IMPORTED_MODULE_11__.ListboxOptions, {
                             transition: true,
                             className: "absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-hidden data-leave:transition data-leave:duration-100 data-leave:ease-in data-closed:data-leave:opacity-0 sm:text-sm",
-                            children: Object.entries(serviceConfigs).map(([key, config]) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_headlessui_react__WEBPACK_IMPORTED_MODULE_5__.ListboxOption, {
-                              value: key,
-                              className: "group relative cursor-default py-2 pr-4 pl-8 text-gray-900 select-none data-focus:bg-blue-600 data-focus:text-white data-focus:outline-hidden",
-                              children: ({
-                                selected,
-                                active
-                              }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
-                                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
-                                  className: `block truncate font-normal ${selected ? "font-semibold" : ""}`,
-                                  children: [config.icon, " ", config.name]
-                                }), selected && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
-                                  className: `absolute inset-y-0 left-0 flex items-center pl-1.5 ${active ? "text-white" : "text-blue-600"}`,
-                                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_heroicons_react_20_solid__WEBPACK_IMPORTED_MODULE_8__["default"], {
-                                    "aria-hidden": "true",
-                                    className: "size-5"
-                                  })
-                                })]
-                              })
-                            }, key))
+                            children: services.map(service => {
+                              const IconComponent = iconMap[service.icon] || _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_7__["default"];
+                              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_headlessui_react__WEBPACK_IMPORTED_MODULE_11__.ListboxOption, {
+                                value: service.id,
+                                className: "group relative cursor-default py-2 pr-4 pl-8 text-gray-900 select-none data-focus:bg-blue-600 data-focus:text-white data-focus:outline-hidden",
+                                children: ({
+                                  selected,
+                                  active
+                                }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+                                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
+                                    className: `block truncate font-normal ${selected ? "font-semibold" : ""}`,
+                                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(IconComponent, {
+                                      className: "inline w-4 h-4 mr-2"
+                                    }), service.name]
+                                  }), selected && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+                                    className: `absolute inset-y-0 left-0 flex items-center pl-1.5 ${active ? "text-white" : "text-blue-600"}`,
+                                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_heroicons_react_20_solid__WEBPACK_IMPORTED_MODULE_14__["default"], {
+                                      "aria-hidden": "true",
+                                      className: "size-5"
+                                    })
+                                  })]
+                                })
+                              }, service.id);
+                            })
                           })]
                         })]
                       })]
-                    }), currentService.service && serviceConfigs[currentService.service] && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                    }), selectedService && selectedServiceConfig && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
                       className: "space-y-3",
-                      children: serviceConfigs[currentService.service].fields.map(field => renderField(field, currentService.config[field.name], (fieldName, value) => setCurrentService(prev => ({
+                      children: selectedServiceConfig.fields.map(field => renderField(field, currentService.config[field.name], (fieldName, value) => setCurrentService(prev => ({
                         ...prev,
                         config: {
                           ...prev.config,
@@ -14335,7 +14777,7 @@ function QuoteModal({
                       }))))
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
                       onClick: addLineItem,
-                      disabled: !currentService.service,
+                      disabled: !currentService.serviceId,
                       className: "w-full rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 disabled:bg-gray-300 disabled:cursor-not-allowed",
                       children: "Add to Quote"
                     })]
@@ -14355,7 +14797,7 @@ function QuoteModal({
                     className: "p-4",
                     children: lineItems.length === 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
                       className: "text-center py-12 text-gray-500",
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_9__["default"], {
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_15__["default"], {
                         className: "w-12 h-12 mx-auto mb-4 text-gray-300"
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
                         className: "text-lg font-medium",
@@ -14412,7 +14854,7 @@ function QuoteModal({
                                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
                                   onClick: () => removeLineItem(item.id),
                                   className: "text-red-600 hover:text-red-900",
-                                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_3__["default"], {
+                                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_9__["default"], {
                                     className: "w-4 h-4"
                                   })
                                 })
@@ -14474,9 +14916,62 @@ function QuoteModal({
   });
 }
 
-// Main component with modal trigger
+// Main component with modal trigger that fetches services
 function QuoteCreator() {
   const [open, setOpen] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const [services, setServices] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
+  const [loading, setLoading] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const [error, setError] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
+
+  // Fetch services from API (same pattern as your carousel)
+  const fetchServices = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+
+      // Get CSRF token from DOM
+      const csrfToken = document.getElementById('_tr_nonce_form')?.value;
+      const response = await fetch('https://b2bcnc.test/tr-api/rest/service', {
+        method: 'GET',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'X-Requested-With': 'XMLHttpRequest',
+          ...(csrfToken && {
+            'X-CSRF-TOKEN': csrfToken
+          })
+        }
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      }
+      const data = await response.json();
+
+      // Transform API data to match component format
+      const transformedServices = data.filter(service => service.active === "1") // Only show active services
+      .map(service => ({
+        id: service.id,
+        name: service.name,
+        description: service.description,
+        icon: service.icon,
+        code: service.code,
+        basePrice: service.base_price
+      }));
+      setServices(transformedServices);
+    } catch (err) {
+      console.error('Failed to fetch services:', err);
+      setError(err.message);
+      setServices([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Fetch services when component mounts
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    fetchServices();
+  }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
     className: "bg-blue-50 py-16",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
@@ -14487,19 +14982,31 @@ function QuoteCreator() {
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
         className: "text-lg text-gray-600 mb-8",
         children: "Configure your IT services and get an accurate estimate in minutes. No sales calls required."
+      }), error && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+        className: "bg-red-50 border border-red-200 rounded-lg p-4 mb-6 max-w-md mx-auto",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
+          className: "text-red-700",
+          children: ["Error loading services: ", error]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+          onClick: fetchServices,
+          className: "mt-2 text-red-600 hover:text-red-800 font-medium",
+          children: "Try Again"
+        })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("button", {
         onClick: () => setOpen(true),
-        className: "inline-flex items-center rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        disabled: loading || services.length === 0,
+        className: "inline-flex items-center rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 disabled:bg-gray-400 disabled:cursor-not-allowed",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_15__["default"], {
           className: "w-5 h-5 mr-2"
-        }), "Build Your Quote"]
+        }), loading ? 'Loading Services...' : 'Build Your Quote']
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
         className: "text-sm text-gray-500 mt-4",
         children: "\u2713 80% accurate pricing \u2713 No obligation \u2713 Instant results"
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(QuoteModal, {
       open: open,
-      setOpen: setOpen
+      setOpen: setOpen,
+      services: services
     })]
   });
 }
@@ -14517,88 +15024,153 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Services)
 /* harmony export */ });
-/* harmony import */ var _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @heroicons/react/24/outline */ "./node_modules/@heroicons/react/24/outline/esm/PhoneIcon.js");
-/* harmony import */ var _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @heroicons/react/24/outline */ "./node_modules/@heroicons/react/24/outline/esm/VideoCameraIcon.js");
-/* harmony import */ var _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @heroicons/react/24/outline */ "./node_modules/@heroicons/react/24/outline/esm/KeyIcon.js");
-/* harmony import */ var _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @heroicons/react/24/outline */ "./node_modules/@heroicons/react/24/outline/esm/WifiIcon.js");
-/* harmony import */ var _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @heroicons/react/24/outline */ "./node_modules/@heroicons/react/24/outline/esm/CogIcon.js");
-/* harmony import */ var _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @heroicons/react/24/outline */ "./node_modules/@heroicons/react/24/outline/esm/ComputerDesktopIcon.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @heroicons/react/24/outline */ "./node_modules/@heroicons/react/24/outline/esm/PhoneIcon.js");
+/* harmony import */ var _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @heroicons/react/24/outline */ "./node_modules/@heroicons/react/24/outline/esm/VideoCameraIcon.js");
+/* harmony import */ var _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @heroicons/react/24/outline */ "./node_modules/@heroicons/react/24/outline/esm/KeyIcon.js");
+/* harmony import */ var _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @heroicons/react/24/outline */ "./node_modules/@heroicons/react/24/outline/esm/WifiIcon.js");
+/* harmony import */ var _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @heroicons/react/24/outline */ "./node_modules/@heroicons/react/24/outline/esm/CogIcon.js");
+/* harmony import */ var _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @heroicons/react/24/outline */ "./node_modules/@heroicons/react/24/outline/esm/ComputerDesktopIcon.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__);
 
 
-const services = [{
-  name: "VoIP Phone System",
-  description: "Complete VoIP phone system solutions.",
-  icon: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_1__["default"]
-}, {
-  name: "Camera System",
-  description: "Professional security camera systems",
-  icon: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_2__["default"]
-}, {
-  name: "Access Control",
-  description: "Secure and controlled personnel authorization.",
-  icon: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_3__["default"]
-}, {
-  name: "Network Cabling",
-  description: "Professional network infrastructure installation.",
-  icon: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_4__["default"]
-}, {
-  name: "Managed Services",
-  description: "IT management and support services.",
-  icon: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_5__["default"]
-}, {
-  name: "IT Consulting",
-  description: "Expert IT consulting and custom solutions.",
-  icon: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_6__["default"]
-}];
+
+// Icon mapping based on the API's icon field
+
+const iconMap = {
+  phone: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_2__["default"],
+  camera: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_3__["default"],
+  key: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_4__["default"],
+  wifi: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_5__["default"],
+  gear: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_6__["default"],
+  desktop: _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_7__["default"]
+};
 function Services() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+  const [services, setServices] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
+  const [loading, setLoading] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
+  const [error, setError] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
+
+  // Fetch services from API
+  const fetchServices = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+
+      // Get CSRF token from DOM
+      const csrfToken = document.getElementById('_tr_nonce_form')?.value;
+      const response = await fetch('https://b2bcnc.test/tr-api/rest/service', {
+        method: 'GET',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'X-Requested-With': 'XMLHttpRequest',
+          ...(csrfToken && {
+            'X-CSRF-TOKEN': csrfToken
+          })
+        }
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      }
+      const data = await response.json();
+
+      // Transform API data to match component format
+      const transformedServices = data.filter(service => service.active === "1") // Only show active services
+      .map(service => ({
+        id: service.id,
+        name: service.name,
+        description: service.description,
+        icon: iconMap[service.icon] || _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_7__["default"],
+        // Fallback to desktop icon
+        code: service.code,
+        basePrice: service.base_price
+      }));
+      setServices(transformedServices);
+    } catch (err) {
+      console.error('Failed to fetch services:', err);
+      setError(err.message);
+      setServices([]); // Clear services on error
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Load services on component mount
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    fetchServices();
+  }, []);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
     className: "bg-white py-24 sm:py-32",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
       className: "mx-auto max-w-7xl px-6 lg:px-8",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
         className: "mx-auto relative grid max-w-2xl grid-cols-1 gap-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-5",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-          className: "col-span-2 ",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("h2", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+          className: "col-span-2",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("h2", {
             className: "sticky top-4 text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
               className: "text-blue-500 italic font-bold",
               children: "Complete"
             }), " ", "IT solutions for your business."]
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("dl", {
+          }), loading && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+            className: "mt-4 text-sm text-gray-500",
+            children: "Loading services..."
+          }), error && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+            className: "mt-4 text-sm text-red-600",
+            children: "Failed to load services"
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("dl", {
           className: "col-span-3 grid md:grid-cols-2 gap-x-4 gap-y-8",
-          children: services.map(service => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+          children: services.length === 0 && !loading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            className: "col-span-2 text-center py-12",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+              className: "text-gray-400 mb-4",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_7__["default"], {
+                className: "mx-auto h-12 w-12"
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h3", {
+              className: "text-lg font-medium text-gray-900 mb-2",
+              children: "No Services Available"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+              className: "text-gray-500",
+              children: error ? 'Unable to load services at this time. Please try again later.' : 'Services are being updated. Please check back soon.'
+            })]
+          }) : services.map(service => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
             className: "hover:bg-blue-50 transition:color duration-300 rounded-sm shadow-blue-100 shadow-sm p-4",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("dt", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("dt", {
               className: "text-base/7 font-semibold text-gray-900",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
                 className: "mb-6 flex size-10 items-center justify-center rounded-lg bg-blue-600",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(service.icon, {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(service.icon, {
                   "aria-hidden": "true",
                   className: "size-6 text-white"
                 })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
                 href: "",
                 className: "text-blue-800 underline",
                 children: service.name
               })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("dd", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("dd", {
               className: "my-1 text-base/7 text-gray-600",
-              children: service.description
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
+              children: [service.description, service.basePrice && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                className: "mt-2 text-sm font-medium text-green-600",
+                children: ["Starting at $", service.basePrice]
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("a", {
               href: "#",
               className: "text-sm/6 font-semibold text-stone-500",
-              children: ["Learn more", " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
+              children: ["Learn more", " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
                 "aria-hidden": "true",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("i", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
                   className: "font-bold text-blue-600 bi bi-arrow-right"
                 })
               })]
             })]
-          }, service.name))
+          }, service.id || service.name))
         })]
       })
     })
@@ -14787,12 +15359,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _blocks_dev_services_Services__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../blocks-dev/services/Services */ "./src/blocks-dev/services/Services.jsx");
 /* harmony import */ var _blocks_dev_testimonials_Testimonials__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../blocks-dev/testimonials/Testimonials */ "./src/blocks-dev/testimonials/Testimonials.jsx");
 /* harmony import */ var _blocks_dev_quote_creator_QuoteCreator__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../blocks-dev/quote-creator/QuoteCreator */ "./src/blocks-dev/quote-creator/QuoteCreator.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var _blocks_dev_error_404_Error404__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../blocks-dev/error-404/Error404 */ "./src/blocks-dev/error-404/Error404.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__);
 // MakerBlocks.js - Class-based consolidated component renderer
 
 
 // Import all React components
+
 
 
 
@@ -14845,6 +15419,10 @@ class MakerBlocks {
       component: _blocks_dev_services_Services__WEBPACK_IMPORTED_MODULE_9__["default"],
       name: "Services"
     }, {
+      id: "b2bcnc-error-404",
+      component: _blocks_dev_error_404_Error404__WEBPACK_IMPORTED_MODULE_12__["default"],
+      name: "Error404"
+    }, {
       id: "b2bcnc-testimonials",
       component: _blocks_dev_testimonials_Testimonials__WEBPACK_IMPORTED_MODULE_10__["default"],
       name: "Testimonials"
@@ -14863,7 +15441,7 @@ class MakerBlocks {
    * @returns {Object} - Parsed props object
    */
   parseComponentProps(element, componentName) {
-    const propsData = element.getAttribute("data-component-props");
+    const propsData = element.getAttribute("component-data");
     let props = {};
     if (propsData) {
       try {
@@ -14888,7 +15466,7 @@ class MakerBlocks {
     const props = this.parseComponentProps(element, name);
     try {
       const root = (0,react_dom_client__WEBPACK_IMPORTED_MODULE_0__.createRoot)(element);
-      root.render(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(Component, {
+      root.render(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(Component, {
         ...props
       }));
       console.log(`✅ Mounted ${name} component`);
@@ -14938,64 +15516,6 @@ class MakerBlocks {
   }
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MakerBlocks);
-
-/***/ }),
-
-/***/ "./src/scripts/WordPressLocalize.js":
-/*!******************************************!*\
-  !*** ./src/scripts/WordPressLocalize.js ***!
-  \******************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-class WordPressLocalize {
-  constructor() {
-    this.init();
-  }
-  init() {
-    console.log("Localized");
-    this.logData();
-  }
-  logData() {
-    // Using arrow function to retain the correct `this` context
-    document.addEventListener("DOMContentLoaded", () => {
-      if (typeof siteData !== "undefined") {
-        console.log(siteData);
-
-        // Example usage:
-        console.log("Site Name:", siteData.siteName);
-        console.log("Site Description:", siteData.siteDescription);
-        console.log("Site URL:", siteData.siteUrl);
-        console.log("Admin Email:", siteData.adminEmail);
-        console.log("Active Theme Name:", siteData.themeName);
-        console.log("Theme Version:", siteData.themeVersion);
-        console.log("Theme URL:", siteData.themeUrl);
-        console.log("Theme Author:", siteData.themeAuthor);
-        console.log("Current User ID:", siteData.currentUserId);
-        console.log("Current User Name:", siteData.currentUserName);
-        console.log("Current User Email:", siteData.currentUserEmail);
-        console.log("Current User Roles:", siteData.currentUserRoles);
-        console.log("Home URL:", siteData.homeUrl);
-        console.log("Site URL:", siteData.siteUrl);
-        console.log("Admin URL:", siteData.adminUrl);
-        console.log("AJAX URL:", siteData.ajaxUrl);
-        console.log("REST API URL:", siteData.restUrl);
-        console.log("Nonce:", siteData.nonce);
-        if (siteData.postId) {
-          console.log("Post ID:", siteData.postId);
-          console.log("Post Title:", siteData.postTitle);
-          console.log("Post URL:", siteData.postUrl);
-        }
-      } else {
-        console.error("siteData is not defined.");
-      }
-    });
-  }
-}
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (WordPressLocalize);
 
 /***/ }),
 
@@ -15135,10 +15655,7 @@ var __webpack_exports__ = {};
   \******************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _MakerBlocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MakerBlocks */ "./src/scripts/MakerBlocks.js");
-/* harmony import */ var _WordPressLocalize__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./WordPressLocalize */ "./src/scripts/WordPressLocalize.js");
 
-
-new _WordPressLocalize__WEBPACK_IMPORTED_MODULE_1__["default"]();
 new _MakerBlocks__WEBPACK_IMPORTED_MODULE_0__["default"]();
 })();
 

@@ -1,34 +1,27 @@
 <?php
-// header/render.php - Updated with TypeRocket integration
 
 // Get site data
 $site_data = [
-    'name' => get_bloginfo('name'),
-    'url' => home_url(),
-    'description' => get_bloginfo('description'),
+	'name' => get_bloginfo('name'),
+	'url' => home_url(),
+	'description' => get_bloginfo('description'),
 ];
 
 $upload_dir = wp_upload_dir();
-
 
 // Get logo from theme customizer or TypeRocket options
 $logo_url = $upload_dir['baseurl'] . '/b2bcnc-logo.png';
 
 $site_data['logo_url'] = $logo_url;
 
-// Prepare all data for React
+
 $component_data = [
-    'site' => $site_data,
-    'nonce' => wp_create_nonce('header_actions'),
+	'site' => $site_data
 ];
 
-// Output the header container with data
-echo sprintf(
-    '<header %s data-component-props="%s"></header>',
-    get_block_wrapper_attributes([
-        'id' => 'b2bcnc-header',
-        'class' => 'relative isolate z-10 bg-white'
-    ]),
-    esc_attr(json_encode($component_data))
-);
 ?>
+
+<header <?php echo get_block_wrapper_attributes([
+			'id' => 'b2bcnc-header',
+			'class' => 'relative isolate z-10 bg-white'
+		]) . '" component-data="' . esc_attr(json_encode($component_data)); ?>"></header>

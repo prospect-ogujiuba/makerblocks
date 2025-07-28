@@ -2804,6 +2804,9 @@ a:where(:not(.wp-element-button)) {
   .me-auto {
     margin-inline-end: auto;
   }
+  .-mt-6 {
+    margin-top: calc(var(--spacing) * -6);
+  }
   .mt-0 {
     margin-top: calc(var(--spacing) * 0);
   }
@@ -3904,6 +3907,9 @@ a:where(:not(.wp-element-button)) {
   }
   .max-h-96 {
     max-height: calc(var(--spacing) * 96);
+  }
+  .max-h-\[90vh\] {
+    max-height: 90vh;
   }
   .max-h-dvh {
     max-height: 100dvh;
@@ -24017,6 +24023,10 @@ a:where(:not(.wp-element-button)) {
     font-size: var(--text-base);
     line-height: calc(var(--spacing) * 7);
   }
+  .text-base\/8 {
+    font-size: var(--text-base);
+    line-height: calc(var(--spacing) * 8);
+  }
   .text-lg {
     font-size: var(--text-lg);
     line-height: var(--tw-leading, var(--text-lg--line-height));
@@ -27488,6 +27498,10 @@ a:where(:not(.wp-element-button)) {
   }
   .shadow-xl {
     --tw-shadow: 0 20px 25px -5px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 8px 10px -6px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
+    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+  .shadow-xs {
+    --tw-shadow: 0 1px 2px 0 var(--tw-shadow-color, rgb(0 0 0 / 0.05));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
   }
   .ring {
@@ -31262,6 +31276,14 @@ a:where(:not(.wp-element-button)) {
   .outline-gray-900 {
     outline-color: var(--color-gray-900);
   }
+  .outline-gray-900\/10 {
+    outline-color: color-mix(in srgb, oklch(21% 0.034 264.665deg) 10%, transparent);
+  }
+  @supports (color: color-mix(in lab, red, red)) {
+    .outline-gray-900\/10 {
+      outline-color: color-mix(in oklab, var(--color-gray-900) 10%, transparent);
+    }
+  }
   .outline-gray-950 {
     outline-color: var(--color-gray-950);
   }
@@ -32576,8 +32598,28 @@ a:where(:not(.wp-element-button)) {
     }
   }
   @media (hover: hover) {
+    .hover\:bg-gray-200:hover {
+      background-color: var(--color-gray-200);
+    }
+  }
+  @media (hover: hover) {
+    .hover\:bg-gray-300:hover {
+      background-color: var(--color-gray-300);
+    }
+  }
+  @media (hover: hover) {
+    .hover\:bg-gray-700:hover {
+      background-color: var(--color-gray-700);
+    }
+  }
+  @media (hover: hover) {
     .hover\:bg-green-500:hover {
       background-color: var(--color-green-500);
+    }
+  }
+  @media (hover: hover) {
+    .hover\:bg-red-200:hover {
+      background-color: var(--color-red-200);
     }
   }
   @media (hover: hover) {
@@ -32588,6 +32630,11 @@ a:where(:not(.wp-element-button)) {
       .hover\:bg-white\/\[0\.12\]:hover {
         background-color: color-mix(in oklab, var(--color-white) 12%, transparent);
       }
+    }
+  }
+  @media (hover: hover) {
+    .hover\:bg-yellow-200:hover {
+      background-color: var(--color-yellow-200);
     }
   }
   @media (hover: hover) {
@@ -32623,6 +32670,21 @@ a:where(:not(.wp-element-button)) {
   @media (hover: hover) {
     .hover\:text-gray-900:hover {
       color: var(--color-gray-900);
+    }
+  }
+  @media (hover: hover) {
+    .hover\:text-indigo-600:hover {
+      color: var(--color-indigo-600);
+    }
+  }
+  @media (hover: hover) {
+    .hover\:text-indigo-700:hover {
+      color: var(--color-indigo-700);
+    }
+  }
+  @media (hover: hover) {
+    .hover\:text-red-800:hover {
+      color: var(--color-red-800);
     }
   }
   @media (hover: hover) {
@@ -32731,6 +32793,12 @@ a:where(:not(.wp-element-button)) {
   }
   .disabled\:bg-gray-300:disabled {
     background-color: var(--color-gray-300);
+  }
+  .disabled\:bg-gray-400:disabled {
+    background-color: var(--color-gray-400);
+  }
+  .disabled\:opacity-50:disabled {
+    opacity: 50%;
   }
   .has-\[\:checked\]\:bg-blue-600:has(*:is(:checked)) {
     background-color: var(--color-blue-600);
@@ -32899,6 +32967,11 @@ a:where(:not(.wp-element-button)) {
     }
   }
   @media (width >= 40rem) {
+    .sm\:mt-24 {
+      margin-top: calc(var(--spacing) * 24);
+    }
+  }
+  @media (width >= 40rem) {
     .sm\:mb-8 {
       margin-bottom: calc(var(--spacing) * 8);
     }
@@ -32930,6 +33003,16 @@ a:where(:not(.wp-element-button)) {
     }
   }
   @media (width >= 40rem) {
+    .sm\:h-7 {
+      height: calc(var(--spacing) * 7);
+    }
+  }
+  @media (width >= 40rem) {
+    .sm\:h-12 {
+      height: calc(var(--spacing) * 12);
+    }
+  }
+  @media (width >= 40rem) {
     .sm\:w-\[72\.1875rem\] {
       width: 72.1875rem;
     }
@@ -32945,6 +33028,11 @@ a:where(:not(.wp-element-button)) {
     }
   }
   @media (width >= 40rem) {
+    .sm\:w-px {
+      width: 1px;
+    }
+  }
+  @media (width >= 40rem) {
     .sm\:max-w-sm {
       max-width: var(--container-sm);
     }
@@ -32955,8 +33043,18 @@ a:where(:not(.wp-element-button)) {
     }
   }
   @media (width >= 40rem) {
+    .sm\:flex-none {
+      flex: none;
+    }
+  }
+  @media (width >= 40rem) {
     .sm\:grid-cols-2 {
       grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (width >= 40rem) {
+    .sm\:flex-row {
+      flex-direction: row;
     }
   }
   @media (width >= 40rem) {
@@ -32995,6 +33093,11 @@ a:where(:not(.wp-element-button)) {
     }
   }
   @media (width >= 40rem) {
+    .sm\:bg-gray-200 {
+      background-color: var(--color-gray-200);
+    }
+  }
+  @media (width >= 40rem) {
     .sm\:p-0 {
       padding: calc(var(--spacing) * 0);
     }
@@ -33022,6 +33125,11 @@ a:where(:not(.wp-element-button)) {
   @media (width >= 40rem) {
     .sm\:px-12 {
       padding-inline: calc(var(--spacing) * 12);
+    }
+  }
+  @media (width >= 40rem) {
+    .sm\:py-10 {
+      padding-block: calc(var(--spacing) * 10);
     }
   }
   @media (width >= 40rem) {
@@ -33067,6 +33175,11 @@ a:where(:not(.wp-element-button)) {
   @media (width >= 40rem) {
     .sm\:pb-16 {
       padding-bottom: calc(var(--spacing) * 16);
+    }
+  }
+  @media (width >= 40rem) {
+    .sm\:pb-24 {
+      padding-bottom: calc(var(--spacing) * 24);
     }
   }
   @media (width >= 40rem) {

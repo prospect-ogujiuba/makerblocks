@@ -18,6 +18,7 @@ function makerblocks_get_custom_blocks()
         'testimonials',
         'faqs',
         'cta',
+        'error-404',
         'quote-creator',
         'portfolio',
         'footer',

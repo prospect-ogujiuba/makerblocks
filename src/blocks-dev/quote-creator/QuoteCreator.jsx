@@ -15,201 +15,253 @@ import {
 	XMarkIcon,
 	CalculatorIcon,
 	DocumentTextIcon,
+	PhoneIcon,
+	CameraIcon,
+	KeyIcon,
+	WifiIcon,
+	CogIcon,
+	ComputerDesktopIcon,
 } from "@heroicons/react/24/outline";
 import { ChevronUpDownIcon } from "@heroicons/react/16/solid";
 import { CheckIcon } from "@heroicons/react/20/solid";
 
-// Service configurations
-const serviceConfigs = {
-	voip: {
-		name: "VoIP Phone System",
-		icon: "📞",
-		basePrice: 150,
+// Icon mapping for services
+const iconMap = {
+	phone: PhoneIcon,
+	camera: CameraIcon,
+	key: KeyIcon,
+	wifi: WifiIcon,
+	gear: CogIcon,
+	laptop: ComputerDesktopIcon,
+};
+
+// Dynamic service configurations based on service codes
+const getServiceConfiguration = (serviceCode, basePrice) => {
+	const configurations = {
+		voip_phone_system: {
+			fields: [
+				{
+					name: "users",
+					label: "Number of Users",
+					type: "number",
+					min: 1,
+					max: 500,
+					multiplier: 25,
+					required: true,
+				},
+				{
+					name: "features",
+					label: "Feature Package",
+					type: "select",
+					options: [
+						{ value: "basic", label: "Basic (Calling, Voicemail)", price: 0 },
+						{
+							value: "standard",
+							label: "Standard (+ Call Forwarding, Conference)",
+							price: 50,
+						},
+						{
+							value: "premium",
+							label: "Premium (+ Analytics, CRM Integration)",
+							price: 150,
+						},
+					],
+					required: true,
+				},
+				{
+					name: "installation",
+					label: "Installation Type",
+					type: "radio",
+					options: [
+						{ value: "remote", label: "Remote Setup", price: 0 },
+						{ value: "onsite", label: "On-site Installation", price: 200 },
+					],
+					required: true,
+				},
+			],
+		},
+		camera_system: {
+			fields: [
+				{
+					name: "cameras",
+					label: "Number of Cameras",
+					type: "number",
+					min: 1,
+					max: 50,
+					multiplier: 150,
+					required: true,
+				},
+				{
+					name: "quality",
+					label: "Camera Quality",
+					type: "select",
+					options: [
+						{ value: "1080p", label: "1080p HD", price: 0 },
+						{ value: "4k", label: "4K Ultra HD", price: 100 },
+					],
+					required: true,
+				},
+				{
+					name: "storage",
+					label: "Storage Solution",
+					type: "select",
+					options: [
+						{ value: "local", label: "Local NVR (30 days)", price: 200 },
+						{ value: "cloud", label: "Cloud Storage (90 days)", price: 50 },
+					],
+					required: true,
+				},
+			],
+		},
+		access_control: {
+			fields: [
+				{
+					name: "doors",
+					label: "Number of Doors",
+					type: "number",
+					min: 1,
+					max: 20,
+					multiplier: 200,
+					required: true,
+				},
+				{
+					name: "cardType",
+					label: "Access Card Type",
+					type: "select",
+					options: [
+						{ value: "proximity", label: "Proximity Cards", price: 0 },
+						{ value: "smart", label: "Smart Cards", price: 50 },
+					],
+					required: true,
+				},
+				{
+					name: "users",
+					label: "Number of Users",
+					type: "number",
+					min: 1,
+					max: 500,
+					multiplier: 5,
+					required: true,
+				},
+			],
+		},
+		network_cabling: {
+			fields: [
+				{
+					name: "sqft",
+					label: "Square Footage",
+					type: "number",
+					min: 100,
+					max: 50000,
+					multiplier: 2,
+					required: true,
+				},
+				{
+					name: "cableType",
+					label: "Cable Type",
+					type: "select",
+					options: [
+						{ value: "cat6", label: "Cat6 Standard", price: 0 },
+						{ value: "cat6a", label: "Cat6a Enhanced", price: 0.5 },
+						{ value: "fiber", label: "Fiber Optic", price: 2 },
+					],
+					required: true,
+				},
+				{
+					name: "drops",
+					label: "Number of Network Drops",
+					type: "number",
+					min: 1,
+					max: 100,
+					multiplier: 50,
+					required: true,
+				},
+			],
+		},
+		managed_services: {
+			fields: [
+				{
+					name: "devices",
+					label: "Number of Devices",
+					type: "number",
+					min: 1,
+					max: 200,
+					multiplier: 15,
+					required: true,
+				},
+				{
+					name: "serviceLevel",
+					label: "Service Level",
+					type: "select",
+					options: [
+						{ value: "basic", label: "Basic Monitoring", price: 0 },
+						{
+							value: "standard",
+							label: "Standard Support (Business Hours)",
+							price: 25,
+						},
+						{ value: "premium", label: "Premium 24/7 Support", price: 75 },
+					],
+					required: true,
+				},
+			],
+		},
+		it_consulting: {
+			fields: [
+				{
+					name: "hours",
+					label: "Estimated Hours",
+					type: "number",
+					min: 1,
+					max: 200,
+					multiplier: 1,
+					required: true,
+				},
+				{
+					name: "consultingType",
+					label: "Consulting Type",
+					type: "select",
+					options: [
+						{ value: "assessment", label: "IT Assessment", price: 0 },
+						{ value: "strategy", label: "Strategic Planning", price: 25 },
+						{ value: "implementation", label: "Implementation Support", price: 50 },
+					],
+					required: true,
+				},
+			],
+		},
+	};
+
+	// Return configuration with dynamic base price
+	const config = configurations[serviceCode];
+	if (config) {
+		return {
+			...config,
+			basePrice: parseFloat(basePrice) || 0,
+		};
+	}
+
+	// Default configuration for unknown service types
+	return {
+		basePrice: parseFloat(basePrice) || 0,
 		fields: [
 			{
-				name: "users",
-				label: "Number of Users",
-				type: "number",
-				min: 1,
-				max: 500,
-				multiplier: 25,
-				required: true,
-			},
-			{
-				name: "features",
-				label: "Feature Package",
-				type: "select",
-				options: [
-					{ value: "basic", label: "Basic (Calling, Voicemail)", price: 0 },
-					{
-						value: "standard",
-						label: "Standard (+ Call Forwarding, Conference)",
-						price: 50,
-					},
-					{
-						value: "premium",
-						label: "Premium (+ Analytics, CRM Integration)",
-						price: 150,
-					},
-				],
-				required: true,
-			},
-			{
-				name: "installation",
-				label: "Installation Type",
-				type: "radio",
-				options: [
-					{ value: "remote", label: "Remote Setup", price: 0 },
-					{ value: "onsite", label: "On-site Installation", price: 200 },
-				],
-				required: true,
-			},
-		],
-	},
-	cameras: {
-		name: "Security Camera System",
-		icon: "📹",
-		basePrice: 300,
-		fields: [
-			{
-				name: "cameras",
-				label: "Number of Cameras",
-				type: "number",
-				min: 1,
-				max: 50,
-				multiplier: 150,
-				required: true,
-			},
-			{
-				name: "quality",
-				label: "Camera Quality",
-				type: "select",
-				options: [
-					{ value: "1080p", label: "1080p HD", price: 0 },
-					{ value: "4k", label: "4K Ultra HD", price: 100 },
-				],
-				required: true,
-			},
-			{
-				name: "storage",
-				label: "Storage Solution",
-				type: "select",
-				options: [
-					{ value: "local", label: "Local NVR (30 days)", price: 200 },
-					{ value: "cloud", label: "Cloud Storage (90 days)", price: 50 },
-				],
-				required: true,
-			},
-		],
-	},
-	access: {
-		name: "Card Access Control",
-		icon: "🔐",
-		basePrice: 500,
-		fields: [
-			{
-				name: "doors",
-				label: "Number of Doors",
-				type: "number",
-				min: 1,
-				max: 20,
-				multiplier: 200,
-				required: true,
-			},
-			{
-				name: "cardType",
-				label: "Access Card Type",
-				type: "select",
-				options: [
-					{ value: "proximity", label: "Proximity Cards", price: 0 },
-					{ value: "smart", label: "Smart Cards", price: 50 },
-				],
-				required: true,
-			},
-			{
-				name: "users",
-				label: "Number of Users",
-				type: "number",
-				min: 1,
-				max: 500,
-				multiplier: 5,
-				required: true,
-			},
-		],
-	},
-	cabling: {
-		name: "Network Cabling",
-		icon: "🔌",
-		basePrice: 200,
-		fields: [
-			{
-				name: "sqft",
-				label: "Square Footage",
-				type: "number",
-				min: 100,
-				max: 50000,
-				multiplier: 2,
-				required: true,
-			},
-			{
-				name: "cableType",
-				label: "Cable Type",
-				type: "select",
-				options: [
-					{ value: "cat6", label: "Cat6 Standard", price: 0 },
-					{ value: "cat6a", label: "Cat6a Enhanced", price: 0.5 },
-					{ value: "fiber", label: "Fiber Optic", price: 2 },
-				],
-				required: true,
-			},
-			{
-				name: "drops",
-				label: "Number of Network Drops",
+				name: "quantity",
+				label: "Quantity",
 				type: "number",
 				min: 1,
 				max: 100,
-				multiplier: 50,
+				multiplier: 1,
 				required: true,
 			},
 		],
-	},
-	managed: {
-		name: "Managed IT Services",
-		icon: "🛠️",
-		basePrice: 100,
-		fields: [
-			{
-				name: "devices",
-				label: "Number of Devices",
-				type: "number",
-				min: 1,
-				max: 200,
-				multiplier: 15,
-				required: true,
-			},
-			{
-				name: "serviceLevel",
-				label: "Service Level",
-				type: "select",
-				options: [
-					{ value: "basic", label: "Basic Monitoring", price: 0 },
-					{
-						value: "standard",
-						label: "Standard Support (Business Hours)",
-						price: 25,
-					},
-					{ value: "premium", label: "Premium 24/7 Support", price: 75 },
-				],
-				required: true,
-			},
-		],
-	},
+	};
 };
 
-function QuoteModal({ open, setOpen }) {
+function QuoteModal({ open, setOpen, services }) {
 	const [lineItems, setLineItems] = useState([]);
 	const [currentService, setCurrentService] = useState({
-		service: "",
+		serviceId: "",
 		config: {},
 	});
 	const [showAddForm, setShowAddForm] = useState(false);
@@ -226,13 +278,14 @@ function QuoteModal({ open, setOpen }) {
 	const total = subtotal + tax;
 
 	// Generate line item description and calculate total
-	const generateLineItem = (service, config) => {
-		if (!serviceConfigs[service]) return null;
+	const generateLineItem = (serviceId, config) => {
+		const service = services.find(s => s.id === serviceId);
+		if (!service) return null;
 
-		const serviceConfig = serviceConfigs[service];
+		const serviceConfig = getServiceConfiguration(service.code, service.basePrice);
 		let price = serviceConfig.basePrice;
 		let quantity = 1;
-		let description = serviceConfig.name;
+		let description = service.name;
 		let details = [];
 
 		serviceConfig.fields.forEach((field) => {
@@ -243,7 +296,8 @@ function QuoteModal({ open, setOpen }) {
 					field.name === "users" ||
 					field.name === "cameras" ||
 					field.name === "doors" ||
-					field.name === "devices"
+					field.name === "devices" ||
+					field.name === "hours"
 				) {
 					quantity = value;
 					price += field.multiplier;
@@ -276,19 +330,19 @@ function QuoteModal({ open, setOpen }) {
 			quantity,
 			unitPrice: price,
 			total: quantity * price,
-			service,
+			serviceId,
 			config,
 		};
 	};
 
 	const addLineItem = () => {
 		const lineItem = generateLineItem(
-			currentService.service,
+			currentService.serviceId,
 			currentService.config,
 		);
 		if (lineItem) {
 			setLineItems((prev) => [...prev, lineItem]);
-			setCurrentService({ service: "", config: {} });
+			setCurrentService({ serviceId: "", config: {} });
 			setShowAddForm(false);
 		}
 	};
@@ -397,6 +451,9 @@ function QuoteModal({ open, setOpen }) {
 				return null;
 		}
 	};
+
+	const selectedService = services.find(s => s.id === currentService.serviceId);
+	const selectedServiceConfig = selectedService ? getServiceConfiguration(selectedService.code, selectedService.basePrice) : null;
 
 	if (step === "quote") {
 		return (
@@ -718,9 +775,9 @@ function QuoteModal({ open, setOpen }) {
 														Service Type *
 													</label>
 													<Listbox
-														value={currentService.service}
+														value={currentService.serviceId}
 														onChange={(value) =>
-															setCurrentService({ service: value, config: {} })
+															setCurrentService({ serviceId: value, config: {} })
 														}
 													>
 														<Label className="block text-sm/6 font-medium text-gray-900">
@@ -729,9 +786,8 @@ function QuoteModal({ open, setOpen }) {
 														<div className="relative mt-2">
 															<ListboxButton className="grid w-full cursor-default grid-cols-1 rounded-md bg-white py-1.5 pr-2 pl-3 text-left text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-blue-600 sm:text-sm/6">
 																<span className="col-start-1 row-start-1 truncate pr-6">
-																	{currentService.service
-																		? serviceConfigs[currentService.service]
-																				?.name
+																	{selectedService
+																		? selectedService.name
 																		: "Select a service"}
 																</span>
 																<ChevronUpDownIcon
@@ -744,11 +800,12 @@ function QuoteModal({ open, setOpen }) {
 																transition
 																className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-hidden data-leave:transition data-leave:duration-100 data-leave:ease-in data-closed:data-leave:opacity-0 sm:text-sm"
 															>
-																{Object.entries(serviceConfigs).map(
-																	([key, config]) => (
+																{services.map((service) => {
+																	const IconComponent = iconMap[service.icon] || ComputerDesktopIcon;
+																	return (
 																		<ListboxOption
-																			key={key}
-																			value={key}
+																			key={service.id}
+																			value={service.id}
 																			className="group relative cursor-default py-2 pr-4 pl-8 text-gray-900 select-none data-focus:bg-blue-600 data-focus:text-white data-focus:outline-hidden"
 																		>
 																			{({ selected, active }) => (
@@ -758,7 +815,8 @@ function QuoteModal({ open, setOpen }) {
 																							selected ? "font-semibold" : ""
 																						}`}
 																					>
-																						{config.icon} {config.name}
+																						<IconComponent className="inline w-4 h-4 mr-2" />
+																						{service.name}
 																					</span>
 																					{selected && (
 																						<span
@@ -777,39 +835,36 @@ function QuoteModal({ open, setOpen }) {
 																				</>
 																			)}
 																		</ListboxOption>
-																	),
-																)}
+																	);
+																})}
 															</ListboxOptions>
 														</div>
 													</Listbox>
 												</div>
 
 												{/* Service Fields */}
-												{currentService.service &&
-													serviceConfigs[currentService.service] && (
-														<div className="space-y-3">
-															{serviceConfigs[
-																currentService.service
-															].fields.map((field) =>
-																renderField(
-																	field,
-																	currentService.config[field.name],
-																	(fieldName, value) =>
-																		setCurrentService((prev) => ({
-																			...prev,
-																			config: {
-																				...prev.config,
-																				[fieldName]: value,
-																			},
-																		})),
-																),
-															)}
-														</div>
-													)}
+												{selectedService && selectedServiceConfig && (
+													<div className="space-y-3">
+														{selectedServiceConfig.fields.map((field) =>
+															renderField(
+																field,
+																currentService.config[field.name],
+																(fieldName, value) =>
+																	setCurrentService((prev) => ({
+																		...prev,
+																		config: {
+																			...prev.config,
+																			[fieldName]: value,
+																		},
+																	})),
+															),
+														)}
+													</div>
+												)}
 
 												<button
 													onClick={addLineItem}
-													disabled={!currentService.service}
+													disabled={!currentService.serviceId}
 													className="w-full rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 disabled:bg-gray-300 disabled:cursor-not-allowed"
 												>
 													Add to Quote
@@ -946,9 +1001,65 @@ function QuoteModal({ open, setOpen }) {
 	);
 }
 
-// Main component with modal trigger
+// Main component with modal trigger that fetches services
 function QuoteCreator() {
 	const [open, setOpen] = useState(false);
+	const [services, setServices] = useState([]);
+	const [loading, setLoading] = useState(false);
+	const [error, setError] = useState(null);
+
+	// Fetch services from API (same pattern as your carousel)
+	const fetchServices = async () => {
+		try {
+			setLoading(true);
+			setError(null);
+
+			// Get CSRF token from DOM
+			const csrfToken = document.getElementById('_tr_nonce_form')?.value;
+
+			const response = await fetch('https://b2bcnc.test/tr-api/rest/service', {
+				method: 'GET',
+				credentials: 'include',
+				headers: {
+					'Content-Type': 'application/json',
+					'Accept': 'application/json',
+					'X-Requested-With': 'XMLHttpRequest',
+					...(csrfToken && { 'X-CSRF-TOKEN': csrfToken }),
+				},
+			});
+
+			if (!response.ok) {
+				throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+			}
+
+			const data = await response.json();
+
+			// Transform API data to match component format
+			const transformedServices = data
+				.filter(service => service.active === "1") // Only show active services
+				.map(service => ({
+					id: service.id,
+					name: service.name,
+					description: service.description,
+					icon: service.icon,
+					code: service.code,
+					basePrice: service.base_price,
+				}));
+
+			setServices(transformedServices);
+		} catch (err) {
+			console.error('Failed to fetch services:', err);
+			setError(err.message);
+			setServices([]);
+		} finally {
+			setLoading(false);
+		}
+	};
+
+	// Fetch services when component mounts
+	useEffect(() => {
+		fetchServices();
+	}, []);
 
 	return (
 		<div className="bg-blue-50 py-16">
@@ -961,12 +1072,25 @@ function QuoteCreator() {
 					sales calls required.
 				</p>
 
+				{error && (
+					<div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6 max-w-md mx-auto">
+						<p className="text-red-700">Error loading services: {error}</p>
+						<button
+							onClick={fetchServices}
+							className="mt-2 text-red-600 hover:text-red-800 font-medium"
+						>
+							Try Again
+						</button>
+					</div>
+				)}
+
 				<button
 					onClick={() => setOpen(true)}
-					className="inline-flex items-center rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+					disabled={loading || services.length === 0}
+					className="inline-flex items-center rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 disabled:bg-gray-400 disabled:cursor-not-allowed"
 				>
 					<CalculatorIcon className="w-5 h-5 mr-2" />
-					Build Your Quote
+					{loading ? 'Loading Services...' : 'Build Your Quote'}
 				</button>
 
 				<p className="text-sm text-gray-500 mt-4">
@@ -974,7 +1098,7 @@ function QuoteCreator() {
 				</p>
 			</div>
 
-			<QuoteModal open={open} setOpen={setOpen} />
+			<QuoteModal open={open} setOpen={setOpen} services={services} />
 		</div>
 	);
 }
