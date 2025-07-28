@@ -19,7 +19,7 @@ function makerblocks_get_custom_blocks()
         'faqs',
         'cta',
         'error-404',
-        'quote-creator',
+        // 'quote-creator',
         'portfolio',
         'footer',
         // 'makerstarter'

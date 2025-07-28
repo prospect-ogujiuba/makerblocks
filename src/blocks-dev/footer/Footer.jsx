@@ -1,4 +1,8 @@
-// footer/Footer.jsx - Updated to use WordPress/TypeRocket data
+// footer/Footer.jsx - Updated to use WordPress/TypeRocket data and Service API
+
+"use client";
+
+import { useState, useEffect } from "react";
 
 // Social media icon components
 const FacebookIcon = (props) => (
@@ -103,9 +107,13 @@ export default function Footer({
 	site = {},
 	navigation = {},
 	social = [],
-
 	nonce = "",
 }) {
+	// State for services from API
+	const [services, setServices] = useState([]);
+	const [servicesLoading, setServicesLoading] = useState(true);
+	const [servicesError, setServicesError] = useState(null);
+
 	// Use WordPress data with fallbacks
 	const siteName = site.name || "Your Company";
 	const siteUrl = site.url || "#";
@@ -114,9 +122,64 @@ export default function Footer({
 		`${site.url}/wp-content/plugins/makerblocks/assets/images/logos/logo-ph-black.png`;
 	const currentYear = site.current_year || new Date().getFullYear();
 
-	// Merge navigation data with defaults
+	// Fetch services from API (same logic as Header)
+	const fetchServices = async () => {
+		try {
+			setServicesLoading(true);
+			setServicesError(null);
+
+			// Get CSRF token from DOM or use passed nonce
+			const csrfToken =
+				nonce || document.getElementById("_tr_nonce_form")?.value;
+
+			const response = await fetch("https://b2bcnc.test/tr-api/rest/service", {
+				method: "GET",
+				credentials: "include",
+				headers: {
+					"Content-Type": "application/json",
+					Accept: "application/json",
+					"X-Requested-With": "XMLHttpRequest",
+					...(csrfToken && { "X-CSRF-TOKEN": csrfToken }),
+				},
+			});
+
+			if (!response.ok) {
+				throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+			}
+
+			const data = await response.json();
+
+			// Transform API data to match footer format
+			const transformedServices = data
+				.filter((service) => service.active === "1")
+				.map((service) => ({
+					name: service.name,
+					href: `#service-${service.code}`,
+					new_window: false,
+				}));
+
+			setServices(transformedServices);
+		} catch (err) {
+			console.error("Failed to fetch services:", err);
+			setServicesError(err.message);
+			setServices([]); // Clear services on error
+		} finally {
+			setServicesLoading(false);
+		}
+	};
+
+	// Load services on component mount
+	useEffect(() => {
+		fetchServices();
+	}, [nonce]);
+
+	// Merge navigation data with defaults and API services
 	const nav = {
-		solutions: navigation.solutions?.length
+		solutions: servicesLoading
+			? [{ name: "Loading services...", href: "#" }]
+			: services.length > 0
+			? services
+			: navigation.solutions?.length
 			? navigation.solutions
 			: defaultNavigation.solutions,
 		support: navigation.support?.length
@@ -140,37 +203,58 @@ export default function Footer({
 		<>
 			<div className="bg-gray-900 text-white">
 				<div className="mx-auto max-w-7xl px-6 py-16">
-					
 					{/* Footer Navigation */}
-					<div className="mt-12 border-t border-gray-900/10 pt-12 xl:grid xl:grid-cols-3 xl:gap-8">
+					<div className="border-t border-gray-900/10 xl:grid xl:grid-cols-3 xl:gap-8">
 						<img alt={siteName} src={logoUrl} className="h-16" />
 						<div className="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
 							<div className="md:grid md:grid-cols-2 md:gap-8">
-								{/* Solutions */}
+								{/* Solutions - Now populated from Service API */}
 								<div>
-									<h3 className="text-sm/6 font-semibold ">
-										Solutions
+									<h3 className="text-sm/6 font-semibold text-white">
+										Services
 									</h3>
 									<ul role="list" className="mt-6 space-y-4">
-										{nav.solutions.map((item, index) => (
-											<li key={item.name || index}>
-												<a
-													href={item.href}
-													className="text-sm/6  hover:"
-													target={item.new_window ? "_blank" : undefined}
-													rel={
-														item.new_window ? "noopener noreferrer" : undefined
-													}
-												>
-													{item.name}
-												</a>
+										{servicesLoading ? (
+											<li>
+												<span className="text-sm/6 text-gray-300">
+													Loading services...
+												</span>
 											</li>
-										))}
+										) : servicesError ? (
+											<li>
+												<span className="text-sm/6 text-gray-300">
+													Unable to load services
+												</span>
+											</li>
+										) : nav.solutions.length === 0 ? (
+											<li>
+												<span className="text-sm/6 text-gray-300">
+													No services available
+												</span>
+											</li>
+										) : (
+											nav.solutions.map((item, index) => (
+												<li key={item.name || index}>
+													<a
+														href={item.href}
+														className="text-sm/6 text-gray-300 hover:text-white"
+														target={item.new_window ? "_blank" : undefined}
+														rel={
+															item.new_window
+																? "noopener noreferrer"
+																: undefined
+														}
+													>
+														{item.name}
+													</a>
+												</li>
+											))
+										)}
 									</ul>
 								</div>
 								{/* Support */}
 								<div className="mt-10 md:mt-0">
-									<h3 className="text-sm/6 font-semibold ">
+									<h3 className="text-sm/6 font-semibold text-white">
 										Support
 									</h3>
 									<ul role="list" className="mt-6 space-y-4">
@@ -178,7 +262,7 @@ export default function Footer({
 											<li key={item.name || index}>
 												<a
 													href={item.href}
-													className="text-sm/6  hover:"
+													className="text-sm/6 text-gray-300 hover:text-white"
 													target={item.new_window ? "_blank" : undefined}
 													rel={
 														item.new_window ? "noopener noreferrer" : undefined
@@ -194,7 +278,7 @@ export default function Footer({
 							<div className="md:grid md:grid-cols-2 md:gap-8">
 								{/* Company */}
 								<div>
-									<h3 className="text-sm/6 font-semibold ">
+									<h3 className="text-sm/6 font-semibold text-white">
 										Company
 									</h3>
 									<ul role="list" className="mt-6 space-y-4">
@@ -202,7 +286,7 @@ export default function Footer({
 											<li key={item.name || index}>
 												<a
 													href={item.href}
-													className="text-sm/6  hover:"
+													className="text-sm/6 text-gray-300 hover:text-white"
 													target={item.new_window ? "_blank" : undefined}
 													rel={
 														item.new_window ? "noopener noreferrer" : undefined
@@ -216,13 +300,13 @@ export default function Footer({
 								</div>
 								{/* Legal */}
 								<div className="mt-10 md:mt-0">
-									<h3 className="text-sm/6 font-semibold ">Legal</h3>
+									<h3 className="text-sm/6 font-semibold text-white">Legal</h3>
 									<ul role="list" className="mt-6 space-y-4">
 										{nav.legal.map((item, index) => (
 											<li key={item.name || index}>
 												<a
 													href={item.href}
-													className="text-sm/6  hover:"
+													className="text-sm/6 text-gray-300 hover:text-white"
 													target={item.new_window ? "_blank" : undefined}
 													rel={
 														item.new_window ? "noopener noreferrer" : undefined
@@ -244,7 +328,7 @@ export default function Footer({
 								<a
 									key={item.name || index}
 									href={item.href}
-									className=" hover:"
+									className="text-gray-400 hover:text-gray-300"
 									target="_blank"
 									rel="noopener noreferrer"
 									aria-label={`Follow us on ${item.name}`}
@@ -256,7 +340,7 @@ export default function Footer({
 						</div>
 						<a
 							href={siteUrl}
-							className="mt-8 text-sm/6  md:order-1 md:mt-0"
+							className="mt-8 text-sm/6 text-gray-300 md:order-1 md:mt-0"
 						>
 							&copy; {currentYear} {siteName}, Inc. All rights reserved.
 						</a>

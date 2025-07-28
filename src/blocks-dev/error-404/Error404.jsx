@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { ChevronRightIcon } from '@heroicons/react/20/solid';
+import React, { useState, useEffect } from "react";
+import { ChevronRightIcon } from "@heroicons/react/20/solid";
 import {
 	PhoneIcon,
 	CameraIcon,
@@ -7,7 +7,7 @@ import {
 	WifiIcon,
 	CogIcon,
 	ComputerDesktopIcon,
-} from '@heroicons/react/24/outline';
+} from "@heroicons/react/24/outline";
 
 // Icon mapping for services
 const iconMap = {
@@ -22,35 +22,35 @@ const iconMap = {
 // Fallback links if services fail to load
 const fallbackLinks = [
 	{
-		name: 'VoIP Phone Systems',
-		href: '/services/voip',
-		description: 'Professional business phone solutions.',
+		name: "VoIP Phone Systems",
+		href: "/services/voip",
+		description: "Professional business phone solutions.",
 		icon: PhoneIcon,
 	},
 	{
-		name: 'Security Cameras',
-		href: '/services/security',
-		description: 'Complete surveillance and monitoring systems.',
+		name: "Security Cameras",
+		href: "/services/security",
+		description: "Complete surveillance and monitoring systems.",
 		icon: CameraIcon,
 	},
 	{
-		name: 'Access Control',
-		href: '/services/access',
-		description: 'Secure building and area access management.',
+		name: "Access Control",
+		href: "/services/access",
+		description: "Secure building and area access management.",
 		icon: KeyIcon,
 	},
 	{
-		name: 'IT Consulting',
-		href: '/services/consulting',
-		description: 'Expert technology guidance and solutions.',
+		name: "IT Consulting",
+		href: "/services/consulting",
+		description: "Expert technology guidance and solutions.",
 		icon: ComputerDesktopIcon,
 	},
 ];
 
 const social = [
 	{
-		name: 'X',
-		href: '#',
+		name: "X",
+		href: "#",
 		icon: (props) => (
 			<svg fill="currentColor" viewBox="0 0 24 24" {...props}>
 				<path d="M13.6823 10.6218L20.2391 3H18.6854L12.9921 9.61788L8.44486 3H3.2002L10.0765 13.0074L3.2002 21H4.75404L10.7663 14.0113L15.5685 21H20.8131L13.6819 10.6218H13.6823ZM11.5541 13.0956L10.8574 12.0991L5.31391 4.16971H7.70053L12.1742 10.5689L12.8709 11.5655L18.6861 19.8835H16.2995L11.5541 13.096V13.0956Z" />
@@ -58,8 +58,8 @@ const social = [
 		),
 	},
 	{
-		name: 'GitHub',
-		href: '#',
+		name: "GitHub",
+		href: "#",
 		icon: (props) => (
 			<svg fill="currentColor" viewBox="0 0 24 24" {...props}>
 				<path
@@ -71,8 +71,8 @@ const social = [
 		),
 	},
 	{
-		name: 'Instagram',
-		href: '#',
+		name: "Instagram",
+		href: "#",
 		icon: (props) => (
 			<svg fill="currentColor" viewBox="0 0 24 24" {...props}>
 				<path
@@ -97,16 +97,16 @@ export default function Error404() {
 			setError(null);
 
 			// Get CSRF token from DOM
-			const csrfToken = document.getElementById('_tr_nonce_form')?.value;
+			const csrfToken = document.getElementById("_tr_nonce_form")?.value;
 
-			const response = await fetch('https://b2bcnc.test/tr-api/rest/service', {
-				method: 'GET',
-				credentials: 'include',
+			const response = await fetch("https://b2bcnc.test/tr-api/rest/service", {
+				method: "GET",
+				credentials: "include",
 				headers: {
-					'Content-Type': 'application/json',
-					'Accept': 'application/json',
-					'X-Requested-With': 'XMLHttpRequest',
-					...(csrfToken && { 'X-CSRF-TOKEN': csrfToken }),
+					"Content-Type": "application/json",
+					Accept: "application/json",
+					"X-Requested-With": "XMLHttpRequest",
+					...(csrfToken && { "X-CSRF-TOKEN": csrfToken }),
 				},
 			});
 
@@ -118,9 +118,9 @@ export default function Error404() {
 
 			// Transform API data to links format
 			const serviceLinks = data
-				.filter(service => service.active === "1")
+				.filter((service) => service.active === "1")
 				.slice(0, 4) // Show only first 4 services
-				.map(service => ({
+				.map((service) => ({
 					name: service.name,
 					href: `/services/${service.code}`,
 					description: service.description,
@@ -129,7 +129,7 @@ export default function Error404() {
 
 			setServices(serviceLinks);
 		} catch (err) {
-			console.error('Failed to fetch services:', err);
+			console.error("Failed to fetch services:", err);
 			setError(err.message);
 			// Use fallback links on error
 			setServices(fallbackLinks);
@@ -151,17 +151,18 @@ export default function Error404() {
 			<main className="mx-auto w-full max-w-7xl px-6 pt-10 pb-16 sm:pb-24 lg:px-8">
 				<img
 					alt="B2B CNC"
-					src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
+					src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=blue&shade=600"
 					className="mx-auto h-10 w-auto sm:h-12"
 				/>
 
 				<div className="mx-auto mt-20 max-w-2xl text-center sm:mt-24">
-					<p className="text-base/8 font-semibold text-indigo-600">404</p>
+					<p className="text-base/8 font-semibold text-blue-600">404</p>
 					<h1 className="mt-4 text-5xl font-semibold tracking-tight text-balance text-gray-900 sm:text-6xl">
 						This page does not exist
 					</h1>
 					<p className="mt-6 text-lg font-medium text-pretty text-gray-500 sm:text-xl/8">
-						Sorry, we couldn't find the page you're looking for. But here are some of our popular services you might be interested in.
+						Sorry, we couldn't find the page you're looking for. But here are
+						some of our popular services you might be interested in.
 					</p>
 				</div>
 
@@ -170,7 +171,7 @@ export default function Error404() {
 
 					{loading && (
 						<div className="text-center py-8">
-							<div className="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600 mx-auto"></div>
+							<div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
 							<p className="mt-2 text-sm text-gray-500">Loading services...</p>
 						</div>
 					)}
@@ -183,23 +184,37 @@ export default function Error404() {
 						</div>
 					)}
 
-					<ul role="list" className="-mt-6 divide-y divide-gray-900/5 border-b border-gray-900/5">
+					<ul
+						role="list"
+						className="-mt-6 divide-y divide-gray-900/5 border-b border-gray-900/5"
+					>
 						{displayLinks.map((link, linkIdx) => (
 							<li key={linkIdx} className="relative flex gap-x-6 py-6">
-								<div className="flex size-10 flex-none items-center justify-center rounded-lg shadow-xs outline-1 outline-gray-900/10 bg-indigo-50">
-									<link.icon aria-hidden="true" className="size-6 text-indigo-600" />
+								<div className="flex size-10 flex-none items-center justify-center rounded-lg shadow-xs outline-1 outline-gray-900/10 bg-blue-50">
+									<link.icon
+										aria-hidden="true"
+										className="size-6 text-blue-600"
+									/>
 								</div>
 								<div className="flex-auto">
 									<h3 className="text-sm/6 font-semibold text-gray-900">
-										<a href={link.href} className="hover:text-indigo-600 transition-colors">
+										<a
+											href={link.href}
+											className="hover:text-blue-600 transition-colors"
+										>
 											<span aria-hidden="true" className="absolute inset-0" />
 											{link.name}
 										</a>
 									</h3>
-									<p className="mt-2 text-sm/6 text-gray-600">{link.description}</p>
+									<p className="mt-2 text-sm/6 text-gray-600">
+										{link.description}
+									</p>
 								</div>
 								<div className="flex-none self-center">
-									<ChevronRightIcon aria-hidden="true" className="size-5 text-gray-400" />
+									<ChevronRightIcon
+										aria-hidden="true"
+										className="size-5 text-gray-400"
+									/>
 								</div>
 							</li>
 						))}
@@ -208,13 +223,13 @@ export default function Error404() {
 					<div className="mt-10 flex justify-center space-x-6">
 						<a
 							href="/"
-							className="text-sm/6 font-semibold text-indigo-600 hover:text-indigo-700 transition-colors"
+							className="text-sm/6 font-semibold text-blue-600 hover:text-blue-700 transition-colors"
 						>
 							<span aria-hidden="true">&larr;</span> Back to home
 						</a>
 						<a
 							href="/services"
-							className="text-sm/6 font-semibold text-indigo-600 hover:text-indigo-700 transition-colors"
+							className="text-sm/6 font-semibold text-blue-600 hover:text-blue-700 transition-colors"
 						>
 							View all services <span aria-hidden="true">&rarr;</span>
 						</a>
@@ -236,7 +251,9 @@ export default function Error404() {
 
 			<footer className="border-t border-gray-100 py-6 sm:py-10">
 				<div className="mx-auto flex max-w-7xl flex-col items-center justify-center gap-8 px-6 sm:flex-row lg:px-8">
-					<p className="text-sm/7 text-gray-400">&copy; B2B CNC, Inc. All rights reserved.</p>
+					<p className="text-sm/7 text-gray-400">
+						&copy; B2B CNC, Inc. All rights reserved.
+					</p>
 					<div className="hidden sm:block sm:h-7 sm:w-px sm:flex-none sm:bg-gray-200" />
 					<div className="flex gap-x-4">
 						{social.map((item, itemIdx) => (
