@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import {
 	PhoneIcon,
 	VideoCameraIcon,
@@ -30,16 +30,16 @@ export default function Services() {
 			setError(null);
 
 			// Get CSRF token from DOM
-			const csrfToken = document.getElementById('_tr_nonce_form')?.value;
+			const csrfToken = document.getElementById("_tr_nonce_form")?.value;
 
-			const response = await fetch('https://b2bcnc.test/tr-api/rest/service', {
-				method: 'GET',
-				credentials: 'include',
+			const response = await fetch("https://b2bcnc.test/tr-api/rest/service", {
+				method: "GET",
+				credentials: "include",
 				headers: {
-					'Content-Type': 'application/json',
-					'Accept': 'application/json',
-					'X-Requested-With': 'XMLHttpRequest',
-					...(csrfToken && { 'X-CSRF-TOKEN': csrfToken }),
+					"Content-Type": "application/json",
+					Accept: "application/json",
+					"X-Requested-With": "XMLHttpRequest",
+					...(csrfToken && { "X-CSRF-TOKEN": csrfToken }),
 				},
 			});
 
@@ -51,8 +51,8 @@ export default function Services() {
 
 			// Transform API data to match component format
 			const transformedServices = data
-				.filter(service => service.active === "1") // Only show active services
-				.map(service => ({
+				.filter((service) => service.active === "1") // Only show active services
+				.map((service) => ({
 					id: service.id,
 					name: service.name,
 					description: service.description,
@@ -63,7 +63,7 @@ export default function Services() {
 
 			setServices(transformedServices);
 		} catch (err) {
-			console.error('Failed to fetch services:', err);
+			console.error("Failed to fetch services:", err);
 			setError(err.message);
 			setServices([]); // Clear services on error
 		} finally {
@@ -111,9 +111,8 @@ export default function Services() {
 								</h3>
 								<p className="text-gray-500">
 									{error
-										? 'Unable to load services at this time. Please try again later.'
-										: 'Services are being updated. Please check back soon.'
-									}
+										? "Unable to load services at this time. Please try again later."
+										: "Services are being updated. Please check back soon."}
 								</p>
 							</div>
 						) : (
@@ -141,7 +140,10 @@ export default function Services() {
 											</div>
 										)}
 									</dd>
-									<a href="#" className="text-sm/6 font-semibold text-stone-500">
+									<a
+										href="#"
+										className="text-sm/6 font-semibold text-stone-500"
+									>
 										Learn more{" "}
 										<span aria-hidden="true">
 											<i className="font-bold text-blue-600 bi bi-arrow-right"></i>

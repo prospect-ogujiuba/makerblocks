@@ -15134,16 +15134,16 @@ function Services() {
       setError(null);
 
       // Get CSRF token from DOM
-      const csrfToken = document.getElementById('_tr_nonce_form')?.value;
-      const response = await fetch('https://b2bcnc.test/tr-api/rest/service', {
-        method: 'GET',
-        credentials: 'include',
+      const csrfToken = document.getElementById("_tr_nonce_form")?.value;
+      const response = await fetch("https://b2bcnc.test/tr-api/rest/service", {
+        method: "GET",
+        credentials: "include",
         headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-          'X-Requested-With': 'XMLHttpRequest',
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          "X-Requested-With": "XMLHttpRequest",
           ...(csrfToken && {
-            'X-CSRF-TOKEN': csrfToken
+            "X-CSRF-TOKEN": csrfToken
           })
         }
       });
@@ -15165,7 +15165,7 @@ function Services() {
       }));
       setServices(transformedServices);
     } catch (err) {
-      console.error('Failed to fetch services:', err);
+      console.error("Failed to fetch services:", err);
       setError(err.message);
       setServices([]); // Clear services on error
     } finally {
@@ -15212,7 +15212,7 @@ function Services() {
               children: "No Services Available"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
               className: "text-gray-500",
-              children: error ? 'Unable to load services at this time. Please try again later.' : 'Services are being updated. Please check back soon.'
+              children: error ? "Unable to load services at this time. Please try again later." : "Services are being updated. Please check back soon."
             })]
           }) : services.map(service => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
             className: "hover:bg-blue-50 transition:color duration-300 rounded-sm shadow-blue-100 shadow-sm p-4",

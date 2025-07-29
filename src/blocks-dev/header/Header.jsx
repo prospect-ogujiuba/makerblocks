@@ -174,7 +174,6 @@ export default function Header({ site = {}, navigation = [], nonce = "" }) {
 														aria-hidden="true"
 														className="size-6 text-gray-600 group-hover:text-white"
 													/>
-
 												</div>
 												<a
 													href={item.href}

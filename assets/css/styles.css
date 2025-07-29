@@ -32650,16 +32650,6 @@ a:where(:not(.wp-element-button)) {
     }
   }
   @media (hover: hover) {
-    .hover\:text-indigo-600:hover {
-      color: var(--color-indigo-600);
-    }
-  }
-  @media (hover: hover) {
-    .hover\:text-indigo-700:hover {
-      color: var(--color-indigo-700);
-    }
-  }
-  @media (hover: hover) {
     .hover\:text-red-800:hover {
       color: var(--color-red-800);
     }
@@ -33496,11 +33486,6 @@ a:where(:not(.wp-element-button)) {
   @media (width >= 64rem) {
     .lg\:py-24 {
       padding-block: calc(var(--spacing) * 24);
-    }
-  }
-  @media (width >= 64rem) {
-    .lg\:py-32 {
-      padding-block: calc(var(--spacing) * 32);
     }
   }
   @media (width >= 64rem) {
