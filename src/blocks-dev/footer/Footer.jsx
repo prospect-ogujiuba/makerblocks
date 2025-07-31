@@ -132,7 +132,7 @@ export default function Footer({
 			const csrfToken =
 				nonce || document.getElementById("_tr_nonce_form")?.value;
 
-			const response = await fetch("https://b2bcnc.test/tr-api/rest/service", {
+			const response = await fetch("https://b2bcnc.test/api/v1/services", {
 				method: "GET",
 				credentials: "include",
 				headers: {

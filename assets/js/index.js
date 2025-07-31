@@ -12691,7 +12691,7 @@ function Error404() {
 
       // Get CSRF token from DOM
       const csrfToken = document.getElementById("_tr_nonce_form")?.value;
-      const response = await fetch("https://b2bcnc.test/tr-api/rest/service", {
+      const response = await fetch("https://b2bcnc.test/api/v1/services", {
         method: "GET",
         credentials: "include",
         headers: {
@@ -13137,7 +13137,7 @@ function Footer({
 
       // Get CSRF token from DOM or use passed nonce
       const csrfToken = nonce || document.getElementById("_tr_nonce_form")?.value;
-      const response = await fetch("https://b2bcnc.test/tr-api/rest/service", {
+      const response = await fetch("https://b2bcnc.test/api/v1/services", {
         method: "GET",
         credentials: "include",
         headers: {
@@ -13407,7 +13407,7 @@ function Header({
 
       // Get CSRF token from DOM or use passed nonce
       const csrfToken = nonce || document.getElementById("_tr_nonce_form")?.value;
-      const response = await fetch("https://b2bcnc.test/tr-api/rest/service", {
+      const response = await fetch("https://b2bcnc.test/api/v1/services", {
         method: "GET",
         credentials: "include",
         headers: {
@@ -15006,7 +15006,7 @@ function QuoteCreator() {
 
       // Get CSRF token from DOM
       const csrfToken = document.getElementById('_tr_nonce_form')?.value;
-      const response = await fetch('https://b2bcnc.test/tr-api/rest/service', {
+      const response = await fetch('https://b2bcnc.test/api/v1/services', {
         method: 'GET',
         credentials: 'include',
         headers: {
@@ -15135,7 +15135,7 @@ function Services() {
 
       // Get CSRF token from DOM
       const csrfToken = document.getElementById("_tr_nonce_form")?.value;
-      const response = await fetch("https://b2bcnc.test/tr-api/rest/service", {
+      const response = await fetch("https://b2bcnc.test/api/v1/services", {
         method: "GET",
         credentials: "include",
         headers: {
