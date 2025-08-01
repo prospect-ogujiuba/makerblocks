@@ -14,21 +14,27 @@ function makerblocks_localize_script()
 	$theme = wp_get_theme();
 
 	// Localize script to pass data to JavaScript
+
+	$site_info = [
+		// Site info
+		'siteName'         => get_bloginfo('name'),
+		'siteDescription'  => get_bloginfo('description'),
+		'siteUrl'          => get_bloginfo('url'),
+		'charset'          => get_bloginfo('charset'),
+		'language'         => get_bloginfo('language'),
+		'homeUrl'          => home_url(),
+		'siteUrl'          => site_url(),
+
+	];
+
 	if (is_user_logged_in()) {
-		$site_info = array(
+		$site_info = [
 			// Site info
-			'siteName'         => get_bloginfo('name'),
-			'siteDescription'  => get_bloginfo('description'),
-			'siteUrl'          => get_bloginfo('url'),
 			'adminEmail'       => get_bloginfo('admin_email'),
-			'charset'          => get_bloginfo('charset'),
-			'language'         => get_bloginfo('language'),
 			'stylesheetUrl'    => get_bloginfo('stylesheet_url'),
 			'rss2Url'          => get_bloginfo('rss2_url'),
 			'atomUrl'          => get_bloginfo('atom_url'),
 			'pingbackUrl'      => get_bloginfo('pingback_url'),
-			'homeUrl'          => home_url(),
-			'siteUrl'          => site_url(),
 			'adminUrl'         => admin_url(),
 			'ajaxUrl'          => admin_url('admin-ajax.php'),
 			'restUrl'          => rest_url(),
@@ -69,7 +75,7 @@ function makerblocks_localize_script()
 			'isFrontPage'      => is_front_page(),
 			'isAdmin'          => is_admin(),
 			'nonce'            => wp_create_nonce('my_nonce')
-		);
+		];
 	}
 	// If it's a singular post or page, add more post-specific data
 	if (is_singular()) {
