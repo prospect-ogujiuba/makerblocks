@@ -74,7 +74,7 @@ function makerblocks_localize_script()
 			'isHome'           => is_home(),
 			'isFrontPage'      => is_front_page(),
 			'isAdmin'          => is_admin(),
-			'nonce'            => wp_create_nonce('my_nonce')
+			'nonce'            => tr_nonce()
 		];
 	}
 	// If it's a singular post or page, add more post-specific data
