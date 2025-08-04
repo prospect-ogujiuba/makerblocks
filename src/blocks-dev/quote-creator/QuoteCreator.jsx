@@ -224,7 +224,11 @@ const getServiceConfiguration = (serviceCode, basePrice) => {
 					options: [
 						{ value: "assessment", label: "IT Assessment", price: 0 },
 						{ value: "strategy", label: "Strategic Planning", price: 25 },
-						{ value: "implementation", label: "Implementation Support", price: 50 },
+						{
+							value: "implementation",
+							label: "Implementation Support",
+							price: 50,
+						},
 					],
 					required: true,
 				},
@@ -279,10 +283,13 @@ function QuoteModal({ open, setOpen, services }) {
 
 	// Generate line item description and calculate total
 	const generateLineItem = (serviceId, config) => {
-		const service = services.find(s => s.id === serviceId);
+		const service = services.find((s) => s.id === serviceId);
 		if (!service) return null;
 
-		const serviceConfig = getServiceConfiguration(service.code, service.basePrice);
+		const serviceConfig = getServiceConfiguration(
+			service.code,
+			service.basePrice,
+		);
 		let price = serviceConfig.basePrice;
 		let quantity = 1;
 		let description = service.name;
@@ -452,8 +459,12 @@ function QuoteModal({ open, setOpen, services }) {
 		}
 	};
 
-	const selectedService = services.find(s => s.id === currentService.serviceId);
-	const selectedServiceConfig = selectedService ? getServiceConfiguration(selectedService.code, selectedService.basePrice) : null;
+	const selectedService = services.find(
+		(s) => s.id === currentService.serviceId,
+	);
+	const selectedServiceConfig = selectedService
+		? getServiceConfiguration(selectedService.code, selectedService.basePrice)
+		: null;
 
 	if (step === "quote") {
 		return (
@@ -777,7 +788,10 @@ function QuoteModal({ open, setOpen, services }) {
 													<Listbox
 														value={currentService.serviceId}
 														onChange={(value) =>
-															setCurrentService({ serviceId: value, config: {} })
+															setCurrentService({
+																serviceId: value,
+																config: {},
+															})
 														}
 													>
 														<Label className="block text-sm/6 font-medium text-gray-900">
@@ -801,7 +815,9 @@ function QuoteModal({ open, setOpen, services }) {
 																className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-hidden data-leave:transition data-leave:duration-100 data-leave:ease-in data-closed:data-leave:opacity-0 sm:text-sm"
 															>
 																{services.map((service) => {
-																	const IconComponent = iconMap[service.icon] || ComputerDesktopIcon;
+																	const IconComponent =
+																		service.icon ||
+																		ComputerDesktopIcon;
 																	return (
 																		<ListboxOption
 																			key={service.id}
@@ -1014,43 +1030,51 @@ function QuoteCreator() {
 			setLoading(true);
 			setError(null);
 
-			// Get CSRF token from DOM
-			const csrfToken = document.getElementById('_tr_nonce_form')?.value;
-
-			const response = await fetch('https://b2bcnc.test/api/v1/services', {
-				method: 'GET',
-				credentials: 'include',
-				headers: {
-					'Content-Type': 'application/json',
-					'Accept': 'application/json',
-					'X-Requested-With': 'XMLHttpRequest',
-					...(csrfToken && { 'X-CSRF-TOKEN': csrfToken }),
+			const response = await fetch(
+				"https://b2bcnc.test/api/v1/services?limit=6",
+				{
+					method: "GET",
+					credentials: "include",
+					headers: {
+						"Content-Type": "application/json",
+						Accept: "application/json",
+						"X-Requested-With": "XMLHttpRequest",
+					},
 				},
-			});
+			);
 
 			if (!response.ok) {
 				throw new Error(`HTTP ${response.status}: ${response.statusText}`);
 			}
 
-			const data = await response.json();
+			const result = await response.json();
 
-			// Transform API data to match component format
-			const transformedServices = data
-				.filter(service => service.active === "1") // Only show active services
-				.map(service => ({
+			// Check if the response has the expected structure
+			if (!result.data || !result.data.services) {
+				throw new Error("Invalid response structure: missing services data");
+			}
+
+			// Transform API data to match header format
+			const transformedProducts = result.data.services
+				.filter(
+					(service) => service.active === true && service.deleted_at === null, // Only include non-deleted services
+				)
+				.map((service) => ({
 					id: service.id,
 					name: service.name,
 					description: service.description,
-					icon: service.icon,
-					code: service.code,
+					href: `#service-${service.code}`,
+					icon: iconMap[service.icon] || ComputerDesktopIcon,
+					originalIcon: service.icon,
 					basePrice: service.base_price,
+					code: service.code,
 				}));
 
-			setServices(transformedServices);
+			setServices(transformedProducts);
 		} catch (err) {
-			console.error('Failed to fetch services:', err);
+			console.error("Failed to fetch services:", err);
 			setError(err.message);
-			setServices([]);
+			setServices([]); // Clear products on error
 		} finally {
 			setLoading(false);
 		}
@@ -1090,7 +1114,7 @@ function QuoteCreator() {
 					className="inline-flex items-center rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 disabled:bg-gray-400 disabled:cursor-not-allowed"
 				>
 					<CalculatorIcon className="w-5 h-5 mr-2" />
-					{loading ? 'Loading Services...' : 'Build Your Quote'}
+					{loading ? "Loading Services..." : "Build Your Quote"}
 				</button>
 
 				<p className="text-sm text-gray-500 mt-4">

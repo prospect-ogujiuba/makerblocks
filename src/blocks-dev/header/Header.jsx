@@ -46,7 +46,7 @@ const callsToAction = [
 
 export default function Header({ site = {}, navigation = [], nonce = "" }) {
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-	const [products, setProducts] = useState([]);
+	const [services, setServices] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
 
@@ -60,18 +60,13 @@ export default function Header({ site = {}, navigation = [], nonce = "" }) {
 			setLoading(true);
 			setError(null);
 
-			// Get CSRF token from DOM or use passed nonce
-			const csrfToken =
-				nonce || document.getElementById("_tr_nonce_form")?.value;
-
-			const response = await fetch("https://b2bcnc.test/api/v1/services", {
+			const response = await fetch("https://b2bcnc.test/api/v1/services?limit=6", {
 				method: "GET",
 				credentials: "include",
 				headers: {
 					"Content-Type": "application/json",
 					Accept: "application/json",
 					"X-Requested-With": "XMLHttpRequest",
-					...(csrfToken && { "X-CSRF-TOKEN": csrfToken }),
 				},
 			});
 
@@ -79,24 +74,18 @@ export default function Header({ site = {}, navigation = [], nonce = "" }) {
 				throw new Error(`HTTP ${response.status}: ${response.statusText}`);
 			}
 
-			const data = await response.json();
+			const result = await response.json();
 
-			// Transform API data to match header format
-			const transformedProducts = data
-				.filter((service) => service.active === "1")
-				.map((service) => ({
-					name: service.name,
-					description: service.description,
-					href: `#service-${service.code}`,
-					icon: iconMap[service.icon] || ComputerDesktopIcon,
-					originalIcon: service.icon, // Add this line
-				}));
-
-			setProducts(transformedProducts);
+			// Simple validation and direct assignment
+			if (result.data?.services) {
+				setServices(result.data.services.filter(service => service.active && !service.deleted_at));
+			} else {
+				throw new Error("Invalid response structure");
+			}
 		} catch (err) {
 			console.error("Failed to fetch services:", err);
 			setError(err.message);
-			setProducts([]); // Clear products on error
+			setServices([]);
 		} finally {
 			setLoading(false);
 		}
@@ -106,6 +95,11 @@ export default function Header({ site = {}, navigation = [], nonce = "" }) {
 	useEffect(() => {
 		fetchServices();
 	}, [nonce]);
+
+	// Helper function to get icon component
+	const getServiceIcon = (iconName) => {
+		return iconMap[iconName] || ComputerDesktopIcon;
+	};
 
 	return (
 		<>
@@ -154,36 +148,37 @@ export default function Header({ site = {}, navigation = [], nonce = "" }) {
 											Loading services...
 										</div>
 									</div>
-								) : products.length === 0 ? (
+								) : services.length === 0 ? (
 									<div className="mx-auto max-w-7xl px-6 py-10 lg:px-8">
 										<div className="text-center text-gray-500">
-											{error
-												? "Unable to load services"
-												: "No services available"}
+											{error ? "Unable to load services" : "No services available"}
 										</div>
 									</div>
 								) : (
 									<div className="mx-auto grid max-w-7xl grid-cols-6 gap-x-4 px-6 py-10 lg:px-8 xl:gap-x-8">
-										{products.map((item) => (
-											<div
-												key={item.name}
-												className="group relative rounded-lg p-6 text-sm/6 hover:bg-gray-50"
-											>
-												<div className="flex size-11 items-center justify-center rounded-lg bg-gray-50 group-hover:bg-blue-500">
-													<item.icon
-														aria-hidden="true"
-														className="size-6 text-gray-600 group-hover:text-white"
-													/>
-												</div>
-												<a
-													href={item.href}
-													className="mt-6 block font-semibold text-gray-900"
+										{services.map((service) => {
+											const IconComponent = getServiceIcon(service.icon);
+											return (
+												<div
+													key={service.id}
+													className="group relative rounded-lg p-6 text-sm/6 hover:bg-gray-50"
 												>
-													{item.name}
-													<span className="absolute inset-0" />
-												</a>
-											</div>
-										))}
+													<div className="flex size-11 items-center justify-center rounded-lg bg-gray-50 group-hover:bg-blue-500">
+														<IconComponent
+															aria-hidden="true"
+															className="size-6 text-gray-600 group-hover:text-white"
+														/>
+													</div>
+													<a
+														href={`#service-${service.code}`}
+														className="mt-6 block font-semibold text-gray-900"
+													>
+														{service.name}
+														<span className="absolute inset-0" />
+													</a>
+												</div>
+											);
+										})}
 									</div>
 								)}
 								<div className="bg-gray-50">
@@ -271,18 +266,16 @@ export default function Header({ site = {}, navigation = [], nonce = "" }) {
 											<div className="block rounded-lg py-2 pl-6 pr-3 text-sm/7 text-gray-500">
 												Loading services...
 											</div>
-										) : products.length === 0 ? (
+										) : services.length === 0 ? (
 											<div className="block rounded-lg py-2 pl-6 pr-3 text-sm/7 text-gray-500">
-												{error
-													? "Unable to load services"
-													: "No services available"}
+												{error ? "Unable to load services" : "No services available"}
 											</div>
 										) : (
-											[...products, ...callsToAction].map((item) => (
+											[...services, ...callsToAction].map((item) => (
 												<DisclosureButton
-													key={item.name}
+													key={item.name || item.id}
 													as="a"
-													href={item.href}
+													href={item.href || `#service-${item.code}`}
 													className="block rounded-lg py-2 pl-6 pr-3 text-sm/7 font-semibold text-gray-900 hover:bg-gray-50"
 												>
 													{item.name}

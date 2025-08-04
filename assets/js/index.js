@@ -12964,7 +12964,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__);
-// footer/Footer.jsx - Updated to use WordPress/TypeRocket data and Service API
+// footer/Footer.jsx - Simplified to use API response directly
 
 "use client";
 
@@ -13044,19 +13044,6 @@ const iconMap = {
 
 // Fallback navigation data
 const defaultNavigation = {
-  solutions: [{
-    name: "Marketing",
-    href: "#"
-  }, {
-    name: "Analytics",
-    href: "#"
-  }, {
-    name: "Automation",
-    href: "#"
-  }, {
-    name: "Commerce",
-    href: "#"
-  }],
   support: [{
     name: "Submit ticket",
     href: "#"
@@ -13120,8 +13107,8 @@ function Footer({
 }) {
   // State for services from API
   const [services, setServices] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
-  const [servicesLoading, setServicesLoading] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
-  const [servicesError, setServicesError] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
+  const [loading, setLoading] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
+  const [error, setError] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
 
   // Use WordPress data with fallbacks
   const siteName = site.name || "Your Company";
@@ -13129,44 +13116,37 @@ function Footer({
   const logoUrl = site.logo_url || `${site.url}/wp-content/plugins/makerblocks/assets/images/logos/logo-ph-black.png`;
   const currentYear = site.current_year || new Date().getFullYear();
 
-  // Fetch services from API (same logic as Header)
+  // Fetch services from API (matching Header component approach)
   const fetchServices = async () => {
     try {
-      setServicesLoading(true);
-      setServicesError(null);
-
-      // Get CSRF token from DOM or use passed nonce
-      const csrfToken = nonce || document.getElementById("_tr_nonce_form")?.value;
+      setLoading(true);
+      setError(null);
       const response = await fetch("https://b2bcnc.test/api/v1/services", {
         method: "GET",
         credentials: "include",
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
-          "X-Requested-With": "XMLHttpRequest",
-          ...(csrfToken && {
-            "X-CSRF-TOKEN": csrfToken
-          })
+          "X-Requested-With": "XMLHttpRequest"
         }
       });
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}: ${response.statusText}`);
       }
-      const data = await response.json();
+      const result = await response.json();
 
-      // Transform API data to match footer format
-      const transformedServices = data.filter(service => service.active === "1").map(service => ({
-        name: service.name,
-        href: `#service-${service.code}`,
-        new_window: false
-      }));
-      setServices(transformedServices);
+      // Simple validation and direct assignment (matching your API structure)
+      if (result.data?.services) {
+        setServices(result.data.services.filter(service => service.active && !service.deleted_at));
+      } else {
+        throw new Error("Invalid response structure");
+      }
     } catch (err) {
       console.error("Failed to fetch services:", err);
-      setServicesError(err.message);
-      setServices([]); // Clear services on error
+      setError(err.message);
+      setServices([]);
     } finally {
-      setServicesLoading(false);
+      setLoading(false);
     }
   };
 
@@ -13174,17 +13154,6 @@ function Footer({
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     fetchServices();
   }, [nonce]);
-
-  // Merge navigation data with defaults and API services
-  const nav = {
-    solutions: servicesLoading ? [{
-      name: "Loading services...",
-      href: "#"
-    }] : services.length > 0 ? services : navigation.solutions?.length ? navigation.solutions : defaultNavigation.solutions,
-    support: navigation.support?.length ? navigation.support : defaultNavigation.support,
-    company: navigation.company?.length ? navigation.company : defaultNavigation.company,
-    legal: navigation.legal?.length ? navigation.legal : defaultNavigation.legal
-  };
 
   // Process social links with icon mapping
   const socialLinks = (social.length ? social : defaultSocial).map(item => ({
@@ -13213,30 +13182,28 @@ function Footer({
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("ul", {
                   role: "list",
                   className: "mt-6 space-y-4",
-                  children: servicesLoading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
+                  children: loading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
                       className: "text-sm/6 text-gray-300",
                       children: "Loading services..."
                     })
-                  }) : servicesError ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
+                  }) : error ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
                       className: "text-sm/6 text-gray-300",
                       children: "Unable to load services"
                     })
-                  }) : nav.solutions.length === 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
+                  }) : services.length === 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
                       className: "text-sm/6 text-gray-300",
                       children: "No services available"
                     })
-                  }) : nav.solutions.map((item, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
+                  }) : services.map(service => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
-                      href: item.href,
+                      href: `#service-${service.code}`,
                       className: "text-sm/6 text-gray-300 hover:text-white",
-                      target: item.new_window ? "_blank" : undefined,
-                      rel: item.new_window ? "noopener noreferrer" : undefined,
-                      children: item.name
+                      children: service.name
                     })
-                  }, item.name || index))
+                  }, service.id))
                 })]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
                 className: "mt-10 md:mt-0",
@@ -13246,7 +13213,7 @@ function Footer({
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("ul", {
                   role: "list",
                   className: "mt-6 space-y-4",
-                  children: nav.support.map((item, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
+                  children: (navigation.support?.length ? navigation.support : defaultNavigation.support).map((item, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
                       href: item.href,
                       className: "text-sm/6 text-gray-300 hover:text-white",
@@ -13266,7 +13233,7 @@ function Footer({
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("ul", {
                   role: "list",
                   className: "mt-6 space-y-4",
-                  children: nav.company.map((item, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
+                  children: (navigation.company?.length ? navigation.company : defaultNavigation.company).map((item, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
                       href: item.href,
                       className: "text-sm/6 text-gray-300 hover:text-white",
@@ -13284,7 +13251,7 @@ function Footer({
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("ul", {
                   role: "list",
                   className: "mt-6 space-y-4",
-                  children: nav.legal.map((item, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
+                  children: (navigation.legal?.length ? navigation.legal : defaultNavigation.legal).map((item, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
                       href: item.href,
                       className: "text-sm/6 text-gray-300 hover:text-white",
@@ -13392,7 +13359,7 @@ function Header({
   nonce = ""
 }) {
   const [mobileMenuOpen, setMobileMenuOpen] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
-  const [products, setProducts] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
+  const [services, setServices] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
   const [loading, setLoading] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
   const [error, setError] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
   const siteName = site.name || "Your Company";
@@ -13404,39 +13371,30 @@ function Header({
     try {
       setLoading(true);
       setError(null);
-
-      // Get CSRF token from DOM or use passed nonce
-      const csrfToken = nonce || document.getElementById("_tr_nonce_form")?.value;
-      const response = await fetch("https://b2bcnc.test/api/v1/services", {
+      const response = await fetch("https://b2bcnc.test/api/v1/services?limit=6", {
         method: "GET",
         credentials: "include",
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
-          "X-Requested-With": "XMLHttpRequest",
-          ...(csrfToken && {
-            "X-CSRF-TOKEN": csrfToken
-          })
+          "X-Requested-With": "XMLHttpRequest"
         }
       });
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}: ${response.statusText}`);
       }
-      const data = await response.json();
+      const result = await response.json();
 
-      // Transform API data to match header format
-      const transformedProducts = data.filter(service => service.active === "1").map(service => ({
-        name: service.name,
-        description: service.description,
-        href: `#service-${service.code}`,
-        icon: iconMap[service.icon] || _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_7__["default"],
-        originalIcon: service.icon // Add this line
-      }));
-      setProducts(transformedProducts);
+      // Simple validation and direct assignment
+      if (result.data?.services) {
+        setServices(result.data.services.filter(service => service.active && !service.deleted_at));
+      } else {
+        throw new Error("Invalid response structure");
+      }
     } catch (err) {
       console.error("Failed to fetch services:", err);
       setError(err.message);
-      setProducts([]); // Clear products on error
+      setServices([]);
     } finally {
       setLoading(false);
     }
@@ -13446,6 +13404,11 @@ function Header({
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     fetchServices();
   }, [nonce]);
+
+  // Helper function to get icon component
+  const getServiceIcon = iconName => {
+    return iconMap[iconName] || _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_7__["default"];
+  };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("nav", {
       "aria-label": "Global",
@@ -13500,7 +13463,7 @@ function Header({
                   className: "text-center text-gray-500",
                   children: "Loading services..."
                 })
-              }) : products.length === 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+              }) : services.length === 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
                 className: "mx-auto max-w-7xl px-6 py-10 lg:px-8",
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
                   className: "text-center text-gray-500",
@@ -13508,22 +13471,25 @@ function Header({
                 })
               }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
                 className: "mx-auto grid max-w-7xl grid-cols-6 gap-x-4 px-6 py-10 lg:px-8 xl:gap-x-8",
-                children: products.map(item => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-                  className: "group relative rounded-lg p-6 text-sm/6 hover:bg-gray-50",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-                    className: "flex size-11 items-center justify-center rounded-lg bg-gray-50 group-hover:bg-blue-500",
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(item.icon, {
-                      "aria-hidden": "true",
-                      className: "size-6 text-gray-600 group-hover:text-white"
-                    })
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("a", {
-                    href: item.href,
-                    className: "mt-6 block font-semibold text-gray-900",
-                    children: [item.name, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
-                      className: "absolute inset-0"
+                children: services.map(service => {
+                  const IconComponent = getServiceIcon(service.icon);
+                  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                    className: "group relative rounded-lg p-6 text-sm/6 hover:bg-gray-50",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                      className: "flex size-11 items-center justify-center rounded-lg bg-gray-50 group-hover:bg-blue-500",
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(IconComponent, {
+                        "aria-hidden": "true",
+                        className: "size-6 text-gray-600 group-hover:text-white"
+                      })
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("a", {
+                      href: `#service-${service.code}`,
+                      className: "mt-6 block font-semibold text-gray-900",
+                      children: [service.name, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+                        className: "absolute inset-0"
+                      })]
                     })]
-                  })]
-                }, item.name))
+                  }, service.id);
+                })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
                 className: "bg-gray-50",
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
@@ -13624,15 +13590,15 @@ function Header({
                   children: loading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
                     className: "block rounded-lg py-2 pl-6 pr-3 text-sm/7 text-gray-500",
                     children: "Loading services..."
-                  }) : products.length === 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                  }) : services.length === 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
                     className: "block rounded-lg py-2 pl-6 pr-3 text-sm/7 text-gray-500",
                     children: error ? "Unable to load services" : "No services available"
-                  }) : [...products, ...callsToAction].map(item => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_headlessui_react__WEBPACK_IMPORTED_MODULE_15__.DisclosureButton, {
+                  }) : [...services, ...callsToAction].map(item => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_headlessui_react__WEBPACK_IMPORTED_MODULE_15__.DisclosureButton, {
                     as: "a",
-                    href: item.href,
+                    href: item.href || `#service-${item.code}`,
                     className: "block rounded-lg py-2 pl-6 pr-3 text-sm/7 font-semibold text-gray-900 hover:bg-gray-50",
                     children: item.name
-                  }, item.name))
+                  }, item.name || item.id))
                 })]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
                 href: "#",
@@ -14815,7 +14781,7 @@ function QuoteModal({
                             transition: true,
                             className: "absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-hidden data-leave:transition data-leave:duration-100 data-leave:ease-in data-closed:data-leave:opacity-0 sm:text-sm",
                             children: services.map(service => {
-                              const IconComponent = iconMap[service.icon] || _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_7__["default"];
+                              const IconComponent = service.icon || _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_7__["default"];
                               return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_headlessui_react__WEBPACK_IMPORTED_MODULE_11__.ListboxOption, {
                                 value: service.id,
                                 className: "group relative cursor-default py-2 pr-4 pl-8 text-gray-900 select-none data-focus:bg-blue-600 data-focus:text-white data-focus:outline-hidden",
@@ -15003,41 +14969,42 @@ function QuoteCreator() {
     try {
       setLoading(true);
       setError(null);
-
-      // Get CSRF token from DOM
-      const csrfToken = document.getElementById('_tr_nonce_form')?.value;
-      const response = await fetch('https://b2bcnc.test/api/v1/services', {
-        method: 'GET',
-        credentials: 'include',
+      const response = await fetch("https://b2bcnc.test/api/v1/services?limit=6", {
+        method: "GET",
+        credentials: "include",
         headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-          'X-Requested-With': 'XMLHttpRequest',
-          ...(csrfToken && {
-            'X-CSRF-TOKEN': csrfToken
-          })
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          "X-Requested-With": "XMLHttpRequest"
         }
       });
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}: ${response.statusText}`);
       }
-      const data = await response.json();
+      const result = await response.json();
 
-      // Transform API data to match component format
-      const transformedServices = data.filter(service => service.active === "1") // Only show active services
-      .map(service => ({
+      // Check if the response has the expected structure
+      if (!result.data || !result.data.services) {
+        throw new Error("Invalid response structure: missing services data");
+      }
+
+      // Transform API data to match header format
+      const transformedProducts = result.data.services.filter(service => service.active === true && service.deleted_at === null // Only include non-deleted services
+      ).map(service => ({
         id: service.id,
         name: service.name,
         description: service.description,
-        icon: service.icon,
-        code: service.code,
-        basePrice: service.base_price
+        href: `#service-${service.code}`,
+        icon: iconMap[service.icon] || _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_7__["default"],
+        originalIcon: service.icon,
+        basePrice: service.base_price,
+        code: service.code
       }));
-      setServices(transformedServices);
+      setServices(transformedProducts);
     } catch (err) {
-      console.error('Failed to fetch services:', err);
+      console.error("Failed to fetch services:", err);
       setError(err.message);
-      setServices([]);
+      setServices([]); // Clear products on error
     } finally {
       setLoading(false);
     }
@@ -15073,7 +15040,7 @@ function QuoteCreator() {
         className: "inline-flex items-center rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 disabled:bg-gray-400 disabled:cursor-not-allowed",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_15__["default"], {
           className: "w-5 h-5 mr-2"
-        }), loading ? 'Loading Services...' : 'Build Your Quote']
+        }), loading ? "Loading Services..." : "Build Your Quote"]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
         className: "text-sm text-gray-500 mt-4",
         children: "\u2713 80% accurate pricing \u2713 No obligation \u2713 Instant results"
@@ -15132,42 +15099,34 @@ function Services() {
     try {
       setLoading(true);
       setError(null);
-
-      // Get CSRF token from DOM
-      const csrfToken = document.getElementById("_tr_nonce_form")?.value;
-      const response = await fetch("https://b2bcnc.test/api/v1/services", {
+      const response = await fetch("https://b2bcnc.test/api/v1/services?limit=6", {
         method: "GET",
         credentials: "include",
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
-          "X-Requested-With": "XMLHttpRequest",
-          ...(csrfToken && {
-            "X-CSRF-TOKEN": csrfToken
-          })
+          "X-Requested-With": "XMLHttpRequest"
         }
       });
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}: ${response.statusText}`);
       }
-      const data = await response.json();
+      const result = await response.json();
 
-      // Transform API data to match component format
-      const transformedServices = data.filter(service => service.active === "1") // Only show active services
-      .map(service => ({
-        id: service.id,
-        name: service.name,
-        description: service.description,
-        icon: iconMap[service.icon] || _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_7__["default"],
-        // Fallback to desktop icon
-        code: service.code,
-        basePrice: service.base_price
-      }));
-      setServices(transformedServices);
+      // Simple validation and direct assignment
+      if (result.data?.services) {
+        const transformedServices = result.data.services.filter(service => service.active && !service.deleted_at).map(service => ({
+          ...service,
+          IconComponent: iconMap[service.icon] || _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_7__["default"]
+        }));
+        setServices(transformedServices);
+      } else {
+        throw new Error("Invalid response structure");
+      }
     } catch (err) {
       console.error("Failed to fetch services:", err);
       setError(err.message);
-      setServices([]); // Clear services on error
+      setServices([]);
     } finally {
       setLoading(false);
     }
@@ -15214,38 +15173,41 @@ function Services() {
               className: "text-gray-500",
               children: error ? "Unable to load services at this time. Please try again later." : "Services are being updated. Please check back soon."
             })]
-          }) : services.map(service => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-            className: "hover:bg-blue-50 transition:color duration-300 rounded-sm shadow-blue-100 shadow-sm p-4",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("dt", {
-              className: "text-base/7 font-semibold text-gray-900",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-                className: "mb-6 flex size-10 items-center justify-center rounded-lg bg-blue-600",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(service.icon, {
+          }) : services.map(service => {
+            const IconComponent = service.IconComponent;
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+              className: "hover:bg-blue-50 transition-colors duration-300 rounded-sm shadow-blue-100 shadow-sm p-4",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("dt", {
+                className: "text-base/7 font-semibold text-gray-900",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                  className: "mb-6 flex size-10 items-center justify-center rounded-lg bg-blue-600",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(IconComponent, {
+                    "aria-hidden": "true",
+                    className: "size-6 text-white"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
+                  href: "",
+                  className: "text-blue-800 underline",
+                  children: service.name
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("dd", {
+                className: "my-1 text-base/7 text-gray-600",
+                children: [service.description, service.base_price && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                  className: "mt-2 text-sm font-medium text-green-600",
+                  children: ["Starting at $", service.base_price]
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("a", {
+                href: "#",
+                className: "text-sm/6 font-semibold text-stone-500",
+                children: ["Learn more", " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
                   "aria-hidden": "true",
-                  className: "size-6 text-white"
-                })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
-                href: "",
-                className: "text-blue-800 underline",
-                children: service.name
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
+                    className: "font-bold text-blue-600 bi bi-arrow-right"
+                  })
+                })]
               })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("dd", {
-              className: "my-1 text-base/7 text-gray-600",
-              children: [service.description, service.basePrice && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-                className: "mt-2 text-sm font-medium text-green-600",
-                children: ["Starting at $", service.basePrice]
-              })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("a", {
-              href: "#",
-              className: "text-sm/6 font-semibold text-stone-500",
-              children: ["Learn more", " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
-                "aria-hidden": "true",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
-                  className: "font-bold text-blue-600 bi bi-arrow-right"
-                })
-              })]
-            })]
-          }, service.id || service.name))
+            }, service.id || service.name);
+          })
         })]
       })
     })

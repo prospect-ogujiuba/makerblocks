@@ -1,4 +1,4 @@
-// footer/Footer.jsx - Updated to use WordPress/TypeRocket data and Service API
+// footer/Footer.jsx - Simplified to use API response directly
 
 "use client";
 
@@ -71,12 +71,6 @@ const iconMap = {
 
 // Fallback navigation data
 const defaultNavigation = {
-	solutions: [
-		{ name: "Marketing", href: "#" },
-		{ name: "Analytics", href: "#" },
-		{ name: "Automation", href: "#" },
-		{ name: "Commerce", href: "#" },
-	],
 	support: [
 		{ name: "Submit ticket", href: "#" },
 		{ name: "Documentation", href: "#" },
@@ -111,8 +105,8 @@ export default function Footer({
 }) {
 	// State for services from API
 	const [services, setServices] = useState([]);
-	const [servicesLoading, setServicesLoading] = useState(true);
-	const [servicesError, setServicesError] = useState(null);
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState(null);
 
 	// Use WordPress data with fallbacks
 	const siteName = site.name || "Your Company";
@@ -122,15 +116,11 @@ export default function Footer({
 		`${site.url}/wp-content/plugins/makerblocks/assets/images/logos/logo-ph-black.png`;
 	const currentYear = site.current_year || new Date().getFullYear();
 
-	// Fetch services from API (same logic as Header)
+	// Fetch services from API (matching Header component approach)
 	const fetchServices = async () => {
 		try {
-			setServicesLoading(true);
-			setServicesError(null);
-
-			// Get CSRF token from DOM or use passed nonce
-			const csrfToken =
-				nonce || document.getElementById("_tr_nonce_form")?.value;
+			setLoading(true);
+			setError(null);
 
 			const response = await fetch("https://b2bcnc.test/api/v1/services", {
 				method: "GET",
@@ -139,7 +129,6 @@ export default function Footer({
 					"Content-Type": "application/json",
 					Accept: "application/json",
 					"X-Requested-With": "XMLHttpRequest",
-					...(csrfToken && { "X-CSRF-TOKEN": csrfToken }),
 				},
 			});
 
@@ -147,24 +136,20 @@ export default function Footer({
 				throw new Error(`HTTP ${response.status}: ${response.statusText}`);
 			}
 
-			const data = await response.json();
+			const result = await response.json();
 
-			// Transform API data to match footer format
-			const transformedServices = data
-				.filter((service) => service.active === "1")
-				.map((service) => ({
-					name: service.name,
-					href: `#service-${service.code}`,
-					new_window: false,
-				}));
-
-			setServices(transformedServices);
+			// Simple validation and direct assignment (matching your API structure)
+			if (result.data?.services) {
+				setServices(result.data.services.filter(service => service.active && !service.deleted_at));
+			} else {
+				throw new Error("Invalid response structure");
+			}
 		} catch (err) {
 			console.error("Failed to fetch services:", err);
-			setServicesError(err.message);
-			setServices([]); // Clear services on error
+			setError(err.message);
+			setServices([]);
 		} finally {
-			setServicesLoading(false);
+			setLoading(false);
 		}
 	};
 
@@ -172,26 +157,6 @@ export default function Footer({
 	useEffect(() => {
 		fetchServices();
 	}, [nonce]);
-
-	// Merge navigation data with defaults and API services
-	const nav = {
-		solutions: servicesLoading
-			? [{ name: "Loading services...", href: "#" }]
-			: services.length > 0
-			? services
-			: navigation.solutions?.length
-			? navigation.solutions
-			: defaultNavigation.solutions,
-		support: navigation.support?.length
-			? navigation.support
-			: defaultNavigation.support,
-		company: navigation.company?.length
-			? navigation.company
-			: defaultNavigation.company,
-		legal: navigation.legal?.length
-			? navigation.legal
-			: defaultNavigation.legal,
-	};
 
 	// Process social links with icon mapping
 	const socialLinks = (social.length ? social : defaultSocial).map((item) => ({
@@ -208,44 +173,38 @@ export default function Footer({
 						<img alt={siteName} src={logoUrl} className="h-16" />
 						<div className="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
 							<div className="md:grid md:grid-cols-2 md:gap-8">
-								{/* Solutions - Now populated from Service API */}
+								{/* Services - Populated from API */}
 								<div>
 									<h3 className="text-sm/6 font-semibold text-white">
 										Services
 									</h3>
 									<ul role="list" className="mt-6 space-y-4">
-										{servicesLoading ? (
+										{loading ? (
 											<li>
 												<span className="text-sm/6 text-gray-300">
 													Loading services...
 												</span>
 											</li>
-										) : servicesError ? (
+										) : error ? (
 											<li>
 												<span className="text-sm/6 text-gray-300">
 													Unable to load services
 												</span>
 											</li>
-										) : nav.solutions.length === 0 ? (
+										) : services.length === 0 ? (
 											<li>
 												<span className="text-sm/6 text-gray-300">
 													No services available
 												</span>
 											</li>
 										) : (
-											nav.solutions.map((item, index) => (
-												<li key={item.name || index}>
+											services.map((service) => (
+												<li key={service.id}>
 													<a
-														href={item.href}
+														href={`#service-${service.code}`}
 														className="text-sm/6 text-gray-300 hover:text-white"
-														target={item.new_window ? "_blank" : undefined}
-														rel={
-															item.new_window
-																? "noopener noreferrer"
-																: undefined
-														}
 													>
-														{item.name}
+														{service.name}
 													</a>
 												</li>
 											))
@@ -258,7 +217,7 @@ export default function Footer({
 										Support
 									</h3>
 									<ul role="list" className="mt-6 space-y-4">
-										{nav.support.map((item, index) => (
+										{(navigation.support?.length ? navigation.support : defaultNavigation.support).map((item, index) => (
 											<li key={item.name || index}>
 												<a
 													href={item.href}
@@ -282,7 +241,7 @@ export default function Footer({
 										Company
 									</h3>
 									<ul role="list" className="mt-6 space-y-4">
-										{nav.company.map((item, index) => (
+										{(navigation.company?.length ? navigation.company : defaultNavigation.company).map((item, index) => (
 											<li key={item.name || index}>
 												<a
 													href={item.href}
@@ -302,7 +261,7 @@ export default function Footer({
 								<div className="mt-10 md:mt-0">
 									<h3 className="text-sm/6 font-semibold text-white">Legal</h3>
 									<ul role="list" className="mt-6 space-y-4">
-										{nav.legal.map((item, index) => (
+										{(navigation.legal?.length ? navigation.legal : defaultNavigation.legal).map((item, index) => (
 											<li key={item.name || index}>
 												<a
 													href={item.href}

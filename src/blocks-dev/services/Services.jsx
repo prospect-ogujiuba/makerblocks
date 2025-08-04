@@ -29,17 +29,13 @@ export default function Services() {
 			setLoading(true);
 			setError(null);
 
-			// Get CSRF token from DOM
-			const csrfToken = document.getElementById("_tr_nonce_form")?.value;
-
-			const response = await fetch("https://b2bcnc.test/api/v1/services", {
+			const response = await fetch("https://b2bcnc.test/api/v1/services?limit=6", {
 				method: "GET",
 				credentials: "include",
 				headers: {
 					"Content-Type": "application/json",
 					Accept: "application/json",
 					"X-Requested-With": "XMLHttpRequest",
-					...(csrfToken && { "X-CSRF-TOKEN": csrfToken }),
 				},
 			});
 
@@ -47,25 +43,24 @@ export default function Services() {
 				throw new Error(`HTTP ${response.status}: ${response.statusText}`);
 			}
 
-			const data = await response.json();
+			const result = await response.json();
 
-			// Transform API data to match component format
-			const transformedServices = data
-				.filter((service) => service.active === "1") // Only show active services
-				.map((service) => ({
-					id: service.id,
-					name: service.name,
-					description: service.description,
-					icon: iconMap[service.icon] || ComputerDesktopIcon, // Fallback to desktop icon
-					code: service.code,
-					basePrice: service.base_price,
-				}));
-
-			setServices(transformedServices);
+			// Simple validation and direct assignment
+			if (result.data?.services) {
+				const transformedServices = result.data.services
+					.filter(service => service.active && !service.deleted_at)
+					.map(service => ({
+						...service,
+						IconComponent: iconMap[service.icon] || ComputerDesktopIcon
+					}));
+				setServices(transformedServices);
+			} else {
+				throw new Error("Invalid response structure");
+			}
 		} catch (err) {
 			console.error("Failed to fetch services:", err);
 			setError(err.message);
-			setServices([]); // Clear services on error
+			setServices([]);
 		} finally {
 			setLoading(false);
 		}
@@ -116,41 +111,44 @@ export default function Services() {
 								</p>
 							</div>
 						) : (
-							services.map((service) => (
-								<div
-									key={service.id || service.name}
-									className="hover:bg-blue-50 transition:color duration-300 rounded-sm shadow-blue-100 shadow-sm p-4"
-								>
-									<dt className="text-base/7 font-semibold text-gray-900">
-										<div className="mb-6 flex size-10 items-center justify-center rounded-lg bg-blue-600">
-											<service.icon
-												aria-hidden="true"
-												className="size-6 text-white"
-											/>
-										</div>
-										<a href="" className="text-blue-800 underline">
-											{service.name}
-										</a>
-									</dt>
-									<dd className="my-1 text-base/7 text-gray-600">
-										{service.description}
-										{service.basePrice && (
-											<div className="mt-2 text-sm font-medium text-green-600">
-												Starting at ${service.basePrice}
-											</div>
-										)}
-									</dd>
-									<a
-										href="#"
-										className="text-sm/6 font-semibold text-stone-500"
+							services.map((service) => {
+								const IconComponent = service.IconComponent;
+								return (
+									<div
+										key={service.id || service.name}
+										className="hover:bg-blue-50 transition-colors duration-300 rounded-sm shadow-blue-100 shadow-sm p-4"
 									>
-										Learn more{" "}
-										<span aria-hidden="true">
-											<i className="font-bold text-blue-600 bi bi-arrow-right"></i>
-										</span>
-									</a>
-								</div>
-							))
+										<dt className="text-base/7 font-semibold text-gray-900">
+											<div className="mb-6 flex size-10 items-center justify-center rounded-lg bg-blue-600">
+												<IconComponent
+													aria-hidden="true"
+													className="size-6 text-white"
+												/>
+											</div>
+											<a href="" className="text-blue-800 underline">
+												{service.name}
+											</a>
+										</dt>
+										<dd className="my-1 text-base/7 text-gray-600">
+											{service.description}
+											{service.base_price && (
+												<div className="mt-2 text-sm font-medium text-green-600">
+													Starting at ${service.base_price}
+												</div>
+											)}
+										</dd>
+										<a
+											href="#"
+											className="text-sm/6 font-semibold text-stone-500"
+										>
+											Learn more{" "}
+											<span aria-hidden="true">
+												<i className="font-bold text-blue-600 bi bi-arrow-right"></i>
+											</span>
+										</a>
+									</div>
+								);
+							})
 						)}
 					</dl>
 				</div>
