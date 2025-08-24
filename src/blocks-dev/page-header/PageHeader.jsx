@@ -22,7 +22,7 @@ export default function PageHeader({
 
 		return (
 			<nav className="mb-8" aria-label="Breadcrumb">
-				<ol className="flex items-center space-x-2 text-sm">
+				<ol className="flex items-center w-full space-x-2 text-sm bg-white px-4 py-2 rounded-md shadow">
 					{breadcrumbs.map((crumb, index) => (
 						<li key={index} className="flex items-center">
 							{index < breadcrumbs.length - 1 ? (
@@ -58,10 +58,9 @@ export default function PageHeader({
 	return (
 		<div className="bg-blue-100 py-8">
 			<div className="mx-auto max-w-7xl px-6 lg:px-8">
-				<div className="mx-auto max-w-2xl lg:mx-0">
+
 					{/* Breadcrumbs */}
 					<BreadcrumbNav />
-
 					{/* Main Header Content */}
 					{headerData.subtitle && (
 						<p className="text-base/7 font-semibold text-blue-600">
@@ -72,7 +71,7 @@ export default function PageHeader({
 					<h1 className="mt-2 text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl">
 						{headerData.title}
 					</h1>
-				</div>
+
 			</div>
 		</div>
 	);

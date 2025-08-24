@@ -3731,6 +3731,9 @@ a:where(:not(.wp-element-button)) {
   .h-16 {
     height: calc(var(--spacing) * 16);
   }
+  .h-18 {
+    height: calc(var(--spacing) * 18);
+  }
   .h-20 {
     height: calc(var(--spacing) * 20);
   }
@@ -33354,6 +33357,11 @@ a:where(:not(.wp-element-button)) {
     }
   }
   @media (width >= 64rem) {
+    .lg\:col-span-1 {
+      grid-column: span 1/span 1;
+    }
+  }
+  @media (width >= 64rem) {
     .lg\:col-span-2 {
       grid-column: span 2/span 2;
     }
@@ -33406,6 +33414,11 @@ a:where(:not(.wp-element-button)) {
   @media (width >= 64rem) {
     .lg\:aspect-\[3\/2\] {
       aspect-ratio: 3/2;
+    }
+  }
+  @media (width >= 64rem) {
+    .lg\:h-18 {
+      height: calc(var(--spacing) * 18);
     }
   }
   @media (width >= 64rem) {

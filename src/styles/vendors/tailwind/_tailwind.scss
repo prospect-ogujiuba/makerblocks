@@ -3573,6 +3573,9 @@
   .h-16 {
     height: calc(var(--spacing) * 16);
   }
+  .h-18 {
+    height: calc(var(--spacing) * 18);
+  }
   .h-20 {
     height: calc(var(--spacing) * 20);
   }
@@ -33513,6 +33516,11 @@
       z-index: 50;
     }
   }
+  .lg\:col-span-1 {
+    @media (width >= 64rem) {
+      grid-column: span 1 / span 1;
+    }
+  }
   .lg\:col-span-2 {
     @media (width >= 64rem) {
       grid-column: span 2 / span 2;
@@ -33566,6 +33574,11 @@
   .lg\:aspect-\[3\/2\] {
     @media (width >= 64rem) {
       aspect-ratio: 3/2;
+    }
+  }
+  .lg\:h-18 {
+    @media (width >= 64rem) {
+      height: calc(var(--spacing) * 18);
     }
   }
   .lg\:w-72 {

@@ -13350,7 +13350,7 @@ const callsToAction = [{
   icon: _heroicons_react_20_solid__WEBPACK_IMPORTED_MODULE_2__["default"]
 }, {
   name: "View all services",
-  href: "services",
+  href: "/services",
   icon: _heroicons_react_20_solid__WEBPACK_IMPORTED_MODULE_9__["default"]
 }];
 function Header({
@@ -13423,7 +13423,7 @@ function Header({
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
             alt: "",
             src: logoUrl,
-            className: "h-12 w-auto"
+            className: "h-12 lg:h-18 w-auto"
           })]
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
@@ -13514,15 +13514,15 @@ function Header({
           className: "text-sm/6 font-semibold text-gray-900",
           children: "Contact"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
-          href: "support",
+          href: "/support",
           className: "text-sm/6 font-semibold text-gray-900",
           children: "Support"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
-          href: "resources",
+          href: "/resources",
           className: "text-sm/6 font-semibold text-gray-900",
           children: "Resources"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
-          href: "company",
+          href: "/company",
           className: "text-sm/6 font-semibold text-gray-900",
           children: "Company"
         })]
@@ -13857,7 +13857,7 @@ function PageHeader({
       className: "mb-8",
       "aria-label": "Breadcrumb",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("ol", {
-        className: "flex items-center space-x-2 text-sm",
+        className: "flex items-center w-full space-x-2 text-sm bg-white px-4 py-2 rounded-md shadow",
         children: breadcrumbs.map((crumb, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("li", {
           className: "flex items-center",
           children: index < breadcrumbs.length - 1 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
@@ -13883,18 +13883,15 @@ function PageHeader({
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
     className: "bg-blue-100 py-8",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
       className: "mx-auto max-w-7xl px-6 lg:px-8",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-        className: "mx-auto max-w-2xl lg:mx-0",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(BreadcrumbNav, {}), headerData.subtitle && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
-          className: "text-base/7 font-semibold text-blue-600",
-          children: headerData.subtitle
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
-          className: "mt-2 text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl",
-          children: headerData.title
-        })]
-      })
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(BreadcrumbNav, {}), headerData.subtitle && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
+        className: "text-base/7 font-semibold text-blue-600",
+        children: headerData.subtitle
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
+        className: "mt-2 text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl",
+        children: headerData.title
+      })]
     })
   });
 }

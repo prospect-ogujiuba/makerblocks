@@ -41,7 +41,7 @@ const iconMap = {
 const callsToAction = [
 	{ name: "Watch demo", href: "#", icon: PlayCircleIcon },
 	{ name: "Contact sales", href: "/#b2bcnc-cta", icon: PhoneIcon },
-	{ name: "View all services", href: "services", icon: RectangleGroupIcon },
+	{ name: "View all services", href: "/services", icon: RectangleGroupIcon },
 ];
 
 export default function Header({ site = {}, navigation = [], nonce = "" }) {
@@ -60,15 +60,18 @@ export default function Header({ site = {}, navigation = [], nonce = "" }) {
 			setLoading(true);
 			setError(null);
 
-			const response = await fetch("https://b2bcnc.test/api/v1/services?limit=6", {
-				method: "GET",
-				credentials: "include",
-				headers: {
-					"Content-Type": "application/json",
-					Accept: "application/json",
-					"X-Requested-With": "XMLHttpRequest",
+			const response = await fetch(
+				"https://b2bcnc.test/api/v1/services?limit=6",
+				{
+					method: "GET",
+					credentials: "include",
+					headers: {
+						"Content-Type": "application/json",
+						Accept: "application/json",
+						"X-Requested-With": "XMLHttpRequest",
+					},
 				},
-			});
+			);
 
 			if (!response.ok) {
 				throw new Error(`HTTP ${response.status}: ${response.statusText}`);
@@ -78,7 +81,11 @@ export default function Header({ site = {}, navigation = [], nonce = "" }) {
 
 			// Simple validation and direct assignment
 			if (result.data?.services) {
-				setServices(result.data.services.filter(service => service.active && !service.deleted_at));
+				setServices(
+					result.data.services.filter(
+						(service) => service.active && !service.deleted_at,
+					),
+				);
 			} else {
 				throw new Error("Invalid response structure");
 			}
@@ -110,7 +117,7 @@ export default function Header({ site = {}, navigation = [], nonce = "" }) {
 				<div className="flex lg:flex-1">
 					<a href={siteUrl}>
 						<span className="sr-only">{siteName}</span>
-						<img alt="" src={logoUrl} className="h-12 w-auto" />
+						<img alt="" src={logoUrl} className="h-12 lg:h-18 w-auto" />
 					</a>
 				</div>
 				<div className="flex lg:hidden">
@@ -151,7 +158,9 @@ export default function Header({ site = {}, navigation = [], nonce = "" }) {
 								) : services.length === 0 ? (
 									<div className="mx-auto max-w-7xl px-6 py-10 lg:px-8">
 										<div className="text-center text-gray-500">
-											{error ? "Unable to load services" : "No services available"}
+											{error
+												? "Unable to load services"
+												: "No services available"}
 										</div>
 									</div>
 								) : (
@@ -210,13 +219,13 @@ export default function Header({ site = {}, navigation = [], nonce = "" }) {
 					>
 						Contact
 					</a>
-					<a href="support" className="text-sm/6 font-semibold text-gray-900">
+					<a href="/support" className="text-sm/6 font-semibold text-gray-900">
 						Support
 					</a>
-					<a href="resources" className="text-sm/6 font-semibold text-gray-900">
+					<a href="/resources" className="text-sm/6 font-semibold text-gray-900">
 						Resources
 					</a>
-					<a href="company" className="text-sm/6 font-semibold text-gray-900">
+					<a href="/company" className="text-sm/6 font-semibold text-gray-900">
 						Company
 					</a>
 				</PopoverGroup>
@@ -268,7 +277,9 @@ export default function Header({ site = {}, navigation = [], nonce = "" }) {
 											</div>
 										) : services.length === 0 ? (
 											<div className="block rounded-lg py-2 pl-6 pr-3 text-sm/7 text-gray-500">
-												{error ? "Unable to load services" : "No services available"}
+												{error
+													? "Unable to load services"
+													: "No services available"}
 											</div>
 										) : (
 											[...services, ...callsToAction].map((item) => (
