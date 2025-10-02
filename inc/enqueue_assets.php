@@ -66,5 +66,8 @@ function makerblocks_enqueue_admin_assets() {
 
 	wp_register_style('makerblocks-admin-styles', MAKERBLOCKS_PLUGIN_URL . 'assets/admin/styles-wp-admin.css', [], $style_version, 'all');
 	wp_enqueue_style('makerblocks-admin-styles');
+	
+	wp_register_style('bootstrap-icons', MAKERBLOCKS_PLUGIN_URL . 'assets/css/bootstrap-icons.css', [], '1.11.1', 'all');
+	wp_enqueue_style('bootstrap-icons');
 }
 add_action('admin_enqueue_scripts', 'makerblocks_enqueue_admin_assets');
