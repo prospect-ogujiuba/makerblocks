@@ -14,9 +14,12 @@ $logo_url = $upload_dir['baseurl'] . '/b2bcnc_logo_bg_white.png';
 
 $site_data['logo_url'] = $logo_url;
 
+$nonce = tr_nonce();
+
 
 $component_data = [
-	'site' => $site_data
+	'site' => $site_data,
+	'nonce' => $nonce
 ];
 
 ?>
