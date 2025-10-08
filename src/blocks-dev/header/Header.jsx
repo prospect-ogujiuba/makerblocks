@@ -79,28 +79,28 @@ export default function Header({ site = {}, navigation = [], nonce }) {
 						<div className="hidden lg:ml-6 lg:flex lg:space-x-8">
 							{/* Current: "border-blue-600 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" */}
 							<a
-								href="#"
+								href="/services"
 								className="inline-flex items-center border-b-2 border-blue-600 px-1 pt-1 text-sm font-medium text-gray-900"
 							>
-								Dashboard
+								Services
 							</a>
 							<a
-								href="#"
+								href="/resources"
 								className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
 							>
-								Team
+								Resources
 							</a>
 							<a
-								href="#"
+								href="/support"
 								className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
 							>
-								Projects
+								Support
 							</a>
 							<a
-								href="#"
+								href="/company"
 								className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
 							>
-								Calendar
+								Company
 							</a>
 						</div>
 					</div>

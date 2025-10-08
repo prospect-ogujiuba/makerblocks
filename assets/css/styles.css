@@ -32531,17 +32531,11 @@ a:where(:not(.wp-element-button)) {
     -webkit-user-select: none;
     user-select: none;
   }
-  .\[--anchor-gap\:--spacing\(2\)\] {
-    --anchor-gap: calc(var(--spacing) * 2);
-  }
   :where(.divide-x-reverse > :not(:last-child)) {
     --tw-divide-x-reverse: 1;
   }
   .ring-inset {
     --tw-ring-inset: inset;
-  }
-  .not-in-aria-expanded\:hidden:not(:where(*[aria-expanded=true]) *) {
-    display: none;
   }
   @media (hover: hover) {
     .group-hover\:bg-blue-500:is(:where(.group):hover *) {
@@ -32585,17 +32579,11 @@ a:where(:not(.wp-element-button)) {
   .placeholder\:text-gray-400::placeholder {
     color: var(--color-gray-400);
   }
-  .backdrop\:bg-transparent::backdrop {
-    background-color: transparent;
-  }
   .first\:pt-0:first-child {
     padding-top: calc(var(--spacing) * 0);
   }
   .last\:pb-0:last-child {
     padding-bottom: calc(var(--spacing) * 0);
-  }
-  .open\:block:is([open], :popover-open, :open) {
-    display: block;
   }
   .focus-within\:relative:focus-within {
     position: relative;
@@ -32643,11 +32631,6 @@ a:where(:not(.wp-element-button)) {
   @media (hover: hover) {
     .hover\:bg-green-500:hover {
       background-color: var(--color-green-500);
-    }
-  }
-  @media (hover: hover) {
-    .hover\:bg-indigo-500:hover {
-      background-color: var(--color-indigo-500);
     }
   }
   @media (hover: hover) {
@@ -32750,9 +32733,6 @@ a:where(:not(.wp-element-button)) {
   .focus\:border-blue-500:focus {
     border-color: var(--color-blue-500);
   }
-  .focus\:bg-gray-100:focus {
-    background-color: var(--color-gray-100);
-  }
   .focus\:ring-2:focus {
     --tw-ring-shadow: var(--tw-ring-inset,) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color, currentcolor);
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
@@ -32801,9 +32781,6 @@ a:where(:not(.wp-element-button)) {
   .focus\:outline-blue-600:focus {
     outline-color: var(--color-blue-600);
   }
-  .focus\:outline-indigo-600:focus {
-    outline-color: var(--color-indigo-600);
-  }
   .focus\:outline-none:focus {
     --tw-outline-style: none;
     outline-style: none;
@@ -32828,9 +32805,6 @@ a:where(:not(.wp-element-button)) {
   .focus-visible\:outline-green-600:focus-visible {
     outline-color: var(--color-green-600);
   }
-  .focus-visible\:outline-indigo-600:focus-visible {
-    outline-color: var(--color-indigo-600);
-  }
   .disabled\:cursor-not-allowed:disabled {
     cursor: not-allowed;
   }
@@ -32839,9 +32813,6 @@ a:where(:not(.wp-element-button)) {
   }
   .disabled\:bg-gray-400:disabled {
     background-color: var(--color-gray-400);
-  }
-  :where(*[aria-expanded=true]) .in-aria-expanded\:hidden {
-    display: none;
   }
   .has-\[\:checked\]\:bg-blue-600:has(*:is(:checked)) {
     background-color: var(--color-blue-600);
@@ -33342,26 +33313,6 @@ a:where(:not(.wp-element-button)) {
     }
   }
   @media (width >= 48rem) {
-    .md\:absolute {
-      position: absolute;
-    }
-  }
-  @media (width >= 48rem) {
-    .md\:inset-y-0 {
-      inset-block: calc(var(--spacing) * 0);
-    }
-  }
-  @media (width >= 48rem) {
-    .md\:right-0 {
-      right: calc(var(--spacing) * 0);
-    }
-  }
-  @media (width >= 48rem) {
-    .md\:left-0 {
-      left: calc(var(--spacing) * 0);
-    }
-  }
-  @media (width >= 48rem) {
     .md\:order-1 {
       order: 1;
     }
@@ -33374,11 +33325,6 @@ a:where(:not(.wp-element-button)) {
   @media (width >= 48rem) {
     .md\:col-span-2 {
       grid-column: span 2/span 2;
-    }
-  }
-  @media (width >= 48rem) {
-    .md\:mx-auto {
-      margin-inline: auto;
     }
   }
   @media (width >= 48rem) {
@@ -33399,11 +33345,6 @@ a:where(:not(.wp-element-button)) {
   @media (width >= 48rem) {
     .md\:grid {
       display: grid;
-    }
-  }
-  @media (width >= 48rem) {
-    .md\:max-w-3xl {
-      max-width: var(--container-3xl);
     }
   }
   @media (width >= 48rem) {
@@ -33442,11 +33383,6 @@ a:where(:not(.wp-element-button)) {
     }
   }
   @media (width >= 48rem) {
-    .md\:px-8 {
-      padding-inline: calc(var(--spacing) * 8);
-    }
-  }
-  @media (width >= 48rem) {
     .md\:px-10 {
       padding-inline: calc(var(--spacing) * 10);
     }
@@ -33482,11 +33418,6 @@ a:where(:not(.wp-element-button)) {
   @media (width >= 64rem) {
     .lg\:fixed {
       position: fixed;
-    }
-  }
-  @media (width >= 64rem) {
-    .lg\:static {
-      position: static;
     }
   }
   @media (width >= 64rem) {
@@ -33565,11 +33496,6 @@ a:where(:not(.wp-element-button)) {
     }
   }
   @media (width >= 64rem) {
-    .lg\:h-18 {
-      height: calc(var(--spacing) * 18);
-    }
-  }
-  @media (width >= 64rem) {
     .lg\:w-72 {
       width: calc(var(--spacing) * 72);
     }
@@ -33642,11 +33568,6 @@ a:where(:not(.wp-element-button)) {
     }
   }
   @media (width >= 64rem) {
-    .lg\:overflow-y-visible {
-      overflow-y: visible;
-    }
-  }
-  @media (width >= 64rem) {
     .lg\:p-12 {
       padding: calc(var(--spacing) * 12);
     }
@@ -33659,11 +33580,6 @@ a:where(:not(.wp-element-button)) {
   @media (width >= 64rem) {
     .lg\:px-8 {
       padding-inline: calc(var(--spacing) * 8);
-    }
-  }
-  @media (width >= 64rem) {
-    .lg\:py-4 {
-      padding-block: calc(var(--spacing) * 4);
     }
   }
   @media (width >= 64rem) {
@@ -33694,16 +33610,6 @@ a:where(:not(.wp-element-button)) {
   @media (width >= 80rem) {
     .xl\:col-span-2 {
       grid-column: span 2/span 2;
-    }
-  }
-  @media (width >= 80rem) {
-    .xl\:col-span-4 {
-      grid-column: span 4/span 4;
-    }
-  }
-  @media (width >= 80rem) {
-    .xl\:col-span-6 {
-      grid-column: span 6/span 6;
     }
   }
   @media (width >= 80rem) {
@@ -33782,11 +33688,6 @@ a:where(:not(.wp-element-button)) {
     }
   }
   @media (width >= 80rem) {
-    .xl\:grid-cols-12 {
-      grid-template-columns: repeat(12, minmax(0, 1fr));
-    }
-  }
-  @media (width >= 80rem) {
     .xl\:justify-end {
       justify-content: flex-end;
     }
@@ -33806,11 +33707,6 @@ a:where(:not(.wp-element-button)) {
   @media (width >= 80rem) {
     .xl\:gap-x-8 {
       column-gap: calc(var(--spacing) * 8);
-    }
-  }
-  @media (width >= 80rem) {
-    .xl\:px-0 {
-      padding-inline: calc(var(--spacing) * 0);
     }
   }
   @media (width >= 80rem) {
