@@ -2,43 +2,15 @@
 import { createRoot } from "react-dom/client";
 
 // Import all React components
-import CTA from "../blocks-dev/cta/CTA";
-import Faqs from "../blocks-dev/faqs/Faqs";
 import Footer from "../blocks-dev/footer/Footer";
 import Header from "../blocks-dev/header/Header";
-import Hero from "../blocks-dev/hero/Hero";
-import Industries from "../blocks-dev/industries/Industries";
-import PageHeader from "../blocks-dev/page-header/PageHeader";
-import Portfolio from "../blocks-dev/portfolio/Portfolio";
-import Services from "../blocks-dev/services/Services";
-import Testimonials from "../blocks-dev/testimonials/Testimonials";
-import QuoteCreator from "../blocks-dev/quote-creator/QuoteCreator";
-import Error404 from "../blocks-dev/error-404/Error404";
 
 class MakerBlocks {
 	constructor() {
 		// Component registry - maps element IDs to their React components
 		this.componentRegistry = [
-			{ id: "b2bcnc-cta", component: CTA, name: "CTA" },
-			{ id: "b2bcnc-faqs", component: Faqs, name: "Faqs" },
 			{ id: "b2bcnc-footer", component: Footer, name: "Footer" },
 			{ id: "b2bcnc-header", component: Header, name: "Header" },
-			{ id: "b2bcnc-hero", component: Hero, name: "Hero" },
-			{ id: "b2bcnc-industries", component: Industries, name: "Industries" },
-			{ id: "b2bcnc-page-header", component: PageHeader, name: "PageHeader" },
-			{ id: "b2bcnc-portfolio", component: Portfolio, name: "Portfolio" },
-			{ id: "b2bcnc-services", component: Services, name: "Services" },
-			{ id: "b2bcnc-error-404", component: Error404, name: "Error404" },
-			{
-				id: "b2bcnc-testimonials",
-				component: Testimonials,
-				name: "Testimonials",
-			},
-			{
-				id: "b2bcnc-quote-creator",
-				component: QuoteCreator,
-				name: "QuoteCreator",
-			},
 		];
 
 		this.init();
@@ -77,9 +49,9 @@ class MakerBlocks {
 		try {
 			const root = createRoot(element);
 			root.render(<Component {...props} />);
-			console.log(`✅ Mounted ${name} component`);
+			// console.log(`✅ Mounted ${name} component`);
 		} catch (error) {
-			console.error(`❌ Failed to mount ${name} component:`, error);
+			// console.error(`❌ Failed to mount ${name} component:`, error);
 		}
 	}
 
