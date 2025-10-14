@@ -30,8 +30,8 @@ import { useBlockProps } from "@wordpress/block-editor";
  */
 export default function Edit() {
 	return (
-		<header {...useBlockProps()}>
-			{__("Site Header", "b2bcnc")}
-		</header>
+		<footer {...useBlockProps()}>
+			{__("Error 404", "b2bcnc")}
+		</footer>
 	);
 }

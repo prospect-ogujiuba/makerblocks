@@ -1,12 +1,12 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
-  "name": "b2bcnc/footer",
+  "name": "b2bcnc/error-404",
   "version": "0.1.0",
-  "title": "Site Footer",
+  "title": "Site Error 404",
   "category": "makerblocks",
   "icon": "insert",
-  "description": "This contains the main bottom navigation",
+  "description": "This contains a not found template",
   "example": {},
   "supports": {
     "html": false

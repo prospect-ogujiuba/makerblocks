@@ -4,6 +4,7 @@ import { createRoot } from "react-dom/client";
 // Import all React components
 import Footer from "../blocks-dev/footer/Footer";
 import Header from "../blocks-dev/header/Header";
+import Error404 from "../blocks-dev/error-404/Error404";
 
 class MakerBlocks {
 	constructor() {
@@ -11,6 +12,7 @@ class MakerBlocks {
 		this.componentRegistry = [
 			{ id: "b2bcnc-footer", component: Footer, name: "Footer" },
 			{ id: "b2bcnc-header", component: Header, name: "Header" },
+			{ id: "b2bcnc-error-404", component: Error404, name: "Error404" },
 		];
 
 		this.init();

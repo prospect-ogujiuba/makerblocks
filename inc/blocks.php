@@ -11,6 +11,7 @@ function makerblocks_get_custom_blocks()
 	return [
 		'header',
 		'footer',
+		'error-404',
 	];
 }
 

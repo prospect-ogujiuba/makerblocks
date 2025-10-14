@@ -30,8 +30,8 @@ import { useBlockProps } from "@wordpress/block-editor";
  */
 export default function Edit() {
 	return (
-		<p {...useBlockProps()}>
-			{__("Site Footer – hello from the editor!", "b2bcnc")}
-		</p>
+		<footer {...useBlockProps()}>
+			{__("Site Footer", "b2bcnc")}
+		</footer>
 	);
 }
