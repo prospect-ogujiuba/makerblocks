@@ -24,11 +24,14 @@ function makerblocks_localize_script()
 		'language'         => get_bloginfo('language'),
 		'homeUrl'          => home_url(),
 		'siteUrl'          => site_url(),
+		'restUrl'          => rest_url(),
 
+		// REST API Authentication
+		'restNonce'        => wp_create_nonce('wp_rest'),
 	];
 
 	if (is_user_logged_in()) {
-		$site_info = [
+		$site_info = array_merge($site_info, [
 			// Site info
 			'adminEmail'       => get_bloginfo('admin_email'),
 			'stylesheetUrl'    => get_bloginfo('stylesheet_url'),
@@ -37,7 +40,6 @@ function makerblocks_localize_script()
 			'pingbackUrl'      => get_bloginfo('pingback_url'),
 			'adminUrl'         => admin_url(),
 			'ajaxUrl'          => admin_url('admin-ajax.php'),
-			'restUrl'          => rest_url(),
 
 			// Theme info
 			'themeName'        => $theme->get('Name'),
@@ -75,8 +77,9 @@ function makerblocks_localize_script()
 			'isFrontPage'      => is_front_page(),
 			'isAdmin'          => is_admin(),
 			'nonce'            => tr_nonce()
-		];
+		]);
 	}
+
 	// If it's a singular post or page, add more post-specific data
 	if (is_singular()) {
 		global $post;
