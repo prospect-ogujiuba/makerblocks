@@ -11643,30 +11643,38 @@ __webpack_require__.r(__webpack_exports__);
 
 function Hero() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-    className: "bg-white",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-      className: "relative isolate overflow-hidden bg-linear-to-b from-blue-100/20 from-blue-950/10",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+    className: "bg-white relative",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+      className: "relative isolate overflow-hidden bg-gradient-to-r from-blue-900 via-slate-50 to-indigo-900",
+      style: {
+        backgroundImage: `url('https://b2bcnc.test/wp-content/uploads/modern_enterprise_2.jpg')`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundColor: "gray",
+        backgroundBlendMode: "multiply"
+      },
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
         className: "mx-auto max-w-7xl pt-10 pb-24 sm:pb-32 lg:grid lg:grid-cols-3 lg:gap-x-8 lg:px-8 lg:py-40",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
           className: "px-6 lg:px-0 lg:pt-4 lg:col-span-2",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
             className: "max-w-3xl",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
-              className: "text-md font-medium text-pretty text-gray-600 sm:text-2xl",
+              className: "mb-4 text-md font-medium text-pretty text-gray-200 sm:text-2xl",
               children: "Unify your technology infrastructure: Front to Back"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
-              className: "text-2xl font-semibold tracking-tight text-pretty sm:text-5xl text-gray-900",
-              children: "Modern communication, networking and computer systems."
+              className: "mb-8 text-2xl font-semibold tracking-tight text-pretty sm:text-5xl text-white",
+              children: "Modernize your communications, networking and computer systems."
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-              className: "mt-10 flex items-center gap-x-6",
+              className: "flex items-center space-x-6",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", {
                 href: "#",
-                className: "px-6 py-4 bg-blue-600 rounded-full text-white font-bold",
+                className: "px-6 py-4 bg-blue-600 rounded-full text-white font-bold hover:bg-blue-800 duration-300",
                 children: "Browser Our Services"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
                 href: "#",
-                className: "text-sm/6 font-semibold text-blue-900",
+                className: "text-sm/6 font-semibold px-6 py-4 bg-white border border-blue-600 rounded-full text-blue-900 hover:bg-blue-100 duration-300",
                 children: ["View Resources ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
                   "aria-hidden": "true",
                   children: "\u2192"
@@ -11674,10 +11682,56 @@ function Hero() {
               })]
             })]
           })
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-        className: "absolute inset-x-0 bottom-0 -z-10 h-24 bg-linear-to-t from-white sm:h-32 from-gray-900"
-      })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+          className: "relative flex items-center mt-10 lg:mt-0",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+            className: "w-full bg-black bg-opacity-10 border border-white/20 rounded-2xl p-8 transform hover:scale-105 transition-all duration-300 hover:bg-white/15",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+              className: "flex items-center justify-between mb-4",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+                className: "w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("svg", {
+                  className: "w-6 h-6 text-white",
+                  fill: "none",
+                  stroke: "currentColor",
+                  viewBox: "0 0 24 24",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", {
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    strokeWidth: "2",
+                    d: "M13 10V3L4 14h7v7l9-11h-7z"
+                  })
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
+                className: "text-blue-200 text-sm font-semibold",
+                children: "Featured"
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h3", {
+              className: "text-xl font-bold text-white mb-3",
+              children: "Premium Services"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
+              className: "text-blue-100 mb-6 text-sm leading-relaxed",
+              children: "Transform your business with our comprehensive technology solutions. From cloud migration to system integration."
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("button", {
+              className: "flex items-center text-white font-semibold hover:text-blue-200 transition-colors group",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
+                children: "Learn More"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("svg", {
+                className: "w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform",
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: "2",
+                  d: "M17 8l4 4m0 0l-4 4m4-4H3"
+                })
+              })]
+            })]
+          })
+        })]
+      })
     })
   });
 }
