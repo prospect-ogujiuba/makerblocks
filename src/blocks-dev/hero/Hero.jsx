@@ -38,7 +38,7 @@ export default function Hero() {
 						</div>
 					</div>
 					<div className="relative flex items-center mt-10 lg:mt-0">
-						<div className="w-full bg-black bg-opacity-10 border border-white/20 rounded-2xl p-8 transform hover:scale-105 transition-all duration-300 hover:bg-white/15">
+						<div className="w-full bg-black/50 border border-white/20 rounded-2xl p-8 transform transition-all duration-300 hover:bg-black/80">
 							<div className="flex items-center justify-between mb-4">
 								<div className="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center">
 									<svg

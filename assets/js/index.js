@@ -11685,7 +11685,7 @@ function Hero() {
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
           className: "relative flex items-center mt-10 lg:mt-0",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-            className: "w-full bg-black bg-opacity-10 border border-white/20 rounded-2xl p-8 transform hover:scale-105 transition-all duration-300 hover:bg-white/15",
+            className: "w-full bg-black/50 border border-white/20 rounded-2xl p-8 transform transition-all duration-300 hover:bg-black/80",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
               className: "flex items-center justify-between mb-4",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
