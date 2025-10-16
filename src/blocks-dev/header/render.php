@@ -1,6 +1,6 @@
 <?php
 // --- Helpers: build menu data for a classic nav menu (term_id) ---
-function b2bcnc_get_menu_tree_by_id(int $menu_id, string $current_path): array
+function makerblocks_get_menu_tree_by_id(int $menu_id, string $current_path): array
 {
 	$items = wp_get_nav_menu_items($menu_id, ['update_post_term_cache' => false]);
 	if (! $items) {
@@ -77,7 +77,7 @@ $current_path = rtrim(parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH), '
 $current_path = $current_path === '' ? '/' : $current_path;
 
 // // Build menu (menu term ID = 7)
-$main_menu = b2bcnc_get_menu_tree_by_id(7, $current_path);
+$main_menu = makerblocks_get_menu_tree_by_id(7, $current_path);
 $current_user = wp_get_current_user();
 $profile_image = get_avatar_url($current_user);
 $registration_url = wp_registration_url();
@@ -99,7 +99,7 @@ $component_data = [
 <header
 	<?php
 	echo get_block_wrapper_attributes([
-		'id' => 'b2bcnc-header',
+		'id' => 'makerblocks-header',
 		// You can also put other attributes here if needed
 	]);
 	?>

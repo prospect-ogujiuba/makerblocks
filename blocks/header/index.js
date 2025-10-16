@@ -8,7 +8,7 @@
   \******************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"b2bcnc/header","version":"0.1.0","title":"Site Header","category":"makerblocks","icon":"insert","description":"This contains the main navigation and document info","example":{},"supports":{"html":false},"textdomain":"b2bcnc","editorScript":"file:./index.js","render":"file:./render.php"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"makerblocks/header","version":"0.1.0","title":"Site Header","category":"makerblocks","icon":"insert","description":"This contains the main navigation and document info","example":{},"supports":{"html":false},"textdomain":"makerblocks","editorScript":"file:./index.js","render":"file:./render.php"}');
 
 /***/ }),
 
@@ -62,7 +62,7 @@ __webpack_require__.r(__webpack_exports__);
 function Edit() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("header", {
     ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)(),
-    children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Site Header", "b2bcnc")
+    children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Site Header", "makerblocks")
   });
 }
 

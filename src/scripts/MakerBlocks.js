@@ -2,19 +2,15 @@
 import { createRoot } from "react-dom/client";
 
 // Import all React components
-import Footer from "../blocks-dev/footer/Footer";
 import Header from "../blocks-dev/header/Header";
-import Error404 from "../blocks-dev/error-404/Error404";
-import Hero from "../blocks-dev/hero/Hero";
+import MakerStarter from "./apps/makerstarter/MakerStarter";
 
 class MakerBlocks {
 	constructor() {
 		// Component registry - maps element IDs to their React components
 		this.componentRegistry = [
-			{ id: "b2bcnc-footer", component: Footer, name: "Footer" },
-			{ id: "b2bcnc-header", component: Header, name: "Header" },
-			{ id: "b2bcnc-error-404", component: Error404, name: "Error404" },
-			{ id: "b2bcnc-hero", component: Hero, name: "Hero" },
+			{ id: "makerblocks-app", component: MakerStarter, name: "Makerstarter" },
+			// { id: "makerblocks-header", component: Header, name: "Header" },
 		];
 
 		this.init();

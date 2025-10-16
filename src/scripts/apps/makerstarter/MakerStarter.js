@@ -18,9 +18,9 @@ import Shop from "./pages/Shop";
 
 export default function MakerStarter() {
 	return (
-		<BrowserRouter basename="/app">
+		<BrowserRouter basename="/">
 			<Routes>
-				<Route path="/app" element={<Navigate to="/home" replace />} />
+				<Route path="/" element={<Navigate to="/home" replace />} />
 				<Route element={<DashboardLayout />}>
 					<Route path="/" element={<Home />} />
 					<Route path="/home" element={<Home />} />

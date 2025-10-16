@@ -30,8 +30,6 @@ import { useBlockProps } from "@wordpress/block-editor";
  */
 export default function Edit() {
 	return (
-		<header {...useBlockProps()}>
-			{__("Site Header", "b2bcnc")}
-		</header>
+		<header {...useBlockProps()}>{__("Site Header", "makerblocks")}</header>
 	);
 }
