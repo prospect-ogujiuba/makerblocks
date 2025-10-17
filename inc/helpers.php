@@ -34,3 +34,14 @@ function custom_breadcrumbs()
 	// Output the breadcrumbs
 	return $breadcrumbs;
 }
+
+/**
+ * Redirect 404 errors to home page
+ */
+function redirect_404_to_home() {
+    if (is_404()) {
+        wp_redirect(home_url('/'), 301);
+        exit;
+    }
+}
+add_action('template_redirect', 'redirect_404_to_home');

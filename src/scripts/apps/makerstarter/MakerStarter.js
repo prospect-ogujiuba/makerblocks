@@ -15,6 +15,7 @@ import Resources from "./pages/Resources";
 import Portfolio from "./pages/Portfolio";
 import Cases from "./pages/Cases";
 import Shop from "./pages/Shop";
+import Settings from "./pages/Settings";
 
 export default function MakerStarter() {
 	return (
@@ -31,7 +32,8 @@ export default function MakerStarter() {
 					<Route path="/portfolio" element={<Portfolio />} />
 					<Route path="/cases" element={<Cases />} />
 					<Route path="/shop" element={<Shop />} />
-					{/* <Route path="*" element={<Navigate to="/" replace />} /> */}
+					<Route path="/settings" element={<Settings />} />
+					<Route path="*" element={<Navigate to="/home" replace />} />
 				</Route>
 			</Routes>
 		</BrowserRouter>
