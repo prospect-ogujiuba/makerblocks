@@ -9,6 +9,7 @@ tools:
   - Glob
   - Grep
   - Bash
+  - AskUserQuestion
 ---
 
 <role>

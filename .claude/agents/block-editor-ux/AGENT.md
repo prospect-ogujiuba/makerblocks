@@ -8,6 +8,7 @@ tools:
   - Edit
   - Grep
   - Glob
+  - AskUserQuestion
 ---
 
 <role>
