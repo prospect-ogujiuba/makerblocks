@@ -1,0 +1,24 @@
+# Input Schema: Test Target
+
+test_target:
+  block_name: string           # kebab-case: "services"
+  component: string            # PascalCase: "ServicesBlock"
+  file: string                 # Path: "src/blocks-dev/services/ServicesBlock.jsx"
+  component_type: string       # frontend | editor | shared
+
+  data_source:                 # Optional - for data fetching tests
+    endpoint: string           # "/tr-api/rest/services"
+    method: string             # "GET"
+
+  props:                       # Component props to test
+    - name: string
+      type: string
+      required: boolean
+
+focus:                         # Test categories to generate
+  render_tests: boolean        # Basic rendering tests
+  interaction_tests: boolean   # User interaction tests
+  loading_states: boolean      # Loading/async tests
+  error_handling: boolean      # Error state tests
+
+# Output: Test file at __tests__/{Component}.test.jsx
