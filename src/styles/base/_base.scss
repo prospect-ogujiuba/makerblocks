@@ -1,0 +1,28 @@
+// =============================================================================
+// Base Styles
+// =============================================================================
+
+// Thin scrollbars site-wide (modern browsers + Firefox)
+* {
+	scrollbar-width: thin;
+	scrollbar-color: rgba(0, 0, 0, 0.3) transparent; // thumb track
+}
+
+// Thin scrollbars (Chrome, Safari, Edge, Opera)
+*::-webkit-scrollbar {
+	width: 6px;
+	height: 6px;
+}
+
+*::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+	background-color: rgba(0, 0, 0, 0.3);
+	border-radius: 3px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+	background-color: rgba(0, 0, 0, 0.5);
+}
