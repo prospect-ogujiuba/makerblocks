@@ -28,9 +28,14 @@ function makerblocks_localize_script()
 
 		// REST API Authentication
 		'restNonce'        => wp_create_nonce('wp_rest'),
+
+		// User authentication status (always available)
+		'isUserLoggedIn'   => is_user_logged_in(),
 	];
 
 	if (is_user_logged_in()) {
+		$current_user = wp_get_current_user();
+
 		$site_info = array_merge($site_info, [
 			// Site info
 			'adminEmail'       => get_bloginfo('admin_email'),
@@ -54,17 +59,27 @@ function makerblocks_localize_script()
 			'pluginDirectory'  => $plugin_directory,
 			'pluginVersion'    => $script_version,
 
-			// User info
+			// User info (legacy format)
 			'currentUserId'    => get_current_user_id(),
-			'currentUserName'  => wp_get_current_user()->user_login,
-			'currentUserEmail' => wp_get_current_user()->user_email,
-			'currentUserRoles' => wp_get_current_user()->roles,
-			'userDisplayName'  => wp_get_current_user()->display_name,
+			'currentUserName'  => $current_user->user_login,
+			'currentUserEmail' => $current_user->user_email,
+			'currentUserRoles' => $current_user->roles,
+			'userDisplayName'  => $current_user->display_name,
 			'userAvatarUrl'    => get_avatar_url(get_current_user_id()),
-			'userRegistered'   => wp_get_current_user()->user_registered,
+			'userRegistered'   => $current_user->user_registered,
+
+			// User info (structured format for contact-submissions block)
+			'currentUser'      => [
+				'id'    => get_current_user_id(),
+				'name'  => $current_user->display_name,
+				'email' => $current_user->user_email,
+				'roles' => $current_user->roles,
+			],
+
+			// TypeRocket nonce
+			'nonce'            => tr_nonce(),
 
 			// Environment info
-			'isUserLoggedIn'   => is_user_logged_in(),
 			'isMultisite'      => is_multisite(),
 			'isHttps'          => is_ssl(),
 			'wpVersion'        => get_bloginfo('version'),
@@ -75,8 +90,7 @@ function makerblocks_localize_script()
 			'isSingular'       => is_singular(),
 			'isHome'           => is_home(),
 			'isFrontPage'      => is_front_page(),
-			'isAdmin'          => is_admin(),
-			'nonce'            => tr_nonce()
+			'isAdmin'          => is_admin()
 		]);
 	}
 
@@ -102,3 +116,4 @@ function makerblocks_localize_script()
 }
 
 add_action('wp_enqueue_scripts', 'makerblocks_localize_script');
+add_action('enqueue_block_assets', 'makerblocks_localize_script'); // Also run in editor
