@@ -1,0 +1,41 @@
+# Output Schema: edit.js File
+
+# This is a terminal agent - produces file, not handoff
+
+output:
+  type: file
+  path: "src/blocks-dev/{block-name}/edit.js"
+
+structure:
+  imports:
+    required:
+      - "@wordpress/i18n"           # __ function
+      - "@wordpress/block-editor"   # useBlockProps, InspectorControls
+      - "@wordpress/components"     # PanelBody, controls
+    conditional:
+      - "@wordpress/element"        # useState, useEffect (for dynamic)
+      - "../../components/*"        # Shared components
+
+  component:
+    name: "Edit"
+    props:
+      - attributes: object
+      - setAttributes: function
+
+    sections:
+      - InspectorControls:
+          - PanelBody (initialOpen: true)   # Primary settings
+          - PanelBody (initialOpen: false)  # Secondary settings
+      - Preview:
+          - useBlockProps wrapper
+          - Editor preview content
+
+requirements:
+  checklist:
+    - "All attributes from block.json used"
+    - "No attribute redefinition"
+    - "All strings internationalized"
+    - "useBlockProps spread on wrapper"
+    - "Help text on all controls"
+    - "Proper panel organization"
+    - "Editor preview matches frontend"

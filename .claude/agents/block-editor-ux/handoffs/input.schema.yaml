@@ -1,0 +1,36 @@
+# Input Schema: architecture_handoff from block-architect
+
+handoff:
+  metadata:
+    from_stage: "block-architecture"
+    to_stage: "editor-ux"
+    timestamp: string  # ISO 8601
+
+  schema:
+    block_name: string           # kebab-case: "services-grid"
+    attributes_schema:           # Block attributes from block.json
+      [attribute_name]:
+        type: string | boolean | number | array | object
+        default: any
+        min: number              # For RangeControl
+        max: number              # For RangeControl
+        step: number             # For RangeControl
+        options: array           # For SelectControl
+
+  decisions:                     # Architectural decisions to honor
+    - decision: string           # "Boolean showFilters vs granular"
+      rationale: string          # "Simplicity for v1"
+      impact: string[]           # ["Single ToggleControl in editor"]
+
+  discovery_hints:               # Patterns to implement
+    - hint: string               # "Editor needs RangeControl"
+      reference: string          # "controls/range-control.md"
+      condition: string          # "attribute type is number with min/max"
+
+# Attribute-to-Control mapping:
+# string → TextControl (sidebar) or RichText (preview)
+# boolean → ToggleControl
+# number + min/max → RangeControl
+# number (no range) → NumberControl
+# array/enum → SelectControl
+# object (media) → MediaUpload/MediaPlaceholder
