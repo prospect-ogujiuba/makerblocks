@@ -1,0 +1,52 @@
+# Output Schema: React Component File
+
+# This is a terminal agent - produces file, not handoff
+
+output:
+  type: file
+  path: "src/blocks-dev/{block-name}/{BlockName}.jsx"
+
+structure:
+  imports:
+    - "import { useEffect, useState } from 'react'"
+    - "import { ... } from '../../components'"
+
+  jsdoc:
+    description: string
+    params:
+      - name: string
+        type: string
+        description: string
+
+  component:
+    name: string              # PascalCase
+    props:
+      - name: string
+        type: string
+        default: any
+
+    state:
+      - name: string          # data, isLoading, error
+        initialValue: any
+
+    effects:
+      - dependencies: string[]
+        purpose: string       # "Fetch data from API"
+
+    renders:
+      - condition: string     # "isLoading"
+        component: string     # "SkeletonLoader"
+      - condition: string     # "error"
+        component: string     # "Error banner"
+      - condition: string     # "!data.length"
+        component: string     # "Empty state"
+      - condition: string     # "default"
+        component: string     # "Main content"
+
+requirements:
+  - "React 18 hooks"
+  - "X-TypeRocket-Nonce header"
+  - "window.siteData validation"
+  - "Loading/error/empty states"
+  - "Props with defaults"
+  - "Tailwind CSS classes"

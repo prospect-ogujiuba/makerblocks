@@ -1,0 +1,32 @@
+# Input Schema: architecture_handoff from block-architect
+
+handoff:
+  metadata:
+    from_stage: "block-architecture"
+    to_stage: "react-component"
+    timestamp: string  # ISO 8601
+
+  schema:
+    block_name: string           # kebab-case: "services-grid"
+    mount_id: string             # hydration target: "makerblocks-services-grid"
+    component_file: string       # PascalCase: "ServicesGrid.jsx"
+
+    attributes_schema:           # Block attributes from block.json
+      [attribute_name]:
+        type: string | boolean | number | array | object
+        default: any
+
+    component_data_shape:        # Props from PHP render
+      endpoint: string           # API endpoint (internal)
+      nonce: string              # Auth token (internal)
+      [prop_name]: any           # Props to destructure
+
+  decisions:                     # Architectural decisions to honor
+    - decision: string           # "Array type for selectedIds"
+      rationale: string          # "Multi-select requirement"
+      impact: string[]           # ["React component needs array state"]
+
+  discovery_hints:               # Patterns to implement
+    - hint: string               # "Component needs useFetch hook"
+      reference: string          # "patterns/rest-fetch.md"
+      condition: string          # "data_source.dynamic == true"
