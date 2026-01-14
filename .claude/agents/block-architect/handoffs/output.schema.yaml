@@ -1,0 +1,47 @@
+# Output Schema: architecture_handoff.yaml
+# Produced for react-component-dev and block-editor-ux
+
+metadata:
+  from_stage: "block-architecture"
+  to_stage: "react-component, editor-ux"
+  timestamp: string           # ISO timestamp
+  version: "1.0"
+
+schema:
+  block_name: string          # "services-grid"
+  mount_id: string            # "makerblocks-services-grid"
+  component_file: string      # "ServicesGrid.jsx"
+
+  attributes_schema: object   # Full block.json attributes
+  component_data_shape: object # Props passed via render.php
+
+discovery_hints:
+  - hint: string              # "Component needs useFetch hook"
+    condition: string         # "data_source.dynamic == true"
+    reference: string         # "react-patterns.md#fetch"
+
+decisions:
+  - decision: string
+    rationale: string
+    alternatives: array
+    impact: array
+
+constraints:
+  - constraint: string        # "mount_id must match registry"
+    reason: string
+    enforcement: string       # "hard" | "soft"
+
+# Example output
+example:
+  schema:
+    block_name: "services-grid"
+    mount_id: "makerblocks-services-grid"
+    component_file: "ServicesGrid.jsx"
+    attributes_schema:
+      showSearch:
+        type: boolean
+        default: true
+    component_data_shape:
+      endpoint: string
+      nonce: string
+      showSearch: boolean

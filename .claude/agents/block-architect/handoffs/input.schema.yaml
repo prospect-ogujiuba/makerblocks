@@ -1,0 +1,42 @@
+# Input Schema: block-architect
+# Consumes requirements_handoff from maker-block skill
+
+requirements_handoff:
+  source: maker-block (skill)
+  location: .planning/handoffs/requirements_handoff.yaml
+
+  required_fields:
+    schema:
+      block_name: string      # kebab-case (e.g., "services-grid")
+      title: string           # Display title
+      category: string        # makerblocks | makerblocks-layout | makerblocks-templates
+      attributes: array       # [{name, type, default}]
+
+  optional_fields:
+    schema:
+      data_source:
+        endpoint: string      # REST API path
+        dynamic: boolean      # true = needs client fetch
+      ui_features: array      # [filters, pagination, loading_states]
+      icon: string            # Dashicons name
+      supports: object        # WordPress block supports
+
+# Example input
+example:
+  schema:
+    block_name: "services-grid"
+    title: "Services Grid"
+    category: "makerblocks"
+    attributes:
+      - name: showSearch
+        type: boolean
+        default: true
+      - name: itemsPerPage
+        type: number
+        default: 12
+    data_source:
+      endpoint: "/tr-api/rest/services"
+      dynamic: true
+    ui_features:
+      - filters
+      - pagination
