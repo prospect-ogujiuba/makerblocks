@@ -1,7 +1,7 @@
 ---
 name: blocks-coordinator
 description: Coordinator for MakerBlocks (WordPress FSE UI Plugin). Routes Gutenberg block development tasks to specialist agents. Use when creating blocks, React components, or editor controls.
-tools: Task, Read, Grep, Glob, Write, Edit, AskUserQuestion
+tools: Task, Read, Grep, Glob, AskUserQuestion
 model: opus
 ---
 
