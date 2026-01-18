@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react";
+import { useState } from "react"
 import {
   Cog6ToothIcon,
   UserCircleIcon,
@@ -7,32 +6,79 @@ import {
   ShieldCheckIcon,
   CreditCardIcon,
   GlobeAltIcon,
-  PaintBrushIcon,
   KeyIcon,
-} from "@heroicons/react/24/outline";
+} from "@heroicons/react/24/outline"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../../../components/ui/tabs"
+import { Card, CardContent } from "../../../../components/ui/card"
+import { Button } from "../../../../components/ui/button"
+import { Input } from "../../../../components/ui/input"
+import { Label } from "../../../../components/ui/label"
+import { Badge } from "../../../../components/ui/badge"
+import { cn } from "../../../../lib/utils"
 
-const Settings = () => {
-  const [profile, setProfile] = useState({
+interface Profile {
+  name: string
+  email: string
+  bio: string
+}
+
+interface Notifications {
+  emailNotifications: boolean
+  pushNotifications: boolean
+  weeklyDigest: boolean
+}
+
+interface Category {
+  name: string
+  value: string
+  icon: React.ComponentType<{ className?: string }>
+}
+
+export default function Settings() {
+  const [profile, setProfile] = useState<Profile>({
     name: "John Doe",
     email: "john.doe@example.com",
     bio: "",
-  });
+  })
 
-  const [notifications, setNotifications] = useState({
+  const [notifications, setNotifications] = useState<Notifications>({
     emailNotifications: true,
     pushNotifications: false,
     weeklyDigest: true,
-  });
+  })
 
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("light")
 
-  const categories = [
-    { name: "Profile", icon: UserCircleIcon },
-    { name: "Notifications", icon: BellIcon },
-    { name: "Security", icon: ShieldCheckIcon },
-    { name: "Billing", icon: CreditCardIcon },
-    { name: "Preferences", icon: PaintBrushIcon },
-  ];
+  const categories: Category[] = [
+    { name: "Profile", value: "profile", icon: UserCircleIcon },
+    { name: "Notifications", value: "notifications", icon: BellIcon },
+    { name: "Security", value: "security", icon: ShieldCheckIcon },
+    { name: "Billing", value: "billing", icon: CreditCardIcon },
+    { name: "Preferences", value: "preferences", icon: GlobeAltIcon },
+  ]
+
+  const ToggleSwitch = ({
+    checked,
+    onChange,
+  }: {
+    checked: boolean
+    onChange: () => void
+  }) => (
+    <button
+      onClick={onChange}
+      className={cn(
+        "relative inline-flex h-6 w-11 items-center rounded-full transition-colors",
+        checked ? "bg-blue-600" : "bg-gray-200"
+      )}
+    >
+      <span
+        className={cn(
+          "inline-block h-4 w-4 transform rounded-full bg-white transition-transform",
+          checked ? "translate-x-6" : "translate-x-1"
+        )}
+      />
+    </button>
+  )
 
   return (
     <div className="min-h-screen bg-white">
@@ -53,35 +99,30 @@ const Settings = () => {
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <TabGroup>
+        <Tabs defaultValue="profile" className="w-full">
           <div className="lg:grid lg:grid-cols-12 lg:gap-8">
             {/* Sidebar */}
             <div className="lg:col-span-3">
-              <TabList className="flex flex-col space-y-1">
+              <TabsList className="flex flex-col h-auto w-full space-y-1 bg-transparent">
                 {categories.map((category) => (
-                  <Tab
-                    key={category.name}
-                    className={({ selected }) =>
-                      `${
-                        selected
-                          ? "bg-blue-50 text-blue-600"
-                          : "text-gray-600 hover:bg-gray-50"
-                      } flex items-center px-3 py-2 text-sm font-medium rounded-lg`
-                    }
+                  <TabsTrigger
+                    key={category.value}
+                    value={category.value}
+                    className="w-full justify-start px-3 py-2 text-sm font-medium rounded-lg data-[state=active]:bg-blue-50 data-[state=active]:text-blue-600"
                   >
                     <category.icon className="h-5 w-5 mr-3" />
                     <span>{category.name}</span>
-                  </Tab>
+                  </TabsTrigger>
                 ))}
-              </TabList>
+              </TabsList>
             </div>
 
             {/* Content Area */}
             <div className="mt-6 lg:mt-0 lg:col-span-9">
-              <TabPanels>
-                {/* Profile Panel */}
-                <TabPanel>
-                  <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+              {/* Profile Panel */}
+              <TabsContent value="profile">
+                <Card>
+                  <CardContent className="p-6">
                     <h2 className="text-2xl font-bold text-gray-900 mb-6">
                       Profile Settings
                     </h2>
@@ -89,83 +130,76 @@ const Settings = () => {
                     <div className="space-y-6">
                       {/* Profile Picture */}
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                          Profile Picture
-                        </label>
-                        <div className="flex items-center">
+                        <Label>Profile Picture</Label>
+                        <div className="flex items-center mt-2">
                           <div className="h-20 w-20 rounded-full bg-gray-200 flex items-center justify-center">
                             <UserCircleIcon className="h-16 w-16 text-gray-400" />
                           </div>
-                          <button className="ml-4 px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">
+                          <Button variant="outline" className="ml-4">
                             Change Photo
-                          </button>
+                          </Button>
                         </div>
                       </div>
 
                       {/* Name */}
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                          Full Name
-                        </label>
-                        <input
-                          type="text"
+                        <Label htmlFor="name">Full Name</Label>
+                        <Input
+                          id="name"
+                          className="mt-2"
                           value={profile.name}
                           onChange={(e) =>
                             setProfile({ ...profile, name: e.target.value })
                           }
-                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
                         />
                       </div>
 
                       {/* Email */}
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                          Email Address
-                        </label>
-                        <input
+                        <Label htmlFor="email">Email Address</Label>
+                        <Input
+                          id="email"
                           type="email"
+                          className="mt-2"
                           value={profile.email}
                           onChange={(e) =>
                             setProfile({ ...profile, email: e.target.value })
                           }
-                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
                         />
                       </div>
 
                       {/* Bio */}
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                          Bio
-                        </label>
+                        <Label htmlFor="bio">Bio</Label>
                         <textarea
+                          id="bio"
                           value={profile.bio}
                           onChange={(e) =>
                             setProfile({ ...profile, bio: e.target.value })
                           }
                           rows={4}
-                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                          className="mt-2 flex w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
                           placeholder="Tell us about yourself..."
                         />
                       </div>
 
                       <div className="flex justify-end">
-                        <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium">
-                          Save Changes
-                        </button>
+                        <Button>Save Changes</Button>
                       </div>
                     </div>
-                  </div>
-                </TabPanel>
+                  </CardContent>
+                </Card>
+              </TabsContent>
 
-                {/* Notifications Panel */}
-                <TabPanel>
-                  <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+              {/* Notifications Panel */}
+              <TabsContent value="notifications">
+                <Card>
+                  <CardContent className="p-6">
                     <h2 className="text-2xl font-bold text-gray-900 mb-6">
                       Notification Settings
                     </h2>
 
                     <div className="space-y-6">
-                      {/* Email Notifications */}
                       <div className="flex items-center justify-between">
                         <div>
                           <h3 className="text-sm font-medium text-gray-900">
@@ -175,30 +209,17 @@ const Settings = () => {
                             Receive notifications via email
                           </p>
                         </div>
-                        <button
-                          onClick={() =>
+                        <ToggleSwitch
+                          checked={notifications.emailNotifications}
+                          onChange={() =>
                             setNotifications({
                               ...notifications,
                               emailNotifications: !notifications.emailNotifications,
                             })
                           }
-                          className={`${
-                            notifications.emailNotifications
-                              ? "bg-blue-600"
-                              : "bg-gray-200"
-                          } relative inline-flex h-6 w-11 items-center rounded-full transition-colors`}
-                        >
-                          <span
-                            className={`${
-                              notifications.emailNotifications
-                                ? "translate-x-6"
-                                : "translate-x-1"
-                            } inline-block h-4 w-4 transform rounded-full bg-white transition-transform`}
-                          />
-                        </button>
+                        />
                       </div>
 
-                      {/* Push Notifications */}
                       <div className="flex items-center justify-between">
                         <div>
                           <h3 className="text-sm font-medium text-gray-900">
@@ -208,30 +229,17 @@ const Settings = () => {
                             Receive push notifications in your browser
                           </p>
                         </div>
-                        <button
-                          onClick={() =>
+                        <ToggleSwitch
+                          checked={notifications.pushNotifications}
+                          onChange={() =>
                             setNotifications({
                               ...notifications,
                               pushNotifications: !notifications.pushNotifications,
                             })
                           }
-                          className={`${
-                            notifications.pushNotifications
-                              ? "bg-blue-600"
-                              : "bg-gray-200"
-                          } relative inline-flex h-6 w-11 items-center rounded-full transition-colors`}
-                        >
-                          <span
-                            className={`${
-                              notifications.pushNotifications
-                                ? "translate-x-6"
-                                : "translate-x-1"
-                            } inline-block h-4 w-4 transform rounded-full bg-white transition-transform`}
-                          />
-                        </button>
+                        />
                       </div>
 
-                      {/* Weekly Digest */}
                       <div className="flex items-center justify-between">
                         <div>
                           <h3 className="text-sm font-medium text-gray-900">
@@ -241,41 +249,30 @@ const Settings = () => {
                             Receive a weekly summary of activity
                           </p>
                         </div>
-                        <button
-                          onClick={() =>
+                        <ToggleSwitch
+                          checked={notifications.weeklyDigest}
+                          onChange={() =>
                             setNotifications({
                               ...notifications,
                               weeklyDigest: !notifications.weeklyDigest,
                             })
                           }
-                          className={`${
-                            notifications.weeklyDigest
-                              ? "bg-blue-600"
-                              : "bg-gray-200"
-                          } relative inline-flex h-6 w-11 items-center rounded-full transition-colors`}
-                        >
-                          <span
-                            className={`${
-                              notifications.weeklyDigest
-                                ? "translate-x-6"
-                                : "translate-x-1"
-                            } inline-block h-4 w-4 transform rounded-full bg-white transition-transform`}
-                          />
-                        </button>
+                        />
                       </div>
                     </div>
-                  </div>
-                </TabPanel>
+                  </CardContent>
+                </Card>
+              </TabsContent>
 
-                {/* Security Panel */}
-                <TabPanel>
-                  <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+              {/* Security Panel */}
+              <TabsContent value="security">
+                <Card>
+                  <CardContent className="p-6">
                     <h2 className="text-2xl font-bold text-gray-900 mb-6">
                       Security Settings
                     </h2>
 
                     <div className="space-y-6">
-                      {/* Change Password */}
                       <div className="border-b border-gray-200 pb-6">
                         <div className="flex items-start">
                           <KeyIcon className="h-6 w-6 text-gray-400 mt-1" />
@@ -286,14 +283,13 @@ const Settings = () => {
                             <p className="text-sm text-gray-500 mt-1">
                               Update your password to keep your account secure
                             </p>
-                            <button className="mt-3 px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">
+                            <Button variant="outline" className="mt-3">
                               Update Password
-                            </button>
+                            </Button>
                           </div>
                         </div>
                       </div>
 
-                      {/* Two-Factor Authentication */}
                       <div className="border-b border-gray-200 pb-6">
                         <div className="flex items-start">
                           <ShieldCheckIcon className="h-6 w-6 text-gray-400 mt-1" />
@@ -304,14 +300,11 @@ const Settings = () => {
                             <p className="text-sm text-gray-500 mt-1">
                               Add an extra layer of security to your account
                             </p>
-                            <button className="mt-3 px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700">
-                              Enable 2FA
-                            </button>
+                            <Button className="mt-3">Enable 2FA</Button>
                           </div>
                         </div>
                       </div>
 
-                      {/* Active Sessions */}
                       <div>
                         <h3 className="text-sm font-medium text-gray-900 mb-4">
                           Active Sessions
@@ -323,28 +316,29 @@ const Settings = () => {
                                 Current Session
                               </p>
                               <p className="text-xs text-gray-500">
-                                Chrome on MacOS • Last active now
+                                Chrome on MacOS - Last active now
                               </p>
                             </div>
-                            <span className="px-2 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">
+                            <Badge className="bg-green-100 text-green-800">
                               Active
-                            </span>
+                            </Badge>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </TabPanel>
+                  </CardContent>
+                </Card>
+              </TabsContent>
 
-                {/* Billing Panel */}
-                <TabPanel>
-                  <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+              {/* Billing Panel */}
+              <TabsContent value="billing">
+                <Card>
+                  <CardContent className="p-6">
                     <h2 className="text-2xl font-bold text-gray-900 mb-6">
                       Billing Settings
                     </h2>
 
                     <div className="space-y-6">
-                      {/* Current Plan */}
                       <div className="border-b border-gray-200 pb-6">
                         <h3 className="text-sm font-medium text-gray-900 mb-4">
                           Current Plan
@@ -355,16 +349,13 @@ const Settings = () => {
                               Pro Plan
                             </p>
                             <p className="text-sm text-gray-500">
-                              $29/month • Renews on Nov 17, 2025
+                              $29/month - Renews on Nov 17, 2025
                             </p>
                           </div>
-                          <button className="px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-white">
-                            Change Plan
-                          </button>
+                          <Button variant="outline">Change Plan</Button>
                         </div>
                       </div>
 
-                      {/* Payment Method */}
                       <div className="border-b border-gray-200 pb-6">
                         <h3 className="text-sm font-medium text-gray-900 mb-4">
                           Payment Method
@@ -374,18 +365,15 @@ const Settings = () => {
                             <CreditCardIcon className="h-6 w-6 text-gray-400" />
                             <div className="ml-3">
                               <p className="text-sm font-medium text-gray-900">
-                                •••• •••• •••• 4242
+                                **** **** **** 4242
                               </p>
                               <p className="text-xs text-gray-500">Expires 12/26</p>
                             </div>
                           </div>
-                          <button className="px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-white">
-                            Update
-                          </button>
+                          <Button variant="outline">Update</Button>
                         </div>
                       </div>
 
-                      {/* Billing History */}
                       <div>
                         <h3 className="text-sm font-medium text-gray-900 mb-4">
                           Billing History
@@ -402,20 +390,22 @@ const Settings = () => {
                               <p className="text-sm font-medium text-gray-900">
                                 $29.00
                               </p>
-                              <button className="text-xs text-blue-600 hover:text-blue-500">
+                              <Button variant="link" className="text-xs p-0 h-auto">
                                 Download
-                              </button>
+                              </Button>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </TabPanel>
+                  </CardContent>
+                </Card>
+              </TabsContent>
 
-                {/* Preferences Panel */}
-                <TabPanel>
-                  <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+              {/* Preferences Panel */}
+              <TabsContent value="preferences">
+                <Card>
+                  <CardContent className="p-6">
                     <h2 className="text-2xl font-bold text-gray-900 mb-6">
                       Preferences
                     </h2>
@@ -423,19 +413,18 @@ const Settings = () => {
                     <div className="space-y-6">
                       {/* Theme */}
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-3">
-                          Theme
-                        </label>
+                        <Label className="mb-3 block">Theme</Label>
                         <div className="grid grid-cols-3 gap-4">
                           {["light", "dark", "auto"].map((t) => (
                             <button
                               key={t}
                               onClick={() => setTheme(t)}
-                              className={`${
+                              className={cn(
+                                "border-2 rounded-lg p-4 text-center hover:border-blue-400 transition-colors",
                                 theme === t
                                   ? "border-blue-500 ring-2 ring-blue-500"
                                   : "border-gray-300"
-                              } border-2 rounded-lg p-4 text-center hover:border-blue-400 transition-colors`}
+                              )}
                             >
                               <p className="text-sm font-medium text-gray-900 capitalize">
                                 {t}
@@ -447,12 +436,13 @@ const Settings = () => {
 
                       {/* Language */}
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                          Language
-                        </label>
-                        <div className="flex items-center">
+                        <Label htmlFor="language">Language</Label>
+                        <div className="flex items-center mt-2">
                           <GlobeAltIcon className="h-5 w-5 text-gray-400 mr-2" />
-                          <select className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                          <select
+                            id="language"
+                            className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+                          >
                             <option>English</option>
                             <option>Spanish</option>
                             <option>French</option>
@@ -463,10 +453,11 @@ const Settings = () => {
 
                       {/* Time Zone */}
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                          Time Zone
-                        </label>
-                        <select className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                        <Label htmlFor="timezone">Time Zone</Label>
+                        <select
+                          id="timezone"
+                          className="mt-2 flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+                        >
                           <option>UTC-8 (Pacific Time)</option>
                           <option>UTC-5 (Eastern Time)</option>
                           <option>UTC+0 (London)</option>
@@ -475,20 +466,16 @@ const Settings = () => {
                       </div>
 
                       <div className="flex justify-end">
-                        <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium">
-                          Save Preferences
-                        </button>
+                        <Button>Save Preferences</Button>
                       </div>
                     </div>
-                  </div>
-                </TabPanel>
-              </TabPanels>
+                  </CardContent>
+                </Card>
+              </TabsContent>
             </div>
           </div>
-        </TabGroup>
+        </Tabs>
       </div>
     </div>
-  );
-};
-
-export default Settings;
+  )
+}
