@@ -1,6 +1,6 @@
 # Codebase Concerns
 
-**Analysis Date:** 2026-01-06
+**Analysis Date:** 2026-01-18
 
 ## Tech Debt
 
@@ -17,26 +17,26 @@
 - Fix approach: Extract to `src/components/fields/` and share
 
 **No Centralized API Client:**
-- Issue: 17 blocks directly use `fetch()` with duplicate logic
+- Issue: Multiple blocks directly use `fetch()` with duplicate logic
 - Files: All blocks with REST API calls
 - Impact: Inconsistent error handling, no request cancellation
-- Fix approach: Create `src/utils/api.js` wrapper with standard patterns
+- Fix approach: Use `src/lib/api.ts` wrapper (added but not widely adopted)
 
-**Excessive useState in ContactForm:**
-- Issue: 13+ useState hooks managing complex form state
-- File: `src/blocks-dev/contact-form/ContactForm.jsx` (lines 38-50)
-- Impact: Hard to track state transitions, potential for bugs
-- Fix approach: Use useReducer or form library (react-hook-form)
+**Mixed JS/TS Codebase:**
+- Issue: Header block and scripts converted to TypeScript, other blocks still JS
+- Files: `src/blocks-dev/*/` (most still .jsx)
+- Impact: Inconsistent type safety, gradual migration needed
+- Fix approach: Convert remaining blocks to TypeScript incrementally
 
 ## Known Bugs
 
 **No Request Cancellation:**
 - Symptoms: "Setting state on unmounted component" warnings possible
 - Trigger: Navigate away while fetch in progress
-- Files: All blocks with fetch calls
+- Files: All blocks with fetch calls (except converted ones)
 - Workaround: Currently ignored
-- Root cause: No AbortController implementation
-- Fix: Add AbortController to useEffect cleanup
+- Root cause: No AbortController implementation in most blocks
+- Fix: Add AbortController to useEffect cleanup (pattern in CONVENTIONS.md)
 
 **Direct DOM Manipulation:**
 - Symptoms: Potential stale references or race conditions
@@ -45,6 +45,22 @@
 - Workaround: None
 - Root cause: React anti-pattern
 - Fix: Use refs or lift state to parent
+
+## Build Tooling Issues
+
+**Path Aliases Not Supported:**
+- Issue: `@/*` aliases configured in tsconfig.json but wp-scripts doesn't resolve them
+- Files: `tsconfig.json`, all TypeScript files
+- Impact: Must use relative imports (`../../lib/utils` instead of `@/lib/utils`)
+- Workaround: Use relative imports only - this is documented in CONVENTIONS.md
+- Root cause: wp-scripts webpack config doesn't read tsconfig paths
+
+**Tailwind v4 Syntax:**
+- Issue: CSS variables require `@theme` block instead of standard Tailwind patterns
+- Files: `src/styles/vendors/tailwind/_source.scss`
+- Impact: Shadcn CSS variables need manual syntax adjustment
+- Workaround: Use `@theme` block for variable definitions
+- Root cause: Tailwind v4 breaking changes
 
 ## Security Considerations
 
@@ -60,12 +76,6 @@
 - Current mitigation: Server-side sanitization in TypeRocket
 - Recommendations: Add Zod or similar for response validation
 
-**Unguarded window.confirm:**
-- Risk: Could fail in headless environments
-- Files: `src/blocks-dev/contact-form/ContactForm.jsx` (line 538)
-- Current mitigation: None
-- Recommendations: Add fallback or modal confirmation
-
 ## Performance Bottlenecks
 
 **Parallel Fetch Overload:**
@@ -80,16 +90,10 @@
 - Cause: No caching strategy implemented
 - Improvement: Add React Query or SWR for caching
 
-**Inline Function Definitions:**
-- Problem: Functions recreated on each render
-- Files: Multiple blocks
-- Cause: Arrow functions in JSX props
-- Improvement: useCallback for event handlers
-
 ## Fragile Areas
 
 **MakerBlocks Hydration:**
-- File: `src/scripts/MakerBlocks.js`
+- File: `src/scripts/MakerBlocks.tsx`
 - Why fragile: Component registry must match DOM IDs exactly
 - Common failures: Block added but not registered in registry
 - Safe modification: Always update registry when adding blocks
@@ -104,10 +108,10 @@
 
 ## Dependencies at Risk
 
-**lucide-react:**
-- Risk: Only used in LocationMap block, Bootstrap Icons used everywhere else
-- Impact: Inconsistent icon systems
-- Migration plan: Replace with Bootstrap Icons for consistency
+**lucide-react Dual Usage:**
+- Risk: Used alongside Bootstrap Icons, potential bundle size concern
+- Impact: Inconsistent icon systems in different blocks
+- Migration plan: Standardize on one icon system
 
 **react-router-dom:**
 - Risk: Included in dependencies but usage unclear
@@ -117,44 +121,38 @@
 ## Missing Critical Features
 
 **AbortController for Fetch:**
-- Problem: No request cancellation on component unmount
+- Problem: No request cancellation on component unmount in most blocks
 - Current workaround: None (potential memory leaks)
-- Blocks: All 17 blocks with fetch calls
-- Implementation complexity: Low
+- Blocks: All blocks with fetch calls (except header)
+- Implementation complexity: Low - pattern documented in CONVENTIONS.md
 
 **Error Boundaries:**
 - Problem: No React error boundaries around blocks
-- Current workaround: Try/catch in MakerBlocks.js (errors logged, not displayed)
+- Current workaround: Try/catch in MakerBlocks.tsx (errors logged, not displayed)
 - Blocks: Component render failures leave blank UI
-- Implementation complexity: Low
-
-**Request Debouncing:**
-- Problem: No debouncing for search inputs
-- Current workaround: None
-- Blocks: SearchBar component
 - Implementation complexity: Low
 
 ## Test Coverage Gaps
 
-**No Unit Tests:**
+**No Unit Tests Written Yet:**
 - What's not tested: Utility functions, component logic
 - Risk: Regressions go unnoticed
-- Priority: Medium
-- Difficulty: Need to set up Jest/Vitest
+- Priority: High
+- Difficulty: Infrastructure ready (Vitest), just needs test files
+
+**No Shadcn Component Tests:**
+- What's not tested: Button, Sheet, Dialog, etc.
+- Risk: Component variants may break
+- Priority: High
+- Difficulty: Low - @testing-library/react ready
 
 **No Integration Tests:**
 - What's not tested: REST API data fetching, form submission
 - Risk: API integration breaks silently
-- Priority: High
-- Difficulty: Need mock server setup
-
-**No E2E Tests:**
-- What's not tested: Complete user flows
-- Risk: User-facing bugs in production
 - Priority: Medium
-- Difficulty: Need Playwright/Cypress setup
+- Difficulty: Need mock server setup
 
 ---
 
-*Concerns audit: 2026-01-06*
+*Concerns audit: 2026-01-18*
 *Update as issues are fixed or new ones discovered*
