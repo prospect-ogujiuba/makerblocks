@@ -5,244 +5,168 @@
 ## Naming Patterns
 
 **Files:**
-- `PascalCase.tsx` for React components (`Header.tsx`, `Services.tsx`)
-- `kebab-case.tsx` for Shadcn UI components (`dropdown-menu.tsx`, `sheet.tsx`)
-- `kebab-case` for block directories (`service-bundles/`, `contact-hero/`)
-- `snake_case.php` for PHP files (`enqueue_assets.php`, `wp_localize.php`)
-- `camelCase.ts` for utilities (`utils.ts`, `api.ts`)
+- React components: PascalCase (`Header.tsx`, `MakerBlocks.tsx`, `DashboardLayout.tsx`)
+- Utilities/lib: kebab-case (`api.ts`, `utils.ts`, `setup.ts`)
+- UI components: kebab-case (`button.tsx`, `dropdown-menu.tsx`)
+- PHP: snake_case (`enqueue_assets.php`, `wp_localize.php`)
 
 **Functions:**
-- camelCase for TypeScript/JavaScript (`parseComponentProps()`, `validateContactParams()`)
-- snake_case for PHP (`makerblocks_register_asset()`, `makerblocks_get_custom_blocks()`)
-- PascalCase for React components (`Header`, `Services`, `Badge`)
+- TypeScript: camelCase (`fetchApi`, `parseComponentProps`, `mountComponent`)
+- PHP: snake_case with prefix (`makerblocks_get_custom_blocks`, `makerblocks_blocks_init`)
+- React hooks: `use*` prefix (`useState`, `useEffect`, `useLocation`)
 
 **Variables:**
-- camelCase for TypeScript/JavaScript (`showSearch`, `itemsPerPage`, `isLoading`)
-- snake_case for PHP (`$show_search`, `$component_data`)
-- Boolean prefixes: `is`, `has`, `show` (`isLoading`, `showSearch`)
+- TypeScript: camelCase (`sidebarOpen`, `componentRegistry`)
+- Constants: UPPER_SNAKE_CASE (`MAKERBLOCKS_PLUGIN_DIR`)
+- Private members: underscore prefix (`private _initializeComponents`)
 
 **Types:**
-- PascalCase for interfaces and types (`SiteData`, `ApiResponse`, `BlockAttributes`)
-- SCREAMING_SNAKE_CASE for constants (`MAKERBLOCKS_PLUGIN_DIR`, `REQUIRED_FILES`)
-- Block names: `makerblocks/{block-name}` (kebab-case with namespace)
+- Interfaces: PascalCase, no I prefix (`SiteData`, `ComponentConfig`, `BlockEditProps`)
+- Type aliases: PascalCase (`NavItem`, `ApiResponse`)
+- Props: `${ComponentName}Props` pattern
 
 ## Code Style
 
 **Formatting:**
-- EditorConfig for base rules (`.editorconfig`)
-- PHP: Tab indentation
-- TypeScript/TSX: 4-space indentation
-- YAML: 2-space indentation
-- Trailing newlines required, LF line endings
-
-**TypeScript:**
-- Strict mode enabled (`"strict": true`)
-- No implicit any
-- Explicit return types for public functions
-- Interface over type for object shapes
+- Indentation: 2 spaces (TS/JS), Tabs (PHP per WordPress)
+- Quotes: Single quotes preferred (`'clsx'`, `'react'`)
+- Semicolons: Omitted in most TSX (`"use client"` pattern)
+- Trailing commas: Yes
 
 **Linting:**
-- @wordpress/scripts (ESLint + Stylelint)
+- wp-scripts lint-js (ESLint under hood)
+- wp-scripts lint-style (stylelint)
 - Run: `npm run lint:js`, `npm run lint:css`
-- Format: `npm run format`
-- No explicit .eslintrc (uses wp-scripts defaults)
 
 ## Import Organization
 
 **Order:**
-1. React/WordPress packages (`import { useState } from 'react'`)
-2. Third-party packages (`import { Sheet } from '../components/ui/sheet'`)
-3. Internal components (`import { Button, Badge } from '../components'`)
-4. Relative imports (`./components/ServiceCard`)
-5. Type imports (`import type { User } from '../types'`)
+1. External packages (`react`, `@heroicons/react`)
+2. WordPress packages (`@wordpress/i18n`, `@wordpress/block-editor`)
+3. Internal modules (`@/lib/utils`, `@/components/ui`)
+4. Relative imports (`./components`, `../layouts`)
+5. Type imports (`import type { ... }`)
 
 **Grouping:**
 - Blank line between groups
-- Destructured imports preferred
+- React imports first within external
 
 **Path Aliases:**
-- `@/*` configured in tsconfig.json but **NOT supported by wp-scripts**
-- Use relative paths: `../../components`, `../lib/utils`
-- This is a known limitation - do not use @ imports
-
-## Type Patterns
-
-**Component Props:**
-```typescript
-interface HeaderProps {
-  title: string;
-  showNav?: boolean;
-  onNavigate?: (path: string) => void;
-}
-
-export function Header({ title, showNav = true, onNavigate }: HeaderProps) {
-  // ...
-}
-```
-
-**API Responses:**
-```typescript
-interface ApiResponse<T> {
-  data: T;
-  message?: string;
-  success: boolean;
-}
-```
-
-**Window Extensions:**
-```typescript
-// src/types/global.d.ts
-declare global {
-  interface Window {
-    siteData: {
-      siteUrl: string;
-      nonce: string;
-      restNonce: string;
-    };
-  }
-}
-```
+- `@/*` → `src/*` (defined in `tsconfig.json`)
 
 ## Error Handling
 
 **Patterns:**
-- Fetch chains use `.catch()` with error state
-- Try/catch at hydration level (`src/scripts/MakerBlocks.tsx`)
-- Promise.reject for propagating errors in chains
+- try/catch around JSON.parse (`MakerBlocks.tsx:35`)
+- Console.warn for recoverable issues
+- Console.error for critical failures
+- No error boundaries (gap)
 
 **Error Types:**
-- Set error state in component (`setError(err.message)`)
-- Log to console (`console.error`)
-- Render error UI (error message display)
+- Throw on invalid input (not currently used)
+- Log and continue for hydration failures
+- Silent fail for missing mount points
 
 ## Logging
 
 **Framework:**
-- Browser console only (`console.log`, `console.error`)
-- No structured logging library
+- Browser console (console.log, warn, error)
+- No structured logging
 
 **Patterns:**
-- Debug logs commented out in production
-- Errors logged with context where possible
-- No server-side logging from plugin
+- `console.warn()` for mount issues
+- `console.error()` for parse failures
+- Debug logs removed in production (assumed)
 
 ## Comments
 
 **When to Comment:**
-- TSDoc for component props and utility functions
-- Avoid inline comments (per CLAUDE.md: "Do not add comments to code")
-- Self-documenting names preferred
+- JSDoc blocks for public functions
+- Inline comments for non-obvious logic
+- Section markers (`// WordPress dependencies`)
 
-**TSDoc:**
-```typescript
+**JSDoc/TSDoc:**
+- Used in block edit files (`@see`, `@return`)
+- Type documentation in `.d.ts` files
+- Example from `wordpress.d.ts`:
+```ts
 /**
- * Merges class names with Tailwind conflict resolution
- * @param inputs - Class values to merge
- * @returns Merged class string
+ * Extended BlockEditProps with common patterns
  */
-export function cn(...inputs: ClassValue[]): string {
-  return twMerge(clsx(inputs));
-}
+export interface BlockEditProps<T> { ... }
 ```
+
+**PHP DocBlocks:**
+- `@package makerblocks` on all files
+- Function descriptions above definitions
 
 ## Function Design
 
 **Size:**
-- Most functions under 50 lines
-- Large components should be refactored
+- Target: Under 50 lines
+- Large components exist (Settings.tsx: 481 lines - needs refactor)
 
 **Parameters:**
-- Destructured props in React components
-- Options objects for complex functions
-- Default values in destructuring
+- Destructure props in React components
+- Options object for 4+ parameters
 
 **Return Values:**
-- Explicit returns preferred
-- Early return for guard clauses
+- Explicit returns
+- JSX.Element for components
+- Promise<T> for async
 
 ## Module Design
 
 **Exports:**
-- Named exports for utilities and components
-- Default export for main block component
-- Barrel exports via `index.ts`
-
-**Block Structure (5-file pattern):**
-```
-block-name/
-├── block.json      # Metadata, attributes
-├── index.ts        # registerBlockType()
-├── edit.tsx        # Editor (imports {BlockName}.tsx)
-├── {BlockName}.tsx # Shared React component
-└── render.php      # Server render
-```
+- Named exports for utilities (`export function cn`)
+- Default exports for React components (`export default function Edit`)
+- Re-exports from index not used (direct imports)
 
 **Barrel Files:**
-- `src/components/index.ts` re-exports all components
-- `src/lib/utils.ts` exports cn() function
+- Not used (import directly from component files)
 
 ## React Patterns
 
-**State Management:**
-```typescript
-const [isLoading, setIsLoading] = useState<boolean>(true);
-const [error, setError] = useState<string | null>(null);
-const [data, setData] = useState<Item[]>([]);
+**Component Structure:**
+```tsx
+"use client"
+import { useState } from "react"
+import { cn } from "@/lib/utils"
+
+interface Props { ... }
+
+export function Component({ prop1, prop2 }: Props) {
+  const [state, setState] = useState()
+
+  return (
+    <div className={cn("base-class", conditional && "extra")}>
+      ...
+    </div>
+  )
+}
 ```
 
-**Data Fetching:**
-```typescript
-useEffect(() => {
-  const controller = new AbortController();
+**Styling:**
+- Tailwind classes inline
+- `cn()` for conditional classes
+- CVA for component variants
 
-  fetch(url, {
-    headers: { 'X-TypeRocket-Nonce': nonce },
-    signal: controller.signal
-  })
-    .then(r => r.json())
-    .then(data => setData(data.data || []))
-    .catch(err => {
-      if (err.name !== 'AbortError') setError(err.message);
-    })
-    .finally(() => setIsLoading(false));
-
-  return () => controller.abort();
-}, []);
-```
-
-## Shadcn Component Patterns
-
-**Using cn() for variants:**
-```typescript
-import { cn } from '../../lib/utils';
-
-<Button className={cn("w-full", isActive && "bg-primary")} />
-```
-
-**Component composition:**
-```typescript
-import { Sheet, SheetContent, SheetTrigger } from '../components/ui/sheet';
-
-<Sheet>
-  <SheetTrigger asChild>
-    <Button variant="outline">Open</Button>
-  </SheetTrigger>
-  <SheetContent>
-    {/* content */}
-  </SheetContent>
-</Sheet>
-```
+**State:**
+- useState for local state
+- No global state management
+- Props for data down
 
 ## PHP Patterns
 
-**Block Rendering:**
+**Hook Registration:**
 ```php
-$component_data = ['key' => $attributes['value']];
-<section <?php echo get_block_wrapper_attributes(['class' => 'mx-auto']); ?>>
-    <div id="makerblocks-{block}"
-         component-data="<?php echo esc_attr(wp_json_encode($component_data)); ?>">
-    </div>
-</section>
+add_action('init', 'makerblocks_blocks_init');
+add_action('wp_enqueue_scripts', 'makerblocks_enqueue_frontend');
+```
+
+**Function Naming:**
+```php
+function makerblocks_{action}_{subject}() { ... }
 ```
 
 ---

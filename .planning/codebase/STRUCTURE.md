@@ -6,172 +6,139 @@
 
 ```
 makerblocks/
-├── makerblocks.php          # Plugin entry (constants, module loader)
-├── package.json             # npm scripts, dependencies
-├── tsconfig.json            # TypeScript configuration
-├── vitest.config.ts         # Test runner config
-├── components.json          # Shadcn CLI config
-├── .editorconfig            # Editor formatting rules
-├── src/                     # Source code (pre-build)
-│   ├── blocks-dev/          # Block development directories
-│   ├── components/          # Shared React components
-│   │   └── ui/              # Shadcn base components
-│   ├── lib/                 # Shared utilities
-│   ├── scripts/             # Frontend scripts (hydration)
-│   ├── styles/              # Sass 7-1 architecture
-│   ├── test/                # Test setup
-│   ├── types/               # TypeScript definitions
-│   └── utils/               # Legacy utilities
-├── blocks/                  # Compiled blocks (generated)
-├── assets/                  # Compiled assets (generated)
-│   ├── js/                  # Bundled scripts
-│   ├── css/                 # Compiled styles
-│   ├── admin/               # Admin-specific assets
-│   └── fonts/               # Bootstrap Icons font
+├── makerblocks.php          # Plugin entry point
 ├── inc/                     # PHP modules
-├── tests/                   # Block validation tests
-└── vendor/                  # PHP dependencies (Carbon Fields)
+├── src/
+│   ├── scripts/             # React source → assets/js/
+│   ├── blocks-dev/          # Block source → blocks/
+│   ├── components/          # Shared React components
+│   ├── lib/                 # Utilities (api, utils)
+│   ├── styles/              # Sass 7-1 structure
+│   ├── types/               # TypeScript definitions
+│   └── test/                # Test setup
+├── blocks/                  # Compiled blocks (wp-scripts output)
+├── assets/
+│   ├── js/                  # Compiled scripts
+│   ├── css/                 # Compiled styles
+│   └── admin/               # Admin scripts
+└── .planning/codebase/      # This documentation
 ```
 
 ## Directory Purposes
 
-**src/blocks-dev/**
-- Purpose: Block development source files
-- Contains: Block directories, each with 5-file pattern
-- Key files: `header/Header.tsx`, `app/edit.tsx`
-- Subdirectories: Complex blocks have `components/`, `hooks/`, `utils/`
-
-**src/components/ui/**
-- Purpose: Shadcn base components (shared across all blocks)
-- Contains: `button.tsx`, `sheet.tsx`, `dialog.tsx`, `dropdown-menu.tsx`, `accordion.tsx`, `card.tsx`, `input.tsx`, `label.tsx`, `badge.tsx`, `tabs.tsx`
-- Key files: All components are self-contained with variants
-
-**src/lib/**
-- Purpose: Shared utilities for all blocks
-- Contains: `utils.ts` (cn function), `api.ts` (fetch helpers)
-- Key files: `utils.ts` - Class name merging with clsx + tailwind-merge
+**inc/**
+- Purpose: PHP modules loaded by plugin
+- Contains: `blocks.php`, `enqueue_assets.php`, `wp_localize.php`, `helpers.php`
+- Key files: All loaded via foreach in `makerblocks.php`
+- Subdirectories: `safelist-classes/` (Tailwind PurgeCSS allowlist)
 
 **src/scripts/**
-- Purpose: Frontend JavaScript (hydration, events)
-- Contains: `MakerBlocks.tsx` (component registry), `index.ts` (entry)
-- Key files: `MakerBlocks.tsx` - Registered components for frontend hydration
+- Purpose: React application source
+- Contains: Entry point, hydration engine, SPA app
+- Key files: `index.ts`, `MakerBlocks.tsx`
+- Subdirectories: `apps/makerstarter/` (pages, layouts, components)
+
+**src/blocks-dev/**
+- Purpose: Gutenberg block source (5-file pattern each)
+- Contains: `app/`, `header/`, `_template/`
+- Key files per block: `block.json`, `index.js`, `edit.js`, `render.php`, `*.tsx`
+
+**src/components/ui/**
+- Purpose: ShadCN UI primitives
+- Contains: 10 styled Radix components
+- Key files: `button.tsx`, `card.tsx`, `dialog.tsx`, `tabs.tsx`
+
+**src/lib/**
+- Purpose: Shared utilities
+- Contains: `api.ts` (REST client), `utils.ts` (cn function)
 
 **src/styles/**
 - Purpose: Sass 7-1 architecture
-- Contains: SCSS partials organized by type
-- Subdirectories: `abstracts/`, `base/`, `layout/`, `components/`, `pages/`, `vendors/`
-- Key files: `styles.scss` (main entry), `vendors/tailwind/_source.scss` (Tailwind + CSS vars)
-
-**src/test/**
-- Purpose: Test setup and utilities
-- Contains: `setup.ts` (Vitest setup with testing-library)
-- Key files: `setup.ts` imports `@testing-library/jest-dom`
+- Subdirectories: `abstracts/`, `base/`, `components/`, `layout/`, `pages/`, `vendors/`
+- Key files: `styles.scss` (entry point)
 
 **src/types/**
 - Purpose: TypeScript type definitions
-- Contains: `global.d.ts`, `wordpress.d.ts`, `api.d.ts`
-- Key files: `global.d.ts` - Window extensions for siteData
-
-**src/utils/**
-- Purpose: Legacy shared utility functions
-- Contains: `contactUtils.js`, `formatters.js`, `urlFilters.js`
-- Key files: Formatting, validation, URL building helpers
-
-**blocks/**
-- Purpose: Compiled blocks (generated by wp-scripts)
-- Contains: Compiled block directories
-- Key files: `{block}/index.js`, `{block}/index.asset.php`, `{block}/render.php`
-- Source: Built from `src/blocks-dev/`
-
-**inc/**
-- Purpose: PHP modules loaded by plugin
-- Contains: WordPress hooks, registration, helpers
-- Key files: `blocks.php`, `enqueue_assets.php`, `wp_localize.php`, `helpers.php`
+- Key files: `global.d.ts`, `api.d.ts`, `wordpress.d.ts`
 
 ## Key File Locations
 
 **Entry Points:**
-- `makerblocks.php` - Plugin initialization
-- `src/scripts/MakerBlocks.tsx` - Frontend hydration class
-- `inc/blocks.php` - Block registration
+- `makerblocks.php` - Plugin bootstrap
+- `src/scripts/index.ts` - Frontend JS entry
+- `src/blocks-dev/*/index.js` - Block registration
 
 **Configuration:**
-- `package.json` - npm scripts and dependencies
-- `tsconfig.json` - TypeScript compiler options
-- `vitest.config.ts` - Test runner configuration
-- `components.json` - Shadcn component configuration
+- `tsconfig.json` - TypeScript (ES2020, @/* alias)
+- `vitest.config.ts` - Testing
+- `package.json` - Scripts and deps
+- `components.json` - ShadCN config
 
 **Core Logic:**
-- `inc/blocks.php` - Block registration, categories, allowed types
-- `inc/enqueue_assets.php` - Asset management
-- `inc/wp_localize.php` - JS data injection (`window.siteData`)
-- `src/lib/utils.ts` - `cn()` class merging utility
+- `src/scripts/MakerBlocks.tsx` - Hydration engine
+- `src/lib/api.ts` - REST client
+- `inc/blocks.php` - Block registration
+- `inc/wp_localize.php` - Data injection
 
 **Testing:**
-- `src/test/setup.ts` - Vitest setup file
-- `tests/validate-block-structure.js` - Block structure validation
+- `src/test/setup.ts` - Vitest setup with mocks
 
 ## Naming Conventions
 
 **Files:**
-- `PascalCase.tsx` for React components (`Header.tsx`, `Services.tsx`)
-- `kebab-case.tsx` for Shadcn UI components (`dropdown-menu.tsx`)
-- `kebab-case` for block directories (`contact-form/`, `hero-section/`)
-- `snake_case.php` for PHP files (`enqueue_assets.php`)
+- React components: PascalCase (`Header.tsx`, `Button.tsx`)
+- Utilities: kebab-case (`api.ts`, `utils.ts`)
+- PHP: snake_case (`enqueue_assets.php`)
+- Tests: `*.test.ts` pattern (none exist yet)
 
 **Directories:**
-- `kebab-case` for all directories
-- Plural for collections (`blocks/`, `components/`, `scripts/`)
+- kebab-case: `blocks-dev`, `safelist-classes`
+- Singular for type: `scripts`, `lib`, `test`
+- Plural for collections: `pages`, `components`, `layouts`
 
 **Special Patterns:**
-- `_template/` - Block scaffold (excluded from validation)
-- `*.asset.php` - wp-scripts generated dependency files
-- `index.ts` - Barrel exports and entry points
+- `_template/` - Block scaffold template (underscore prefix)
+- `*.d.ts` - Type declarations
+- `block.json` - Block metadata (WordPress standard)
 
 ## Where to Add New Code
 
 **New Block:**
-- Primary code: `src/blocks-dev/{block-name}/`
-- Files: `block.json`, `index.ts`, `edit.tsx`, `{BlockName}.tsx`, `render.php`
-- Registration: Add to `inc/blocks.php:makerblocks_get_custom_blocks()`
-- Hydration: Register in `src/scripts/MakerBlocks.tsx` component registry
+1. Create folder: `src/blocks-dev/<block-name>/`
+2. Add 5 files: `block.json`, `index.js`, `edit.js`, `<Name>.tsx`, `render.php`
+3. Register in `inc/blocks.php`
+4. Add to `MakerBlocks.tsx` componentRegistry
 
-**New Shadcn Component:**
-- Implementation: `src/components/ui/{component-name}.tsx`
-- Run: `npx shadcn@latest add {component}` (auto-places in ui/)
+**New Page (SPA):**
+1. Create: `src/scripts/apps/makerstarter/pages/<Name>.tsx`
+2. Add route in `MakerStarter.tsx`
 
-**New Shared Component:**
-- Implementation: `src/components/{ComponentName}.tsx`
-- Export: Add to `src/components/index.ts`
+**New UI Component:**
+1. Create: `src/components/ui/<name>.tsx`
+2. Follow ShadCN pattern (CVA + forwardRef)
 
 **New Utility:**
-- Implementation: `src/lib/{utilName}.ts`
-- Types: Add to `src/types/` if needed
+1. Add to: `src/lib/<name>.ts`
+2. Or extend existing `api.ts` / `utils.ts`
 
-**New PHP Module:**
-- Implementation: `inc/{module_name}.php`
-- Loading: Add to `$includes` array in `makerblocks.php`
+**New Type:**
+1. Add to: `src/types/<scope>.d.ts`
+2. Or create new `<name>.d.ts`
 
 ## Special Directories
 
 **blocks/**
 - Purpose: Compiled block output
-- Source: Generated by `npm run wp-build-blocks`
-- Committed: Yes (needed for WordPress)
+- Source: Auto-generated by wp-scripts from `src/blocks-dev/`
+- Committed: Yes (WordPress needs compiled blocks)
 
 **assets/js/, assets/css/**
 - Purpose: Compiled frontend assets
-- Source: Generated by build scripts
-- Committed: Yes (needed for production)
-
-**vendor/**
-- Purpose: PHP dependencies (Carbon Fields)
-- Source: Composer (manually committed)
+- Source: Built from `src/scripts/`, `src/styles/`
 - Committed: Yes
 
 **node_modules/**
 - Purpose: npm dependencies
-- Source: `npm install`
 - Committed: No (in .gitignore)
 
 ---

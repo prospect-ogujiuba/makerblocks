@@ -1,131 +1,119 @@
 # External Integrations
 
-**Analysis Date:** 2026-01-06
+**Analysis Date:** 2026-01-18
 
 ## APIs & External Services
 
-**TypeRocket REST API (MakerMaker Plugin):**
-- Base URL: `/tr-api/rest/`
-- Authentication: `X-TypeRocket-Nonce` header via `window.siteData.nonce`
-- Response format: `{success: true, data: [...], meta: {...}}`
-- Client-side fetching in React `useEffect` hooks
-
-Endpoints:
-- `/services` - Service catalog
-- `/service-categories` - Service classifications
-- `/service-types` - Service type taxonomy
-- `/pricing-models` - Pricing model definitions
-- `/pricing-tiers` - Pricing tier definitions
-- `/delivery-methods` - Delivery method options
-- `/coverage-areas` - Geographic coverage areas
-- `/service-bundles` - Bundle packages
-- `/equipment` - Equipment listings
-- `/deliverables` - Deliverable definitions
-- `/teams` - Team member listings
-- `/contact-submissions` - Form submissions
-
-Files: `src/blocks-dev/services/Services.jsx`, `src/blocks-dev/team-showcase/TeamShowcase.jsx`, `src/blocks-dev/contact-submissions/ContactSubmissions.jsx`
+**TypeRocket REST API:**
+- Endpoint base: `/tr-api/rest/`
+- SDK/Client: Custom fetch wrapper `src/lib/api.ts`
+- Auth: `X-TypeRocket-Nonce` header from `window.siteData.nonce`
+- Methods: GET, POST, PUT, DELETE via `fetchApi()`
+- Source: makermaker plugin (sibling dependency)
 
 **WordPress REST API:**
-- Base URL: `/wp-json/wp/v2/`
-- Purpose: Media library access for featured images
-- Endpoints: `/media` (batch fetch with `include=` param)
-- File: `src/blocks-dev/services/Services.jsx` (lines 86-88)
-
-**Google Maps:**
-- Embedded maps via iframe (`embedUrl` attribute)
-- Directions: `https://www.google.com/maps/dir/?api=1&destination={lat},{lng}`
-- Search: `https://www.google.com/maps/search/?api=1&query={address}`
-- No API key required (embeds and basic URLs)
-- File: `src/blocks-dev/location-map/LocationMap.jsx`
+- Auth: `wp_rest` nonce from `window.siteData.restNonce`
+- Used for: Authenticated WP operations
 
 ## Data Storage
 
 **Databases:**
-- WordPress MySQL via TypeRocket ORM (accessed via REST API only)
-- No direct database queries in this plugin
-- All data fetched client-side from MakerMaker REST endpoints
+- WordPress database via TypeRocket API
+- No direct queries in blocks (architecture rule)
+- Connection: Handled by makermaker plugin
 
 **File Storage:**
-- WordPress Media Library for images
-- Accessed via WP REST API `/wp-json/wp/v2/media`
+- WordPress media library
+- Plugin assets: `assets/images/`
+- No external cloud storage
 
 **Caching:**
 - None implemented in plugin
-- Relies on browser caching and WordPress/server-side caching
+- Relies on WordPress/server caching
 
 ## Authentication & Identity
 
 **Auth Provider:**
-- WordPress built-in authentication
-- Session detection via `is_user_logged_in()` - `inc/wp_localize.php`
-- User data injected to frontend when logged in
+- WordPress native authentication
+- Session: PHP session via WordPress
+- Token storage: Cookies (WordPress standard)
 
 **Nonce System:**
-- TypeRocket nonce: `tr_nonce()` - `inc/wp_localize.php:80`
-- WordPress REST nonce: `wp_create_nonce('wp_rest')` - `inc/wp_localize.php:30`
-- Both exposed in `window.siteData` global
+- TypeRocket nonce: `tr_nonce()` → `inc/wp_localize.php`
+- WordPress REST nonce: `wp_create_nonce('wp_rest')`
+- Both passed via `window.siteData`
+
+**User Data Flow:**
+- `is_user_logged_in()` check in `inc/wp_localize.php`
+- User object passed to frontend when authenticated
+- Fields: ID, name, email, avatar, roles
 
 ## Monitoring & Observability
 
 **Error Tracking:**
-- Not configured - errors logged to browser console only
-- `console.error()` calls in `src/scripts/MakerBlocks.js`
+- None configured
+- Console.warn/error in `MakerBlocks.tsx`
 
 **Analytics:**
-- Not detected
+- None (handled externally)
 
 **Logs:**
-- Browser console only (development)
-- No server-side logging in plugin
+- WordPress debug.log when WP_DEBUG enabled
 
 ## CI/CD & Deployment
 
 **Hosting:**
-- WordPress plugin (uploaded to `wp-content/plugins/`)
-- No dedicated deployment pipeline
+- WordPress plugin directory
+- Manual deployment to `wp-content/plugins/`
 
 **CI Pipeline:**
 - Not configured
-- `npm run test:blocks` for local validation
+- Build scripts: `npm run prod`
 
 ## Environment Configuration
 
 **Development:**
-- Required: WordPress installation with Gutenberg
-- Mock services: None (uses live TypeRocket endpoints)
-- Build: `npm run dev` for watch mode
+- Required: WordPress 6.5+, PHP 7.0+, Node.js
+- No .env files
+- Mock in tests: `src/test/setup.ts` mocks `window.siteData`
 
 **Production:**
-- Build: `npm run prod` for minified assets
-- No environment-specific configuration
+- Same WordPress instance
+- No separate staging configuration
 
 ## Webhooks & Callbacks
 
 **Incoming:**
-- None
+- None in this plugin
 
 **Outgoing:**
-- Contact form submissions POST to TypeRocket endpoint
-- Handler: `src/scripts/MakerBlocks.js` (lines 264-314)
-- Events: `contact-form-submit`, `contact-form-result`
+- None in this plugin
 
-## Global Context (window.siteData)
+## Related Plugins/Themes
 
-Injected via `wp_localize_script` - `inc/wp_localize.php`:
-```javascript
-{
-  siteUrl, siteName, siteDescription,
-  restUrl, restNonce,           // WP REST API
-  nonce,                        // TypeRocket nonce
-  isUserLoggedIn, currentUser,
-  adminUrl, ajaxUrl,
-  themeUrl, pluginUrl,
-  postId, postTitle, postType   // If singular
-}
-```
+**Required Dependencies:**
+- **makermaker** - REST API backend (TypeRocket MVC)
+- **makerstarter** - Theme layer (templates, attributes)
+
+**Integration Points:**
+- `MAKERSTARTER_THEME_DIR`, `MAKERSTARTER_THEME_URL` globals
+- Theme directory constants defined in `makerblocks.php`
+
+## Icon Libraries
+
+**Bootstrap Icons:**
+- Stylesheet: `assets/css/bootstrap-icons.css` v1.11.1
+- Loaded via `inc/enqueue_assets.php`
+
+**Heroicons:**
+- React components: `@heroicons/react`
+- Used in React components
+
+**Lucide React:**
+- React icons: `lucide-react`
+- Used in ShadCN components
 
 ---
 
-*Integration audit: 2026-01-06*
+*Integration audit: 2026-01-18*
 *Update when adding/removing external services*

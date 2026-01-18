@@ -5,100 +5,84 @@
 ## Languages
 
 **Primary:**
-- TypeScript 5.x (strict mode) - `src/scripts/*.ts`, `src/blocks-dev/*/*.tsx`
-- PHP 7.0+ - `makerblocks.php`, `inc/*.php`, `src/blocks-dev/*/render.php`
+- TypeScript 5.9.3 - All application code (`package.json`)
+- PHP 7.0+ - WordPress plugin layer (`makerblocks.php`)
 
 **Secondary:**
-- Sass/SCSS - `src/styles/` (7-1 architecture)
-- CSS - Tailwind output `src/styles/vendors/tailwind/`
+- JavaScript (JSX) - Legacy block files (`src/blocks-dev/*/edit.js`)
+- SCSS - Styling (`src/styles/`)
 
 ## Runtime
 
 **Environment:**
-- PHP (WordPress runtime)
-- Node.js 12+ (build tooling)
-- Browser (React 18+ hydration)
+- Node.js (npm) - Build tooling
+- PHP 7.0+ (WordPress 6.5+) - Server runtime
+- Browser (React 18) - Client runtime via hydration
 
 **Package Manager:**
-- npm - `package.json`, `package-lock.json`
-- Composer (vendor dependency) - `vendor/htmlburger/carbon-fields/`
+- npm
+- Lockfile: `package-lock.json` present
 
 ## Frameworks
 
 **Core:**
-- React 18 - Block editor and frontend hydration
-- WordPress Gutenberg (Block API v3) - `src/blocks-dev/*/block.json`
+- React 18 - UI framework (via wp-scripts)
+- React Router 7.7.0 - SPA navigation (`src/scripts/apps/makerstarter/`)
+- WordPress FSE Block API - Block registration
 
 **UI Components:**
-- Shadcn/Radix UI - Component primitives (`src/components/ui/`)
-- class-variance-authority - Variant styling
-- tailwind-merge + clsx - Class composition via `cn()` utility
-
-**Build/Dev:**
-- @wordpress/scripts 30.19.0 - Bundling, transpilation, linting
-- TypeScript - Type checking (noEmit, strict mode)
-- Tailwind CSS 4.x - Utility-first CSS via `@tailwindcss/cli`
-- Sass 1.89.2 - SCSS compilation
-- Browser Sync 3.0.4 - Development preview
+- Radix UI - Primitives (`@radix-ui/react-*`)
+- ShadCN pattern - Component composition (`src/components/ui/`)
 
 **Testing:**
-- Vitest - Unit testing framework (`vitest.config.ts`)
-- @testing-library/react - Component testing
-- @testing-library/jest-dom - DOM matchers
-- Custom Node.js validation - `tests/validate-block-structure.js`
+- Vitest 4.0.17 - Unit tests (`vitest.config.ts`)
+- Testing Library 16.3.1 - React testing
+- jsdom 27.4.0 - DOM environment
+
+**Build/Dev:**
+- wp-scripts 30.19.0 - WordPress build tooling
+- Tailwind CSS 4.1.11 - Utility CSS
+- Sass 1.89.2 - CSS preprocessing
+- npm-run-all 4.1.5 - Parallel tasks
+- browser-sync 3.0.4 - Live reload
 
 ## Key Dependencies
 
 **Critical:**
-- @radix-ui/react-dialog - Modal dialogs
-- @radix-ui/react-dropdown-menu - Dropdown menus
-- @radix-ui/react-accordion - Collapsible sections
-- @radix-ui/react-slot - Polymorphic components
-- lucide-react - Icon library
+- @heroicons/react 2.2.0 - Icon library
+- class-variance-authority 0.7.1 - Variant styling
+- clsx 2.1.1 - Class merging
+- tailwind-merge 3.4.0 - Tailwind class deduplication
 
-**Styling:**
-- class-variance-authority - Component variants
-- clsx + tailwind-merge - Class merging via `src/lib/utils.ts`
-- tw-animate-css - Animation utilities
-
-**Tailwind Plugins:**
-- @tailwindcss/forms 0.5.10 - Form styling
-- @tailwindcss/typography 0.5.16 - Prose styling
-- @tailwindcss/aspect-ratio 0.4.2 - Aspect ratio utilities
-- @tailwindcss/container-queries 0.1.1 - Container queries
-
-**Infrastructure:**
-- Bootstrap Icons 1.11.1 - Icon font (CSS) - `assets/css/bootstrap-icons.css`
-- Carbon Fields - Advanced field library - `vendor/htmlburger/carbon-fields/`
+**UI Primitives:**
+- @radix-ui/react-accordion ^1.2.12
+- @radix-ui/react-dialog ^1.1.15
+- @radix-ui/react-dropdown-menu ^2.1.16
+- @radix-ui/react-tabs ^1.1.13
 
 ## Configuration
 
-**TypeScript:**
-- `tsconfig.json` - Strict mode, ES2020 target, bundler resolution
-- Path aliases configured but **not supported by wp-scripts** (use relative imports)
-
 **Environment:**
-- No `.env` files - configuration via WordPress settings
-- API nonces injected via `wp_localize_script` - `inc/wp_localize.php`
-- Global data in `window.siteData` object
+- No .env files - Configuration via WordPress
+- PHP globals: `MAKERBLOCKS_PLUGIN_DIR`, `MAKERBLOCKS_PLUGIN_URL`
+- JS globals: `window.siteData` (siteUrl, nonce, user info)
 
 **Build:**
-- `package.json` - npm scripts (dev, prod, lint, test)
-- `vitest.config.ts` - Test runner config
-- `components.json` - Shadcn CLI config (new-york style)
-- `.editorconfig` - Editor formatting rules
+- `tsconfig.json` - ES2020 target, React JSX, `@/*` path alias
+- `vitest.config.ts` - jsdom environment, globals enabled
+- `components.json` - ShadCN component registry
 
 ## Platform Requirements
 
 **Development:**
-- Any platform with Node.js 12+ and npm
-- WordPress installation with Gutenberg support
-- No Docker or external dependencies required
+- Node.js (any recent version)
+- WordPress 6.5+ with PHP 7.0+
+- No Docker required
 
 **Production:**
-- WordPress 6.0+ with Full Site Editing support
-- PHP 7.0+
-- Deployed as WordPress plugin
+- WordPress plugin
+- Installed in `wp-content/plugins/makerblocks/`
+- Requires makermaker plugin (REST API backend)
 
 ---
 

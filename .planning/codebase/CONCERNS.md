@@ -4,148 +4,153 @@
 
 ## Tech Debt
 
-**Large Component Files:**
-- Issue: 3 components exceed 1000 lines
-- Files: `src/blocks-dev/contact-submissions/ContactSubmissions.jsx` (1605 lines), `src/blocks-dev/contact-form/ContactForm.jsx` (1369 lines), `src/blocks-dev/resources-page/ResourcesPage.jsx` (1104 lines)
-- Impact: Hard to maintain, test, and reason about
-- Fix approach: Extract subcomponents, move form fields to shared components
+**Large Components Exceeding 200 Lines:**
+- Issue: Monolithic components hard to maintain
+- Files:
+  - `src/scripts/apps/makerstarter/pages/Settings.tsx` (481 lines)
+  - `src/blocks-dev/header/Header.tsx` (262 lines)
+  - `src/scripts/apps/makerstarter/pages/Shop.tsx` (272 lines)
+- Why: Rapid prototyping, inline component definitions
+- Impact: Hard to test, modify, or reuse parts
+- Fix approach: Extract ToggleSwitch to `src/components/ui/`, split Settings into sub-components
 
-**Duplicate Form Field Components:**
-- Issue: InputField, TextAreaField, SelectField duplicated across blocks
-- Files: `src/blocks-dev/contact-submissions/ContactSubmissions.jsx`, `src/blocks-dev/contact-form/ContactForm.jsx`
-- Impact: Maintenance burden, inconsistent behavior
-- Fix approach: Extract to `src/components/fields/` and share
+**Sidebar/Logo Code Duplication:**
+- Issue: Identical sidebar structure duplicated for mobile/desktop
+- Files:
+  - `src/scripts/apps/makerstarter/layouts/DashboardLayout.tsx:102-127`
+  - `src/blocks-dev/header/Header.tsx:54-126` and `139-224`
+- Why: Responsive design done via duplication not abstraction
+- Impact: Logo/nav changes require updates in multiple places
+- Fix approach: Extract `<SidebarNav />` component, render once with responsive visibility
 
-**No Centralized API Client:**
-- Issue: Multiple blocks directly use `fetch()` with duplicate logic
-- Files: All blocks with REST API calls
-- Impact: Inconsistent error handling, no request cancellation
-- Fix approach: Use `src/lib/api.ts` wrapper (added but not widely adopted)
-
-**Mixed JS/TS Codebase:**
-- Issue: Header block and scripts converted to TypeScript, other blocks still JS
-- Files: `src/blocks-dev/*/` (most still .jsx)
-- Impact: Inconsistent type safety, gradual migration needed
-- Fix approach: Convert remaining blocks to TypeScript incrementally
+**Hardcoded Asset Paths:**
+- Issue: Plugin asset URLs scattered across components
+- Files:
+  - `src/scripts/apps/makerstarter/pages/Cases.tsx:85`
+  - `src/scripts/apps/makerstarter/pages/Portfolio.tsx:42`
+  - `src/scripts/apps/makerstarter/pages/Shop.tsx:165`
+- Why: Quick prototyping without centralization
+- Impact: Path changes break multiple files
+- Fix approach: Create `src/lib/assets.ts` with `getAssetUrl()` helper
 
 ## Known Bugs
 
-**No Request Cancellation:**
-- Symptoms: "Setting state on unmounted component" warnings possible
-- Trigger: Navigate away while fetch in progress
-- Files: All blocks with fetch calls (except converted ones)
-- Workaround: Currently ignored
-- Root cause: No AbortController implementation in most blocks
-- Fix: Add AbortController to useEffect cleanup (pattern in CONVENTIONS.md)
+**Empty Form Submission Handler:**
+- Symptoms: Contact form doesn't submit, no feedback to user
+- Trigger: User fills form and clicks submit
+- File: `src/scripts/apps/makerstarter/pages/Contact.tsx:30-32`
+- Workaround: None (form is non-functional)
+- Root cause: `handleSubmit` only calls `preventDefault()`, no API call
 
-**Direct DOM Manipulation:**
-- Symptoms: Potential stale references or race conditions
-- Trigger: getElementById for "services-count", "categories-count" elements
-- File: `src/blocks-dev/services/Services.jsx` (lines 151-157)
+**Settings Not Persisted:**
+- Symptoms: Profile, notification, theme changes lost on refresh
+- Trigger: Change any setting, refresh page
+- File: `src/scripts/apps/makerstarter/pages/Settings.tsx`
 - Workaround: None
-- Root cause: React anti-pattern
-- Fix: Use refs or lift state to parent
-
-## Build Tooling Issues
-
-**Path Aliases Not Supported:**
-- Issue: `@/*` aliases configured in tsconfig.json but wp-scripts doesn't resolve them
-- Files: `tsconfig.json`, all TypeScript files
-- Impact: Must use relative imports (`../../lib/utils` instead of `@/lib/utils`)
-- Workaround: Use relative imports only - this is documented in CONVENTIONS.md
-- Root cause: wp-scripts webpack config doesn't read tsconfig paths
-
-**Tailwind v4 Syntax:**
-- Issue: CSS variables require `@theme` block instead of standard Tailwind patterns
-- Files: `src/styles/vendors/tailwind/_source.scss`
-- Impact: Shadcn CSS variables need manual syntax adjustment
-- Workaround: Use `@theme` block for variable definitions
-- Root cause: Tailwind v4 breaking changes
+- Root cause: State is component-local, no API integration
 
 ## Security Considerations
 
-**Nonce Exposure:**
-- Risk: TypeRocket and REST nonces exposed in `window.siteData`
-- Files: `inc/wp_localize.php`
-- Current mitigation: Standard WordPress pattern, nonces are session-based
-- Recommendations: Nonces are correctly implemented, low risk
+**Unvalidated Window Global Access:**
+- Risk: If `window.siteData` undefined, components crash
+- Files:
+  - `src/lib/api.ts:14` - Destructures without null check
+  - `src/scripts/apps/makerstarter/layouts/DashboardLayout.tsx:45`
+- Current mitigation: None
+- Recommendations: Add null guard: `const siteData = window.siteData ?? { siteUrl: '', nonce: '' }`
 
-**No Input Sanitization on Client:**
-- Risk: API responses used directly without validation
-- Files: All blocks fetching data
-- Current mitigation: Server-side sanitization in TypeRocket
-- Recommendations: Add Zod or similar for response validation
+**External URLs Without Fallback:**
+- Risk: External Tailwind/Unsplash URLs may fail
+- Files:
+  - `src/blocks-dev/header/Header.tsx:57, 144` (tailwindcss.com)
+  - `src/blocks-dev/header/Header.tsx:221, 250` (unsplash.com)
+- Current mitigation: None
+- Recommendations: Use local assets or add fallback images
 
 ## Performance Bottlenecks
 
-**Parallel Fetch Overload:**
-- Problem: 11+ parallel fetch calls in Services block
-- File: `src/blocks-dev/services/Services.jsx` (lines 50-62)
-- Cause: Fetching services, categories, types, pricing simultaneously
-- Improvement: Use Promise.all with batching or server-side aggregation
+**No Lazy Loading:**
+- Problem: All page data hardcoded in components
+- Files: All pages in `src/scripts/apps/makerstarter/pages/`
+- Measurement: Initial bundle includes all page data
+- Cause: Static data arrays instead of API fetching
+- Improvement path: Convert to `useEffect` + `api.get()` with loading states
 
-**No API Response Caching:**
-- Problem: Every page load fetches fresh data
-- Files: All blocks with REST API calls
-- Cause: No caching strategy implemented
-- Improvement: Add React Query or SWR for caching
+**Duplicated Logo Rendering:**
+- Problem: Same logo image rendered twice (mobile + desktop)
+- File: `src/scripts/apps/makerstarter/layouts/DashboardLayout.tsx`
+- Measurement: Extra DOM nodes, potential layout thrash
+- Cause: Responsive design via duplication
+- Improvement path: Single logo with CSS visibility toggling
 
 ## Fragile Areas
 
 **MakerBlocks Hydration:**
 - File: `src/scripts/MakerBlocks.tsx`
-- Why fragile: Component registry must match DOM IDs exactly
-- Common failures: Block added but not registered in registry
-- Safe modification: Always update registry when adding blocks
-- Test coverage: None (manual testing only)
+- Why fragile: Parses JSON from DOM attributes, mounts multiple roots
+- Common failures: Malformed JSON, missing mount points
+- Safe modification: Add error boundaries, test with malformed data
+- Test coverage: None (critical gap)
 
-**API Response Format Assumptions:**
-- File: `src/blocks-dev/services/Services.jsx` (lines 299-354)
-- Why fragile: Extensive data normalization assumes specific format
-- Common failures: API format changes break rendering
-- Safe modification: Add defensive checks before accessing nested properties
-- Test coverage: None
-
-## Dependencies at Risk
-
-**lucide-react Dual Usage:**
-- Risk: Used alongside Bootstrap Icons, potential bundle size concern
-- Impact: Inconsistent icon systems in different blocks
-- Migration plan: Standardize on one icon system
+**Block Registration Order:**
+- File: `inc/blocks.php`
+- Why fragile: Blocks registered in loop, order matters for editor
+- Common failures: Block not appearing if registration fails silently
+- Safe modification: Add error logging for failed registrations
 
 ## Missing Critical Features
 
-**AbortController for Fetch:**
-- Problem: No request cancellation on component unmount in most blocks
-- Current workaround: None (potential memory leaks)
-- Blocks: All blocks with fetch calls (except header)
-- Implementation complexity: Low - pattern documented in CONVENTIONS.md
+**Form Submission Flow:**
+- Problem: Contact form collects data but never submits
+- File: `src/scripts/apps/makerstarter/pages/Contact.tsx`
+- Current workaround: None (broken UX)
+- Blocks: Users can't contact site owners
+- Implementation complexity: Low (add API call + loading state)
 
-**Error Boundaries:**
-- Problem: No React error boundaries around blocks
-- Current workaround: Try/catch in MakerBlocks.tsx (errors logged, not displayed)
-- Blocks: Component render failures leave blank UI
-- Implementation complexity: Low
+**Cart/Checkout Flow:**
+- Problem: Shop page has cart UI but no persistence
+- File: `src/scripts/apps/makerstarter/pages/Shop.tsx`
+- Current workaround: None
+- Blocks: No e-commerce functionality
+- Implementation complexity: Medium (needs makermaker API endpoints)
 
 ## Test Coverage Gaps
 
-**No Unit Tests Written Yet:**
-- What's not tested: Utility functions, component logic
+**No Unit Tests Exist:**
+- What's not tested: Everything
 - Risk: Regressions go unnoticed
 - Priority: High
-- Difficulty: Infrastructure ready (Vitest), just needs test files
+- Difficulty to test: Low - Vitest configured, just needs test files
 
-**No Shadcn Component Tests:**
-- What's not tested: Button, Sheet, Dialog, etc.
-- Risk: Component variants may break
-- Priority: High
-- Difficulty: Low - @testing-library/react ready
+**Priority Test Targets:**
+1. `src/lib/api.ts` - API client (critical)
+2. `src/scripts/MakerBlocks.tsx` - Hydration logic
+3. `src/components/ui/*.tsx` - UI primitives
 
-**No Integration Tests:**
-- What's not tested: REST API data fetching, form submission
-- Risk: API integration breaks silently
+**Missing Block Validation:**
+- What's not tested: Block structure validation
+- File: `tests/validate-block-structure.js` referenced but doesn't exist
+- Risk: Invalid blocks deployed
 - Priority: Medium
-- Difficulty: Need mock server setup
+
+## Accessibility Gaps
+
+**Missing Alt Attributes:**
+- Files:
+  - `src/scripts/apps/makerstarter/pages/Cases.tsx:84-87`
+  - `src/scripts/apps/makerstarter/pages/Portfolio.tsx:73-75`
+  - `src/scripts/apps/makerstarter/pages/Shop.tsx:165-168`
+- Risk: WCAG non-compliance, screen reader issues
+- Recommendations: Add descriptive alt text to all images
+
+## Documentation Gaps
+
+**Complex Components Without Comments:**
+- Files:
+  - `src/scripts/apps/makerstarter/pages/Settings.tsx` - Nested tabs, toggles
+  - `src/scripts/MakerBlocks.tsx` - Hydration flow
+- Risk: Onboarding difficulty
+- Recommendations: Add JSDoc explaining state flow and error handling
 
 ---
 

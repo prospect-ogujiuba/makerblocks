@@ -1,142 +1,155 @@
 # Architecture
 
-**Analysis Date:** 2026-01-06
+**Analysis Date:** 2026-01-18
 
 ## Pattern Overview
 
-**Overall:** WordPress FSE Block Plugin with Client-Side React Hydration
+**Overall:** Layered Plugin Architecture with React Hydration
 
 **Key Characteristics:**
-- UI-only plugin (no business logic, no database queries)
-- Server renders block shells with attributes → Client fetches data via REST API
-- 33 custom Gutenberg blocks (all `makerblocks/` prefixed)
-- Strict separation: MakerBlocks (UI) ↔ MakerMaker (data via TypeRocket REST)
+- WordPress FSE block plugin (UI-only)
+- React hydration on frontend
+- All data via TypeRocket REST API
+- Strict separation: UI in makerblocks, logic in makermaker
 
 ## Layers
 
-**WordPress Plugin Layer:**
-- Purpose: WordPress hooks, asset registration, block registration
-- Contains: `makerblocks.php`, `inc/*.php`
-- Depends on: WordPress core, Gutenberg
-- Used by: WordPress plugin system
+**Plugin Core:**
+- Purpose: Bootstrap and register WordPress hooks
+- Contains: Constants, includes loader
+- Location: `makerblocks.php`
+- Depends on: WordPress core
+- Used by: All PHP modules
 
-**Block Registration Layer:**
-- Purpose: Define block metadata, attributes, render callbacks
-- Contains: `blocks/*/block.json`, `blocks/*/index.js`, `blocks/*/render.php`
-- Depends on: WordPress block API, React
-- Used by: Gutenberg editor and frontend
+**PHP Presentation Layer:**
+- Purpose: Block registration, asset loading, data injection
+- Contains: `inc/blocks.php`, `inc/enqueue_assets.php`, `inc/wp_localize.php`
+- Depends on: WordPress hooks, plugin core
+- Used by: Gutenberg editor, frontend
 
-**React Component Layer:**
-- Purpose: Editor UI and frontend rendering
-- Contains: `src/blocks-dev/*/{BlockName}.jsx`, `src/components/`
-- Depends on: React, shared components, REST API
-- Used by: Block editor, MakerBlocks hydration class
+**Block Render Layer:**
+- Purpose: Server-side HTML output with React mount points
+- Contains: `src/blocks-dev/*/render.php`
+- Depends on: Block attributes, PHP helpers
+- Used by: WordPress render pipeline
 
-**Asset Layer:**
-- Purpose: Compiled scripts and styles
-- Contains: `assets/js/`, `assets/css/`
-- Depends on: Build pipeline output
-- Used by: Frontend and editor enqueuing
+**React Hydration Layer:**
+- Purpose: Mount React components on page load
+- Contains: `src/scripts/MakerBlocks.tsx`, `src/scripts/index.ts`
+- Depends on: DOM, component registry
+- Used by: Frontend pages
+
+**React Application Layer:**
+- Purpose: SPA routing and page components
+- Contains: `src/scripts/apps/makerstarter/` (pages, layouts)
+- Depends on: React Router, UI components
+- Used by: App block
+
+**UI Component Layer:**
+- Purpose: Reusable primitives
+- Contains: `src/components/ui/` (10 ShadCN components)
+- Depends on: Radix UI, CVA, Tailwind
+- Used by: All React components
+
+**Utility Layer:**
+- Purpose: Shared helpers
+- Contains: `src/lib/api.ts`, `src/lib/utils.ts`
+- Depends on: `window.siteData`
+- Used by: Components needing data/styles
 
 ## Data Flow
 
-**Server-Side Rendering (PHP):**
-1. Block placed in page via editor
-2. `register_block_type()` loads `render.php`
-3. `render.php` extracts block attributes from `$attributes`
-4. Minimal `component-data` array prepared (static values only)
-5. HTML rendered with `get_block_wrapper_attributes()` + JSON data attribute
+**Block Render → React Hydration:**
 
-**Client-Side Hydration (JavaScript):**
-1. Page loads, `wp_localize_script` injects `window.siteData`
-2. `MakerBlocks.js` initializes on `DOMContentLoaded`
-3. For each registered component, find DOM element by ID
-4. Parse `component-data` attribute → extract props
-5. Create React root, mount component
+1. WordPress renders block via `render.php`
+2. Block outputs `<div id="makerblocks-app" data-component-data="{...}">`
+3. `index.ts` instantiates `MakerBlocks` class on DOMContentLoaded
+4. `MakerBlocks` finds mount point by ID
+5. Parses `component-data` JSON attribute
+6. Calls `createRoot().render(<Component {...props} />)`
 
-**Component Data Fetching (React):**
-1. Component mounts (e.g., `Services.jsx`)
-2. `useEffect` fires with empty deps
-3. Fetch from TypeRocket REST API with `X-TypeRocket-Nonce` header
-4. Response: `{success: true, data: [...], meta: {...}}`
-5. Set state → render UI
-6. Loading/error states handled by React (SkeletonLoader)
+**API Request Lifecycle:**
+
+1. Component calls `api.get('/endpoint')`
+2. `fetchApi()` reads `window.siteData.{siteUrl, nonce}`
+3. Fetch to `${siteUrl}/tr-api/rest/${endpoint}` with nonce header
+4. Response parsed as `TypeRocketResponse<T>`
+5. Component updates state with data
 
 **State Management:**
-- Local state via `useState` hooks per component
-- No global state management (Redux, Context)
-- Each block instance is independent
+- Component-local state (useState)
+- No global state management
+- `window.siteData` for site context
 
 ## Key Abstractions
 
-**Block Pattern (5-file structure):**
-- Purpose: Consistent block organization
-- Files: `block.json`, `index.js`, `edit.js`, `{BlockName}.jsx`, `render.php`
-- Pattern: All 33 blocks follow identical structure
-- Scaffold: `src/blocks-dev/_template/`
+**Block (5-file pattern):**
+- Purpose: Gutenberg block definition
+- Examples: `src/blocks-dev/app/`, `src/blocks-dev/header/`
+- Pattern: block.json, index.js, edit.js, Component.tsx, render.php
 
-**Component Registry:**
-- Purpose: Map DOM elements to React components
-- Implementation: `src/scripts/MakerBlocks.js` (lines 35-170)
-- Pattern: Array of `{id, component, name}` objects
-- 27 components registered for hydration
+**ComponentRegistry:**
+- Purpose: Map block IDs to React components
+- Location: `src/scripts/MakerBlocks.tsx`
+- Pattern: `{ id: string, component: ReactComponent, name: string }[]`
 
-**Shared Components:**
-- Purpose: Reusable UI patterns
-- Location: `src/components/`
-- Examples: Button, Badge variants, IconPicker, SkeletonLoader, SearchBar, FilterPanel
-- Export: Barrel pattern via `index.js`
+**UI Component (ShadCN):**
+- Purpose: Styled Radix primitive
+- Examples: `Button`, `Card`, `Dialog`
+- Pattern: CVA variants + forwardRef + asChild
+
+**API Client:**
+- Purpose: Typed REST operations
+- Location: `src/lib/api.ts`
+- Pattern: `fetchApi<T>`, `get<T>`, `post<T>`, `put<T>`, `del<T>`
 
 ## Entry Points
 
-**Plugin Entry:**
+**Plugin Init:**
 - Location: `makerblocks.php`
-- Triggers: WordPress plugin activation
-- Responsibilities: Define constants, load `inc/` modules
+- Triggers: Plugin activation
+- Responsibilities: Define constants, load includes
 
-**Block Registration:**
-- Location: `inc/blocks.php:makerblocks_blocks_init()`
-- Triggers: `init` hook
-- Responsibilities: Register 33 blocks via `register_block_type()`
+**Frontend Scripts:**
+- Location: `src/scripts/index.ts` → `MakerBlocks.tsx`
+- Triggers: DOMContentLoaded
+- Responsibilities: Find mount points, hydrate React
 
-**Asset Enqueue:**
-- Location: `inc/enqueue_assets.php`
-- Triggers: `wp_enqueue_scripts`, `enqueue_block_assets`, `admin_enqueue_scripts`
-- Responsibilities: Load scripts, styles, Bootstrap Icons
+**Block Editor:**
+- Location: `src/blocks-dev/*/index.js`
+- Triggers: Gutenberg loads
+- Responsibilities: Register block type
 
-**Frontend Hydration:**
-- Location: `src/scripts/MakerBlocks.js:constructor()`
-- Triggers: `DOMContentLoaded`
-- Responsibilities: Mount React components, register event handlers
+**SPA App:**
+- Location: `src/scripts/apps/makerstarter/MakerStarter.tsx`
+- Triggers: App block renders
+- Responsibilities: React Router setup, page rendering
 
 ## Error Handling
 
-**Strategy:** Try/catch at hydration level, Promise rejection in fetch chains
+**Strategy:** Catch at boundaries, log to console
 
 **Patterns:**
-- Component mount wrapped in try/catch - `src/scripts/MakerBlocks.js` (line 220)
-- Fetch chains use `.catch()` with error state
-- Loading/error states rendered by React components
-- Errors logged to console (no server-side reporting)
+- `MakerBlocks.tsx:35` - try/catch around JSON.parse for props
+- Console.warn/error for mount failures
+- No error boundaries in components
 
 ## Cross-Cutting Concerns
 
 **Logging:**
-- Browser console only (`console.log`, `console.error`)
-- No structured logging framework
-- Debug logs commented out in production
+- Console.warn/error for hydration issues
+- No structured logging
 
 **Validation:**
-- Block attributes validated by WordPress via `block.json` schema
-- API response format assumed without defensive checks
-- Form validation in ContactForm component
+- TypeScript types at compile time
+- No runtime validation on API responses
+- Nonce verification server-side (TypeRocket)
 
 **Authentication:**
-- TypeRocket nonce via `window.siteData.nonce`
-- WP REST nonce via `window.siteData.restNonce`
-- Nonces generated server-side via `tr_nonce()`, `wp_create_nonce()`
+- Nonce-based verification
+- User data passed via `window.siteData` when logged in
 
 ---
 
-*Architecture analysis: 2026-01-06*
+*Architecture analysis: 2026-01-18*
 *Update when major patterns change*

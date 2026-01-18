@@ -5,174 +5,114 @@
 ## Test Framework
 
 **Runner:**
-- Vitest - Modern test runner with TypeScript support
-- Config: `vitest.config.ts` in project root
+- Vitest 4.0.17 (`package.json`)
+- Config: `vitest.config.ts`
 
 **Assertion Library:**
 - Vitest built-in expect
-- @testing-library/jest-dom for DOM matchers
+- jest-dom matchers extended
 
 **Run Commands:**
 ```bash
-npm test                  # Run all tests (watch mode)
-npm run test:ui          # Vitest UI
-npm run test:coverage    # Coverage report
-npm run test:blocks      # Block structure validation
-npm run lint:js          # ESLint via @wordpress/scripts
-npm run lint:css         # Stylelint via @wordpress/scripts
+npm test                    # Run all tests
+npm run test:ui             # Interactive UI
+npm run test:coverage       # Coverage report
+npm run test:blocks         # Block structure validation (script missing)
 ```
 
 ## Test File Organization
 
 **Location:**
-- `src/**/*.test.ts` - Unit tests (co-located with source)
-- `src/test/setup.ts` - Test setup file
-- `tests/validate-block-structure.js` - Block validation (legacy)
+- Setup file: `src/test/setup.ts`
+- Test pattern: `*.test.ts` / `*.test.tsx` (none exist yet)
+- Co-located with source (intended pattern)
 
 **Naming:**
-- `*.test.ts` or `*.test.tsx` for test files
-- Co-located with source files
+- `{module-name}.test.ts` for unit tests
+- No integration/e2e tests
 
 **Structure:**
 ```
 src/
 ├── lib/
-│   ├── utils.ts
-│   └── utils.test.ts       # Unit tests
-├── components/
-│   └── ui/
-│       ├── button.tsx
-│       └── button.test.tsx  # Component tests
-├── test/
-│   └── setup.ts            # Global test setup
-tests/
-└── validate-block-structure.js  # Block validation
+│   ├── api.ts
+│   └── api.test.ts (to be created)
+├── scripts/
+│   ├── MakerBlocks.tsx
+│   └── MakerBlocks.test.tsx (to be created)
+└── test/
+    └── setup.ts
 ```
 
 ## Test Structure
 
 **Suite Organization:**
 ```typescript
-import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
-import { Button } from './button';
+import { describe, it, expect, beforeEach, vi } from 'vitest'
 
-describe('Button', () => {
-  describe('rendering', () => {
-    it('renders with default variant', () => {
-      render(<Button>Click me</Button>);
-      expect(screen.getByRole('button')).toHaveClass('bg-primary');
-    });
+describe('ModuleName', () => {
+  describe('functionName', () => {
+    beforeEach(() => {
+      // reset state
+    })
 
-    it('renders with outline variant', () => {
-      render(<Button variant="outline">Click me</Button>);
-      expect(screen.getByRole('button')).toHaveClass('border');
-    });
-  });
-
-  describe('interactions', () => {
-    it('calls onClick when clicked', async () => {
-      const onClick = vi.fn();
-      render(<Button onClick={onClick}>Click me</Button>);
-
-      await userEvent.click(screen.getByRole('button'));
-      expect(onClick).toHaveBeenCalledOnce();
-    });
-  });
-});
+    it('should handle valid input', () => {
+      // arrange
+      // act
+      // assert
+    })
+  })
+})
 ```
 
 **Patterns:**
-- Use beforeEach for per-test setup
-- Use afterEach to restore mocks: `vi.restoreAllMocks()`
-- Group related tests with nested describe blocks
-- One assertion focus per test
+- Vitest globals enabled (no imports needed for describe/it/expect)
+- jsdom environment for DOM testing
+- beforeEach for per-test setup
 
 ## Mocking
 
 **Framework:**
-- Vitest built-in mocking (`vi`)
-- Module mocking via `vi.mock()` at top of test file
+- Vitest built-in (vi)
 
-**Patterns:**
+**Window Global Mock (from setup.ts):**
 ```typescript
-import { vi } from 'vitest';
-
-// Mock module
-vi.mock('../lib/api', () => ({
-  fetchData: vi.fn()
-}));
-
-// Mock window.siteData
-beforeEach(() => {
-  vi.stubGlobal('siteData', {
-    siteUrl: 'https://test.local',
-    nonce: 'test-nonce',
-    restNonce: 'test-rest-nonce'
-  });
-});
-
-afterEach(() => {
-  vi.unstubAllGlobals();
-});
+window.siteData = {
+  siteUrl: 'http://localhost',
+  siteName: 'Test Site',
+  nonce: 'test-nonce',
+  restNonce: 'test-rest-nonce',
+}
 ```
 
 **What to Mock:**
-- External API calls (fetch)
-- window.siteData globals
-- WordPress dependencies (@wordpress/*)
-- Browser APIs (localStorage, etc.)
+- `window.siteData` (mocked in setup)
+- fetch for API calls
+- WordPress globals (@wordpress/*)
 
 **What NOT to Mock:**
-- Internal pure functions
-- Simple utilities
-- React component internals
+- Pure utility functions
+- Type definitions
 
 ## Fixtures and Factories
 
 **Test Data:**
-```typescript
-// Factory functions in test file
-function createTestService(overrides?: Partial<Service>): Service {
-  return {
-    id: 1,
-    name: 'Test Service',
-    status: 'active',
-    ...overrides
-  };
-}
-
-// Shared fixtures
-// src/test/fixtures/services.ts
-export const mockServices = [
-  createTestService({ id: 1, name: 'Service A' }),
-  createTestService({ id: 2, name: 'Service B' }),
-];
-```
+- Window mock in `src/test/setup.ts`
+- No factory patterns established yet
 
 **Location:**
-- Factory functions: Define in test file near usage
-- Shared fixtures: `src/test/fixtures/` for multi-file test data
+- Shared fixtures: `src/test/fixtures/` (to be created)
+- Inline mocks for simple cases
 
 ## Coverage
 
 **Requirements:**
-- No enforced coverage target (yet)
-- Coverage tracked for awareness
-- Focus on critical paths (utilities, components)
+- No enforced coverage target
+- Coverage available via `npm run test:coverage`
 
 **Configuration:**
-```typescript
-// vitest.config.ts
-export default defineConfig({
-  test: {
-    coverage: {
-      provider: 'v8',
-      exclude: ['**/*.test.*', 'src/test/**']
-    }
-  }
-});
-```
+- Vitest built-in coverage
+- Exclusions not configured
 
 **View Coverage:**
 ```bash
@@ -183,98 +123,57 @@ open coverage/index.html
 ## Test Types
 
 **Unit Tests:**
-- Test single function/component in isolation
-- Mock all external dependencies
-- Fast: each test <100ms
-- Location: `src/**/*.test.ts`
+- Scope: Single function/component
+- Environment: jsdom
+- Speed: Fast (<100ms)
+- Examples: None yet (to be created)
 
-**Component Tests:**
-- Test React components with @testing-library/react
-- Focus on user-visible behavior
-- Location: `src/components/**/*.test.tsx`
+**Integration Tests:**
+- Not established
 
-**Structure Validation:**
-- Validates 5-file pattern for blocks
-- Excludes `_template` block
-- Location: `tests/validate-block-structure.js`
-
-**No E2E Tests:**
-- No Playwright/Cypress configured
-- CLI integration tested manually
+**E2E Tests:**
+- Not established
+- Block validation script referenced but missing
 
 ## Common Patterns
 
 **Async Testing:**
 ```typescript
-it('should handle async operation', async () => {
-  const result = await fetchData();
-  expect(result).toBe('expected');
-});
+it('should fetch data', async () => {
+  const result = await fetchApi('endpoint')
+  expect(result).toBeDefined()
+})
 ```
 
 **Error Testing:**
 ```typescript
 it('should throw on invalid input', () => {
-  expect(() => parse(null)).toThrow('Cannot parse null');
-});
-
-// Async error
-it('should reject on failure', async () => {
-  await expect(asyncCall()).rejects.toThrow('error message');
-});
+  expect(() => parse(null)).toThrow()
+})
 ```
 
-**Component Testing:**
+**React Component Testing:**
 ```typescript
-import { render, screen, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { render, screen } from '@testing-library/react'
 
-it('shows loading state then data', async () => {
-  render(<DataComponent />);
-
-  expect(screen.getByText('Loading...')).toBeInTheDocument();
-
-  await waitFor(() => {
-    expect(screen.getByText('Data loaded')).toBeInTheDocument();
-  });
-});
+it('renders button', () => {
+  render(<Button>Click</Button>)
+  expect(screen.getByRole('button')).toBeInTheDocument()
+})
 ```
 
-**Snapshot Testing:**
-- Not currently used
-- Prefer explicit assertions for clarity
+## Current Gaps
 
-## Vitest Configuration
-
-```typescript
-// vitest.config.ts
-import { defineConfig } from 'vitest/config';
-import react from '@vitejs/plugin-react';
-
-export default defineConfig({
-  plugins: [react()],
-  test: {
-    environment: 'jsdom',
-    globals: true,
-    setupFiles: ['./src/test/setup.ts'],
-  },
-  resolve: {
-    alias: { '@': '/src' }  // Note: aliases work in tests, not wp-scripts build
-  }
-});
-```
-
-## Gaps and Recommendations
-
-**Current Coverage:**
-- Block structure validation ✓
-- Vitest infrastructure ✓ (newly added)
+**Missing Tests:**
+- No `*.test.ts` or `*.test.tsx` files in codebase
+- Block validation script (`tests/validate-block-structure.js`) referenced but doesn't exist
+- No component tests for UI layer
+- No API client tests
 
 **Priority Areas:**
-- Shadcn component tests (High)
-- Utility function tests - cn(), api helpers (High)
-- Block component tests (Medium)
-- Integration tests for REST API data fetching (Medium)
+1. `src/lib/api.ts` - Critical for data flow
+2. `src/scripts/MakerBlocks.tsx` - Hydration logic
+3. `src/components/ui/*.tsx` - UI primitives
 
 ---
 
