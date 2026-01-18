@@ -113,11 +113,6 @@
 - Impact: Inconsistent icon systems in different blocks
 - Migration plan: Standardize on one icon system
 
-**react-router-dom:**
-- Risk: Included in dependencies but usage unclear
-- Impact: Bundle size if unused
-- Migration plan: Remove if not needed
-
 ## Missing Critical Features
 
 **AbortController for Fetch:**
