@@ -1,119 +1,97 @@
 # External Integrations
 
-**Analysis Date:** 2026-01-18
+**Analysis Date:** 2026-01-19
 
 ## APIs & External Services
 
-**TypeRocket REST API:**
+**TypeRocket REST API (makermaker plugin):**
+- Purpose: All business data fetching
 - Endpoint base: `/tr-api/rest/`
-- SDK/Client: Custom fetch wrapper `src/lib/api.ts`
-- Auth: `X-TypeRocket-Nonce` header from `window.siteData.nonce`
-- Methods: GET, POST, PUT, DELETE via `fetchApi()`
-- Source: makermaker plugin (sibling dependency)
+- Client: Native `fetch` wrapper in `src/lib/api.ts`
+- Auth: `X-TypeRocket-Nonce` header via `window.siteData.nonce`
 
 **WordPress REST API:**
-- Auth: `wp_rest` nonce from `window.siteData.restNonce`
-- Used for: Authenticated WP operations
+- Purpose: Standard WP data (available but secondary)
+- Endpoint base: `/wp-json/`
+- Auth: `X-WP-Nonce` header via `window.siteData.restNonce`
 
-## Data Storage
+## Data Flow
 
-**Databases:**
-- WordPress database via TypeRocket API
-- No direct queries in blocks (architecture rule)
-- Connection: Handled by makermaker plugin
+**Block Rendering:**
+1. `render.php` queries WordPress data (menus, users, etc.)
+2. Passes to React via `component-data` JSON attribute
+3. React component mounts via `MakerBlocks.tsx` hydration
+4. Dynamic data fetched from TypeRocket API in `useEffect`
 
-**File Storage:**
-- WordPress media library
-- Plugin assets: `assets/images/`
-- No external cloud storage
+**API Client Pattern (`src/lib/api.ts`):**
+```typescript
+fetchApi<T>(endpoint, options)  // Full control
+get<T>(endpoint)                // GET helper
+post<T>(endpoint, data)         // POST helper
+put<T>(endpoint, data)          // PUT helper
+del<T>(endpoint)                // DELETE helper
+```
 
-**Caching:**
-- None implemented in plugin
-- Relies on WordPress/server caching
+## Authentication
 
-## Authentication & Identity
+**TypeRocket Nonce:**
+- Generated: `tr_nonce()` in PHP
+- Location: `window.siteData.nonce`
+- Header: `X-TypeRocket-Nonce`
+- Scope: Logged-in users only
 
-**Auth Provider:**
-- WordPress native authentication
-- Session: PHP session via WordPress
-- Token storage: Cookies (WordPress standard)
+**WordPress REST Nonce:**
+- Generated: `wp_create_nonce('wp_rest')`
+- Location: `window.siteData.restNonce`
+- Header: `X-WP-Nonce`
 
-**Nonce System:**
-- TypeRocket nonce: `tr_nonce()` → `inc/wp_localize.php`
-- WordPress REST nonce: `wp_create_nonce('wp_rest')`
-- Both passed via `window.siteData`
+**User Context:**
+- `window.siteData.isUserLoggedIn` - Boolean
+- `window.siteData.currentUser` - Full user object (logged-in only)
+- `window.siteData.currentUserId` - User ID
 
-**User Data Flow:**
-- `is_user_logged_in()` check in `inc/wp_localize.php`
-- User object passed to frontend when authenticated
-- Fields: ID, name, email, avatar, roles
+## Global Data (window.siteData)
 
-## Monitoring & Observability
+**Always Available:**
+- `siteUrl` - Site URL
+- `siteName` - Site name
+- `homeUrl` - Home URL
+- `restUrl` - REST API base URL
+- `restNonce` - WP REST nonce
+- `isUserLoggedIn` - Auth status
 
-**Error Tracking:**
-- None configured
-- Console.warn/error in `MakerBlocks.tsx`
+**Logged-in Users:**
+- `nonce` - TypeRocket nonce
+- `adminUrl` - Admin URL
+- `ajaxUrl` - Admin AJAX URL
+- `currentUser` - `{id, name, email, roles}`
 
-**Analytics:**
-- None (handled externally)
+## Related Plugins
 
-**Logs:**
-- WordPress debug.log when WP_DEBUG enabled
+**MakerMaker (Required):**
+- Provides: TypeRocket REST API endpoints
+- Provides: Data models, business logic
+- Provides: `tr_nonce()` function
 
-## CI/CD & Deployment
+**MakerStarter Theme (Required):**
+- Provides: FSE templates
+- Provides: Block attributes/context
 
-**Hosting:**
-- WordPress plugin directory
-- Manual deployment to `wp-content/plugins/`
+## WordPress Hooks Used
 
-**CI Pipeline:**
-- Not configured
-- Build scripts: `npm run prod`
+**Actions:**
+- `init` - Block registration
+- `wp_enqueue_scripts` - Frontend assets
+- `enqueue_block_assets` - Editor assets
+- `admin_enqueue_scripts` - Admin assets
+- `template_redirect` - 404 redirect
 
-## Environment Configuration
+**Filters:**
+- `block_categories_all` - Custom block categories
 
-**Development:**
-- Required: WordPress 6.5+, PHP 7.0+, Node.js
-- No .env files
-- Mock in tests: `src/test/setup.ts` mocks `window.siteData`
+## PHP Constants
 
-**Production:**
-- Same WordPress instance
-- No separate staging configuration
-
-## Webhooks & Callbacks
-
-**Incoming:**
-- None in this plugin
-
-**Outgoing:**
-- None in this plugin
-
-## Related Plugins/Themes
-
-**Required Dependencies:**
-- **makermaker** - REST API backend (TypeRocket MVC)
-- **makerstarter** - Theme layer (templates, attributes)
-
-**Integration Points:**
-- `MAKERSTARTER_THEME_DIR`, `MAKERSTARTER_THEME_URL` globals
-- Theme directory constants defined in `makerblocks.php`
-
-## Icon Libraries
-
-**Bootstrap Icons:**
-- Stylesheet: `assets/css/bootstrap-icons.css` v1.11.1
-- Loaded via `inc/enqueue_assets.php`
-
-**Heroicons:**
-- React components: `@heroicons/react`
-- Used in React components
-
-**Lucide React:**
-- React icons: `lucide-react`
-- Used in ShadCN components
-
----
-
-*Integration audit: 2026-01-18*
-*Update when adding/removing external services*
+- `MAKERBLOCKS_PLUGIN_DIR` - Plugin directory path
+- `MAKERBLOCKS_PLUGIN_URL` - Plugin URL
+- `MAKERSTARTER_THEME_DIR` - Theme directory path
+- `MAKERSTARTER_THEME_URL` - Theme URL

@@ -1,175 +1,91 @@
 # Coding Conventions
 
-**Analysis Date:** 2026-01-18
+**Analysis Date:** 2026-01-19
 
 ## Naming Patterns
 
 **Files:**
-- React components: PascalCase (`Header.tsx`, `MakerBlocks.tsx`, `DashboardLayout.tsx`)
-- Utilities/lib: kebab-case (`api.ts`, `utils.ts`, `setup.ts`)
+- React components: PascalCase (`Header.tsx`, `MakerBlocks.tsx`)
+- Block entry points: lowercase (`index.ts`, `edit.tsx`)
+- PHP modules: snake_case (`enqueue_assets.php`, `wp_localize.php`)
 - UI components: kebab-case (`button.tsx`, `dropdown-menu.tsx`)
-- PHP: snake_case (`enqueue_assets.php`, `wp_localize.php`)
 
 **Functions:**
-- TypeScript: camelCase (`fetchApi`, `parseComponentProps`, `mountComponent`)
-- PHP: snake_case with prefix (`makerblocks_get_custom_blocks`, `makerblocks_blocks_init`)
-- React hooks: `use*` prefix (`useState`, `useEffect`, `useLocation`)
+- TypeScript/React: camelCase (`fetchApi`, `parseComponentProps`)
+- PHP: snake_case with plugin prefix (`makerblocks_register_asset`)
+- React components: PascalCase (`Edit`, `Header`)
 
 **Variables:**
 - TypeScript: camelCase (`sidebarOpen`, `componentRegistry`)
-- Constants: UPPER_SNAKE_CASE (`MAKERBLOCKS_PLUGIN_DIR`)
-- Private members: underscore prefix (`private _initializeComponents`)
+- PHP: snake_case (`$site_info`, `$current_user`)
+- Constants (PHP): SCREAMING_SNAKE_CASE (`MAKERBLOCKS_PLUGIN_DIR`)
 
-**Types:**
-- Interfaces: PascalCase, no I prefix (`SiteData`, `ComponentConfig`, `BlockEditProps`)
-- Type aliases: PascalCase (`NavItem`, `ApiResponse`)
-- Props: `${ComponentName}Props` pattern
+**Types/Interfaces:**
+- PascalCase (`NavItem`, `ComponentConfig`, `ApiResponse`)
 
 ## Code Style
 
 **Formatting:**
-- Indentation: 2 spaces (TS/JS), Tabs (PHP per WordPress)
-- Quotes: Single quotes preferred (`'clsx'`, `'react'`)
-- Semicolons: Omitted in most TSX (`"use client"` pattern)
-- Trailing commas: Yes
+- Tool: wp-scripts format (Prettier)
+- Indentation: Tabs (per `.editorconfig`)
+- Line endings: LF
+- Final newline: Yes
 
 **Linting:**
-- wp-scripts lint-js (ESLint under hood)
-- wp-scripts lint-style (stylelint)
-- Run: `npm run lint:js`, `npm run lint:css`
+- Commands: `npm run lint:js`, `npm run lint:css`
+
+**TypeScript:**
+- Strict mode enabled
+- Path alias: `@/*` maps to `./src/*`
 
 ## Import Organization
 
 **Order:**
-1. External packages (`react`, `@heroicons/react`)
-2. WordPress packages (`@wordpress/i18n`, `@wordpress/block-editor`)
-3. Internal modules (`@/lib/utils`, `@/components/ui`)
-4. Relative imports (`./components`, `../layouts`)
-5. Type imports (`import type { ... }`)
-
-**Grouping:**
-- Blank line between groups
-- React imports first within external
-
-**Path Aliases:**
-- `@/*` → `src/*` (defined in `tsconfig.json`)
+1. React/external framework (`react`, `react-dom/client`)
+2. WordPress packages (`@wordpress/blocks`, `@wordpress/i18n`)
+3. Third-party libraries (`@heroicons/react`, `clsx`)
+4. Internal absolute imports (`@/components/ui`)
+5. Relative imports (`./edit`)
 
 ## Error Handling
 
-**Patterns:**
-- try/catch around JSON.parse (`MakerBlocks.tsx:35`)
-- Console.warn for recoverable issues
-- Console.error for critical failures
-- No error boundaries (gap)
+**API Layer:**
+- Check `response.ok`, throw Error with message
 
-**Error Types:**
-- Throw on invalid input (not currently used)
-- Log and continue for hydration failures
-- Silent fail for missing mount points
-
-## Logging
-
-**Framework:**
-- Browser console (console.log, warn, error)
-- No structured logging
-
-**Patterns:**
-- `console.warn()` for mount issues
-- `console.error()` for parse failures
-- Debug logs removed in production (assumed)
-
-## Comments
-
-**When to Comment:**
-- JSDoc blocks for public functions
-- Inline comments for non-obvious logic
-- Section markers (`// WordPress dependencies`)
-
-**JSDoc/TSDoc:**
-- Used in block edit files (`@see`, `@return`)
-- Type documentation in `.d.ts` files
-- Example from `wordpress.d.ts`:
-```ts
-/**
- * Extended BlockEditProps with common patterns
- */
-export interface BlockEditProps<T> { ... }
-```
-
-**PHP DocBlocks:**
-- `@package makerblocks` on all files
-- Function descriptions above definitions
-
-## Function Design
-
-**Size:**
-- Target: Under 50 lines
-- Large components exist (Settings.tsx: 481 lines - needs refactor)
-
-**Parameters:**
-- Destructure props in React components
-- Options object for 4+ parameters
-
-**Return Values:**
-- Explicit returns
-- JSX.Element for components
-- Promise<T> for async
-
-## Module Design
-
-**Exports:**
-- Named exports for utilities (`export function cn`)
-- Default exports for React components (`export default function Edit`)
-- Re-exports from index not used (direct imports)
-
-**Barrel Files:**
-- Not used (import directly from component files)
+**Component Mounting:**
+- Try/catch around `createRoot`, log to console
 
 ## React Patterns
 
 **Component Structure:**
-```tsx
-"use client"
-import { useState } from "react"
-import { cn } from "@/lib/utils"
+1. Imports
+2. Types/Interfaces
+3. Constants
+4. Component (state, effects, handlers, JSX)
 
-interface Props { ... }
+**forwardRef Pattern:** Used for UI components with `displayName`
 
-export function Component({ prop1, prop2 }: Props) {
-  const [state, setState] = useState()
+**CVA Pattern:** class-variance-authority for style variants
 
-  return (
-    <div className={cn("base-class", conditional && "extra")}>
-      ...
-    </div>
-  )
-}
-```
+## Block Patterns
 
-**Styling:**
-- Tailwind classes inline
-- `cn()` for conditional classes
-- CVA for component variants
-
-**State:**
-- useState for local state
-- No global state management
-- Props for data down
+**5-File Pattern:**
+1. `block.json` - Metadata (SINGLE SOURCE OF TRUTH)
+2. `index.ts` - Registration
+3. `edit.tsx` - Editor component
+4. `{BlockName}.tsx` - Frontend React
+5. `render.php` - Server render with `component-data`
 
 ## PHP Patterns
 
-**Hook Registration:**
-```php
-add_action('init', 'makerblocks_blocks_init');
-add_action('wp_enqueue_scripts', 'makerblocks_enqueue_frontend');
-```
+**Function Existence Check:** `if (!function_exists(...))`
 
-**Function Naming:**
-```php
-function makerblocks_{action}_{subject}() { ... }
-```
+**WordPress Hooks:** `add_action`, `add_filter`
 
----
+**Security:** `esc_attr()`, `wp_json_encode()`, ABSPATH check
 
-*Convention analysis: 2026-01-18*
-*Update when patterns change*
+## Tailwind/CSS Patterns
+
+**Class Merging:** `cn()` from `@/lib/utils`
+
+**Sass 7-1:** abstracts, base, components, layout, pages, vendors

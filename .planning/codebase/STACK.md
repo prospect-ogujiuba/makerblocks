@@ -1,90 +1,155 @@
 # Technology Stack
 
-**Analysis Date:** 2026-01-18
+**Analysis Date:** 2026-01-19
 
 ## Languages
 
 **Primary:**
-- TypeScript 5.9.3 - All application code (`package.json`)
-- PHP 7.0+ - WordPress plugin layer (`makerblocks.php`)
+- TypeScript 5.9.3 - Block components, React apps, utility functions
+- PHP 7.0+ - WordPress integration, block render templates
 
 **Secondary:**
-- JavaScript (JSX) - Legacy block files (`src/blocks-dev/*/edit.js`)
-- SCSS - Styling (`src/styles/`)
+- JavaScript (ES2020) - Compiled output, wp-scripts build
+- SCSS - Styling (Sass 7-1 architecture)
 
 ## Runtime
 
 **Environment:**
-- Node.js (npm) - Build tooling
-- PHP 7.0+ (WordPress 6.5+) - Server runtime
-- Browser (React 18) - Client runtime via hydration
+- WordPress 6.5+ (Full Site Editing)
+- Node.js (via wp-scripts)
 
 **Package Manager:**
 - npm
-- Lockfile: `package-lock.json` present
+- Lockfile: `package-lock.json` (present)
 
 ## Frameworks
 
 **Core:**
-- React 18 - UI framework (via wp-scripts)
-- React Router 7.7.0 - SPA navigation (`src/scripts/apps/makerstarter/`)
-- WordPress FSE Block API - Block registration
+- React 18 - UI components (via @wordpress/scripts)
+- WordPress Block API - FSE block registration
+- React Router DOM 7.7.0 - Client-side routing (MakerStarter SPA)
 
-**UI Components:**
-- Radix UI - Primitives (`@radix-ui/react-*`)
-- ShadCN pattern - Component composition (`src/components/ui/`)
+**Styling:**
+- Tailwind CSS 4.1.11 - Utility classes
+- Sass 1.89.2 - SCSS compilation (7-1 architecture)
+- shadcn/ui (new-york style) - Component primitives
 
 **Testing:**
-- Vitest 4.0.17 - Unit tests (`vitest.config.ts`)
-- Testing Library 16.3.1 - React testing
+- Vitest 4.0.17 - Test runner
+- @testing-library/react 16.3.1 - React testing utilities
 - jsdom 27.4.0 - DOM environment
 
 **Build/Dev:**
-- wp-scripts 30.19.0 - WordPress build tooling
-- Tailwind CSS 4.1.11 - Utility CSS
-- Sass 1.89.2 - CSS preprocessing
-- npm-run-all 4.1.5 - Parallel tasks
+- @wordpress/scripts 30.19.0 - Block compilation, bundling
+- @tailwindcss/cli 4.1.11 - Tailwind compilation
 - browser-sync 3.0.4 - Live reload
+- npm-run-all 4.1.5 - Parallel script execution
 
 ## Key Dependencies
 
 **Critical:**
-- @heroicons/react 2.2.0 - Icon library
-- class-variance-authority 0.7.1 - Variant styling
-- clsx 2.1.1 - Class merging
-- tailwind-merge 3.4.0 - Tailwind class deduplication
+- `react-dom/client` - React 18 hydration via `createRoot`
+- `react-router-dom` - SPA navigation for MakerStarter app
+- `@wordpress/scripts` - Block build toolchain
 
-**UI Primitives:**
-- @radix-ui/react-accordion ^1.2.12
-- @radix-ui/react-dialog ^1.1.15
-- @radix-ui/react-dropdown-menu ^2.1.16
-- @radix-ui/react-tabs ^1.1.13
+**UI Components:**
+- `@radix-ui/react-*` - Headless primitives (accordion, dialog, dropdown-menu, label, slot, tabs)
+- `class-variance-authority` 0.7.1 - Variant styling
+- `clsx` 2.1.1 - Class name construction
+- `tailwind-merge` 3.4.0 - Tailwind class deduplication
+
+**Icons:**
+- `@heroicons/react` 2.2.0 - Hero icons
+- `lucide-react` 0.554.0 - Lucide icons
+- Bootstrap Icons 1.11.1 - CSS icon font (enqueued)
+- `@wordpress/icons` 6.2.0 - WordPress icons (editor)
+
+**Tailwind Plugins:**
+- `@tailwindcss/aspect-ratio` 0.4.2
+- `@tailwindcss/container-queries` 0.1.1
+- `@tailwindcss/forms` 0.5.10
+- `@tailwindcss/typography` 0.5.16
+- `@tailwindplus/elements` 1.0.16
+- `tw-animate-css` 1.4.0
 
 ## Configuration
 
-**Environment:**
-- No .env files - Configuration via WordPress
-- PHP globals: `MAKERBLOCKS_PLUGIN_DIR`, `MAKERBLOCKS_PLUGIN_URL`
-- JS globals: `window.siteData` (siteUrl, nonce, user info)
+**TypeScript:**
+- Config: `tsconfig.json`
+- Target: ES2020
+- Module: ESNext (bundler resolution)
+- JSX: react-jsx
+- Path alias: `@/*` -> `./src/*`
+- Strict mode enabled
 
-**Build:**
-- `tsconfig.json` - ES2020 target, React JSX, `@/*` path alias
-- `vitest.config.ts` - jsdom environment, globals enabled
-- `components.json` - ShadCN component registry
+**Tailwind CSS:**
+- Source: `src/styles/vendors/tailwind/_source.scss`
+- Output: `src/styles/vendors/tailwind/_tailwind.scss`
+- Theme: CSS custom properties (neutral base color)
+- Dark mode: CSS class `.dark`
+
+**Vitest:**
+- Config: `vitest.config.ts`
+- Environment: jsdom
+- Setup: `src/test/setup.ts`
+- Path alias: `@` -> `./src`
+
+**Editor:**
+- Config: `.editorconfig`
+- Indent: tabs (2 spaces for YAML)
+- Charset: utf-8
+- Line ending: lf
+
+**shadcn/ui:**
+- Config: `components.json`
+- Style: new-york
+- RSC: disabled
+- Icon library: lucide
+
+## Build Scripts
+
+**Development:**
+```bash
+npm run dev           # Parallel: tailwind-watch, sass-dev, wp-start, wp-start-blocks
+npm run preview       # dev + browser-sync proxy
+```
+
+**Production:**
+```bash
+npm run prod          # Sequential: tailwind-build, sass-prod, wp-build, wp-build-blocks
+```
+
+**Individual:**
+```bash
+npm run wp-start      # Watch src/scripts -> assets/js
+npm run wp-start-blocks  # Watch src/blocks-dev -> blocks
+npm run sass-dev      # Watch SCSS -> assets/css/styles.css
+npm run tailwind-watch   # Watch Tailwind source
+```
+
+## Output Paths
+
+**Scripts:**
+- Source: `src/scripts/`
+- Output: `assets/js/`
+
+**Blocks:**
+- Source: `src/blocks-dev/`
+- Output: `blocks/`
+
+**Styles:**
+- Source: `src/styles/styles.scss`
+- Output: `assets/css/styles.css`
 
 ## Platform Requirements
 
 **Development:**
-- Node.js (any recent version)
-- WordPress 6.5+ with PHP 7.0+
-- No Docker required
+- Node.js (LTS recommended)
+- npm
+- WordPress 6.5+ with FSE support
 
 **Production:**
-- WordPress plugin
-- Installed in `wp-content/plugins/makerblocks/`
-- Requires makermaker plugin (REST API backend)
-
----
-
-*Stack analysis: 2026-01-18*
-*Update after major dependency changes*
+- WordPress 6.5+
+- PHP 7.0+
+- MakerMaker plugin (data layer)
+- MakerStarter theme (template layer)
